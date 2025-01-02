@@ -13,7 +13,7 @@ interface HeaderProps {
 export default async function Header({ currentPost }: HeaderProps) {
   if (currentPost == null) return <></>;
 
-  //   const views = await getViewCount(currentPost.slug);
+  const views = await getViewCount(currentPost.slug);
 
   let postDate: Date | null = null;
   let timeAgo: string = '';
@@ -54,7 +54,7 @@ export default async function Header({ currentPost }: HeaderProps) {
         <span className="pr-1.5" suppressHydrationWarning={true}>
           <ViewCounter
             id={currentPost.slug}
-            defaultValue={0}
+            defaultValue={views}
             incrementOnMount={true}
           />
         </span>

@@ -1,0 +1,80 @@
+import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
+import Image from "next/image";
+import PhotoGrid from '@/modules/common/templates/PhotoGrid';
+import { MemoizedImage } from "@/modules/common/components/MemoizedImage";
+import Link from 'next/link';
+import Showcase from "@/modules/common/components/Showcase";
+import ProjectCard from "@/modules/common/components/ProjectCard";
+
+export const metadata = {
+  title: `About - ${AUTHOR.name}`,
+  image: `/images/me.WEBP`,
+  description: `${AUTHOR.description}`,
+  openGraph: {
+    title: `About - ${AUTHOR.name}`,
+    description: `${AUTHOR.description}`,
+    siteName: `${AUTHOR.name}'s website`,
+    images: [
+      {
+        url: `/images/me.WEBP`,
+        width: 400,
+        height: 400,
+        alt: `${AUTHOR.name}'s profile picture`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: `${AUTHOR.twitterHandle}`,
+    creator: `${AUTHOR.twitterHandle}`,
+    images: [
+      {
+        url: `/images/me.WEBP`,
+        alt: `${AUTHOR.name}'s profile picture`,
+      },
+    ],
+  },
+  keywords: DEFAULT_KEYWORDS.concat([
+    AUTHOR.name,
+    "Software Engineer",
+    "Dublin",
+    "Ireland",
+    "technology"
+  ]),
+  metadataBase: new URL(SITE_URL),
+};
+
+# Projects [#projects]
+
+I'm passionate about building products that make a difference. Here are some of my recent projects:
+
+<Showcase items={[
+<ProjectCard
+  key="jigsaw-presents"
+  imagePath="/images/projects/jigsaw-presents.webp"
+  title="Jigsaw Presents"
+  description="A YouTube channel featuring creative projects and insightful storytelling."
+  url="https://www.youtube.com/channel/UCx8iHEGQMyeInLgPQ81-EJA?sub_confirmation=1"
+/>,
+<ProjectCard
+  key="samwise"
+  imagePath="/images/projects/samwise-v2.png"
+  title="Samwise"
+  description="An open-source, high-performance digital blog and portfolio template built with Next.js 15."
+  url="https://samwise-v2-template.vercel.app/"
+/>,
+<ProjectCard
+  key="samwise"
+  imagePath="/images/projects/tmplate.png"
+  title="tmplate.xyz"
+  description="Pure Web Design in Motion. An open sourced Next.js project exemplifying Polymorphic Web Design Principals."
+  url="https://tmplate.xyz/"
+/>,
+<ProjectCard
+  key="samwise"
+  imagePath="/images/projects/thnws.png"
+  title="thnws.ai"
+  description="Providing a modern way for people to consume the news."
+  url="https://thnws.ai"
+/>,
+]} />

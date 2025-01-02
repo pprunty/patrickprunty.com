@@ -6,7 +6,7 @@ import { AUTHOR } from '@/config';
 export function Logo() {
   const pathname = usePathname();
   return (
-    <span className="text-md md:text-lg whitespace-nowrap font-bold">
+    <span className="text-md ml-2 sm:ml-0 md:text-lg whitespace-nowrap font-bold">
       {pathname === '/' ? (
         <span className="cursor-default pr-2">{AUTHOR.name}</span>
       ) : (

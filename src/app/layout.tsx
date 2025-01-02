@@ -115,7 +115,7 @@ export default function RootLayout({
         {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className={`dark:text-gray-100 max-w-2xl m-auto`}>
+      <body className={`dark:text-gray-100 max-w-2xl pt-12 md:pt-10 m-auto`}>
         <main className="p-6 pt-3 md:pt-6 min-h-screen">
           <Suspense fallback={null}>
             <Header />

@@ -81,9 +81,6 @@
 
   /* Customize scrollbar for Firefox */
   /* Light mode */
-  * {
-    scrollbar-width: thin; /* Make scrollbar narrower */
-  }
 
   /* Dark mode */
   .dark * {

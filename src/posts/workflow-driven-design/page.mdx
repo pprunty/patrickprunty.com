@@ -50,9 +50,27 @@ export const metadata = {
       'programming'
   ],
   slug: 'workflow-driven-design',
-  readingTime: 1,
+  readingTime: 2,
   draft: true
 };
+
+*This is Part 2/3 in my series on developing a scalable SaaS product with Next.js for commercial use.*
+
+***
+
+In a previous blog post, I wrote on [Pure Web Design](/blog/pure-web-design) and how by abstracting the **layout** and **composition** layers of a website,
+developers may focus on the innermost **widget** layer. The widget layer consists of creating the components which drive the core-value offerings of a product.
+
+These widgets could be for example, a **login form**, a **shopping cart**, or a **video player**.
+
+The widget(s) with which a developer creates is based on the *workflows* of the product they are developing. Moreover,
+a widget should enable the desire of the user to complete a task or a series of tasks in the product.
+
+In this blog post, I will discuss how to map user workflows to widgets and how to view the product development process
+through the lens of workflow-driven design.
+
+# Workflow-Driven Design [#workflow-driven-design]
+
 
 In Ireland, [Revolut](), the banking app has gained enormous popularity, underpinning national banks such as Bank of Ireland, AIB, ....
 Their sucess in Ireland is attributed to a number of things. Namely:
@@ -67,3 +85,13 @@ Revolut has been doing business in Ireland for ___ years and the other banks hav
 Reverse engineering the problem, let's imagine how the Revolut founders designed 
 their application. The CEO, ___, is on record as saying he wanted to create Revolut to make exhanging 
 money free but they have compeititon so how do they compete?
+
+
+# Authentication Workflow [#authentication-workflow]
+
+One of the first workflows a user experiences is authentication.
+
+- Passwordless Authentication
+- OAuth Authentication
+
+# Admin Workflow [#admin]

@@ -1,55 +1,165 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { BlogPostType } from '@/__samwise/types/BlogPost';
 import OptimizedImage from '@/modules/common/components/OptimizedImage';
 import DraftLabel from '@/modules/blog/components/DraftLabel';
+
+/**
+ * Minimal pointer-detection hook
+ * Returns true if the device likely uses a "coarse" pointer (mobile/touch).
+ */
+function useCoarsePointer() {
+  const [isCoarse, setIsCoarse] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsCoarse(window.matchMedia('(pointer: coarse)').matches);
+    }
+  }, []);
+
+  return isCoarse;
+}
 
 interface BlogPostProps {
   post: BlogPostType;
   index: number;
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
-  <Link
-    href={`/blog/${post.slug}`}
-    className="no-underline cursor-pointer"
-    prefetch={index < 6}
-  >
-    <div className="flex items-center transition-all ease-in-out border-b border-[#313131] dark:border-[#fcfcfc] sm:border-2 sm:border-gray-200 dark:sm:border-[#313131] sm:hover:border-gray-500 dark:sm:hover:border-gray-400 active:opacity-80 active:scale-98 py-4 sm:py-4 sm:px-4 relative">
+const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
+  const router = useRouter();
+  const isCoarse = useCoarsePointer();
+
+  // For mobile only: track whether overlay is visible after first tap
+  const [overlayVisible, setOverlayVisible] = useState(false);
+
+  // On desktop: overlay is shown only when hovered => group-hover classes
+  // On mobile: overlay appears after first tap
+  const showOverlayMobile = isCoarse && overlayVisible;
+
+  // Click logic
+  const handleClick = () => {
+    if (!isCoarse) {
+      // Desktop: single click => navigate
+      router.push(`/blog/${post.slug}`);
+    } else {
+      // Mobile: if overlay not visible, show it; else navigate
+      if (!overlayVisible) {
+        setOverlayVisible(true);
+      } else {
+        router.push(`/blog/${post.slug}`);
+      }
+    }
+  };
+
+  return (
+    <div
+      // Occupy full parent space (w-full h-full), with rounded corners
+      className={`
+        relative
+        w-full h-full
+        rounded-md
+        overflow-hidden
+        cursor-pointer
+        group
+        /* Remove border */
+      `}
+      onClick={handleClick}
+    >
       {post.draft && <DraftLabel />}
-      {post.image && (
-        <div className="relative w-[113px] h-[113px] xs:w-[80px] xs:h-[80px] sm:w-[125px] sm:h-[125px] overflow-hidden mr-4 flex-shrink-0">
-          <OptimizedImage
-            src={post.image}
-            alt={post.title || 'Blog post image'}
-            sizes="(max-width: 640px) 80px, (min-width: 640px) 113px, (min-width: 768px) 125px"
-            priority={index === 0}
-            loading={index === 0 ? 'eager' : 'lazy'}
-          />
-        </div>
-      )}
-      <div className="flex flex-col justify-between grow">
-        <span className="text-xl font-semibold">{post.title}</span>
-        {post.keywords && (
-          <div className="mt-2 flex gap-2 flex-wrap">
-            {post.keywords.slice(0, 4).map((tag, index) => (
-              <span
-                key={index}
-                className="text-[11px] lowercase border font-mono border-gray-400 dark:border-[#999999] text-gray-700 dark:text-[#999999] px-1"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+
+      {/* Main image with zoom on hover or active */}
+      <OptimizedImage
+        src={post.image}
+        alt={post.title || 'Blog post image'}
+        className={`
+          w-full h-full
+          object-cover
+          transition-transform duration-300
+          group-hover:scale-105    /* Zoom on desktop hover */
+          active:scale-105         /* Also zoom on mobile press */
+        `}
+      />
+
+      {/*
+        Overlay:
+        - Desktop: hidden unless hovered
+        - Mobile: visible if showOverlayMobile (after first tap)
+      */}
+      <div
+        className={`
+          absolute inset-0
+          bg-black/60
+          text-white
+          flex flex-col
+          p-3
+          transition-opacity duration-300
+          ${
+            isCoarse
+              ? showOverlayMobile
+                ? 'opacity-100'
+                : 'opacity-0 pointer-events-none'
+              : 'opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto'
+          }
+        `}
+      >
+        {/* Title: bigger (text-2xl), top-left, left-aligned */}
+        <h3
+          className="
+            absolute top-3 left-3
+            text-left
+            text-2xl font-semibold
+            leading-tight
+            pr-4       /* optional padding on right if you like */
+          "
+        >
+          {post.title}
+        </h3>
+
+        {/* Centered description in the middle */}
         {post.description && (
-          <p className="mt-2 text-gray-700 dark:text-[#999999] text-[16px] line-clamp-4">
+          <p
+            className="
+              flex-1
+              flex items-center justify-center
+              text-center
+              px-2
+              text-[17px]
+            "
+          >
             {post.description}
+          </p>
+        )}
+
+        {/* Date in bottom-right, text-xs, font-mono */}
+        {post.date && (
+          <span
+            className="
+              absolute bottom-3 right-3
+              text-xs font-mono
+              opacity-90
+            "
+          >
+            {post.date}
+          </span>
+        )}
+
+        {/* Mobile: after first tap, show 'tap again' message */}
+        {isCoarse && !overlayVisible && (
+          <p
+            className="
+              absolute bottom-3 left-3
+              text-xs italic
+              text-gray-200
+            "
+          >
+            Tap again to read blog post
           </p>
         )}
       </div>
     </div>
-  </Link>
-);
+  );
+};
 
 export default BlogPost;
