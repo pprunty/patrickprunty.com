@@ -11,15 +11,14 @@ const Subscribe: React.FC<SubscribeProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 w-full">
-
       {/* Form Section */}
       <form className="flex flex-col gap-2">
         {/* Container for input + button */}
-<div className="relative w-full">
-  <input
-    type="email"
-    placeholder="you@domain.com"
-    className="
+        <div className="relative w-full">
+          <input
+            type="email"
+            placeholder="you@domain.com"
+            className="
       w-full
       px-4
       py-2
@@ -38,10 +37,10 @@ const Subscribe: React.FC<SubscribeProps> = ({
       dark:placeholder-secondary-text-dark
       dark:focus:ring-primary-border-dark
     "
-  />
-  <button
-    type="submit"
-    className="
+          />
+          <button
+            type="submit"
+            className="
       absolute
       top-0
       right-0
@@ -58,10 +57,10 @@ const Subscribe: React.FC<SubscribeProps> = ({
       dark:hover:bg-primary-active-dark
       transition-colors
     "
-  >
-    Subscribe
-  </button>
-</div>
+          >
+            Subscribe
+          </button>
+        </div>
       </form>
     </div>
   );
