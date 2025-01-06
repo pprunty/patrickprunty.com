@@ -66,8 +66,8 @@ export default function Header() {
             >
               <SocialIcon
                 platform={ctaPlatform}
-                width="16"
-                height="16"
+                width="15"
+                height="15"
                 className="mr-2"
               />
               {ctaLabel}
