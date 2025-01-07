@@ -52,7 +52,6 @@ const ZoomImage: React.FC<ZoomImageProps> = ({
         loading={loading}
         sizes={sizes}
         className={`object-cover w-full h-full ${className}`}
-        unoptimized
       />
     </div>
   );
