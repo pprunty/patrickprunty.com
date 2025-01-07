@@ -15,7 +15,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
     className="no-underline cursor-pointer"
     prefetch={index < 6}
   >
-    <div className="flex items-center transition-all ease-in-out border-b border-[#313131] dark:border-[#fcfcfc] sm:border-2 sm:border-gray-200 dark:sm:border-[#313131] sm:hover:border-gray-500 dark:sm:hover:border-gray-400 active:opacity-80 active:scale-98 py-4 sm:py-4 sm:px-4 relative">
+    <div className="flex items-center transition-all ease-in-out md:border border-b border-[#4A4A4A] dark:border-[#999999] sm:border-1 sm:border-gray-200 dark:sm:border-[#313131] sm:hover:border-gray-500 dark:sm:hover:border-gray-400 active:opacity-80 active:scale-98 py-4 sm:py-4 sm:px-4 relative">
       {post.draft && <DraftLabel />}
       {post.image && (
         <div className="relative w-[113px] h-[113px] xs:w-[80px] xs:h-[80px] sm:w-[125px] sm:h-[125px] overflow-hidden mr-4 flex-shrink-0">

@@ -18,7 +18,8 @@ const HeadlineBlogPost: React.FC<HeadlineBlogPostProps> = ({
     className="no-underline cursor-pointer"
     prefetch={prefetch}
   >
-    <div className="transition-all ease-in-out border-b border-[#313131] dark:border-[#fcfcfc] sm:border-2 sm:border-gray-200 dark:sm:border-[#313131] sm:hover:border-gray-500 dark:sm:hover:border-gray-400 active:opacity-80 active:scale-98 py-4 sm:py-4 sm:px-4 relative">
+    <div className="transition-all ease-in-out border-b border-[#4A4A4A] dark:border-[#999999] md:border sm:border-b sm:border-gray-200 dark:sm:border-[#313131] sm:hover:border-gray-500 dark:sm:hover:border-gray-400 active:opacity-80 active:scale-98 py-4 sm:py-4 sm:px-4 relative">
+      {' '}
       {post.draft && <DraftLabel />}
       {post.image && (
         <div className="relative w-full h-[200px] mt-2 sm:h-[300px] overflow-hidden mb-4">
