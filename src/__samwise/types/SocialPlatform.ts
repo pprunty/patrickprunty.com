@@ -6,6 +6,5 @@ export type SocialPlatform =
   | 'reddit'
   | 'strava'
   | 'tiktok'
-  | 'email'
   | 'instagram'
   | 'youtube';

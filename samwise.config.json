@@ -12,9 +12,9 @@
   "USE_LOGO_FOR_HEADSHOT": false,
   "USE_ARCHIVE": true,
   "ARCHIVE_ITEMS_TO_SHOW": 15,
-  "CTA_SOCIAL_PLATFORM": "linkedin",
+  "CTA_SOCIAL_PLATFORM": "twitter",
   "SOCIAL_URLS": {
-    "twitter": "",
+    "twitter": "https://x.com/pprunty_",
     "strava": "https://www.strava.com/athletes/72636452",
     "github": "https://github.com/pprunty/samwise",
     "linkedin": "https://www.linkedin.com/in/patrickprunty/",
@@ -22,7 +22,7 @@
     "tiktok": "",
     "instagram": "https://www.instagram.com/pprunty97/",
     "youtube": "",
-    "email": "patrickprunty.business@gmail.com"
+    "email": ""
   },
   "GA_MEASUREMENT_ID": "G-LSBKKYLNC4",
   "VERCEL_ANALYTICS": true,

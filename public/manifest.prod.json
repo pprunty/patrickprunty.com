@@ -5,9 +5,9 @@
   "display": "standalone",
   "orientation": "any",
   "lang": "en-GB",
-  "id": "https://patrickprunty.com/",
-  "scope": "https://patrickprunty.com/",
-  "start_url": "https://patrickprunty.com",
+  "id": "https://patrickprunty.vercel.app/",
+  "scope": "https://patrickprunty.vercel.app/",
+  "start_url": "https://patrickprunty.vercel.app",
   "icons": [
     {
       "src": "icons/16x16.png",

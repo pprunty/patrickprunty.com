@@ -18,7 +18,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Link
       href={url}
-      className="flex flex-col sm:flex-row items-center w-full h-full border dark:border-[#252525] border-gray-200 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-md active:opacity-80 active:scale-98 bg-white dark:bg-[#0D0D0D]"
+      className="flex flex-col sm:flex-row items-center w-full h-full border dark:border-[#252525] border-gray-200 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm active:opacity-80 active:scale-98 bg-white dark:bg-[#0D0D0D]"
       target="_blank"
       rel="noopener noreferrer"
     >
