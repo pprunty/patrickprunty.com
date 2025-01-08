@@ -1,39 +1,34 @@
 'use client';
+
 import React, { useRef, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 interface SubscribeProps {
-  // Optionally pass down a scriptUrl if you want
   scriptUrl?: string;
 }
 
 const Subscribe: React.FC<SubscribeProps> = ({
   scriptUrl = 'https://script.google.com/macros/s/XXXX/exec',
 }) => {
-  // Local state
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  // 1) Create ref for the input
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // 2) Setup the intersection observer
   const { ref: intersectionRef, inView } = useInView({
-    threshold: 0.3, // triggers when 30% of Subscribe is visible
-    triggerOnce: true, // only run once
+    threshold: 0.3,
+    triggerOnce: true,
   });
 
-  // 3) Focus the input when in view
   useEffect(() => {
     if (inView && inputRef.current) {
       inputRef.current.focus();
     }
   }, [inView]);
 
-  // 4) Form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
     if (!email.trim()) {
       setMessage('Email cannot be empty.');
       return;
@@ -52,9 +47,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
         body: JSON.stringify({ email }),
       });
 
-      // With 'no-cors', we can't read the response, so assume success
       setMessage('Thank you for subscribing!');
-      // Optionally store subscription status
       localStorage.setItem('isSubscribed', 'true');
     } catch (error) {
       console.error('Error subscribing:', error);
@@ -65,7 +58,6 @@ const Subscribe: React.FC<SubscribeProps> = ({
   };
 
   return (
-    // Attach intersectionRef to a parent container you want to watch
     <div ref={intersectionRef} className="w-full max-w-sm">
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div className="relative">
@@ -76,19 +68,23 @@ const Subscribe: React.FC<SubscribeProps> = ({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
-            className="
-              w-full
-              pr-[100px]
-              px-4
-              py-2
-              bg-gray-100
-              text-gray-800
-              placeholder-gray-400
-              rounded-l-md
-              focus:outline-none
-              focus:ring-2
-              focus:ring-blue-400
-            "
+            className={`
+             w-full
+             pr-[100px]
+             px-4
+             py-2
+             dark:bg-[#fff]
+             border border-[#444] // Explicit border width and color
+             dark:border-[#333]
+             bg-[#0F0F0F] text-[#F3F3F3] placeholder-[#9A9A9A]
+             dark:bg-[#F3F3F3] dark:text-[#1c1c1c] dark:placeholder-[#666666]
+             rounded-l-md
+             focus:outline-none
+             focus:ring-2
+             focus:ring-[#DC70FF]
+             dark:focus:ring-[#C470FF]
+             transition-colors
+           `}
           />
           <button
             type="submit"
@@ -100,11 +96,11 @@ const Subscribe: React.FC<SubscribeProps> = ({
               h-full
               px-4
               py-1
-              bg-blue-600
+              bg-[#DC70FF]
               text-white
               rounded-r-md
               text-sm
-              hover:bg-blue-700
+              hover:bg-[#c85ee8]
               transition-colors
               active:opacity-90
             "

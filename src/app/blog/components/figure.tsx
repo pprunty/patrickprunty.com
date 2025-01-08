@@ -14,10 +14,10 @@ export function Figure({ wide = false, children }: FigureProps) {
           wide
             ? `
               bg-gray-100
-              dark:bg-[#000]
+              dark:bg-[#1c1c1c]
               relative
               before:bg-gray-100
-              before:dark:bg-[#000]
+              before:dark:bg-[#1c1c1c]
               before:w-[10000%]
               before:h-[100%]
               before:content-[""]

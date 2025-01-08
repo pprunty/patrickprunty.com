@@ -28,7 +28,7 @@ const PDF: React.FC<PDFViewerProps> = ({
       {/* Mobile View */}
       <div className="block md:hidden">
         <Link href={file} target="_blank" rel="noopener noreferrer">
-          <div className="w-full aspect-[4/5] rounded-sm bg-gray-100 dark:bg-[#0D0D0D] border dark:border-[#252525] flex flex-col items-center justify-center">
+          <div className="w-full aspect-[4/5] rounded-sm bg-gray-100 dark:bg-[#0F0F0F] border dark:border-[#252525] flex flex-col items-center justify-center">
             <FileText className="h-10 w-10 text-gray-600 dark:text-[#999999] mb-2" />
             <span className="font-mono text-sm text-gray-600 dark:text-[#999999] text-center">
               {caption && (

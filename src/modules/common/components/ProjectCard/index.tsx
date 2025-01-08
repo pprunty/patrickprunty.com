@@ -18,12 +18,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Link
       href={url}
-      className="flex flex-col sm:flex-row items-center w-full h-full border dark:border-[#252525] border-gray-200 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm active:opacity-80 active:scale-98 bg-white dark:bg-[#0D0D0D]"
+      className="flex flex-col sm:flex-row items-center w-full h-full border dark:border-[#444] border-gray-200 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C]"
       target="_blank"
       rel="noopener noreferrer"
     >
       {/* Image Section */}
-      <div className="w-full sm:w-1/2 flex-shrink-0 h-52 sm:h-34 p-0 border-b sm:border-b-0 sm:border-r dark:border-[#252525] border-gray-200 shadow-sm sm:shadow-none">
+      <div className="w-full sm:w-1/2 flex-shrink-0 h-52 sm:h-34 p-0 border-b sm:border-b-0 sm:border-r dark:border-[#444] border-gray-200 shadow-sm sm:shadow-none">
         <Image
           src={imagePath}
           alt={title}

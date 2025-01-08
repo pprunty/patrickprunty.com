@@ -18,7 +18,7 @@
     color-scheme: light;
 
     @apply bg-[#fcfcfc];
-    @apply text-[#000];
+    @apply text-[#1c1c1c];
   }
 
   img {
@@ -29,7 +29,7 @@
   :root.dark {
     color-scheme: dark;
     /* You can change theme dark color here to #131313 for example, remember to change it in theme-effect.ts too */
-    @apply bg-[#000];
+    @apply bg-[#1c1c1c];
     @apply text-[#fcfcfc];
   }
 
@@ -66,7 +66,7 @@
 
 
   ::-webkit-scrollbar-thumb {
-    background-color: #000; /* Black thumb */
+    background-color: #1c1c1c; /* Black thumb */
     border-radius: 0px;
   }
 

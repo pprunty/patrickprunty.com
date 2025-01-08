@@ -27,7 +27,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
       text-md
       sm:text-sm
       bg-[#F5F5F5]
-      text-[#0d0d0d]
+      text-[#0F0F0F]
       placeholder-secondary-text-light
       focus:outline-none
       focus:ring-2

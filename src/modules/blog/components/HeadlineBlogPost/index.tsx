@@ -18,7 +18,7 @@ const HeadlineBlogPost: React.FC<HeadlineBlogPostProps> = ({
     className="no-underline cursor-pointer"
     prefetch={prefetch}
   >
-    <div className="transition-all bg-white dark:bg-[#0D0D0D] mt-2 rounded-md ease-in-out border border-gray-200 dark:border-[#313131] active:scale-98 overflow-hidden">
+    <div className="transition-all bg-white dark:bg-[#0F0F0F] mt-2 rounded-md ease-in-out border border-gray-200 dark:border-[#313131] active:scale-98 overflow-hidden">
       {post.image && (
         <div className="relative w-full h-auto md:h-[300px] overflow-hidden">
           <ZoomImage

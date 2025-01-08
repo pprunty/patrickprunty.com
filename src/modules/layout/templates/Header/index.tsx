@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
 import { Logo } from '@/modules/layout/components/Logo';
@@ -6,13 +8,13 @@ import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
 import { SocialIcon } from '@/modules/common/components/SocialIcon';
 import { SocialPlatform } from '@/__samwise/types/SocialPlatform';
 
-// Create mappings for labels and URLs
+// Mappings
 const ctaLabels: Record<SocialPlatform, string> = {
   twitter: 'Follow me',
   instagram: 'Follow me',
-  github: 'Source',
-  linkedin: 'Connect',
-  youtube: 'Subscribe',
+  github: 'Source code',
+  linkedin: 'Connect now',
+  youtube: 'Subscribe now',
   strava: 'Follow me',
   reddit: 'Join me',
   patreon: 'Support me',
@@ -32,10 +34,13 @@ const urlMapping: Record<SocialPlatform, string> = {
 };
 
 export default function Header() {
-  // Ensure CTA_SOCIAL_PLATFORM is cast to SocialPlatform
   const ctaPlatform = CTA_SOCIAL_PLATFORM as SocialPlatform;
   const ctaUrl = urlMapping[ctaPlatform];
   const ctaLabel = ctaLabels[ctaPlatform];
+
+  // Split the CTA label so we can hide extra words on mobile
+  const words = ctaLabel?.split(' ') ?? [];
+  const [firstWord, ...rest] = words;
 
   return (
     <header className="flex mb-5 md:mb-10 items-center">
@@ -68,9 +73,13 @@ export default function Header() {
                 platform={ctaPlatform}
                 width="15"
                 height="15"
-                className="mr-2 text-[#000] dark:text-[#fcfcfc]"
+                className="mr-2 text-[#1c1c1c] dark:text-[#fcfcfc]"
               />
-              {ctaLabel}
+              {/* Render first word always, additional words only on sm+ */}
+              {firstWord}
+              {rest.length > 0 && (
+                <span className="hidden sm:inline ml-2">{rest.join(' ')}</span>
+              )}
             </a>
           )}
         </div>
