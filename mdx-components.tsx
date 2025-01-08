@@ -24,6 +24,7 @@ import Strava from "@/app/blog/components/strava";
 import TikTok from "@/app/blog/components/tiktok";
 import LinkedIn from "@/app/blog/components/linkedin";
 import Twitter from "@/app/blog/components/twitter";
+import Instagram from "@/app/blog/components/instagram"; // <-- new import
 import { Table, TableHeader, TableCell, TableRow } from '@/app/blog/components/table';
 import Image from "next/image";
 import { MemoizedImage } from "@/modules/common/components/MemoizedImage";
@@ -72,6 +73,7 @@ export const MDXComponents = {
   Strava,
   TikTok,
   LinkedIn,
+  Instagram,
   Twitter,
   Ref,
   FootNotes,
