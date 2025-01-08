@@ -14,6 +14,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+    backgroundImage: {
+            'gradient-light':
+              'linear-gradient(90deg, #fcfcfc 2px, transparent 1%) 50%, linear-gradient(#fcfcfc 2px, transparent 1%) 50%, #000',
+            'gradient-dark':
+              'linear-gradient(90deg, #333333 2px, transparent 1%) 50%, linear-gradient(#333333 2px, transparent 1%) 50%, #fcfcfc',
+          },
       keyframes: {
         modalShow: {
           '0%': { opacity: '0', transform: 'scale(0.95)' }, // Cast opacity as a string

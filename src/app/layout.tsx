@@ -120,12 +120,12 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <Header />
             {children}
-            <Footer />
           </Suspense>
           <Suspense>
             <ClientSideScrollRestorer />
           </Suspense>
         </main>
+        <Footer />
         <ClientOnlyAnalytics />
         <ToastContainer
           position="top-right"

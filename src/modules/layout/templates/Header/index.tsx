@@ -28,6 +28,7 @@ const urlMapping: Record<SocialPlatform, string> = {
   instagram: SOCIAL_URLS.instagram,
   tiktok: SOCIAL_URLS.tiktok,
   youtube: SOCIAL_URLS.youtube,
+  patreon: SOCIAL_URLS.patreon,
 };
 
 export default function Header() {
@@ -67,7 +68,7 @@ export default function Header() {
                 platform={ctaPlatform}
                 width="15"
                 height="15"
-                className="mr-2"
+                className="mr-2 text-[#000] dark:text-[#fcfcfc]"
               />
               {ctaLabel}
             </a>

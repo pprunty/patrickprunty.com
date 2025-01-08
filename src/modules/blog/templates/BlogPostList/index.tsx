@@ -27,7 +27,7 @@ const BlogPostList: React.FC<BlogPostListProps> = ({ postsByYear }) => {
           <h1 className="text-2xl mb-0 sm:mb-4 sm:mt-0 mt-4 text-primary dark:text-primary-dark font-semibold">
             {year}
           </h1>
-          <ul className="list-none p-0">
+          <ul className="list-none p-0 space-y-6">
             {postsByYear[year].map((post, index) => (
               <li key={post.slug} className="mb-0 sm:mb-4">
                 {index === 0 ? (

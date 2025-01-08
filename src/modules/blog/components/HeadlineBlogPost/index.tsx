@@ -18,21 +18,22 @@ const HeadlineBlogPost: React.FC<HeadlineBlogPostProps> = ({
     className="no-underline cursor-pointer"
     prefetch={prefetch}
   >
-    <div className="transition-all ease-in-out border-b border-[#4A4A4A] dark:border-[#999999] md:border sm:border-b sm:border-gray-200 dark:sm:border-[#313131] sm:hover:border-gray-500 dark:sm:hover:border-gray-400 active:opacity-80 active:scale-98 py-4 sm:py-4 sm:px-4 relative">
-      {' '}
-      {post.draft && <DraftLabel />}
+    <div className="transition-all bg-white dark:bg-[#0D0D0D] mt-2 rounded-md ease-in-out border border-gray-200 dark:border-[#313131] active:scale-98 overflow-hidden">
       {post.image && (
-        <div className="relative w-full h-[200px] mt-2 sm:h-[300px] overflow-hidden mb-4">
+        <div className="relative w-full h-auto md:h-[300px] overflow-hidden">
           <ZoomImage
             src={post.image}
             alt={post.title || 'Blog post image'}
-            loading={'eager'}
+            loading="eager"
             priority
+            className="block w-full h-auto md:h-[300px] object-cover"
           />
         </div>
       )}
-      <div className="flex flex-col justify-between grow">
-        <span className="text-2xl font-bold mt-2">{post.title}</span>
+      <div className="px-4 pb-4 md:pt-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          {post.title}
+        </h2>
         {post.keywords && (
           <div className="mt-2 flex gap-2 flex-wrap">
             {post.keywords.slice(0, 4).map((tag, index) => (

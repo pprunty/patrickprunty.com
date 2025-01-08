@@ -74,7 +74,10 @@ const Carousel: React.FC<CarouselProps> = ({
           ref={scrollRef}
           className="
             flex overflow-x-auto snap-x snap-mandatory scroll-smooth
-            space-x-4 scrollbar-hide
+            scrollbar-hide
+            // remove space-x-4 here
+            // space-x-4
+            scroll-px-[50%]  // This helps center each item ignoring external spacing
           "
           style={{
             WebkitOverflowScrolling: 'touch',
@@ -83,7 +86,9 @@ const Carousel: React.FC<CarouselProps> = ({
           {items.map((item, index) => (
             <div
               key={index}
-              className={`max-w-[86%] sm:max-w-full snap-center rounded-lg flex-shrink-0 ${itemClassName}`}
+              // Each child must have snap-center
+              // so it will center in the viewport ignoring gaps
+              className={`snap-center flex-shrink-0 ${itemClassName}`}
             >
               {item}
             </div>

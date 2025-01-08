@@ -1,4 +1,5 @@
 // src/app/page.tsx
+
 import { BlogPostType } from '@/__samwise/types/BlogPost';
 import BlogPostList from '@/modules/blog/templates/BlogPostList';
 import { getAllPosts } from '@/__samwise/utils/getAllPosts';
