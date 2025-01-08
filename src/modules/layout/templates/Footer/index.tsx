@@ -27,42 +27,21 @@ export default function Footer() {
           }}
         />
       </div>*/}
-      {/* <HR />*/}
-
-      <footer className="container border-t sm:border-0 border-1 border-[#EAEAEA] dark:border-[#444] mx-auto max-w-2xl py-12 px-6 md:px-6">
-        <div className="pt-3 md:pt-6">
+      <HR />
+      <footer
+        className="container
+      mx-auto max-w-2xl px-4 sm:px-0"
+      >
+        <div className="">
           {/*
             2x2 grid:
             Row 1: [Patrick Prunty] | [Projects]
             Row 2: [Stay Connected] | [Newsletter]
           */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* 1) Patrick Prunty (Row 1, Col 1) */}
-            <div>
-              <Image
-                src="/icon.webp"
-                alt="Project 4"
-                className="rounded-md mb-8 sm:mb-0 sm:hidden"
-                width={48}
-                height={48}
-              />
-              <span className="block text-xl font-bold mb-2 text-primary-text-light dark:text-primary-text-dark">
-                Patrick Prunty
-              </span>
-              <p className="text-xs font-mono text-gray-600 dark:text-[#999999]">
-                © {new Date().getFullYear()}. All rights reserved.
-              </p>
-            </div>
-
             {/* 3) Stay Connected (Row 2, Col 1) */}
             <div>
-              <h2 className="text-md font-bold text-gray-800 dark:text-white">
-                Stay Connected
-              </h2>
-              <p className="text-gray-600 text-md dark:text-[#999999] mt-2">
-                Follow me on social media for updates.
-              </p>
-              <div className="flex flex-wrap mt-4">
+              <div className="flex flex-wrap">
                 {(
                   [
                     'github',
@@ -142,16 +121,10 @@ export default function Footer() {
             </div>*/}
 
             {/* 4) Newsletter (Row 2, Col 2) */}
-          </div>
-          <div>
-            <h2 className="text-md mt-8 font-bold text-gray-800 dark:text-white">
-              Newsletter
-            </h2>
-            <p className="text-gray-600 text-md dark:text-[#999999] mt-2">
-              Subscribe to my newsletter for the latest updates.
-            </p>
-            <div className="mt-4 mb-8">
-              <Subscribe />
+            <div>
+              <div className="mb-8">
+                <Subscribe />
+              </div>
             </div>
           </div>
         </div>

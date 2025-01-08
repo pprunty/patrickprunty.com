@@ -8,7 +8,7 @@ interface SubscribeProps {
 }
 
 const Subscribe: React.FC<SubscribeProps> = ({
-  scriptUrl = 'https://script.google.com/macros/s/XXXX/exec',
+  scriptUrl = 'https://script.google.com/macros/s/AKfycbxYXBP_GiOutJgd6hSkO2_PGXOrRNd7yQV066B7Sq3iOCE7nKFgO-mr7gQwy9BhKZNI/exec',
 }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -74,8 +74,8 @@ const Subscribe: React.FC<SubscribeProps> = ({
              px-4
              py-2
              dark:bg-[#fff]
-             border border-[#444] // Explicit border width and color
-             dark:border-[#333]
+             border border-[#444]
+             dark:border-[#fff]
              bg-[#0F0F0F] text-[#F3F3F3] placeholder-[#9A9A9A]
              dark:bg-[#F3F3F3] dark:text-[#1c1c1c] dark:placeholder-[#666666]
              rounded-l-md

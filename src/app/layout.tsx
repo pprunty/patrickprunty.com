@@ -124,8 +124,8 @@ export default function RootLayout({
           <Suspense>
             <ClientSideScrollRestorer />
           </Suspense>
+          <Footer />
         </main>
-        <Footer />
         <ClientOnlyAnalytics />
         <ToastContainer
           position="top-right"

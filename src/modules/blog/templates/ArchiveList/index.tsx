@@ -34,10 +34,7 @@ export function Posts({ posts }: PostsProps) {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <h1 className="text-2xl mb-2 sm:mb-4 sm:mt-0 mt-4 text-primary dark:text-primary-dark font-semibold">
-        Archive
-      </h1>
-      <main className="max-w-2xl font-mono m-auto mb-10 text-sm">
+      <main className="max-w-2xl font-mono m-auto text-sm">
         <header className="text-gray-500 dark:text-[#999999] flex items-center text-xs">
           <button
             onClick={sortDate}
@@ -85,14 +82,6 @@ export function Posts({ posts }: PostsProps) {
         </header>
 
         <List posts={posts} sort={sort} />
-        <div className="flex justify-between items-center mt-8">
-          <NavigationButton
-            label={'← BACK TO BLOG'}
-            position="left"
-            route={'/'}
-          />
-          <ShareButton message={`Check out ${AUTHOR.name}'s Blog Archive: `} />
-        </div>
       </main>
     </Suspense>
   );
