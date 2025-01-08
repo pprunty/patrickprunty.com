@@ -27,7 +27,10 @@ export default function Footer() {
           }}
         />
       </div>*/}
-      <HR />
+      <div className="py-4">
+          <HR />
+      </div>
+
       <footer
         className="container
       mx-auto max-w-2xl px-2 sm:px-0"
