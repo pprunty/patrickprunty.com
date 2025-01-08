@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import React, { useState } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader'; // Import a spinner from react-spinners
 
 interface SubscribeProps {
   scriptUrl?: string;
@@ -13,19 +13,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const { ref: intersectionRef, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  });
-
-  useEffect(() => {
-    if (inView && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [inView]);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,6 +24,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
 
     setLoading(true);
     setMessage('');
+    setFadeOut(false);
 
     try {
       await fetch(scriptUrl, {
@@ -48,21 +37,25 @@ const Subscribe: React.FC<SubscribeProps> = ({
       });
 
       setMessage('Thank you for subscribing!');
+      setEmail('');
       localStorage.setItem('isSubscribed', 'true');
     } catch (error) {
       console.error('Error subscribing:', error);
       setMessage('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
+
+      // Clear the message after 5 seconds with fade-out effect
+      setTimeout(() => setFadeOut(true), 4000);
+      setTimeout(() => setMessage(''), 5000);
     }
   };
 
   return (
-    <div ref={intersectionRef} className="w-full max-w-sm">
+    <div className="w-full max-w-sm">
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div className="relative">
           <input
-            ref={inputRef}
             type="email"
             placeholder="you@domain.com"
             value={email}
@@ -89,39 +82,48 @@ const Subscribe: React.FC<SubscribeProps> = ({
              focus:ring-[#fff]
              dark:focus:ring-[#fff]
              transition-colors
-
            `}
           />
           <button
             type="submit"
             disabled={loading}
             className="
-    absolute
-    top-0
-    right-0
-    h-full
-    px-4
-    py-1
-    bg-[#444]
-    text-white
-    rounded-r-md
-    text-sm
-    hover:bg-[#000]       // Hover color for light mode
-    dark:bg-[#444]        // Background for dark mode
-    dark:hover:bg-[#555] // Hover color for dark mode
-    transition-colors
-  "
+             absolute
+             top-0
+             right-0
+             h-full
+             px-4
+             py-1
+             bg-[#444]
+             text-white
+             rounded-r-md
+             text-sm
+             hover:bg-[#000]
+             dark:bg-[#444]
+             dark:hover:bg-[#555]
+             transition-colors
+           "
+            style={{ minWidth: '100px' }} // Ensure button width remains consistent
           >
-            {loading ? 'Loading...' : 'Subscribe'}
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <ClipLoader size={15} color="#fff" />
+              </div>
+            ) : (
+              'Subscribe'
+            )}
           </button>
         </div>
         {message && (
           <p
-            className={
-              message.includes('Thank you')
-                ? 'text-green-600 text-sm'
-                : 'text-red-600 text-sm'
-            }
+            className={`
+              ${
+                message.includes('Thank you')
+                  ? 'text-green-600'
+                  : 'text-red-600'
+              } text-sm transition-opacity duration-1000 ease-out
+              ${fadeOut ? 'opacity-0' : 'opacity-100'}
+            `}
           >
             {message}
           </p>

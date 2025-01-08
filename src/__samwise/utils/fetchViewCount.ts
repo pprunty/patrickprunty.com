@@ -16,6 +16,7 @@ const sanitizeId = (id: string): string => {
 // Function to get the view count
 export const getViewCount = async (id: string): Promise<number> => {
   const sanitizedId = sanitizeId(id);
+  return 0;
 
   try {
     const res = await counter.get(DEFAULT_COUNTER_ID, sanitizedId);

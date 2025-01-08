@@ -36,7 +36,7 @@ const baseIconClasses = `
   hover:text-gray-900 dark:hover:text-white
 
   // Press state
-  active:opacity-80
+  active:text-gray-900 active:hover:text-white
 `;
 
 export function SocialIcon({

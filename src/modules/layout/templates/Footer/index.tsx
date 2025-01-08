@@ -28,7 +28,7 @@ export default function Footer() {
         />
       </div>*/}
       <div className="py-4">
-          <HR />
+        <HR />
       </div>
 
       <footer

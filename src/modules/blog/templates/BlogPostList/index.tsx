@@ -1,6 +1,5 @@
 import React from 'react';
 import { BlogPostType } from '@/__samwise/types/BlogPost';
-import HeadlineBlogPost from '@/modules/blog/components/HeadlineBlogPost';
 import BlogPost from '@/modules/blog/components/BlogPost';
 import ArchiveButton from '@/modules/blog/components/ArchiveButton';
 import { USE_ARCHIVE } from '@/config';
@@ -8,10 +7,26 @@ import ShareButton from '@/modules/blog/components/ShareButton';
 import { AUTHOR } from '@/config';
 
 interface BlogPostListProps {
-  postsByYear: Record<string, BlogPostType[]>;
+  posts: BlogPostType[];
 }
 
-const BlogPostList: React.FC<BlogPostListProps> = ({ postsByYear }) => {
+const BlogPostList: React.FC<BlogPostListProps> = ({ posts }) => {
+  // Group posts by year
+  const postsByYear = posts.reduce(
+    (acc, post) => {
+      const year = post.date
+        ? new Date(post.date).getFullYear().toString()
+        : 'Unknown Year';
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(post);
+      return acc;
+    },
+    {} as Record<string, BlogPostType[]>,
+  );
+
+  // Sort years
   const sortedYears = Object.keys(postsByYear).sort((a, b) =>
     a === 'Unknown Year'
       ? 1
@@ -30,11 +45,7 @@ const BlogPostList: React.FC<BlogPostListProps> = ({ postsByYear }) => {
           <ul className="list-none p-0 space-y-6">
             {postsByYear[year].map((post, index) => (
               <li key={post.slug} className="mb-0 sm:mb-4">
-                {index === 0 ? (
-                  <HeadlineBlogPost post={post} prefetch={true} />
-                ) : (
-                  <BlogPost post={post} index={index} />
-                )}
+                <BlogPost post={post} index={index} />
               </li>
             ))}
           </ul>
