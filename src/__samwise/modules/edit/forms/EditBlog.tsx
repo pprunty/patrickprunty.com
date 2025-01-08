@@ -171,6 +171,7 @@ const socialPlatforms: SocialPlatform[] = [
   'reddit',
   'strava',
   'tiktok',
+  'patreon',
   'instagram',
   'youtube',
 ];

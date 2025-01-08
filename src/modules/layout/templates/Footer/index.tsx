@@ -14,6 +14,7 @@ export default function Footer() {
             'reddit',
             'tiktok',
             'email',
+            'patreon',
             'strava',
             'linkedin',
             'youtube',

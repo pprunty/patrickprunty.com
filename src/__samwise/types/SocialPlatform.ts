@@ -7,4 +7,5 @@ export type SocialPlatform =
   | 'strava'
   | 'tiktok'
   | 'instagram'
+  | 'patreon'
   | 'youtube';

@@ -11,6 +11,7 @@ export const urlMapping: Record<SocialPlatform, string> = {
   instagram: SOCIAL_URLS.instagram,
   tiktok: SOCIAL_URLS.tiktok,
   youtube: SOCIAL_URLS.youtube,
+  patreon: SOCIAL_URLS.patreon,
 };
 
 interface SocialIconProps {
@@ -109,6 +110,11 @@ export function SocialIcon({
           />
         </svg>
       );
+    case 'patreon':
+      return (
+      <svg {...iconProps} xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" ><path d="M22.957 7.21c-0.004 -3.064 -2.391 -5.576 -5.191 -6.482 -3.478 -1.125 -8.064 -0.962 -11.384 0.604C2.357 3.231 1.093 7.391 1.046 11.54c-0.039 3.411 0.302 12.396 5.369 12.46 3.765 0.047 4.326 -4.804 6.068 -7.141 1.24 -1.662 2.836 -2.132 4.801 -2.618 3.376 -0.836 5.678 -3.501 5.673 -7.031Z" strokeWidth="1"/></svg>
+
+      )
     case 'youtube':
       return (
         <svg

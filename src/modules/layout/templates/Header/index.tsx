@@ -15,6 +15,7 @@ const ctaLabels: Record<SocialPlatform, string> = {
   youtube: 'Subscribe',
   strava: 'Follow me',
   reddit: 'Join me',
+  patreon: 'Support me',
   tiktok: 'Follow me',
 };
 
