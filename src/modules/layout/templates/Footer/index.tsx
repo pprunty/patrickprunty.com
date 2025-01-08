@@ -33,7 +33,7 @@ export default function Footer() {
 
       <footer
         className="container
-      mx-auto max-w-2xl px-2 sm:px-0"
+      mx-auto max-w-2xl px-1 sm:px-0"
       >
         <div className="">
           {/*

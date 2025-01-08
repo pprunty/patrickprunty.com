@@ -41,8 +41,8 @@ const baseIconClasses = `
 
 export function SocialIcon({
   platform,
-  width = '20',
-  height = '20',
+  width = '22',
+  height = '22',
   className = '',
 }: SocialIconProps) {
   // Merged icon props
