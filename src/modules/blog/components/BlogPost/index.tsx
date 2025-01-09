@@ -18,8 +18,8 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
       className="flex sm:p-4 gap-4 items-start pb-4
              border-b border-[#bdbdbd] dark:border-[#555]
              sm:border sm:border-gray-200 sm:dark:border-[#555]
-             sm:rounded-none
-             sm:hover:border-gray-600 sm:dark:hover:border-[#757575]
+             rounded-0 sm:rounded-sm
+             sm:hover:border-gray-600 sm:dark:hover:border-[#dbdbdb]
              sm:transition-colors sm:duration-300"
     >
       <div className="flex-grow space-y-2 min-w-0">
@@ -49,7 +49,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
             alt={post.title || 'Blog post image'}
             width={110}
             height={110}
-            className="object-cover"
+            className="object-cover rounded-md"
           />
         </div>
       )}
