@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import useSWR from 'swr';
 import { BlogPostType } from '@/__samwise/types/BlogPost';
-import { MoveUp, MoveDown, MoveVertical } from 'lucide-react';
+import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
-type SortSetting = ['date' | 'views', 'desc' | 'asc'];
+type SortSetting = ['date' | 'views' | 'title', 'desc' | 'asc'];
 
 interface PostsProps {
   posts: BlogPostType[];
@@ -38,51 +38,59 @@ export function Posts({ posts: initialPosts }: PostsProps) {
     ]);
   }
 
+  function sortTitle() {
+    setSort((prevSort) => [
+      'title',
+      prevSort[0] !== 'title' || prevSort[1] === 'asc' ? 'desc' : 'asc',
+    ]);
+  }
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <main className="max-w-2xl font-mono m-auto text-sm">
-        <header className="text-gray-500 dark:text-[#999999] flex items-center text-xs">
+        <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
+          {/* Date Sort Button */}
           <button
             onClick={sortDate}
             className={`w-12 h-9 text-left flex items-center ${
               sort[0] === 'date'
-                ? 'text-gray-700 dark:text-gray-400'
-                : 'text-gray-500 dark:text-[#999999]'
+                ? 'text-black dark:text-white' // Active colors
+                : 'text-gray-700 dark:text-gray-300'
             }`}
           >
             date
             <span className="ml-1">
-              {sort[0] === 'date' ? (
-                sort[1] === 'asc' ? (
-                  <MoveUp className="text-black dark:text-white w-4 h-4" />
-                ) : (
-                  <MoveDown className="text-black dark:text-white w-4 h-4" />
-                )
-              ) : (
-                <MoveVertical className="text-gray-500 dark:text-[#999999] w-4 h-4" />
-              )}
+              <SortIcon sortKey="date" currentSort={sort} />
             </span>
           </button>
-          <span className="grow pl-2">title</span>
+
+          {/* Title Sort Button */}
+          <button
+            onClick={sortTitle}
+            className={`h-9 pl-4 flex items-center flex-grow ${
+              sort[0] === 'title'
+                ? 'text-black dark:text-white' // Active colors
+                : 'text-gray-700 dark:text-gray-300'
+            }`}
+          >
+            title
+            <span className="ml-1">
+              <SortIcon sortKey="title" currentSort={sort} />
+            </span>
+          </button>
+
+          {/* Views Sort Button */}
           <button
             onClick={sortViews}
             className={`h-9 pl-4 flex items-center ${
               sort[0] === 'views'
-                ? 'text-gray-700 dark:text-gray-400'
-                : 'text-gray-500 dark:text-[#999999]'
+                ? 'text-black dark:text-white' // Active colors
+                : 'text-gray-700 dark:text-gray-300'
             }`}
           >
             views
             <span className="ml-1">
-              {sort[0] === 'views' ? (
-                sort[1] === 'asc' ? (
-                  <MoveUp className="text-black dark:text-white w-4 h-4" />
-                ) : (
-                  <MoveDown className="text-black dark:text-white w-4 h-4" />
-                )
-              ) : (
-                <MoveVertical className="text-gray-500 dark:text-[#999999] w-4 h-4" />
-              )}
+              <SortIcon sortKey="views" currentSort={sort} />
             </span>
           </button>
         </header>
@@ -91,6 +99,25 @@ export function Posts({ posts: initialPosts }: PostsProps) {
         <List posts={posts} sort={sort} />
       </main>
     </Suspense>
+  );
+}
+
+interface SortIconProps {
+  sortKey: 'date' | 'views' | 'title';
+  currentSort: SortSetting;
+}
+
+function SortIcon({ sortKey, currentSort }: SortIconProps) {
+  const [currentSortKey, currentSortDirection] = currentSort;
+
+  if (sortKey !== currentSortKey) {
+    return <ArrowUpDown className="h-4 w-4" />;
+  }
+
+  return currentSortDirection === 'asc' ? (
+    <ArrowUp className="h-4 w-4" />
+  ) : (
+    <ArrowDown className="h-4 w-4" />
   );
 }
 
@@ -104,13 +131,19 @@ function List({ posts, sort }: ListProps) {
     const [sortKey, sortDirection] = sort;
     return [...posts].sort((a, b) => {
       if (sortKey === 'date') {
-        return sortDirection === 'desc'
-          ? new Date(b.date || '').getTime() - new Date(a.date || '').getTime()
-          : new Date(a.date || '').getTime() - new Date(b.date || '').getTime();
+        const dateA = a.date ? new Date(a.date).getTime() : 0;
+        const dateB = b.date ? new Date(b.date).getTime() : 0;
+        return sortDirection === 'desc' ? dateB - dateA : dateA - dateB;
       } else if (sortKey === 'views') {
-        return sortDirection === 'desc'
-          ? (b.views || 0) - (a.views || 0)
-          : (a.views || 0) - (b.views || 0);
+        const viewsA = a.views ?? 0;
+        const viewsB = b.views ?? 0;
+        return sortDirection === 'desc' ? viewsB - viewsA : viewsA - viewsB;
+      } else if (sortKey === 'title') {
+        const titleA = a.title?.toLowerCase() || '';
+        const titleB = b.title?.toLowerCase() || '';
+        if (titleA < titleB) return sortDirection === 'desc' ? 1 : -1;
+        if (titleA > titleB) return sortDirection === 'desc' ? -1 : 1;
+        return 0;
       }
       return 0;
     });
@@ -129,9 +162,10 @@ function List({ posts, sort }: ListProps) {
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`} prefetch>
               <span
-                className={`flex transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222] border-y border-gray-200 dark:border-[#313131]
+                className={`flex transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222] border-y dark:border-[#313131]
                           ${!firstOfYear ? 'border-t-0' : ''}
                           ${lastOfYear ? 'border-b-0' : ''}
+                          ${i === 0 ? 'border-t border-t-[#d4d4d4] dark:border-t-[#4f4e4e]' : ''}
                         `}
               >
                 <span

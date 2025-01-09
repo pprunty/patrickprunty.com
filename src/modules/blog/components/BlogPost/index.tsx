@@ -24,7 +24,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
     >
       <div className="flex-grow space-y-2 min-w-0">
         {/* Title */}
-        <h2 className="line-clamp-2 text-xl sm:text-xl font-semibold leading-tight">
+        <h2 className="line-clamp-2 text-lg font-semibold leading-tight">
           {post.title}
         </h2>
 

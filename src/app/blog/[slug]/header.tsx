@@ -96,7 +96,7 @@ function Views({
   //   console.log('id = ', id);
 
   useEffect(() => {
-    if ("development" === process.env.NODE_ENV) return;
+    if ('development' === process.env.NODE_ENV) return;
     if (!didLogViewRef.current && id) {
       //       console.log('will do increment view');
       const url = '/api/view?incr=1&id=' + encodeURIComponent(id);

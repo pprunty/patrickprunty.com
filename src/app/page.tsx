@@ -19,9 +19,9 @@ export default async function PostsPage() {
 
   return (
     <>
-      <div className="mb-3 flex items-center gap-2">
+      <div className="mb-5 flex items-center gap-2">
         <H1>My Blog [#blog]</H1>
-        <InfoWithTooltip message="A collection of posts by Patrick Prunty of around 500 words in length." />
+        <InfoWithTooltip message="A collection of posts written in 500ish words." />
       </div>
       <Posts posts={posts} />
       <PillarMenu buttons={buttons} />
