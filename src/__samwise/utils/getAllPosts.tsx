@@ -3,17 +3,22 @@ import { BlogPostType } from '@/__samwise/types/BlogPost';
 import { cache } from 'react';
 import { AUTHOR, ARCHIVE_ITEMS_TO_SHOW } from '@/config';
 import formatDate from './formatDate';
-import { getViewCount } from '@/__samwise/utils/fetchViewCount'; // Import getViewCount
+import redis from '@/app/redis';
+import commaNumber from 'comma-number';
 
 export const getAllPosts = cache(
   async (
     includeViews: boolean = false,
     maxItems: number = ARCHIVE_ITEMS_TO_SHOW, // Default to ARCHIVE_ITEMS_TO_SHOW
   ): Promise<BlogPostType[]> => {
+    const allViews = includeViews ? await redis.hgetall('views') : null;
+
     const posts = await Promise.all(
       slugs.map(async (slug: string) => {
         try {
           const { metadata } = await import(`@/posts/${slug}/page.mdx`);
+
+          const views = includeViews ? Number(allViews?.[slug] ?? 0) : 0;
 
           const post: BlogPostType = {
             slug,
@@ -28,19 +33,9 @@ export const getAllPosts = cache(
             keywords: metadata.keywords || [],
             readingTime: metadata.readingTime || 6,
             draft: metadata.draft || false,
-            views: 0, // Initialize views to 0
+            views,
+            viewsFormatted: commaNumber(views),
           };
-
-          // If includeViews is true, fetch the view count
-          if (includeViews) {
-            try {
-              const views = await getViewCount(slug);
-              post.views = views;
-            } catch (error) {
-              console.error(`Error fetching views for ${slug}:`, error);
-              post.views = 0;
-            }
-          }
 
           return post;
         } catch (error) {

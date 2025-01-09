@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPostType } from '@/__samwise/types/BlogPost';
-import OptimizedImage from '@/modules/common/components/OptimizedImage';
-import DraftLabel from '@/modules/blog/components/DraftLabel';
 
 interface BlogPostProps {
   post: BlogPostType;
@@ -12,41 +11,46 @@ interface BlogPostProps {
 const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
   <Link
     href={`/blog/${post.slug}`}
-    className="no-underline cursor-pointer"
-    prefetch={index < 6}
+    prefetch
+    className="block transition-transform duration-200 ease-in-out active:scale-[0.99] active:opacity-80"
   >
-    <div className="flex flex-row items-start justify-between transition-all ease-in-out border-b border-[#c4c4c4] dark:border-[#555] py-4 sm:py-4 relative">
-      {post.draft && <DraftLabel />}
-
-      {/* Content Section */}
-      <div className="flex flex-col justify-start grow">
-        {/* Tags */}
-        {/*        <div className="mb-2 font-mono text-xs text-gray-700 dark:text-[#999999]">
-        • Software Development
-        </div>*/}
+    <article className="flex items-start gap-4 pb-4">
+      <div className="flex-grow space-y-2 min-w-0">
         {/* Title */}
-        <span className="text-xl sm:text-2xl font-semibold">{post.title}</span>
+        <h2 className="text-lg font-medium leading-tight hover:underline">
+          <span className="line-clamp-2">{post.title}</span>
+        </h2>
+
         {/* Description */}
         {post.description && (
-          <p className="mt-2 text-[17px] text-gray-600 dark:text-gray-400 line-clamp-2">
+          <p className="text-gray-700 dark:text-[#999999] text-md line-clamp-3">
             {post.description}
           </p>
         )}
+
+        {/* Read More Link */}
+        <span className="inline-flex items-center text-sm text-primary hover:text-primary-foreground transition-colors duration-300 group">
+          Read More
+          <span className="ml-1 group-hover:translate-x-1 transition-transform duration-300">
+            →
+          </span>
+          <span className="sr-only">Read more about {post.title}</span>
+        </span>
       </div>
 
       {/* Image Section */}
       {post.image && (
-        <div className="relative w-[113px] h-[113px] xs:w-[80px] xs:h-[80px] sm:w-[125px] sm:h-[125px] overflow-hidden flex-shrink-0 ml-4">
-          <OptimizedImage
+        <div className="flex-shrink-0 w-[120px] h-[120px] overflow-hidden">
+          <Image
             src={post.image}
             alt={post.title || 'Blog post image'}
-            sizes="(max-width: 640px) 80px, (min-width: 640px) 113px, (min-width: 768px) 125px"
-            priority={index === 0}
-            loading={index === 0 ? 'eager' : 'lazy'}
+            width={120}
+            height={120}
+            className="rounded-md object-cover"
           />
         </div>
       )}
-    </div>
+    </article>
   </Link>
 );
 

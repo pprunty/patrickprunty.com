@@ -115,8 +115,8 @@ export default function RootLayout({
         {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className={`dark:text-gray-100 max-w-2xl m-auto`}>
-        <main className="p-6 pt-3 md:pt-6 min-h-screen">
+      <body className="dark:text-gray-100 flex flex-col min-h-screen max-w-2xl m-auto">
+        <main className="flex-grow p-6 pt-3 md:pt-6">
           <Suspense fallback={null}>
             <Header />
             {children}
@@ -124,21 +124,24 @@ export default function RootLayout({
           <Suspense>
             <ClientSideScrollRestorer />
           </Suspense>
-          <Footer />
         </main>
+        <Footer />
         <ClientOnlyAnalytics />
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
+        {/* Conditionally render the ToastContainer only in development */}
+        {process.env.NODE_ENV === 'development' && (
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+        )}
       </body>
     </html>
   );

@@ -12,5 +12,6 @@ export interface BlogPostType {
   author?: string;
   authorUrl?: string;
   views?: number | null;
+  viewsFormatted?: string;
   draft?: boolean;
 }

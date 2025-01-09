@@ -27,13 +27,13 @@ export default function Footer() {
           }}
         />
       </div>*/}
-      <div className="py-4">
+      <div className="">
         <HR />
       </div>
 
       <footer
-        className="container
-      mx-auto max-w-2xl px-1 sm:px-0"
+        className="container max-w-2xl
+      mx-auto px-8 pb-6"
       >
         <div className="">
           {/*
