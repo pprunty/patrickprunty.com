@@ -42,7 +42,7 @@ export default function RelatedPosts({
 
   return (
     <div className="mt-8">
-      <h1 className="text-xl font-bold mb-4">Recommended For You:</h1>
+      <h1 className="text-2xl font-bold mb-4">Recommended For You:</h1>
       <PostList posts={combinedPosts} />
     </div>
   );

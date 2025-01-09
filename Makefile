@@ -60,7 +60,7 @@ post:
 # Generate Lighthouse report
 .PHONY: lighthouse
 lighthouse:
-	$(eval URL ?= https://samwise-v2.vercel.app/)
+	$(eval URL ?= https://patrickprunty.com/)
 	$(eval DEVICE ?= mobile)  # Default to mobile if not specified
 	lighthouse $(URL) --emulated-form-factor=$(DEVICE) --output=html --view --chrome-flags="--incognito" --output-path=./lighthouse_report_$(DEVICE).html
 
