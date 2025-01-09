@@ -66,7 +66,7 @@
     "@types/comma-number": "^2.1.2",
     "@types/fs-extra": "^11.0.4",
     "@types/next-pwa": "^5.6.9",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.10.5",
     "@types/stringify-object": "^4.0.5",
     "@types/uuid": "^10.0.0",
     "@uiw/codemirror-theme-atomone": "^4.23.6",
