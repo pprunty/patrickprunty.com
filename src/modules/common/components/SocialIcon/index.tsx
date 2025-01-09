@@ -27,7 +27,7 @@ const baseIconClasses = `
   cursor-pointer
 
   // Default text color in light/dark mode
-  text-gray-600 dark:text-gray-400
+  text-gray-700 dark:text-[#999999]
 
   // Transition for hover/active states
   transition-colors duration-200

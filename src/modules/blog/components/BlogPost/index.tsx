@@ -12,10 +12,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
   <Link
     href={`/blog/${post.slug}`}
     prefetch
-    className="block transition-transform duration-200 ease-in-out active:scale-[0.99] active:opacity-80"
+    className="block transition-transform duration-200 ease-in-out active:scale-[0.995] active:opacity-80"
   >
     <article
-      className="flex sm:p-4 gap-4 items-start pb-5
+      className="flex sm:p-4 gap-4 items-start pb-4
              border-b border-[#bdbdbd] dark:border-[#555]
              sm:border sm:border-gray-200 sm:dark:border-[#555]
              sm:rounded-none
