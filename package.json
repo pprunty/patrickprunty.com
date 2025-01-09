@@ -37,7 +37,7 @@
     "comma-number": "^2.1.0",
     "counterapi": "^1.105.0",
     "date-fns": "^4.1.0",
-    "lucide-react": "^0.456.0",
+    "lucide-react": "^0.469.0",
     "next": "^15.0.3",
     "next-mdx-remote": "^5.0.0",
     "next-pwa": "^5.6.0",
