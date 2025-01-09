@@ -8,6 +8,7 @@ import { TableOfContents } from '@/app/blog/components/toc';
 import { redirect } from 'next/navigation';
 import PillarMenu from '@/modules/common/components/PillarMenu';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
+import Newsletter from '@/modules/blog/components/Newsletter'; // Adjust the import path based on your project structure
 
 type Params = Promise<{ slug: string }>;
 
@@ -50,6 +51,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
       <TableOfContents />
       {children}
       <BottomBar />
+      <Newsletter />
       {/* to be added in next version <CommentsSection/> */}
       <RelatedPosts
         currentPostSlug={slug}
