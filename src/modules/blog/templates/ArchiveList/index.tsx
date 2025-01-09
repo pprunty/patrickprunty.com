@@ -3,11 +3,9 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Suspense } from 'react';
+import useSWR from 'swr';
 import { BlogPostType } from '@/__samwise/types/BlogPost';
-import NavigationButton from '@/modules/blog/components/NavigationButton';
 import { MoveUp, MoveDown, MoveVertical } from 'lucide-react';
-import ShareButton from '@/modules/blog/components/ShareButton';
-import { AUTHOR } from '@/config';
 
 type SortSetting = ['date' | 'views', 'desc' | 'asc'];
 
@@ -15,8 +13,16 @@ interface PostsProps {
   posts: BlogPostType[];
 }
 
-export function Posts({ posts }: PostsProps) {
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+export function Posts({ posts: initialPosts }: PostsProps) {
   const [sort, setSort] = useState<SortSetting>(['date', 'desc']);
+
+  // Use SWR to fetch posts with fallback data as initialPosts
+  const { data: posts } = useSWR('/api/posts', fetcher, {
+    fallbackData: initialPosts,
+    refreshInterval: 5000,
+  });
 
   function sortDate() {
     setSort((prevSort) => [
@@ -81,6 +87,7 @@ export function Posts({ posts }: PostsProps) {
           </button>
         </header>
 
+        {/* Pass the posts and sorting state to List */}
         <List posts={posts} sort={sort} />
       </main>
     </Suspense>

@@ -6,9 +6,8 @@ import type { NextRequest } from 'next/server';
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const id = url.searchParams.get('id');
-  console.log("id:", id);
 
-  if (!id) {
+  if (!id || id === 'undefined') {
     return NextResponse.json(
       {
         error: {
@@ -22,7 +21,7 @@ export async function GET(req: NextRequest) {
 
   // Increment or retrieve views from Redis
   if (url.searchParams.get('incr') != null) {
-    console.log('Incrementing views for', id);
+    //     console.log('Incrementing views for', id);
     const views = await redis.hincrby('views', id, 1);
     return NextResponse.json({
       id,
@@ -31,7 +30,7 @@ export async function GET(req: NextRequest) {
     });
   } else {
     const views = (await redis.hget('views', id)) ?? 0;
-    console.log('views', views);
+    //     console.log('views', views);
     return NextResponse.json({
       id,
       views,

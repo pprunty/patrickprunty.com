@@ -111,6 +111,7 @@
   /* Apply global styles to pre and code tags */
   pre code {
     font-family: monospace;
+    background-color: #000; /* Light mode background for pre */
     font-size: 14px; /* Ensure code within pre has smaller font */
   }
 
@@ -124,7 +125,7 @@
   }
 
   :root.dark code {
-    background-color: #1c1c1c; /* Dark mode background for inline code */
+    background-color: #2b2b2b; /* Dark mode background for inline code */
   }
 
   .toc {

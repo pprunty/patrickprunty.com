@@ -15,14 +15,11 @@ interface HeaderProps {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Header({ currentPost }: HeaderProps) {
-  // Always call hooks at the top
-  const segments = useSelectedLayoutSegments();
+  const slug = currentPost?.slug;
 
-  console.log('segments is', segments);
-  console.log('currentPost is', currentPost);
-
+  // Only call SWR if there is a valid slug
   const { data: post, mutate } = useSWR(
-    `/api/view?id=${currentPost?.slug}`,
+    slug ? `/api/view?id=${slug}` : null, // <-- null will skip SWR if slug is falsy
     fetcher,
     {
       fallbackData: currentPost,
@@ -30,11 +27,11 @@ export default function Header({ currentPost }: HeaderProps) {
     },
   );
 
-  // Then handle the "null" case
-  if (currentPost == null) {
-    return null; // or <></>
-  }
+  //   console.log('post = ', post);
 
+  if (!currentPost) {
+    return null;
+  }
   // The rest remains the same
   let postDate: Date | null = null;
   let timeAgo = '';
@@ -75,7 +72,7 @@ export default function Header({ currentPost }: HeaderProps) {
         </span>
         <span className="pr-1.5">
           <Views
-            id={post.slug}
+            id={post.slug || post.id}
             mutate={mutate}
             defaultValue={post.viewsFormatted}
           />
@@ -90,18 +87,19 @@ function Views({
   mutate,
   defaultValue,
 }: {
-  id: string;
+  id: string | undefined;
   mutate: KeyedMutator<{ views: number }>;
   defaultValue: number | null;
 }) {
-  console.log('mutate is', mutate);
-
   const views = defaultValue;
   const didLogViewRef = useRef(false);
+  //   console.log('id = ', id);
 
   useEffect(() => {
-    if (!didLogViewRef.current) {
-      const url = '/api/view?incr=1&id=' + id;
+    //       if ("development" === process.env.NODE_ENV) return;
+    if (!didLogViewRef.current && id) {
+      //       console.log('will do increment view');
+      const url = '/api/view?incr=1&id=' + encodeURIComponent(id);
       fetch(url)
         .then((res) => res.json())
         .then((obj) => {
@@ -110,7 +108,7 @@ function Views({
         .catch(console.error);
       didLogViewRef.current = true;
     }
-  }, [id, mutate]);
+  });
 
   return <>{views != null ? <span>{views} views</span> : null}</>;
 }

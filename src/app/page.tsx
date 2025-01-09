@@ -10,7 +10,7 @@ import InfoWithTooltip from '@/modules/common/components/InfoWithTooltip';
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 
 export default async function PostsPage() {
-  const posts: BlogPostType[] = await getAllPosts(true, 0); // Fetch all posts
+  const posts: BlogPostType[] = await getAllPosts(); // Fetch all posts
 
   const buttons: ButtonsArrayType = [
     { type: 'edit-blog' },
