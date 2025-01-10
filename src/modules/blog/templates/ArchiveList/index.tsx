@@ -4,13 +4,13 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import useSWR from 'swr';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
 type SortSetting = ['date' | 'views' | 'title', 'desc' | 'asc'];
 
 interface PostsProps {
-  posts: BlogPostType[];
+  posts: Post[];
 }
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -122,7 +122,7 @@ function SortIcon({ sortKey, currentSort }: SortIconProps) {
 }
 
 interface ListProps {
-  posts: BlogPostType[];
+  posts: Post[];
   sort: SortSetting;
 }
 

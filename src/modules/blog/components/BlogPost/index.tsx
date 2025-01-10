@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 
 interface BlogPostProps {
-  post: BlogPostType;
+  post: Post;
   index: number;
 }
 

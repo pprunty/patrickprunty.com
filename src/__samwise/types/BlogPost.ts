@@ -1,5 +1,5 @@
-// Import or define the BlogPostType that describes the shape of a post
-export interface BlogPostType {
+// Import or define the Post that describes the shape of a post
+export interface Post {
   slug: string;
   title: string;
   date: string | null; // Date can be null or a string

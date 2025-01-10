@@ -1,9 +1,9 @@
 import React from 'react';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import BlogPost from '@/modules/blog/components/BlogPost';
 
 interface PostListProps {
-  posts: BlogPostType[];
+  posts: Post[];
 }
 
 const PostList: React.FC<PostListProps> = ({ posts }) => (

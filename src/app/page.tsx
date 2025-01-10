@@ -1,5 +1,5 @@
 // app/posts/page.tsx
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import { Posts } from '@/modules/blog/templates/ArchiveList';
 import { getAllPosts } from '@/__samwise/utils/getAllPosts';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
@@ -10,7 +10,7 @@ import InfoWithTooltip from '@/modules/common/components/InfoWithTooltip';
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 
 export default async function PostsPage() {
-  const posts: BlogPostType[] = await getAllPosts(); // Fetch all posts
+  const posts: Post[] = await getAllPosts(); // Fetch all posts
 
   const buttons: ButtonsArrayType = [
     { type: 'edit-blog' },

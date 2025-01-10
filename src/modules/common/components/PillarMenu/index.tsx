@@ -11,13 +11,13 @@ import { IS_BLOG_USER_CONFIGURED } from '@/config';
 import axios from 'axios';
 import { AlertTriangle } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 
 interface PillarMenuProps {
   buttons?: ButtonsArrayType;
   slug?: string; // For delete-post
-  currentPost?: BlogPostType; // For edit-post
+  currentPost?: Post; // For edit-post
 }
 
 const PillarMenu: React.FC<PillarMenuProps> = ({

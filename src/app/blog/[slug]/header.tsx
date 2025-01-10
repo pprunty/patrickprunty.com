@@ -3,13 +3,13 @@
 import { useEffect, useRef } from 'react';
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { formatDistanceToNow } from 'date-fns';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import { H1 } from '@/app/blog/components//h1';
 import useSWR from 'swr';
 import { KeyedMutator } from 'swr';
 
 interface HeaderProps {
-  currentPost: BlogPostType | null;
+  currentPost: Post | null;
 }
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());

@@ -1,4 +1,5 @@
 import redis from '@/app/redis';
+import postsData from '@/app/posts.json';
 import commaNumber from 'comma-number';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -19,20 +20,33 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  // Find the post in posts.json as a fallback
+  const post = postsData.posts.find((post) => post.slug === id);
+
+  if (!post) {
+    return NextResponse.json(
+      {
+        error: {
+          message: 'Unknown post',
+          code: 'UNKNOWN_POST',
+        },
+      },
+      { status: 400 },
+    );
+  }
+
   // Increment or retrieve views from Redis
   if (url.searchParams.get('incr') != null) {
-    //     console.log('Incrementing views for', id);
     const views = await redis.hincrby('views', id, 1);
     return NextResponse.json({
-      id,
+      ...post,
       views,
       viewsFormatted: commaNumber(views),
     });
   } else {
     const views = (await redis.hget('views', id)) ?? 0;
-    //     console.log('views', views);
     return NextResponse.json({
-      id,
+      ...post,
       views,
       viewsFormatted: commaNumber(Number(views)),
     });

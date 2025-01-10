@@ -1,12 +1,12 @@
 // src/components/RelatedPosts/index.tsx
 
 import PostList from '@/modules/blog/components/PostList';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 
 interface RelatedPostsProps {
   currentPostSlug: string;
   currentPostKeywords: string[];
-  posts: BlogPostType[];
+  posts: Post[];
 }
 
 export default function RelatedPosts({

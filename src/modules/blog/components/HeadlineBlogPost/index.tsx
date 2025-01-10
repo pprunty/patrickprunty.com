@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import ZoomImage from '@/modules/common/components/ZoomImage';
 import DraftLabel from '@/modules/blog/components/DraftLabel';
 
 interface HeadlineBlogPostProps {
-  post: BlogPostType;
+  post: Post;
   prefetch?: boolean;
 }
 

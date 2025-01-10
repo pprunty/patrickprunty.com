@@ -1,0 +1,201 @@
+{
+  "posts": [
+    {
+      "slug": "2024-in-review",
+      "date": "December 30, 2024",
+      "title": "2024 in Review",
+      "draft": false,
+      "description": "A look back on a transformative year filled with achievements, insights, and pivotal trends across technology, outdoor pursuits, and entrepreneurial ventures—reflecting on lessons learned and charting the path forward for the year ahead.",
+      "keywords": [
+        "yearly review",
+        "artificial intelligence",
+        "projects",
+        "open source",
+        "software",
+        "programming",
+        "technology"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/2024-in-review/ablade-glover.webp",
+      "readingTime": 5
+    },
+    {
+      "slug": "ambient-writing-a-manifesto-for-creative-writing",
+      "date": "November 19, 2024",
+      "title": "Ambient Writing",
+      "draft": true,
+      "description": "A manifesto for creative writing by Patrick Prunty.",
+      "keywords": [
+        "creative writing",
+        "content creation",
+        "blogging",
+        "avant garde",
+        "writing"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/ambient-writing-a-manifesto-for-creative-writing/haiyang.webp",
+      "readingTime": 2
+    },
+    {
+      "slug": "interactive-animation-development-with-manim",
+      "date": "January 2, 2025",
+      "title": "Interactive Animation Development with Manim",
+      "draft": true,
+      "description": "Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.",
+      "keywords": [
+        "mathematics",
+        "programming",
+        "manim",
+        "content creation",
+        "animation",
+        "software developement",
+        "python"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/interactive-animation-development-with-manim/manim.png",
+      "readingTime": 1
+    },
+    {
+      "slug": "introducing-samwise-nextjs-15-blog-starter-template",
+      "date": "January 2, 2025",
+      "title": "Introducing Samwise - Next.js 15 Blog Starter Template",
+      "draft": true,
+      "description": "Explore Samwise, a high-performance Next.js 15 blog template designed for creators. Enjoy advanced SEO, seamless customization, and stunning design for free.",
+      "keywords": [
+        "samwise",
+        "next.js",
+        "open source",
+        "blogging",
+        "content creation",
+        "blog starter template"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/introducing-samwise-nextjs-15-blog-starter-template/introducing-samwise-nextjs-15-blog-starter-template.webp",
+      "readingTime": 1
+    },
+    {
+      "slug": "my-first-experience-with-elevenlabs-voice-cloning",
+      "date": "January 2, 2025",
+      "title": "My First Experience with ElevenLabs Voice Cloning",
+      "draft": false,
+      "description": "Reflecting on my first experience with ElevenLabs voice cloning – exploring its process, results, and potential for content creation through AI-driven voice technology.",
+      "keywords": [
+        "artificial intelligence",
+        "voice cloning",
+        "ElevenLabs",
+        "content creation",
+        "content",
+        "a.i",
+        "AI-generated voices",
+        "voice synthesis"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/my-first-experience-with-elevenlabs-voice-cloning/elevenlabs2.webp",
+      "readingTime": 4
+    },
+    {
+      "slug": "ode-to-pokemon",
+      "date": "November 7, 2024",
+      "title": "Ode to Retro Pokémon",
+      "draft": true,
+      "description": "Exploring how a video game franchise subtly shaped my adulthood.",
+      "keywords": [
+        "video game",
+        "pokemon"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/ode-to-pokemon/pokemon.webp",
+      "readingTime": 1
+    },
+    {
+      "slug": "pure-web-design",
+      "date": "December 10, 2024",
+      "title": "Pure Web Design [tmplate.xyz]",
+      "draft": true,
+      "description": "Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.",
+      "keywords": [
+        "UI/UX",
+        "Web Development",
+        "tmplate.xyz",
+        "Web Design",
+        "Next.js",
+        "Abstraction",
+        "software development",
+        "programming"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/pure-web-design/pure-web-design.webp",
+      "readingTime": 4
+    },
+    {
+      "slug": "the-winds-of-winter-preview-chapters-ebook-kindle-and-pdf-download",
+      "date": "December 10, 2024",
+      "title": "The Winds of Winter Preview Chapters (eBook, Kindle and PDF Download)",
+      "draft": false,
+      "description": "Preview chapters from 'The Winds of Winter' - available in eBook, kindle and PDF formats.",
+      "keywords": [
+        "Game of Thrones",
+        "ASOIAF",
+        "George R.R Martin",
+        "A Song of Ice and Fire",
+        "The Winds of Winter",
+        "Preview Chapters",
+        "eBook Download",
+        "PDF",
+        "eBook",
+        "writing"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/the-winds-of-winter-preview-chapters-ebook-kindle-and-pdf-download/twow.webp",
+      "readingTime": 2
+    },
+    {
+      "slug": "untitled-01",
+      "date": "July 18, 2024",
+      "title": "Untitled 01",
+      "draft": false,
+      "description": "An experimental poem by Patrick Prunty.",
+      "keywords": [
+        "poetry",
+        "experimental",
+        "creative writing",
+        "writing"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com",
+      "image": "/images/untitled-01/PJ_dinner.webp",
+      "readingTime": 1
+    },
+    {
+      "slug": "workflow-driven-design",
+      "date": "December 11, 2024",
+      "title": "Workflow-Driven Design [SaaS]",
+      "draft": true,
+      "description": "Design web products by mapping user workflows, reducing lifecycle steps, optimising APIs, and applying the Pareto principle to focus on the product's core-value offerings.",
+      "keywords": [
+        "product development",
+        "UI/UX",
+        "web development",
+        "SaaS",
+        "80/20 principal",
+        "Revolut UX Case Study",
+        "API Optimization",
+        "digital product efficiency",
+        "software development",
+        "programming"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/workflow-driven-design/workflow-driven-design.webp",
+      "readingTime": 1
+    }
+  ]
+}

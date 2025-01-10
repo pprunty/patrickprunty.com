@@ -6,14 +6,14 @@ import { useFormik, FormikProvider, getIn } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import * as Yup from 'yup';
 import Switch from 'react-switch';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import { ImageIcon, XIcon, Info } from 'lucide-react';
 import TooltipWrapper from '@/modules/common/components/Tooltip'; // Adjust the path as necessary
 import { AUTHOR } from '@/config';
 import { toast } from 'react-toastify';
 
 interface EditPostFormProps {
-  currentPost?: BlogPostType | null;
+  currentPost?: Post | null;
   onSuccess?: () => void; // Add the onSuccess prop
 }
 

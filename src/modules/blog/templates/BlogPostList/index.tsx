@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlogPostType } from '@/__samwise/types/BlogPost';
+import { Post } from '@/__samwise/utils/getAllPosts';
 import BlogPost from '@/modules/blog/components/BlogPost';
 import ArchiveButton from '@/modules/blog/components/ArchiveButton';
 import { USE_ARCHIVE } from '@/config';
@@ -7,7 +7,7 @@ import ShareButton from '@/modules/blog/components/ShareButton';
 import { AUTHOR } from '@/config';
 
 interface BlogPostListProps {
-  posts: BlogPostType[];
+  posts: Post[];
 }
 
 const BlogPostList: React.FC<BlogPostListProps> = ({ posts }) => {
@@ -23,7 +23,7 @@ const BlogPostList: React.FC<BlogPostListProps> = ({ posts }) => {
       acc[year].push(post);
       return acc;
     },
-    {} as Record<string, BlogPostType[]>,
+    {} as Record<string, Post[]>,
   );
 
   // Sort years
