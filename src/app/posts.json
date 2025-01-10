@@ -21,24 +21,6 @@
       "readingTime": 5
     },
     {
-      "slug": "ambient-writing-a-manifesto-for-creative-writing",
-      "date": "November 19, 2024",
-      "title": "Ambient Writing",
-      "draft": true,
-      "description": "A manifesto for creative writing by Patrick Prunty.",
-      "keywords": [
-        "creative writing",
-        "content creation",
-        "blogging",
-        "avant garde",
-        "writing"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/ambient-writing-a-manifesto-for-creative-writing/haiyang.webp",
-      "readingTime": 2
-    },
-    {
       "slug": "interactive-animation-development-with-manim",
       "date": "January 2, 2025",
       "title": "Interactive Animation Development with Manim",
@@ -99,42 +81,6 @@
       "readingTime": 4
     },
     {
-      "slug": "ode-to-pokemon",
-      "date": "November 7, 2024",
-      "title": "Ode to Retro Pokémon",
-      "draft": true,
-      "description": "Exploring how a video game franchise subtly shaped my adulthood.",
-      "keywords": [
-        "video game",
-        "pokemon"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/ode-to-pokemon/pokemon.webp",
-      "readingTime": 1
-    },
-    {
-      "slug": "pure-web-design",
-      "date": "December 10, 2024",
-      "title": "Pure Web Design [tmplate.xyz]",
-      "draft": true,
-      "description": "Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.",
-      "keywords": [
-        "UI/UX",
-        "Web Development",
-        "tmplate.xyz",
-        "Web Design",
-        "Next.js",
-        "Abstraction",
-        "software development",
-        "programming"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/pure-web-design/pure-web-design.webp",
-      "readingTime": 4
-    },
-    {
       "slug": "the-winds-of-winter-preview-chapters-ebook-kindle-and-pdf-download",
       "date": "December 10, 2024",
       "title": "The Winds of Winter Preview Chapters (eBook, Kindle and PDF Download)",
@@ -175,26 +121,21 @@
       "readingTime": 1
     },
     {
-      "slug": "workflow-driven-design",
-      "date": "December 11, 2024",
-      "title": "Workflow-Driven Design [SaaS]",
+      "slug": "what-can-happen-in-just-one-second",
+      "date": "January 10, 2025",
+      "title": "What Can Happen in Just One Second",
       "draft": true,
-      "description": "Design web products by mapping user workflows, reducing lifecycle steps, optimising APIs, and applying the Pareto principle to focus on the product's core-value offerings.",
+      "description": "A lot can happen in just one second... Here's a reminder of just how long one second is and what you might miss if you blink.",
       "keywords": [
-        "product development",
-        "UI/UX",
-        "web development",
-        "SaaS",
-        "80/20 principal",
-        "Revolut UX Case Study",
-        "API Optimization",
-        "digital product efficiency",
-        "software development",
-        "programming"
+        "software developement",
+        "high-performance computing",
+        "HPC",
+        "quantitative trading",
+        "performance"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/workflow-driven-design/workflow-driven-design.webp",
+      "image": "/images/what-can-happen-in-just-one-second/one-second.png",
       "readingTime": 1
     }
   ]

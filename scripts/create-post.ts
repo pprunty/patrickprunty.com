@@ -210,7 +210,7 @@ export const metadata = {
     url: "/blog/${slug}",
     images: [
       {
-        url: \`\${SITE_URL}/images/${slug}/${imageName}\`,
+        url: \`/images/${slug}/${imageName}\`,
         alt: "${cleanedAnswers.title}",
       },
     ],
