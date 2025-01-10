@@ -24,7 +24,7 @@ export default async function PostsPage() {
         <InfoWithTooltip message="All blog posts are written in 500ish words" />
       </div>
       <Posts posts={posts} />
-      <PillarMenu buttons={buttons} />
+      {process.env.NODE_ENV === 'development' && <PillarMenu buttons={buttons} />}
     </>
   );
 }
