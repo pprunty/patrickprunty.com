@@ -27,7 +27,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <Image
           src={imagePath}
           alt={title}
-          className="object-cover w-full h-full m-0"
+          className="object-cover w-full h-full m-0 border-b sm:border-b-0 dark:border-[#555] border-gray-200 "
           width={310}
           height={310}
           priority

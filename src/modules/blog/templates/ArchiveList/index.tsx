@@ -165,7 +165,7 @@ function List({ posts, sort }: ListProps) {
                 className={`flex transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222] border-y dark:border-[#313131]
                           ${!firstOfYear ? 'border-t-0' : ''}
                           ${lastOfYear ? 'border-b-0' : ''}
-                          ${i === 0 ? 'border-t border-t-[#d4d4d4] dark:border-t-[#4f4e4e]' : ''}
+                          ${i === 0 ? 'border-t border-t-[#d4d4d4] dark:border-t-[#555]' : ''}
                         `}
               >
                 <span

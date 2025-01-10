@@ -49,7 +49,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
             alt={post.title || 'Blog post image'}
             width={110}
             height={110}
-            className="object-cover rounded-md"
+            className="object-cover rounded-sm"
           />
         </div>
       )}
