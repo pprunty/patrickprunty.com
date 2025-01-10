@@ -10,7 +10,9 @@ import InfoWithTooltip from '@/modules/common/components/InfoWithTooltip';
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 
 export default async function PostsPage() {
-  const posts: Post[] = await getAllPosts(process.env.NODE_ENV === 'production'); // Fetch all posts
+  const posts: Post[] = await getAllPosts(
+    process.env.NODE_ENV === 'production',
+  ); // Fetch all posts
 
   const buttons: ButtonsArrayType = [
     { type: 'edit-blog' },
@@ -24,7 +26,9 @@ export default async function PostsPage() {
         <InfoWithTooltip message="All blog posts are written in 500ish words" />
       </div>
       <Posts posts={posts} />
-      {process.env.NODE_ENV === 'development' && <PillarMenu buttons={buttons} />}
+      {process.env.NODE_ENV === 'development' && (
+        <PillarMenu buttons={buttons} />
+      )}
     </>
   );
 }
