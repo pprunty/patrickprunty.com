@@ -19,7 +19,7 @@ interface LayoutProps {
 
 export default async function BlogLayout({ children, params }: LayoutProps) {
   const { slug } = await params; // Await params before accessing slug
-  const posts = await getAllPosts();
+  const posts = await getAllPosts(process.env.NODE_ENV === 'production');
   const buttons: ButtonsArrayType = [
     { type: 'toggle-edit-mode' }, // Added toggle-edit-mode button
     { type: 'edit-post' },

@@ -17,13 +17,22 @@ export type Post = {
   viewsFormatted: string;
 };
 
-// Function to fetch posts
-export const getAllPosts = async (): Promise<Post[]> => {
-  // Fetch all views from Redis
+let cachedPosts: Post[] | null = null; // In-memory cache for performance
+
+export const getAllPosts = async (
+  filterDrafts: boolean = false,
+): Promise<Post[]> => {
+  if (cachedPosts) {
+    return filterDrafts
+      ? cachedPosts.filter((post) => !post.draft)
+      : cachedPosts;
+  }
+
+  // Fetch all views in one Redis call
   const allViews: Record<string, string> | null = await redis.hgetall('views');
 
   // Map posts with views
-  const posts: Post[] = postsData.posts.map((post): Post => {
+  const posts = postsData.posts.map((post) => {
     const views = Number(allViews?.[post.slug] ?? 0);
     return {
       ...post,
@@ -32,7 +41,9 @@ export const getAllPosts = async (): Promise<Post[]> => {
     };
   });
 
-  // If running in production, filter out drafts
-  const isProduction = process.env.NODE_ENV === 'production';
-  return isProduction ? posts.filter((post) => !post.draft) : posts;
+  // Cache the results
+  cachedPosts = posts;
+
+  // Apply draft filtering
+  return filterDrafts ? posts.filter((post) => !post.draft) : posts;
 };

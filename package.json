@@ -38,6 +38,7 @@
     "axios": "^1.7.9",
     "comma-number": "^2.1.0",
     "date-fns": "^4.1.0",
+    "fast-json-parse": "^1.0.3",
     "lucide-react": "^0.456.0",
     "next": "^15.0.3",
     "next-mdx-remote": "^5.0.0",
