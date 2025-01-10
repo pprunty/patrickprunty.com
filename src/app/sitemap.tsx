@@ -8,7 +8,7 @@ import { getAllPosts } from '@/__samwise/utils/getAllPosts'; // Use this to get 
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all posts with metadata
-  const posts = await getAllPosts();
+  const posts = await getAllPosts(process.env.NODE_ENV === 'production');
 
   // Generate sitemap entries for posts
   const postsSitemap = posts.map((post) => ({
