@@ -32,7 +32,7 @@
         "manim",
         "content creation",
         "animation",
-        "software developement",
+        "software development",
         "python"
       ],
       "author": "Patrick Prunty",
@@ -123,11 +123,11 @@
     {
       "slug": "what-can-happen-in-just-one-second",
       "date": "January 10, 2025",
-      "title": "What Can Happen in Just One Second",
+      "title": "00:01",
       "draft": true,
       "description": "A lot can happen in just one second... Here's a reminder of just how long one second is and what you might miss if you blink.",
       "keywords": [
-        "software developement",
+        "software development",
         "high-performance computing",
         "HPC",
         "quantitative trading",

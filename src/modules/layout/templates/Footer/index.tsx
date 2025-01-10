@@ -19,7 +19,7 @@ export default function Footer() {
       </div>
 
       <footer
-        className={`container max-w-2xl mx-auto px-6 ${
+        className={`container max-w-2xl mx-auto px-6 pb-12 ${
           isBlogPage ? 'sm:pb-12' : 'sm:pb-4'
         }`}
       >
