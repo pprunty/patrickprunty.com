@@ -17,22 +17,24 @@ export type Post = {
   viewsFormatted: string;
 };
 
-let cachedPosts: Post[] | null = null; // In-memory cache for performance
+// Cache for non-draft posts
+let cachedNonDraftPosts: Omit<Post, 'views' | 'viewsFormatted'>[] | null = null;
 
 export const getAllPosts = async (
   filterDrafts: boolean = false,
 ): Promise<Post[]> => {
-  if (cachedPosts) {
-    return filterDrafts
-      ? cachedPosts.filter((post) => !post.draft)
-      : cachedPosts;
+  // Cache non-draft posts if not already cached
+  if (!cachedNonDraftPosts) {
+    cachedNonDraftPosts = postsData.posts
+      .filter((post) => !post.draft)
+      .map(({ views, viewsFormatted, ...rest }) => rest); // Exclude dynamic fields
   }
 
   // Fetch all views in one Redis call
   const allViews: Record<string, string> | null = await redis.hgetall('views');
 
-  // Map posts with views
-  const posts = postsData.posts.map((post) => {
+  // Attach views dynamically
+  const postsWithViews = cachedNonDraftPosts.map((post) => {
     const views = Number(allViews?.[post.slug] ?? 0);
     return {
       ...post,
@@ -41,9 +43,22 @@ export const getAllPosts = async (
     };
   });
 
-  // Cache the results
-  cachedPosts = posts;
+  // Apply draft filtering if required
+  if (filterDrafts) {
+    return postsWithViews;
+  }
 
-  // Apply draft filtering
-  return filterDrafts ? posts.filter((post) => !post.draft) : posts;
+  // Include drafts dynamically if `filterDrafts` is false
+  const draftPosts = postsData.posts
+    .filter((post) => post.draft)
+    .map((post) => {
+      const views = Number(allViews?.[post.slug] ?? 0);
+      return {
+        ...post,
+        views,
+        viewsFormatted: commaNumber(views),
+      };
+    });
+
+  return [...postsWithViews, ...draftPosts];
 };
