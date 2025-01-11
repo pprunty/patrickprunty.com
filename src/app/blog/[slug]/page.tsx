@@ -53,11 +53,7 @@ export default async function Page({ params }: PageProps) {
     const postModule = await import(`@/posts/${slug}/page.mdx`);
     const Content = postModule.default;
 
-    return (
-      <article>
-        <Content />
-      </article>
-    );
+    return <Content />;
   } catch (error) {
     // Render the 404 page
     notFound();

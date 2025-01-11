@@ -10,6 +10,8 @@ import PillarMenu from '@/modules/common/components/PillarMenu';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 import Newsletter from '@/modules/blog/components/Newsletter'; // Adjust the import path based on your project structure
 
+export const revalidate = 60;
+
 type Params = Promise<{ slug: string }>;
 
 interface LayoutProps {
@@ -34,20 +36,9 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
     redirect('/');
   }
 
-  // If current post is not found, handle the case (e.g., return 404 page)
-  if (!currentPost) {
-    return (
-      <div>
-        <Header currentPost={null} />
-        {children}
-        <BottomBar />
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <Header currentPost={currentPost} />
+    <article className="text-gray-800 dark:text-gray-300 mb-10">
+      <Header posts={posts} currentPost={currentPost} />
       <TableOfContents />
       {children}
       <BottomBar />
@@ -59,7 +50,9 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
         currentPostKeywords={currentPost.keywords}
         posts={posts}
       />
-      <PillarMenu buttons={buttons} slug={slug} currentPost={currentPost} />
-    </div>
+      {process.env.NODE_ENV === 'development' && (
+        <PillarMenu buttons={buttons} slug={slug} currentPost={currentPost} />
+      )}
+    </article>
   );
 }
