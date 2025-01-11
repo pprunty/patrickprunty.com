@@ -27,7 +27,7 @@ const InfoWithTooltip: React.FC<InfoWithTooltipProps> = ({ message }) => {
           className="
             w-4 h-4
             cursor-pointer
-            text-gray-400 dark:text-[#777]
+            text-[#555] dark:text-[#999]
             transition-colors duration-200
             hover:text-gray-900 dark:hover:text-white
             active:text-gray-900 active:hover:text-white

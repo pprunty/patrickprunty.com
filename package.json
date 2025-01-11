@@ -56,7 +56,8 @@
     "slugify": "^1.6.6",
     "stringify-object": "^5.0.0",
     "swr": "^2.3.0",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "time-ago": "^0.2.1"
   },
   "devDependencies": {
     "@codemirror/lang-markdown": "^6.3.1",

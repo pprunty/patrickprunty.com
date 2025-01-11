@@ -14,25 +14,35 @@ export type Post = {
   image: string;
   readingTime: number;
   views: number;
-  viewsFormatted: string;
+  viewsFormatted?: string; // Lazy formatting
 };
 
-export const getAllPosts = async (
-  filterDrafts: boolean = false,
-): Promise<Post[]> => {
-  // Fetch all views in one Redis call
-  const allViews: Record<string, string> | null = await redis.hgetall('views');
+export const getAllPosts = async (filterDrafts: boolean = false): Promise<Post[]> => {
+  console.time('getAllPosts Execution');
 
-  // Map posts with views
-  const posts = postsData.posts.map((post) => {
-    const views = Number(allViews?.[post.slug] ?? 0);
-    return {
-      ...post,
-      views,
-      viewsFormatted: commaNumber(views),
-    };
-  });
+  // Fetch views and posts in parallel
+  const [allViews, posts] = await Promise.all([
+    redis.hgetall('views'),
+    Promise.resolve(postsData.posts),
+  ]);
 
-  // Apply draft filtering
-  return filterDrafts ? posts.filter((post) => !post.draft) : posts;
+  console.time('Map Posts with Views');
+  const processedPosts = posts.map((post) => ({
+    ...post,
+    views: Number(allViews?.[post.slug] ?? 0),
+    // Defer formatting for better performance
+  }));
+  console.timeEnd('Map Posts with Views');
+
+  // Filter drafts if required
+  if (filterDrafts) {
+    console.time('Filter Draft Posts');
+    const filteredPosts = processedPosts.filter((post) => !post.draft);
+    console.timeEnd('Filter Draft Posts');
+    console.timeEnd('getAllPosts Execution');
+    return filteredPosts;
+  }
+
+  console.timeEnd('getAllPosts Execution');
+  return processedPosts;
 };

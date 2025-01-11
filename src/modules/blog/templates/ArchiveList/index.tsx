@@ -46,7 +46,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={null}>
       <main className="max-w-2xl font-mono m-auto text-sm">
         <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
           {/* Date Sort Button */}
@@ -55,7 +55,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
             className={`w-12 h-9 text-left flex items-center ${
               sort[0] === 'date'
                 ? 'text-black dark:text-white' // Active colors
-                : 'text-gray-700 dark:text-gray-300'
+                : 'text-[#555] dark:text-[#999]'
             }`}
           >
             date
@@ -70,7 +70,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
             className={`h-9 pl-4 flex items-center flex-grow ${
               sort[0] === 'title'
                 ? 'text-black dark:text-white' // Active colors
-                : 'text-gray-700 dark:text-gray-300'
+                : 'text-[#555] dark:text-[#999]'
             }`}
           >
             title
@@ -85,7 +85,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
             className={`h-9 pl-4 flex items-center ${
               sort[0] === 'views'
                 ? 'text-black dark:text-white' // Active colors
-                : 'text-gray-700 dark:text-gray-300'
+                : 'text-[#555] dark:text-[#999]'
             }`}
           >
             views
