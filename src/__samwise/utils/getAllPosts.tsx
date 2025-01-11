@@ -17,7 +17,9 @@ export type Post = {
   viewsFormatted?: string; // Lazy formatting
 };
 
-export const getAllPosts = async (filterDrafts: boolean = false): Promise<Post[]> => {
+export const getAllPosts = async (
+  filterDrafts: boolean = false,
+): Promise<Post[]> => {
   // Fetch views and posts in parallel
   const [allViews, posts] = await Promise.all([
     redis.hgetall('views'),

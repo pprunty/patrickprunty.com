@@ -4,5 +4,7 @@ import { getAllPosts } from '@/__samwise/utils/getAllPosts';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
-  return NextResponse.json( await getAllPosts(process.env.NODE_ENV === 'production'));
+  return NextResponse.json(
+    await getAllPosts(process.env.NODE_ENV === 'production'),
+  );
 }

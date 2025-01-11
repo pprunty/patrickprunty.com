@@ -117,11 +117,9 @@ export default function RootLayout({
       </head>
       <body className="dark:text-gray-100 flex flex-col min-h-screen max-w-2xl m-auto">
         <main className="flex-grow p-6 pt-3 md:pt-6">
+          <Header />
+          {children}
           <Suspense fallback={null}>
-            <Header />
-            {children}
-          </Suspense>
-          <Suspense>
             <ClientSideScrollRestorer />
           </Suspense>
         </main>
