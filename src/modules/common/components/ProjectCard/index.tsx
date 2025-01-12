@@ -15,19 +15,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   url,
 }) => {
+  const isExternalLink = url.startsWith('https://');
+
   return (
     <Link
       href={url}
       className="flex flex-col sm:flex-row items-center w-full h-full border dark:border-[#555] border-gray-200 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C]"
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isExternalLink
+        ? { target: '_blank', rel: 'noopener noreferrer' }
+        : {})}
     >
       {/* Image Section */}
       <div className="w-full sm:w-1/2 flex-shrink-0 h-52 sm:h-34 p-0 border-b sm:border-b-0 sm:border-r dark:border-[#555] border-gray-200 shadow-sm sm:shadow-none">
         <Image
           src={imagePath}
           alt={title}
-          className="object-cover w-full h-full m-0 border-b sm:border-b-0 dark:border-[#555] border-gray-200 "
+          className="object-cover w-full h-full m-0 border-b sm:border-b-0 dark:border-[#555] border-gray-200"
           width={310}
           height={310}
           priority

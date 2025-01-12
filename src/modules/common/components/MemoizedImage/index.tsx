@@ -6,6 +6,7 @@ import Image, { ImageProps } from 'next/image';
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
   className?: string;
+  animate?: boolean; // Add the animate prop
 }
 
 export const MemoizedImage = React.memo(function MemoizedImage({
@@ -19,6 +20,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   fill,
   sizes,
   className = '',
+  animate = true, // Default value for animate
   ...rest
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -55,6 +57,8 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   }, []);
 
   useEffect(() => {
+    if (!animate) return; // Skip animation logic if animate is false
+
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !hasIntersectedRef.current) {
@@ -77,11 +81,11 @@ export const MemoizedImage = React.memo(function MemoizedImage({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [animate]);
 
   return (
     <>
-      <span // Changed from <div> to <span>
+      <span
         ref={imageRef}
         data-animate-image
         className={`${focusable ? 'cursor-pointer' : ''}`}
@@ -92,8 +96,10 @@ export const MemoizedImage = React.memo(function MemoizedImage({
           alt={alt}
           width={width}
           height={height}
-          className={`image-animate ${isImageLoaded ? 'animate-once' : ''} ${className}`}
-          data-animate={isImageLoaded ? 'zoom-fade-small' : ''}
+          className={`${
+            animate && isImageLoaded ? 'animate-once' : ''
+          } image-animate ${className}`}
+          data-animate={animate && isImageLoaded ? 'zoom-fade-small' : ''}
           priority={priority}
           loading={loading}
           fill={fill}
