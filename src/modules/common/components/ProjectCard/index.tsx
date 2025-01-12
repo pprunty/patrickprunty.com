@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <h2 className="text-xl font-bold mt-2 mb-1 dark:text-gray-100">
           {title}
         </h2>
-        <p className="my-5 text-[17px] [blockquote_&]:my-2">{description}</p>
+        <p className="my-5 text-[17px] [blockquote_&]:my-2 text-gray-700 dark:text-[#999999]">{description}</p>
       </div>
     </Link>
   );
