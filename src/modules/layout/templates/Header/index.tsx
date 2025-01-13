@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation'; // Import from next/navigation
 import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
 import { Logo } from '@/modules/layout/components/Logo';
 import React from 'react';
@@ -34,6 +34,8 @@ const urlMapping: Record<SocialPlatform, string> = {
 };
 
 export default function Header() {
+  const pathname = usePathname(); // Get the current path
+  const router = useRouter(); // Get the router instance
   const ctaPlatform = CTA_SOCIAL_PLATFORM as SocialPlatform;
   const ctaUrl = urlMapping[ctaPlatform];
   const ctaLabel = ctaLabels[ctaPlatform];
@@ -41,6 +43,13 @@ export default function Header() {
   // Split the CTA label so we can hide extra words on mobile
   const words = ctaLabel?.split(' ') ?? [];
   const [firstWord, ...rest] = words;
+
+  const handleNavigation = (href: string) => {
+    // Check if the user is already on the current route
+    if (pathname !== href) {
+      router.push(href); // Navigate only if it's a different route
+    }
+  };
 
   return (
     <header className="flex mb-5 md:mb-10 items-center">
@@ -54,12 +63,12 @@ export default function Header() {
         <div className="flex items-center text-xs gap-2 sm:gap-4">
           <ThemeSwitcher />
 
-          <Link
-            href="/about"
+          <button
+            onClick={() => handleNavigation('/about')}
             className="inline-flex font-mono items-center hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
           >
             About
-          </Link>
+          </button>
 
           {/* CTA Social Icon Link */}
           {ctaUrl && ctaLabel && (
