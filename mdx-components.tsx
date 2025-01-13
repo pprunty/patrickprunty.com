@@ -34,6 +34,7 @@ import LinkButton from "@/modules/common/components/LinkButton";
 import PDF from "@/app/blog/components/pdf"; // Import PDFViewer component
 import StarRating from "@/app/blog/components/rating";
 import MP3 from "@/app/blog/components/mp3";
+import { Del } from "@/app/blog/components/del"; // wherever you placed it
 
 // Collect all components into an object
 export const MDXComponents = {
@@ -46,6 +47,7 @@ export const MDXComponents = {
   ol,
   ul,
   li,
+  del: Del,
   hr,
   code: InlineCode,
   blockquote,

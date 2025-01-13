@@ -43,13 +43,15 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
 
       {/* Image Section */}
       {post.image && (
-        <div className="flex-shrink-0 w-[110px] h-[110px] overflow-hidden">
+        <div className="relative w-[110px] h-[110px] flex-shrink-0 overflow-hidden rounded-sm">
           <Image
-            src={post.image}
+            src={post.image || '/placeholder.svg?height=220&width=220'}
             alt={post.title || 'Blog post image'}
-            width={110}
-            height={110}
-            className="object-cover rounded-sm"
+            fill
+            sizes="(max-width: 768px) 110px, 220px"
+            quality={100}
+            className="object-cover"
+            style={{ transform: 'translate3d(0, 0, 0)' }}
           />
         </div>
       )}
