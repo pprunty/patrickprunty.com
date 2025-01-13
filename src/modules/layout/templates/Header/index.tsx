@@ -2,7 +2,6 @@
 
 import { usePathname, useRouter } from 'next/navigation'; // Import from next/navigation
 import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
-import { Logo } from '@/modules/layout/components/Logo';
 import React from 'react';
 import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
 import { SocialIcon } from '@/modules/common/components/SocialIcon';
@@ -54,21 +53,31 @@ export default function Header() {
   return (
     <header className="flex mb-5 md:mb-10 items-center">
       <nav className="flex justify-between items-center w-full">
-        {/* Left: Logo */}
-        <div className="flex items-center">
-          <Logo />
+        {/* Left: Navigation Links */}
+        <div className="flex items-center text-xs gap-4 sm:gap-6">
+          <button
+            onClick={() => handleNavigation('/about')}
+            className="inline-flex font-mono hover:underline hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
+          >
+            About
+          </button>
+          <button
+            onClick={() => handleNavigation('/projects')}
+            className="inline-flex font-mono hover:underline hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
+          >
+            Projects
+          </button>
+          <button
+            onClick={() => handleNavigation('/blog')}
+            className="inline-flex font-mono hover:underline hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
+          >
+            Blog
+          </button>
         </div>
 
         {/* Right: Navbar Links */}
         <div className="flex items-center text-xs gap-2 sm:gap-4">
           <ThemeSwitcher />
-
-          <button
-            onClick={() => handleNavigation('/about')}
-            className="inline-flex font-mono items-center hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
-          >
-            About
-          </button>
 
           {/* CTA Social Icon Link */}
           {ctaUrl && ctaLabel && (
