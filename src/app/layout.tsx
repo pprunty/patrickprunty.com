@@ -12,6 +12,7 @@ import ClientOnlyAnalytics from '@/modules/common/templates/ClientOnlyAnalytics'
 import ClientSideScrollRestorer from '@/modules/common/components/ClientSideScrollRestorer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Define viewport settings
 export const viewport: Viewport = {

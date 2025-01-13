@@ -11,7 +11,7 @@ import { IS_BLOG_USER_CONFIGURED } from '@/config';
 import axios from 'axios';
 import { AlertTriangle } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { Post } from '@/__samwise/utils/getAllPosts';
+import { Post } from '../../../../app/get-posts';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 
 interface PillarMenuProps {

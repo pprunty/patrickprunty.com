@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/__samwise/utils/getAllPosts';
+import { getAllPosts } from '../../get-posts';
 import Header from './header';
 import RelatedPosts from '@/modules/blog/templates/RelatedPosts';
 import { ReactNode } from 'react';
@@ -9,7 +9,6 @@ import { redirect } from 'next/navigation';
 import PillarMenu from '@/modules/common/components/PillarMenu';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 import Newsletter from '@/modules/blog/components/Newsletter'; // Adjust the import path based on your project structure
-
 
 export const revalidate = 60;
 
@@ -51,9 +50,9 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
         currentPostKeywords={currentPost.keywords}
         posts={posts}
       />
-        {process.env.NODE_ENV === "development" && (
-          <PillarMenu buttons={buttons} slug={slug} currentPost={currentPost} />
-        )}
+      {process.env.NODE_ENV === 'development' && (
+        <PillarMenu buttons={buttons} slug={slug} currentPost={currentPost} />
+      )}
     </article>
   );
 }

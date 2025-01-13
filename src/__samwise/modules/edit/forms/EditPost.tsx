@@ -6,7 +6,7 @@ import { useFormik, FormikProvider, getIn } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import * as Yup from 'yup';
 import Switch from 'react-switch';
-import { Post } from '@/__samwise/utils/getAllPosts';
+import { Post } from '../../../../app/get-posts';
 import { ImageIcon, XIcon, Info } from 'lucide-react';
 import TooltipWrapper from '@/modules/common/components/Tooltip'; // Adjust the path as necessary
 import { AUTHOR } from '@/config';

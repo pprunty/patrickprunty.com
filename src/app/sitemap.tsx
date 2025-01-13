@@ -4,11 +4,11 @@ import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/config'; // Adjust the path based on your project structure
 // import slugs from '@/posts/slugs.json'; // Import your generated slugs
 // import { formatDate } from '@/__samwise/utils/formatDate'; // If you have this utility
-import { getAllPosts } from '@/__samwise/utils/getAllPosts'; // Use this to get post metadata
+import { getAllPosts } from './get-posts'; // Use this to get post metadata
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all posts with metadata
-  const posts = await getAllPosts(process.env.NODE_ENV === 'production');
+  const posts = await getAllPosts(true);
 
   // Generate sitemap entries for posts
   const postsSitemap = posts.map((post) => ({

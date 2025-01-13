@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from '@/__samwise/utils/getAllPosts';
+import { Post } from '../../../../app/get-posts';
 import BlogPost from '@/modules/blog/components/BlogPost';
 
 interface PostListProps {

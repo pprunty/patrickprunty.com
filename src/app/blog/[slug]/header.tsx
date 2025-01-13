@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useSelectedLayoutSegments } from 'next/navigation';
-import { Post } from '@/__samwise/utils/getAllPosts';
+import { Post } from '../../get-posts';
 import { H1 } from '@/app/blog/components//h1';
 import useSWR from 'swr';
 import { KeyedMutator } from 'swr';

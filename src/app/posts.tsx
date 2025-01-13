@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import useSWR from 'swr';
-import { Post } from '../../../../app/get-posts';
+import { Post } from './get-posts';
 import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
 type SortSetting = ['date' | 'views' | 'title', 'desc' | 'asc'];

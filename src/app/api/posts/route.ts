@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAllPosts } from '@/__samwise/utils/getAllPosts';
+import { getAllPosts } from '../../get-posts';
 
 export const dynamic = 'force-dynamic';
 

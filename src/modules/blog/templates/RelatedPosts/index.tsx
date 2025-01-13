@@ -1,7 +1,7 @@
 // src/components/RelatedPosts/index.tsx
 
 import PostList from '@/modules/blog/components/PostList';
-import { Post } from '@/__samwise/utils/getAllPosts';
+import { Post } from '../../../../app/get-posts';
 
 interface RelatedPostsProps {
   currentPostSlug: string;

@@ -4,7 +4,7 @@
       "slug": "2024-in-review",
       "date": "December 30, 2024",
       "title": "2024 in Review",
-      "draft": false,
+      "draft": true,
       "description": "A look back on a transformative year filled with achievements, insights, and pivotal trends across technology, outdoor pursuits, and entrepreneurial ventures—reflecting on lessons learned and charting the path forward for the year ahead.",
       "keywords": [
         "yearly review",
@@ -63,7 +63,7 @@
       "slug": "my-first-experience-with-elevenlabs-voice-cloning",
       "date": "January 2, 2025",
       "title": "My First Experience with ElevenLabs Voice Cloning",
-      "draft": false,
+      "draft": true,
       "description": "Reflecting on my first experience with ElevenLabs voice cloning – exploring its process, results, and potential for content creation through AI-driven voice technology.",
       "keywords": [
         "artificial intelligence",
@@ -118,7 +118,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com",
       "image": "/images/untitled-01/PJ_dinner.webp",
-      "readingTime": 1
+      "readingTime": 2
     },
     {
       "slug": "what-can-happen-in-just-one-second",
