@@ -15,7 +15,7 @@ const TooltipWrapper: React.FC<TooltipProps> = ({
     {children}
     <div
       className={`absolute opacity-0 pointer-events-none
-        z-[1000] p-2 max-w-[200px] min-w-[150px] bg-black text-white dark:bg-white dark:text-black text-xs rounded py-1 px-2 shadow-lg
+        z-[1000] p-2 max-w-[180px] min-w-120px sm:max-w-[200px] sm:min-w-[150px] bg-black text-white dark:bg-white dark:text-black text-xs rounded py-1 px-2 shadow-lg
         group-hover:opacity-100 font-normal group-hover:pointer-events-auto transition-all duration-500
         ${
           position === 'top'
