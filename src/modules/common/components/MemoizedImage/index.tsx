@@ -19,7 +19,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   focusable = true,
   fill,
   sizes,
-  quality = 95,
+  quality,
   className = '',
   animate = true, // Default value for animate
   ...rest
