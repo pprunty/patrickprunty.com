@@ -14,14 +14,10 @@ export default function Footer() {
 
   return (
     <>
-      <div className="">
         <HR />
-      </div>
 
       <footer
-        className={`container max-w-2xl mx-auto px-6 pb-12 ${
-          isBlogPage ? 'sm:pb-12' : 'sm:pb-4'
-        }`}
+        className={`container max-w-2xl mx-auto px-6 pb-12`}
       >
         <div className="">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">

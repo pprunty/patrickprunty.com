@@ -3,8 +3,8 @@ import './globals.css';
 import { AUTHOR, SITE_URL, SOCIAL_URLS, DEFAULT_KEYWORDS } from '@/config';
 import { doge } from './doge';
 import { themeEffect } from '@/modules/common/templates/ThemeSwitcher/theme-effect';
-import Header from '@/modules/layout/templates/Header';
-import Footer from '@/modules/layout/templates/Footer';
+import Header from './header';
+import Footer from './footer';
 import type { Viewport } from 'next';
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
@@ -116,8 +116,8 @@ export default function RootLayout({
         {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="dark:text-gray-100 flex flex-col min-h-screen max-w-2xl m-auto">
-        <main className="flex-grow p-6 pt-3 md:pt-6">
+      <body className="dark:text-gray-100 max-w-2xl m-auto">
+        <main className="p-6 pt-3 md:pt-6 min-h-screen">
           <Header />
           {children}
           <Suspense fallback={null}>

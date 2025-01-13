@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation'; // Import from next/navigation
 import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
-import { Logo } from '@/modules/layout/components/Logo';
+import { Logo } from './logo';
 import React from 'react';
 import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
 import { SocialIcon } from '@/modules/common/components/SocialIcon';
