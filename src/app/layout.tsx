@@ -141,6 +141,7 @@ export default function RootLayout({
             theme="dark"
           />
         )}
+        <SpeedInsights />
       </body>
     </html>
   );
