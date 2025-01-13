@@ -32,11 +32,11 @@ interface FootNoteProps {
 }
 
 export const FootNote = ({ id, children }: FootNoteProps) => (
-  <P>
+  <div>
     {id}.{' '}
     <A href={`#s${id}`} id={`f${id}`} className="no-underline">
       ^
     </A>{' '}
     {children}
-  </P>
+  </div>
 );

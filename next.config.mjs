@@ -19,6 +19,19 @@ const nextConfig = {
     experimental: {
       mdxRs: true,
     },
+  headers() {
+      return [
+        {
+          source: "/images/me.WEBP",
+          headers: [
+            {
+              key: "cache-control",
+              value: "public, max-age=31536000, immutable",
+            },
+          ],
+        },
+      ];
+    },
   pageExtensions: ['ts', 'tsx', 'mdx'],
 };
 

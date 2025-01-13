@@ -81,6 +81,25 @@
       "readingTime": 4
     },
     {
+      "slug": "the-engineers-proclivity-for-perfection",
+      "date": "January 13, 2025",
+      "title": "The Engineer's Proclivity for Perfection",
+      "draft": true,
+      "description": "Or why it'll never be perfect—let alone done.",
+      "keywords": [
+        "software development",
+        "engineering",
+        "perfection",
+        "productivity",
+        "obsession",
+        "programming"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/the-engineers-proclivity-for-perfection/the-engineers-proclivity-for-perfection.webp",
+      "readingTime": 2
+    },
+    {
       "slug": "the-winds-of-winter-preview-chapters-ebook-kindle-and-pdf-download",
       "date": "December 10, 2024",
       "title": "The Winds of Winter Preview Chapters (eBook, Kindle and PDF Download)",

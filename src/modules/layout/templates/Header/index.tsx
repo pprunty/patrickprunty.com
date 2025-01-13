@@ -53,45 +53,43 @@ export default function Header() {
 
   return (
     <header className="flex mb-5 md:mb-10 items-center">
-      <nav className="flex justify-between items-center w-full">
-        {/* Left: Logo */}
-        <div className="flex items-center">
-          <Logo />
-        </div>
+      {/* Left: Logo */}
+      <div className="flex items-center">
+        <Logo />
+      </div>
 
-        {/* Right: Navbar Links */}
-        <div className="flex items-center text-xs gap-2 sm:gap-4">
-          <ThemeSwitcher />
+      {/* Right: Navbar Links */}
+      <nav className="font-mono text-xs grow justify-end items-center flex gap-1 md:gap-3">
+        <ThemeSwitcher />
 
-          <button
-            onClick={() => handleNavigation('/about')}
-            className="inline-flex font-mono items-center hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
+        <button
+          onClick={() => handleNavigation('/about')}
+          className="inline-flex font-mono items-center hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
+        >
+          About
+        </button>
+
+        {/* CTA Social Icon Link */}
+        {ctaUrl && ctaLabel && (
+          <a
+            href={ctaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
           >
-            About
-          </button>
-
-          {/* CTA Social Icon Link */}
-          {ctaUrl && ctaLabel && (
-            <a
-              href={ctaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
-            >
-              <SocialIcon
-                platform={ctaPlatform}
-                width="15"
-                height="15"
-                className="mr-2 text-[#1c1c1c] dark:text-[#fcfcfc]"
-              />
-              {/* Render first word always, additional words only on sm+ */}
-              {firstWord}
-              {rest.length > 0 && (
-                <span className="hidden sm:inline ml-2">{rest.join(' ')}</span>
-              )}
-            </a>
-          )}
-        </div>
+            <SocialIcon
+              platform={ctaPlatform}
+              width="15"
+              height="15"
+              className="mr-2 text-[#1c1c1c] dark:text-[#fcfcfc]"
+            />
+            {/* Render first word always, additional words only on sm+ */}
+            {firstWord}
+            {rest.length > 0 && (
+              <span className="hidden sm:inline ml-2">{rest.join(' ')}</span>
+            )}
+          </a>
+        )}
       </nav>
     </header>
   );

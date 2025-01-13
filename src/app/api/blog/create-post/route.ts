@@ -125,7 +125,7 @@ export async function POST(request: Request) {
           (prop === 'url' || prop === 'image') &&
           originalResult.includes("'TEMPLATE_LITERAL_SITE_URL_IMAGE_PATH'")
         ) {
-          return `\`${'${SITE_URL}/images/' + slug + '/' + imageName}\``;
+          return `\`${'/images/' + slug + '/' + imageName}\``;
         }
         return originalResult;
       },
