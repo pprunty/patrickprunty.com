@@ -97,7 +97,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
           alt={alt}
           width={width}
           height={height}
-        quality={quality}
+          quality={quality}
           className={`${
             animate && isImageLoaded ? 'animate-once' : ''
           } image-animate ${className}`}
@@ -121,8 +121,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               src={src}
               alt={alt}
               width={width}
-                            quality={quality}
-
+              quality={quality}
               height={height}
               className="cursor-pointer p-4 image-click-animate"
               onClick={closeModal}
