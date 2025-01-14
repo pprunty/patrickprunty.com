@@ -44,8 +44,120 @@ export const metadata = {
     'python'
   ],
   slug: 'interactive-animation-development-with-manim',
-  readingTime: 1,
+  readingTime: 3,
   draft: true
 };
 
-Start adding your blog post content here...
+Before getting started, here are a few pre-requisites you'll need:
+
+1. [Sublime Text Editor](https://www.sublimetext.com/)
+2. [brew](https://brew.sh/)
+3. [GitHub account](https://github.com/)
+
+# Installing Python [#installing-python]
+
+The easiest way to manage your python environments is via `pyenv`:
+
+```bash
+brew install pyenv
+```
+
+Now add `pyenv` to your bash profile:
+
+```bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(pyenv init --path)"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+Once installed, install python version 3.12 and install it as your 
+global python version:
+
+```bash
+pyenv install 3.12 && pyenv global 3.12
+```
+
+Validate the global version of python that you're running:
+
+```bash
+python --version
+```
+
+# Manim Installation [#manim-installation]
+
+There are two known Manim libraries that you can use to create animations:
+
+1. Manim Community (community managed manim library)
+2. Manim GL (managed by 3b1b team)
+
+Before installing manim, there are a couple of pre-requisites needed on your Mac:
+
+```bash
+brew install ffmpeg mactex
+```
+
+* `ffmpeg` - for video processing
+* `mactex` - for LaTeX rendering
+
+After installing the pre-requisites, you can download the manim library.
+
+The community edition is the more stable and recommended package to download, however,
+this edition does not prioritize the interactive editing environment that the 3b1b team does.
+If your priority is to create a workflow wherein you can create and edit animation interactively,
+which is where I believe the real value in this software lies, then start by forking the `3b1b/manim` repository on GitHub:
+
+The Manim Community [tutorial and guides section](https://docs.manim.community/en/stable/tutorials/quickstart.html), however, is extremely useful for getting started with creating complex
+animations.
+
+To do this, navigate to https://github.com/3b1b/manim and select "fork". Once you've forked the repository, clone it to your local machine:
+
+```bash
+git clone https://github.com/<your_username>/<your_manim_lib_name>.git
+```
+
+Now, navigate to the directory where you cloned the repository and install the library:
+
+```bash
+pip install -e .
+```
+
+This will install the library in "editable" mode, meaning you can make changes to the library and see them reflected
+in your animations.
+
+Additionally, you are required to install `setuptools` or else you'll run into issues running the `manimgl` command:
+
+```bash
+pip install setuptools
+```
+
+Now the `manimgl` command will be available globally on your machine and you're all set to start running animations.
+
+# Running Interactive Animations [#running-interactive-animations]
+
+## The Example Scene [#the-example-scene]
+
+To run the example animation scene provided by manim, you can use the `manimgl` command. Run the following in
+the root of the manim library you forked and cloned:
+
+```bash
+manimgl example_scenes.py OpeningManimExample
+```
+
+This will open an interactive window with the example animation.
+
+You can interact with the animation using keys:
+
+- **d**:
+- **f**:
+- **z**:
+
+To quit, press **⌘** + **q**.
+
+# Interactive Animation Projects [#interactive-animation-projects]
+
+Now, if you're planning on using manim *seriously* then we need to talk about how to manage projects and create
+workflows within them.
+
+
+

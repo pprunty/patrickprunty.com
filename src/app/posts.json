@@ -17,8 +17,29 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/2024-in-review/ablade-glover.webp",
+      "image": "/images/2024-in-review/starry-night.webp",
       "readingTime": 5
+    },
+    {
+      "slug": "elevenlabs-instant-voice-cloning-review",
+      "date": "January 2, 2025",
+      "title": "So That's What My A.I Voice Sounds Like... (ElevenLabs Voice Cloning)",
+      "draft": true,
+      "description": "ElevenLabs Instant Voice Cloning: Testing AI voice synthesis with real before and after audio samples.",
+      "keywords": [
+        "artificial intelligence",
+        "voice cloning",
+        "ElevenLabs",
+        "content creation",
+        "content",
+        "a.i",
+        "AI-generated voices",
+        "voice synthesis"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.vercel.app/about",
+      "image": "/images/elevenlabs-instant-voice-cloning-review/elevenlabs.webp",
+      "readingTime": 4
     },
     {
       "slug": "interactive-animation-development-with-manim",
@@ -38,7 +59,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.vercel.app/about",
       "image": "/images/interactive-animation-development-with-manim/manim.png",
-      "readingTime": 1
+      "readingTime": 3
     },
     {
       "slug": "introducing-samwise-nextjs-15-blog-starter-template",
@@ -56,29 +77,8 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/introducing-samwise-nextjs-15-blog-starter-template/introducing-samwise-nextjs-15-blog-starter-template.webp",
+      "image": "/images/introducing-samwise-nextjs-15-blog-starter-template/samwise.webp",
       "readingTime": 1
-    },
-    {
-      "slug": "my-first-experience-with-elevenlabs-voice-cloning",
-      "date": "January 2, 2025",
-      "title": "My First Experience with ElevenLabs Voice Cloning",
-      "draft": true,
-      "description": "Reflecting on my first experience with ElevenLabs voice cloning – exploring its process, results, and potential for content creation through AI-driven voice technology.",
-      "keywords": [
-        "artificial intelligence",
-        "voice cloning",
-        "ElevenLabs",
-        "content creation",
-        "content",
-        "a.i",
-        "AI-generated voices",
-        "voice synthesis"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.vercel.app/about",
-      "image": "/images/my-first-experience-with-elevenlabs-voice-cloning/elevenlabs2.webp",
-      "readingTime": 4
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
@@ -97,25 +97,27 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.vercel.app/about",
       "image": "/images/the-engineers-proclivity-for-perfection/the-engineers-proclivity-for-perfection.webp",
-      "readingTime": 2
+      "readingTime": 3
     },
     {
-      "slug": "the-winds-of-winter-preview-chapters-ebook-kindle-and-pdf-download",
+      "slug": "the-winds-of-winter-preview-chapters-free-ebook-kindle-and-pdf-download",
       "date": "December 10, 2024",
-      "title": "The Winds of Winter Preview Chapters (eBook, Kindle and PDF Download)",
+      "title": "The Winds of Winter Preview Chapters: Free eBook, Kindle, and PDF Download",
       "draft": false,
-      "description": "Preview chapters from 'The Winds of Winter' - available in eBook, kindle and PDF formats.",
+      "description": "Download preview chapters of *The Winds of Winter* by George R.R. Martin in eBook, Kindle, or PDF formats.",
       "keywords": [
         "Game of Thrones",
         "ASOIAF",
         "George R.R Martin",
         "A Song of Ice and Fire",
         "The Winds of Winter",
-        "Preview Chapters",
-        "eBook Download",
+        "The Winds of Winter PDF",
+        "George R.R. Martin new book",
         "PDF",
-        "eBook",
-        "writing"
+        "The Winds of Winter Preview Chapters",
+        "free eBook download",
+        "TWOW release",
+        "free downloads"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.vercel.app/about",
