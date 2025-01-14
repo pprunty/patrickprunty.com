@@ -29,7 +29,7 @@ const Showcase: React.FC<ShowcaseProps> = ({ items }) => {
   }
 
   return (
-    <Grid columns={1} gap="gap-4">
+    <Grid columns={1} gap="gap-4 py-2">
       {items.map((item, index) => (
         <div key={index} className="rounded-lg">
           {item}

@@ -17,7 +17,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
     <article
       className="flex sm:p-4 gap-4 items-start pb-4
 
-             sm:border sm:border-gray-200 sm:dark:border-[#555]
+             sm:border sm:border-gray-300 sm:dark:border-[#555]
              rounded-0 sm:rounded-sm
              sm:hover:border-gray-600 sm:dark:hover:border-[#dbdbdb]
              sm:transition-colors sm:duration-300"

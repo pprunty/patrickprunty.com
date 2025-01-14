@@ -13,9 +13,6 @@ const withMDX = createMDX({
 
 const nextConfig = {
   reactStrictMode: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV !== 'development',
-  },
     experimental: {
       mdxRs: true,
     },

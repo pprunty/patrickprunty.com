@@ -76,7 +76,6 @@
   /* Apply global styles to pre and code tags */
   pre code {
     font-family: monospace;
-    background-color: #000; /* Light mode background for pre code */
     font-size: 14px;
   }
 
