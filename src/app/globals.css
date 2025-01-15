@@ -50,7 +50,9 @@
   }
 
   /* Customize scrollbar for Firefox */
-
+  * {
+    scrollbar-width: thin; /* Make scrollbar narrower */
+  }
 
   /* Various rendering tweaks */
   -moz-osx-font-smoothing: grayscale;
