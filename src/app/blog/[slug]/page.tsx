@@ -55,7 +55,7 @@ export default async function Page({ params }: PageProps) {
     const Content = postModule.default;
 
     return (
-      <div className="break-words overflow-auto">
+      <div className="break-words overflow-hidden">
         <Content />
       </div>
     );

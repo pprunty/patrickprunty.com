@@ -13,6 +13,8 @@ import ClientSideScrollRestorer from '@/modules/common/components/ClientSideScro
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { GA_MEASUREMENT_ID } from '@/config';
+import Script from 'next/script';
 
 // Define viewport settings
 export const viewport: Viewport = {
@@ -113,6 +115,10 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLd),
           }}
         />
+        <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          />
         {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
