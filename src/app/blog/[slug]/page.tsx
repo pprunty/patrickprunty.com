@@ -54,7 +54,11 @@ export default async function Page({ params }: PageProps) {
     const postModule = await import(`@/posts/${slug}/page.mdx`);
     const Content = postModule.default;
 
-    return <Content />;
+    return (
+      <div className="break-words overflow-auto">
+        <Content />
+      </div>
+    );
   } catch (error) {
     // Render the 404 page
     notFound();

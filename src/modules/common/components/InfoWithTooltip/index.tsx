@@ -18,7 +18,7 @@ const InfoWithTooltip: React.FC<InfoWithTooltipProps> = ({ message }) => {
         onClick={() => setTooltipVisible(!isTooltipVisible)} // Toggle on click
         onMouseEnter={handleMouseEnter} // Show on hover
         onMouseLeave={handleMouseLeave} // Hide when hover ends
-        className="flex items-center justify-center pt-1 w-6 h-6"
+        className="flex items-center justify-center pt-1 w-4 h-4"
         aria-label="Info"
       >
         <svg
