@@ -68,6 +68,29 @@
   img {
     height: inherit !important;
   }
+
+  pre {
+    margin: 1rem 0 !important;
+  }
+
+  /* Apply global styles to pre and code tags */
+  pre code {
+    font-family: monospace;
+    font-size: 14px;
+  }
+
+  code {
+    padding: 0.25rem;
+    font-family: monospace;
+  }
+
+  :root.dark pre {
+    background-color: #2b2b2b; /* Dark mode background for pre */
+  }
+
+  :root.dark code {
+    background-color: #2b2b2b; /* Dark mode background for inline code */
+  }
 }
 
 /* Initial state for image animations */

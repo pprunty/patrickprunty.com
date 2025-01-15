@@ -15,7 +15,7 @@ import { Caption } from "@/app/blog/components/caption";
 import { YouTube } from "@/app/blog/components/youtube";
 import { Ref, FootNotes, FootNote } from "@/app/blog/components/footnotes";
 import { Blockquote as blockquote } from "@/app/blog/components/blockquote";
-import { InlineCode as code } from "@/app/blog/components/code";
+import { InlineCode } from "@/app/blog/components/code";
 import { Admonition } from '@/app/blog/components/admonition';
 import { TableOfContents } from "@/app/blog/components/toc";
 import PhotoGrid from "@/modules/common/templates/PhotoGrid";
@@ -34,7 +34,6 @@ import PDF from "@/app/blog/components/pdf"; // Import PDFViewer component
 import StarRating from "@/app/blog/components/rating";
 import MP3 from "@/app/blog/components/mp3";
 import { Del } from "@/app/blog/components/del"; // wherever you placed it
-import { Snippet } from "@/app/blog/components/snippet";
 
 // Collect all components into an object
 export const MDXComponents = {
@@ -49,8 +48,7 @@ export const MDXComponents = {
   li,
   del: Del,
   hr,
-      code,
-      pre: Snippet,
+  code: InlineCode,
   blockquote,
   Admonition,
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {

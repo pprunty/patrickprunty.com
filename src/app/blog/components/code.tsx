@@ -1,22 +1,49 @@
-import React, { ReactNode } from 'react';
+'use client';
 
-interface InlineCodeProps {
-  children: ReactNode;
-}
+import React, { useEffect, useState } from 'react';
 
-export const InlineCode: React.FC<InlineCodeProps> = ({ children }) => {
+export function InlineCode({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const isInlineCode = !className;
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    if (!isInlineCode) {
+      (async () => {
+        const hljs = (await import('highlight.js')).default;
+
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightElement(block as HTMLElement);
+        });
+
+        // Mark highlighting as complete
+        setIsHighlighted(true);
+      })();
+    }
+  }, [isInlineCode]);
+
+  if (isInlineCode) {
+    return (
+      <code className="font-mono bg-gray-100 text-sm px-1 py-0.5 rounded">
+        {children}
+      </code>
+    );
+  }
+
   return (
-    <code
+    <pre
       className={`
-        [p_&]:text-sm
-        [p_&]:px-1
-        [p_&]:py-0.5
-        [p_&]:rounded-sm
-        [p_&]:bg-gray-200
-        dark:[p_&]:bg-[#333]
+        text-sm bg-gray-800 text-white dark:bg-gray-900 dark:text-gray-300
+        overflow-x-scroll rounded-md transition-opacity
+        ${isHighlighted ? 'opacity-100' : 'opacity-0'}
       `}
     >
-      {children}
-    </code>
+      <code className={className}>{children}</code>
+    </pre>
   );
-};
+}

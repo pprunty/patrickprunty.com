@@ -21,7 +21,6 @@ const nextConfig = {
   },
   pageExtensions: ['ts', 'tsx', 'mdx'],
   experimental: {
-    turbo: true,
     mdxRs: true,
   },
 };
