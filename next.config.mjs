@@ -13,9 +13,9 @@ const withMDX = createMDX({
 
 const nextConfig = {
   reactStrictMode: true,
-    experimental: {
-      mdxRs: true,
-    },
+//     experimental: {
+//       mdxRs: true,
+//     },
   headers() {
       return [
         {
