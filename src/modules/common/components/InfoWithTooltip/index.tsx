@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface InfoWithTooltipProps {
   message: string;
@@ -8,16 +8,32 @@ interface InfoWithTooltipProps {
 
 const InfoWithTooltip: React.FC<InfoWithTooltipProps> = ({ message }) => {
   const [isTooltipVisible, setTooltipVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  const handleMouseEnter = () => setTooltipVisible(true);
-  const handleMouseLeave = () => setTooltipVisible(false);
+  useEffect(() => {
+    // Detect if the user is on a touch device
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(isTouch);
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (!isTouchDevice) setTooltipVisible(true); // Show on hover (desktop only)
+  };
+
+  const handleMouseLeave = () => {
+    if (!isTouchDevice) setTooltipVisible(false); // Hide on hover end (desktop only)
+  };
+
+  const handleClick = () => {
+    if (isTouchDevice) setTooltipVisible(!isTooltipVisible); // Toggle only on touch devices
+  };
 
   return (
     <div className="relative">
       <button
-        onClick={() => setTooltipVisible(!isTooltipVisible)} // Toggle on click
-        onMouseEnter={handleMouseEnter} // Show on hover
-        onMouseLeave={handleMouseLeave} // Hide when hover ends
+        onClick={handleClick} // Only meaningful for touch devices
+        onMouseEnter={handleMouseEnter} // Desktop hover behavior
+        onMouseLeave={handleMouseLeave} // Desktop hover behavior
         className="flex items-center justify-center pt-1 w-4 h-4"
         aria-label="Info"
       >

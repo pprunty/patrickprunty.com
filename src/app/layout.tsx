@@ -36,7 +36,7 @@ const inter = Inter({
 
 // Define metadata
 export const metadata: Metadata = {
-  title: `${AUTHOR.name}'s blog'`,
+  title: `${AUTHOR.name}'s Blog`,
   description: `${AUTHOR.description}`,
   keywords: [...DEFAULT_KEYWORDS, 'samwise', 'Patrick Prunty', 'NextJS'],
   manifest:
