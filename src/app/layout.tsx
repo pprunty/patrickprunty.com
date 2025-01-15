@@ -5,16 +5,19 @@ import { AUTHOR, SITE_URL, SOCIAL_URLS, DEFAULT_KEYWORDS } from '@/config';
 import { doge } from './doge';
 import { themeEffect } from '@/modules/common/templates/ThemeSwitcher/theme-effect';
 import Header from './header';
-import Footer from './footer';
+import React, { lazy, Suspense } from 'react';
 import type { Viewport } from 'next';
-import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Analytics } from './analytics';
-import ClientSideScrollRestorer from '@/modules/common/components/ClientSideScrollRestorer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
 import Script from 'next/script';
 import ToastClient from './toast'; // Import the new client component
+
+const ClientSideScrollRestorer = lazy(
+  () => import('@/modules/common/components/ClientSideScrollRestorer'),
+);
+const Footer = lazy(() => import('./footer'));
 
 // Define viewport settings
 export const viewport: Viewport = {
@@ -125,15 +128,17 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="dark:text-gray-100 flex flex-col min-h-screen max-w-2xl m-auto">
-        <main className="flex-grow p-6 pt-3 md:pt-6">
+      <body className="dark:text-gray-100 max-w-2xl m-auto">
+        <main className="p-6 pt-3 md:pt-6 min-h-screen">
           <Header />
           {children}
           <Suspense fallback={null}>
             <ClientSideScrollRestorer />
           </Suspense>
         </main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
         <Analytics />
         <ToastClient /> {/* Include the client component */}
         <SpeedInsights />
