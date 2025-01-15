@@ -1,7 +1,6 @@
 import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
 import Image from "next/image";
 import PhotoGrid from '@/modules/common/templates/PhotoGrid';
-import { MemoizedImage } from "@/modules/common/components/MemoizedImage";
 import Link from 'next/link';
 import Showcase from "@/modules/common/components/Showcase";
 import ProjectCard from "@/modules/common/components/ProjectCard";
@@ -65,7 +64,7 @@ export const metadata = {
 
 # About [#about]
 
-<MemoizedImage
+<Image
 src="/images/me.WEBP"
 alt="Patrick Prunty"
 className="bg-gray-100 min-h-[440px] block mt-2 mb-5 mx-auto w-full sm:w-80 md:float-right sm:ml-5 sm:mb-5"

@@ -116,8 +116,18 @@ export default function RootLayout({
           }}
         />
         <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          id="google-analytics"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+          }}
         />
         {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
