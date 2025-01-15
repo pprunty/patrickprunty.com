@@ -20,10 +20,10 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV !== 'development',
   },
   pageExtensions: ['ts', 'tsx', 'mdx'],
-//   experimental: {
-//     turbo: true,
-//     mdxRs: true,
-//   },
+  experimental: {
+    turbo: true,
+    mdxRs: true,
+  },
 };
 
 const withBoth = (config) =>
