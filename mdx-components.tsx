@@ -23,7 +23,7 @@ import PhotoGrid from "@/modules/common/templates/PhotoGrid";
 import Strava from "@/app/blog/components/strava";
 import TikTok from "@/app/blog/components/tiktok";
 import LinkedIn from "@/app/blog/components/linkedin";
-import Twitter from "@/app/blog/components/twitter";
+import {Tweet} from "@/app/blog/components/tweet";
 import Instagram from "@/app/blog/components/instagram"; // <-- new import
 import { Table, TableHeader, TableCell, TableRow } from '@/app/blog/components/table';
 import Image from "next/image";
@@ -76,7 +76,7 @@ export const MDXComponents = {
   TikTok,
   LinkedIn,
   Instagram,
-  Twitter,
+  Tweet,
   Ref,
   FootNotes,
   FootNote,

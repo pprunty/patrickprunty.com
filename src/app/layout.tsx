@@ -8,7 +8,7 @@ import Footer from './footer';
 import type { Viewport } from 'next';
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import ClientOnlyAnalytics from '@/modules/common/templates/ClientOnlyAnalytics';
+import { Analytics } from './analytics';
 import ClientSideScrollRestorer from '@/modules/common/components/ClientSideScrollRestorer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -116,16 +116,22 @@ export default function RootLayout({
         {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="dark:text-gray-100 max-w-2xl m-auto">
-        <main className="p-6 pt-3 md:pt-6 min-h-screen">
+      <body className="dark:text-gray-100 flex flex-col min-h-screen max-w-2xl m-auto">
+        {/*
+                main must be flex-grow or grow
+                to fill up remaining space
+              */}
+        <main className="flex-grow p-6 pt-3 md:pt-6">
           <Header />
           {children}
           <Suspense fallback={null}>
             <ClientSideScrollRestorer />
           </Suspense>
         </main>
+
         <Footer />
-        <ClientOnlyAnalytics />
+
+        <Analytics />
         {/* Conditionally render the ToastContainer only in development */}
         {process.env.NODE_ENV === 'development' && (
           <ToastContainer
