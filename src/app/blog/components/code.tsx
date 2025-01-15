@@ -1,5 +1,6 @@
-// src/app/blog/components/InlineCode.tsx
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 
 export function InlineCode({
   className,
@@ -8,22 +9,39 @@ export function InlineCode({
   className?: string;
   children: React.ReactNode;
 }) {
-  // Check if the code block has a language class (e.g., "language-js")
   const isInlineCode = !className;
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    if (!isInlineCode) {
+      (async () => {
+        const hljs = (await import('highlight.js')).default;
+
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightElement(block as HTMLElement);
+        });
+
+        // Mark highlighting as complete
+        setIsHighlighted(true);
+      })();
+    }
+  }, [isInlineCode]);
 
   if (isInlineCode) {
-    return <code className="font-mono bg-[#fcfcfc] text-sm">{children}</code>;
+    return (
+      <code className="font-mono bg-gray-100 text-sm px-1 py-0.5 rounded">
+        {children}
+      </code>
+    );
   }
 
-  // For code blocks, you might want to handle them differently
   return (
     <pre
-      className="
-                          text-sm
-                          bg-gray-800 text-white
-                          dark:bg-[#222] dark:text-[#999999]
+      className={`
+        text-sm bg-gray-800 text-white dark:bg-gray-900 dark:text-gray-300
+        overflow-x-scroll rounded-md transition-opacity
 
-                          overflow-scroll"
+      `}
     >
       <code className={className}>{children}</code>
     </pre>

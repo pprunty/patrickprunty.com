@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import './atom-one-dark.css';
 import { AUTHOR, SITE_URL, SOCIAL_URLS, DEFAULT_KEYWORDS } from '@/config';
 import { doge } from './doge';
 import { themeEffect } from '@/modules/common/templates/ThemeSwitcher/theme-effect';

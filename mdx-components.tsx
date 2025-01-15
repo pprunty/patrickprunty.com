@@ -15,7 +15,6 @@ import { Caption } from "@/app/blog/components/caption";
 import { YouTube } from "@/app/blog/components/youtube";
 import { Ref, FootNotes, FootNote } from "@/app/blog/components/footnotes";
 import { Blockquote as blockquote } from "@/app/blog/components/blockquote";
-import 'highlight.js/styles/atom-one-dark.css';
 import { InlineCode } from "@/app/blog/components/code";
 import { Admonition } from '@/app/blog/components/admonition';
 import { TableOfContents } from "@/app/blog/components/toc";

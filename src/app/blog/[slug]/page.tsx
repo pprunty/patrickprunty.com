@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { SITE_URL } from '@/config';
 import { notFound } from 'next/navigation';
-import 'highlight.js/styles/atom-one-dark.css';
 
 type Params = Promise<{ slug: string }>;
 
