@@ -1,31 +1,22 @@
-// src/app/blog/components/InlineCode.tsx
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-export function InlineCode({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  // Check if the code block has a language class (e.g., "language-js")
-  const isInlineCode = !className;
-
-  if (isInlineCode) {
-    return <code className="font-mono bg-[#fcfcfc] text-sm">{children}</code>;
-  }
-
-  // For code blocks, you might want to handle them differently
-  return (
-    <pre
-      className="
-                          text-sm
-                          bg-gray-800 text-white
-                          dark:bg-[#222] dark:text-[#999999]
-
-                          overflow-scroll"
-    >
-      <code className={className}>{children}</code>
-    </pre>
-  );
+interface InlineCodeProps {
+  children: ReactNode;
 }
+
+export const InlineCode: React.FC<InlineCodeProps> = ({ children }) => {
+  return (
+    <code
+      className={`
+        [p_&]:text-sm
+        [p_&]:px-1
+        [p_&]:py-0.5
+        [p_&]:rounded-sm
+        [p_&]:bg-gray-200
+        dark:[p_&]:bg-[#333]
+      `}
+    >
+      {children}
+    </code>
+  );
+};
