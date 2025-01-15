@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { AUTHOR, SITE_URL, SOCIAL_URLS, DEFAULT_KEYWORDS } from '@/config';
@@ -10,11 +11,10 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Analytics } from './analytics';
 import ClientSideScrollRestorer from '@/modules/common/components/ClientSideScrollRestorer';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
 import Script from 'next/script';
+import ToastClient from './toast'; // Import the new client component
 
 // Define viewport settings
 export const viewport: Viewport = {
@@ -26,27 +26,22 @@ export const viewport: Viewport = {
 
 // Font settings
 const inter = Inter({
-  subsets: ['latin'], // Only include necessary subsets
-  weight: ['400', '500', '600', '700'], // Specify required font weights
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 });
 
 // Define metadata
 export const metadata: Metadata = {
-  title: `${AUTHOR.name}`,
-  description: `${AUTHOR.description}`, // Use AUTHOR's updated description from config
-  keywords: [
-    ...DEFAULT_KEYWORDS, // Spread the existing keywords array
-    'samwise',
-    'Patrick Prunty',
-    'NextJS',
-  ],
+  title: `${AUTHOR.name}'s blog'`,
+  description: `${AUTHOR.description}`,
+  keywords: [...DEFAULT_KEYWORDS, 'samwise', 'Patrick Prunty', 'NextJS'],
   manifest:
     process.env.NODE_ENV === 'production'
       ? '/manifest.prod.json'
       : '/manifest.json',
   openGraph: {
     title: `${AUTHOR.name}`,
-    description: `${AUTHOR.description}`, // Use AUTHOR's updated description from config
+    description: `${AUTHOR.description}`,
     url: SITE_URL,
     siteName: `${AUTHOR.name}`,
     images: [
@@ -88,7 +83,6 @@ export default function RootLayout({
     description: `${AUTHOR.description}`,
     url: SITE_URL,
     sameAs: [
-      // todo: only use user provided input for socials here
       SOCIAL_URLS.twitter,
       SOCIAL_URLS.strava,
       SOCIAL_URLS.github,
@@ -120,23 +114,18 @@ export default function RootLayout({
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_MEASUREMENT_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
           }}
         />
-        {/* ensure your logo/icon is named "icon.webp" and in the public directory for favicon support */}
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
       <body className="dark:text-gray-100 flex flex-col min-h-screen max-w-2xl m-auto">
-        {/*
-                main must be flex-grow or grow
-                to fill up remaining space
-              */}
         <main className="flex-grow p-6 pt-3 md:pt-6">
           <Header />
           {children}
@@ -144,25 +133,9 @@ export default function RootLayout({
             <ClientSideScrollRestorer />
           </Suspense>
         </main>
-
         <Footer />
-
         <Analytics />
-        {/* Conditionally render the ToastContainer only in development */}
-        {process.env.NODE_ENV === 'development' && (
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
-        )}
+        <ToastClient /> {/* Include the client component */}
         <SpeedInsights />
       </body>
     </html>

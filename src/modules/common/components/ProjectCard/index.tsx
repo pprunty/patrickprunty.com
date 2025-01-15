@@ -20,17 +20,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Link
       href={url}
-      className="flex flex-col sm:flex-row items-center w-full h-full border dark:border-[#444] border-gray-300 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C]"
+      className="flex flex-col sm:flex-row items-stretch w-full h-full border dark:border-[#444] border-gray-300 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C]"
       {...(isExternalLink
         ? { target: '_blank', rel: 'noopener noreferrer' }
         : {})}
     >
       {/* Image Section */}
-      <div className="w-full sm:w-1/2 flex-shrink-0 h-52 sm:h-34 p-0 border-b sm:border-b-0 sm:border-r dark:border-[#444] border-gray-200 shadow-sm sm:shadow-none">
+      <div className="w-full sm:w-1/2 flex-shrink-0 h-52 sm:h-auto p-0 border-b sm:border-b-0 sm:border-r dark:border-[#444] border-gray-200 shadow-sm sm:shadow-none">
         <Image
           src={imagePath}
           alt={title}
-          className="object-cover w-full h-full m-0 border-b sm:border-b-0 dark:border-[#444] border-gray-200"
+          className="object-cover w-full h-full"
           width={310}
           height={310}
           loading={'lazy'}
@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <h2 className="text-xl font-bold mt-2 mb-1 dark:text-gray-100">
           {title}
         </h2>
-        <p className="my-5 text-[17px] [blockquote_&]:my-2 text-gray-700 dark:text-[#c2c2c2]">
+        <p className="my-5 text-[17px] line-clamp-4 text-gray-700 dark:text-[#c2c2c2]">
           {description}
         </p>
       </div>
