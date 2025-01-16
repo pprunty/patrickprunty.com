@@ -1,6 +1,8 @@
+'use client';
+
 import { A } from './a';
 import { P } from './p';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
 
 interface FootNotesProps {
   children: ReactNode;
@@ -16,27 +18,59 @@ interface RefProps {
   id: string | number;
 }
 
-export const Ref = ({ id }: RefProps) => (
-  <a
-    href={`#f${id}`}
-    id={`s${id}`}
-    className="relative text-xs top-[-5px] no-underline"
-  >
-    [{id}]
-  </a>
-);
+export const Ref = ({ id }: RefProps) => {
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      event.preventDefault();
+      const element = document.getElementById(`f${id}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+    [id],
+  );
+
+  return (
+    <a
+      href={`#f${id}`}
+      id={`s${id}`}
+      className="relative text-xs top-[-5px] no-underline"
+      onClick={handleClick}
+    >
+      [{id}]
+    </a>
+  );
+};
 
 interface FootNoteProps {
   id: string | number;
   children: ReactNode;
 }
 
-export const FootNote = ({ id, children }: FootNoteProps) => (
-  <div>
-    {id}.{' '}
-    <A href={`#s${id}`} id={`f${id}`} className="no-underline">
-      ^
-    </A>{' '}
-    {children}
-  </div>
-);
+export const FootNote = ({ id, children }: FootNoteProps) => {
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      event.preventDefault();
+      const element = document.getElementById(`s${id}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+    [id],
+  );
+
+  return (
+    <div>
+      {id}.{' '}
+      <A
+        href={`#s${id}`}
+        id={`f${id}`}
+        className="no-underline"
+        onClick={handleClick}
+      >
+        ^
+      </A>{' '}
+      {children}
+    </div>
+  );
+};

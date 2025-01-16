@@ -89,7 +89,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
       <span
         ref={imageRef}
         data-animate-image
-        className={`${focusable ? 'cursor-pointer' : ''}`}
+        className={`overflow-hidden ${focusable ? 'cursor-pointer' : ''}`}
         onClick={openModal}
       >
         <Image
