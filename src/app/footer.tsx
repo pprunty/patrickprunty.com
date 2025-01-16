@@ -8,7 +8,7 @@ import { HR } from '@/app/blog/components/hr';
 export default function Footer() {
   return (
     <>
-      <footer className={`container max-w-2xl mx-auto px-6 pb-6 sm:pb-12`}>
+      <footer className={`container max-w-2xl mx-auto px-6 pb-12`}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* 3) Stay Connected (Row 2, Col 1) */}
           <div>

@@ -34,6 +34,7 @@ import PDF from "@/app/blog/components/pdf"; // Import PDFViewer component
 import StarRating from "@/app/blog/components/rating";
 import MP3 from "@/app/blog/components/mp3";
 import { Del } from "@/app/blog/components/del"; // wherever you placed it
+import { MP4 } from "@/app/blog/components/mp4"; // Update the path as necessary
 
 // Collect all components into an object
 export const MDXComponents = {
@@ -91,7 +92,9 @@ export const MDXComponents = {
   MemoizedImage,
   PDF,
   StarRating,
-  MP3
+  MP3,
+  MP4, // Add MP4 component here
+video: MP4,
 };
 
 // Export useMDXComponents function
