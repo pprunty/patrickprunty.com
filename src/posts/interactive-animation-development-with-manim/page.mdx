@@ -44,7 +44,7 @@ export const metadata = {
     'python'
   ],
   slug: 'interactive-animation-development-with-manim',
-  readingTime: 4,
+  readingTime: 7,
   draft: true
 };
 
@@ -139,6 +139,26 @@ which is where I believe the real value in this software lies, then start by for
 
 ## Installing Manim GL [#installing-manim-gl]
 
+Begin by creating a directory on your machine where you will store:
+
+1. The `manimlib` forked from `3b1b/manim`
+2. Your projects
+
+To do this, run `mkdir <project_name>`
+
+Then, navigate to [https://github.com/3b1b/manim](https://github.com/3b1b/manim) and fork the repository.
+Then clone your forked repository to your local machine:
+
+```bash
+git clone https://github.com/<your_username>/<your_manim_lib_name>.git
+```
+
+In the root of the project, install the library:
+
+```bash
+pip install -e .
+```
+
 Before installing Manim GL, there are a couple of pre-requisites needed on your Mac:
 
 * `ffmpeg` - for video processing
@@ -180,6 +200,30 @@ To validate this, run:
 manimgl --help
 ```
 
+# Running Your First Animation [#first-animation]
+
+Let's start with a very basic animation and build on this. Create a file `my_first_animation.py` and copy and paste this code:
+
+```python
+from manimlib import *
+
+
+class MyFirstAnimation(Scene):
+    def construct(self):
+        text = Text("Hello, Manim!")
+        self.play(Write(text))
+        self.wait(2)
+```
+
+To run this animation, run:
+
+```bash
+manimgl my_first_animation.py MyFirstAnimation
+```
+
+
+
+
 # Running Interactive Animations [#running-interactive-animations]
 
 ## The Example Scene [#the-example-scene]
@@ -193,19 +237,94 @@ manimgl example_scenes.py OpeningManimExample
 
 This will open an interactive window with the example animation.
 
-You can interact with the animation using keys:
+You can interact with the animation using your mouse and keys:
 
-- **d**:
-- **f**:
-- **z**:
+* scroll the middle mouse button to move the screen up and down
+* hold down the **z** on the keyboard while scrolling to zoom the screen
+* hold down the **d** key on the keyboard and move the mouse to change the three-dimensional perspective.
 
-To quit, press **⌘** + **q**.
+Press **r** to reset scroll position, or **⌘** + **q** to close the window.
 
-# Interactive Animation Projects [#interactive-animation-projects]
+## Running Animations with `manimgl` cli
+
+To run a scene, you will use the following command:
+
+```bash
+manimgl <code>.py <Scene> <flags>
+```
+
+Here are some flags you will use most commonly:
+
+- `-w/--write_file`: Will write your animation video to an output directory configured in `custom_config.py`'s `directories.base`
+- `-l/--low_quality`: Render at low quality (for fast rendering) 
+- `--uhd`: Render at 4K quality
+- `-f/--full_screen`: Render at full screen
+- `-p/--presenter_mode`: Scene will stay paused during wait calls until space bar or right arrow is hit, like a slide show
+- `-e/--embed`: Creates a new file where the line self.embed is inserted into the Scenes construct method. If a string is passed in, the line will be inserted below the last line of code including that string.
+- `--fps`: Frame rate, as an integer
+
+For a full list, you can go [here](https://3b1b.github.io/manim/getting_started/configuration.html).
+
+
+
+
+# Interactive Animation [#interactive-animation-projects]
+
+To create interactive animations, wherein you can "add" frames at the end of the animation 
+you are creating, you can do it two ways:
+
+1. Using the `--embed` flag
+2. Using `self.embed()` at the end of your `Scene` class
+
+For example, take this scene:
+
+```python
+class InteractiveDevelopment(Scene):
+    def construct(self):
+        circle = Circle()
+        circle.set_fill(BLUE, opacity=0.5)
+        circle.set_stroke(BLUE_E, width=4)
+        square = Square()
+
+        self.play(ShowCreation(square))
+        self.wait()
+
+        # This opens an iPython terminal where you can keep writing
+        # lines as if they were part of this construct method.
+        # In particular, 'square', 'circle' and 'self' will all be
+        # part of the local namespace in that terminal.
+        self.embed()
+```
+
+Alternatively, without `self.embed()`, you can run the scene in interactive mode using:
+
+```bash
+manimgl example_scenes.py InteractiveDevelopement -e <line_number>
+```
+
+This enables you to input additional commands into the iPython terminal to add new animations 
+to your scene.
+
+## Structuring a Project [#structuring-a-project]
+
 
 Now, if you're planning on using manim *seriously* then we need to talk about how to manage projects and create
 workflows within them.
 
+Project Structure:
+
+```bash
+manim/
+├── manimlib/
+│   ├── animation/
+│   ├── ...
+│   ├── default_config.yml
+│   └── window.py
+├── project/
+│   ├── code.py
+│   └── custom_config.yml
+└── custom_config.yml <- Your custom config
+```
 
 # Note on Hacking the Manim library [#hacking-the-manim-library]
 

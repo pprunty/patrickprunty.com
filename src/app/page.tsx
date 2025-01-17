@@ -29,8 +29,9 @@ export default async function PostsPage() {
 
   return (
     <>
-      <div className="mb-5 flex items-center gap-2">
         {/*
+      <div className="mb-5 flex items-center gap-2">
+
         <svg
           {...iconProps}
           viewBox="0 0 525 529"
@@ -40,10 +41,11 @@ export default async function PostsPage() {
           <path d="M130.833 74.4962V82.7734H262.402H393.97V74.4962V66.219H262.402H130.833V74.4962Z" />
           <path d="M130.833 124.16V132.438H262.402H393.97V124.16V115.883H262.402H130.833V124.16Z" />
         </svg>
-        */}
+
         <H1>Blog</H1>
         <InfoWithTooltip message="A collection of blog posts by Patrick Prunty of around 500 words in length." />
       </div>
+      */}
       <Posts posts={posts} />
       {process.env.NODE_ENV === 'development' && (
         <PillarMenu buttons={buttons} />

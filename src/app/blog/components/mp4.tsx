@@ -1,5 +1,5 @@
 // mp4.tsx
-import React from "react";
+import React from 'react';
 
 interface MP4Props extends React.VideoHTMLAttributes<HTMLVideoElement> {
   src: string;
@@ -15,7 +15,7 @@ export const MP4: React.FC<MP4Props> = ({
   autoplay = false,
   loop = false,
   muted = false,
-  className = "",
+  className = '',
   ...props
 }) => {
   if (!src) return null;

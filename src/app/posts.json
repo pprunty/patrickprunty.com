@@ -35,6 +35,24 @@
       "readingTime": 5
     },
     {
+      "slug": "ambient-writing-a-manifesto-for-creative-writing",
+      "date": "November 19, 2024",
+      "title": "Ambient Writing",
+      "draft": true,
+      "description": "A manifesto for creative writing by Patrick Prunty.",
+      "keywords": [
+        "creative writing",
+        "content creation",
+        "blogging",
+        "avant garde",
+        "writing"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/ambient-writing-a-manifesto-for-creative-writing/haiyang2.webp",
+      "readingTime": 2
+    },
+    {
       "slug": "elevenlabs-instant-voice-cloning-review",
       "date": "January 2, 2025",
       "title": "That's What My A.I Voice Sounds Like? Nice...",
@@ -73,7 +91,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/interactive-animation-development-with-manim/manim.png",
-      "readingTime": 3
+      "readingTime": 4
     },
     {
       "slug": "introducing-samwise-nextjs-15-blog-starter-template",
@@ -99,7 +117,7 @@
       "date": "January 13, 2025",
       "title": "The Engineer's Proclivity for Perfection",
       "draft": true,
-      "description": "Or why it'll never be perfect—let alone done.",
+      "description": "Or why it'll never be perfect—let alone \"done\".",
       "keywords": [
         "software development",
         "engineering",
@@ -123,6 +141,7 @@
         "Game of Thrones",
         "ASOIAF",
         "George R.R Martin",
+        "George R.R. Martin free downloads",
         "A Song of Ice and Fire",
         "The Winds of Winter",
         "The Winds of Winter PDF",
