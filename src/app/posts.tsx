@@ -1,14 +1,18 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
 import { Suspense } from 'react';
 import useSWR from 'swr';
-import { Post } from './get-posts';
-import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import PostList from '@/modules/blog/components/PostList';
+import { ArrowUpDown, ArrowUp, ArrowDown, SortAsc } from 'lucide-react';
+import { H1 } from '@/app/blog/components/h1';
 
-type SortSetting = ['date' | 'views' | 'title', 'desc' | 'asc'];
+// Type for sorting settings
+type SortKey = 'date' | 'views' | 'title';
+type SortDirection = 'asc' | 'desc';
+type SortSetting = [SortKey, SortDirection];
 
+// Props for the Posts component
 interface PostsProps {
   posts: Post[];
 }
@@ -24,178 +28,134 @@ export function Posts({ posts: initialPosts }: PostsProps) {
     refreshInterval: 5000,
   });
 
-  function sortDate() {
-    setSort((prevSort) => [
-      'date',
-      prevSort[0] !== 'date' || prevSort[1] === 'asc' ? 'desc' : 'asc',
-    ]);
-  }
+ const iconProps = {
+    width: 26,
+    height: 26,
+    fill: 'currentColor',
+    className: `text-[#1C1C1C] dark:text-[#fcfcfc]`,
+    role: 'link',
+  };
 
-  function sortViews() {
-    setSort((prevSort) => [
-      'views',
-      prevSort[0] !== 'views' || prevSort[1] === 'asc' ? 'desc' : 'asc',
+  const handleSort = (key: SortKey) => {
+    setSort(([currentKey, currentDirection]) => [
+      key,
+      key === currentKey && currentDirection === 'desc' ? 'asc' : 'desc',
     ]);
-  }
+  };
 
-  function sortTitle() {
-    setSort((prevSort) => [
-      'title',
-      prevSort[0] !== 'title' || prevSort[1] === 'asc' ? 'desc' : 'asc',
-    ]);
-  }
+  const sortedPosts = useMemo(() => {
+    return sortPosts(posts || [], sort);
+  }, [posts, sort]);
 
   return (
     <Suspense fallback={null}>
-      <main className="max-w-2xl font-mono m-auto text-sm">
-        <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
-          {/* Date Sort Button */}
-          <button
-            onClick={sortDate}
-            className={`w-12 h-9 text-left flex items-center ${
-              sort[0] === 'date'
-                ? 'text-black dark:text-white' // Active colors
-                : 'text-[#555] dark:text-[#999]'
-            }`}
-          >
-            date
-            <span className="ml-1">
-              <SortIcon sortKey="date" currentSort={sort} />
-            </span>
-          </button>
+      <main className="max-w-2xl m-auto text-sm">
+        {/* Header Section */}
+        <header className="flex justify-between items-center pb-4 border-b border-[#bdbdbd] dark:border-[#555] sm:border-0 sm:pb-0">
+          {/* Left: SVG and Title */}
+          <div className="flex items-center gap-2">
+ <svg
+          {...iconProps}
+          viewBox="0 0 525 529"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M65.8711 77.9443C66.4193 120.848 67.5157 158.371 68.0639 161.268C69.0232 165.683 67.1045 167.062 57.3739 168.718C36.4052 172.443 15.8476 189.549 5.43175 211.897C-1.69488 227.072 -1.83193 467.526 5.15765 483.252C12.1472 498.841 28.0451 514.706 43.8059 521.879L58.1962 528.363H262.402H466.607L481.134 521.742C521.838 503.256 524.168 493.875 524.168 347.644C524.168 216.036 523.757 212.311 505.941 191.894C494.977 179.34 476.201 168.304 465.785 168.304C459.755 168.304 459.755 168.028 459.755 114.64C459.755 46.6288 457.562 35.7305 440.842 19.0381C421.929 -0.137509 423.436 0.000444263 231.976 0.000444263H64.6376L65.8711 77.9443ZM413.431 19.7278C440.156 28.6948 443.308 39.1793 443.308 119.468V182.237L276.244 181.548C63.2671 180.444 83.2765 190.377 82.043 85.3938L81.0837 16.5549H242.666C355.87 16.5549 406.853 17.5206 413.431 19.7278ZM120.965 242.661C138.919 260.733 128.366 292.876 103.012 297.015C83.5506 300.188 65.0488 284.461 65.0488 264.872C65.0488 235.763 100.271 221.83 120.965 242.661ZM230.606 242.661C248.56 260.733 238.007 292.876 212.652 297.015C193.191 300.188 174.689 284.461 174.689 264.872C174.689 235.763 209.911 221.83 230.606 242.661ZM340.246 242.661C358.2 260.733 347.647 292.876 322.293 297.015C302.832 300.188 284.33 284.461 284.33 264.872C284.33 235.763 319.552 221.83 340.246 242.661ZM449.887 242.661C467.84 260.733 457.288 292.876 431.933 297.015C412.472 300.188 393.97 284.461 393.97 264.872C393.97 235.763 429.192 221.83 449.887 242.661ZM175.786 341.988C193.739 360.06 183.186 392.203 157.832 396.342C138.371 399.514 119.869 383.788 119.869 364.198C119.869 335.09 155.091 321.157 175.786 341.988ZM285.426 341.988C303.38 360.06 292.827 392.203 267.472 396.342C248.011 399.514 229.509 383.788 229.509 364.198C229.509 335.09 264.732 321.157 285.426 341.988ZM395.067 341.988C413.02 360.06 402.467 392.203 377.113 396.342C357.652 399.514 339.15 383.788 339.15 364.198C339.15 335.09 374.372 321.157 395.067 341.988ZM451.806 438.417C457.151 443.936 459.755 449.316 459.755 455.248C459.755 461.18 457.151 466.56 451.806 472.078L443.72 480.079H261.442H79.302L72.1754 471.526C62.5819 460.076 62.856 448.764 72.9977 438.417L81.0837 430.416H262.402H443.72L451.806 438.417Z" />
+          <path d="M130.833 74.4962V82.7734H262.402H393.97V74.4962V66.219H262.402H130.833V74.4962Z" />
+          <path d="M130.833 124.16V132.438H262.402H393.97V124.16V115.883H262.402H130.833V124.16Z" />
+        </svg>
+            <H1>500ish</H1>
+          </div>
 
-          {/* Title Sort Button */}
-          <button
-            onClick={sortTitle}
-            className={`h-9 pl-4 flex items-center flex-grow ${
-              sort[0] === 'title'
-                ? 'text-black dark:text-white' // Active colors
-                : 'text-[#555] dark:text-[#999]'
-            }`}
-          >
-            title
-            <span className="ml-1">
-              <SortIcon sortKey="title" currentSort={sort} />
-            </span>
-          </button>
-
-          {/* Views Sort Button */}
-          <button
-            onClick={sortViews}
-            className={`h-9 pl-4 flex items-center ${
-              sort[0] === 'views'
-                ? 'text-black dark:text-white' // Active colors
-                : 'text-[#555] dark:text-[#999]'
-            }`}
-          >
-            views
-            <span className="ml-1">
-              <SortIcon sortKey="views" currentSort={sort} />
-            </span>
-          </button>
+          {/* Right: Sort Button */}
+          <SortButton currentSort={sort} onSort={handleSort} />
         </header>
 
-        {/* Pass the posts and sorting state to List */}
-        <List posts={posts} sort={sort} />
+        {/* Post List */}
+        <PostList posts={sortedPosts} />
       </main>
     </Suspense>
   );
 }
 
-interface SortIconProps {
-  sortKey: 'date' | 'views' | 'title';
-  currentSort: SortSetting;
-}
-
-function SortIcon({ sortKey, currentSort }: SortIconProps) {
-  const [currentSortKey, currentSortDirection] = currentSort;
-
-  if (sortKey !== currentSortKey) {
-    return <ArrowUpDown className="h-4 w-4" />;
-  }
-
-  return currentSortDirection === 'asc' ? (
-    <ArrowUp className="h-4 w-4" />
-  ) : (
-    <ArrowDown className="h-4 w-4" />
-  );
-}
-
-interface ListProps {
-  posts: Post[];
-  sort: SortSetting;
-}
-
-function List({ posts, sort }: ListProps) {
-  const sortedPosts = useMemo(() => {
-    const [sortKey, sortDirection] = sort;
-    return [...posts].sort((a, b) => {
-      if (sortKey === 'date') {
-        const dateA = a.date ? new Date(a.date).getTime() : 0;
-        const dateB = b.date ? new Date(b.date).getTime() : 0;
-        return sortDirection === 'desc' ? dateB - dateA : dateA - dateB;
-      } else if (sortKey === 'views') {
-        const viewsA = a.views ?? 0;
-        const viewsB = b.views ?? 0;
-        return sortDirection === 'desc' ? viewsB - viewsA : viewsA - viewsB;
-      } else if (sortKey === 'title') {
-        const titleA = a.title?.toLowerCase() || '';
-        const titleB = b.title?.toLowerCase() || '';
-        if (titleA < titleB) return sortDirection === 'desc' ? 1 : -1;
-        if (titleA > titleB) return sortDirection === 'desc' ? -1 : 1;
-        return 0;
-      }
+// Function to sort posts
+function sortPosts(posts: Post[], sort: SortSetting) {
+  const [sortKey, sortDirection] = sort;
+  return [...posts].sort((a, b) => {
+    if (sortKey === 'date') {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return sortDirection === 'desc' ? dateB - dateA : dateA - dateB;
+    }
+    if (sortKey === 'views') {
+      const viewsA = a.views ?? 0;
+      const viewsB = b.views ?? 0;
+      return sortDirection === 'desc' ? viewsB - viewsA : viewsA - viewsB;
+    }
+    if (sortKey === 'title') {
+      const titleA = a.title?.toLowerCase() || '';
+      const titleB = b.title?.toLowerCase() || '';
+      if (titleA < titleB) return sortDirection === 'desc' ? 1 : -1;
+      if (titleA > titleB) return sortDirection === 'desc' ? -1 : 1;
       return 0;
-    });
-  }, [posts, sort]);
+    }
+    return 0;
+  });
+}
+
+interface SortButtonProps {
+  currentSort: SortSetting;
+  onSort: (key: SortKey) => void;
+}
+
+function SortButton({ currentSort, onSort }: SortButtonProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [sortKey, sortDirection] = currentSort;
+
+  const sortOptions: { key: SortKey; label: string }[] = [
+    { key: 'date', label: 'Date' },
+    { key: 'views', label: 'Views' },
+    { key: 'title', label: 'Title' },
+  ];
+
+  const getSortIcon = (key: SortKey) => {
+    if (key !== sortKey) return <ArrowUpDown className="w-4 h-4" />;
+    return sortDirection === 'asc' ? (
+      <ArrowUp className="w-4 h-4" />
+    ) : (
+      <ArrowDown className="w-4 h-4" />
+    );
+  };
 
   return (
-    <ul>
-      {sortedPosts.map((post, i) => {
-        const year = getYear(post.date);
-        const firstOfYear =
-          !sortedPosts[i - 1] || getYear(sortedPosts[i - 1].date) !== year;
-        const lastOfYear =
-          !sortedPosts[i + 1] || getYear(sortedPosts[i + 1].date) !== year;
-
-        return (
-          <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`} prefetch>
-              <span
-                className={`flex transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222] border-y dark:border-[#313131]
-                          ${!firstOfYear ? 'border-t-0' : ''}
-                          ${lastOfYear ? 'border-b-0' : ''}
-                          ${i === 0 ? 'border-t border-t-[#d4d4d4] dark:border-t-[#555]' : ''}
-                        `}
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-center w-8 h-8 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+        aria-label="Sort posts"
+      >
+        <SortAsc className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+      </button>
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
+          <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            {sortOptions.map((option) => (
+              <button
+                key={option.key}
+                onClick={() => {
+                  onSort(option.key);
+                  setIsOpen(false);
+                }}
+                className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                role="menuitem"
               >
-                <span
-                  className={`py-3 flex grow items-start ${
-                    !firstOfYear ? 'ml-14' : ''
-                  }`}
-                >
-                  {firstOfYear && (
-                    <span className="w-14 inline-block self-start shrink-0 text-gray-500 dark:text-[#999999]">
-                      {year}
-                    </span>
-                  )}
-                  <div className="flex flex-nowrap grow">
-                    <span className="dark:text-gray-100 break-words flex-grow min-w-0">
-                      {post.title}
-                    </span>
-                    <span className="text-gray-500 dark:text-[#999999] text-right text-xs flex-shrink-0 whitespace-nowrap min-w-[48px]">
-                      {(post.views ?? 0).toLocaleString()}
-                    </span>
-                  </div>
-                </span>
-              </span>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+                {option.label}
+                {getSortIcon(option.key)}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
-function getYear(date?: string | null) {
-  return date ? new Date(date).getFullYear() : 'Unknown';
-}
