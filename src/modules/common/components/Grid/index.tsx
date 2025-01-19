@@ -11,7 +11,7 @@ interface GridProps {
 const Grid: React.FC<GridProps> = ({
   columns,
   gap = 'gap-1',
-  className = 'sm:grid-cols-2 lg:grid-cols-3',
+  className = 'sm:grid-cols-2 lg:grid-cols-3 py-4',
   children,
 }) => {
   return (
