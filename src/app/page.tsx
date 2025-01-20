@@ -29,7 +29,7 @@ export default async function PostsPage() {
 
   return (
     <>
-        {/*
+      {/*
       <div className="mb-5 flex items-center gap-2">
 
         <svg

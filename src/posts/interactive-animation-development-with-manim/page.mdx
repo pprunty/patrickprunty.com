@@ -44,7 +44,7 @@ export const metadata = {
     'python'
   ],
   slug: 'interactive-animation-development-with-manim',
-  readingTime: 7,
+  readingTime: 8,
   draft: true
 };
 
@@ -88,6 +88,47 @@ with experience in Python prefer a smaller learning curve compared to Adobe, or 
 1. [Sublime Text Editor](https://www.sublimetext.com/)
 2. [brew](https://brew.sh/)
 3. [GitHub account](https://github.com/)
+
+# Sublime Text Editor Setup [#sublime-text-editor]
+
+## Adding Terminus [#adding terminus]
+
+Open your project using sublime text editor. Now hold cmd + shift + p to open command pallette, search 
+for install package and select that, then search "Terminus".
+
+## Key Bindings [#key-bindings]
+
+```json
+[
+   {
+       "keys": ["ctrl+1"],
+       "command": "terminus_open",
+       "args": {
+           "cmd": ["bash", "-i", "-l"],  // Start Bash as an interactive login shell
+           "cwd": "${file_path:${folder}}",  // Set working directory
+           "panel_name": "Terminus"
+       }
+   }
+]
+
+```
+
+## Command Pallette [#command-paletee]
+
+```json
+[
+   {
+        "caption": "Terminal (panel)",
+        "command": "terminus_open",
+        "args": {
+           "cmd": ["bash", "-i", "-l", "&&", "source ~/.bash_profile"],  // Start Bash as an interactive login shell
+           "cwd": "${file_path:${folder}}",  // Set the current working directory
+           "title": "Bash Terminal",        // Optional: Update the title
+           "panel_name": "Terminus"
+        }
+   }
+]
+```
 
 # Installing Python [#installing-python]
 
@@ -221,6 +262,10 @@ To run this animation, run:
 manimgl my_first_animation.py MyFirstAnimation
 ```
 
+highlight the `def construct` part of your scene, press cmd + shift + r, it'll open terminal with your animation 
+running.
+
+highlight block/chunk of text fully without commands and hit cmd + r
 
 
 
