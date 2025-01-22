@@ -35,6 +35,20 @@
       "readingTime": 5
     },
     {
+      "slug": "2025-in-review",
+      "date": "December 30, 2025",
+      "title": "2025 in Review",
+      "draft": true,
+      "description": "Reflecting on this past year.",
+      "keywords": [
+        "yearly review"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/2025-in-review/picasso.png",
+      "readingTime": 1
+    },
+    {
       "slug": "ambient-writing-a-manifesto-for-creative-writing",
       "date": "November 19, 2024",
       "title": "Ambient Writing",
@@ -91,7 +105,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/interactive-animation-development-with-manim/manim.png",
-      "readingTime": 8
+      "readingTime": 6
     },
     {
       "slug": "introducing-samwise-nextjs-15-blog-starter-template",
