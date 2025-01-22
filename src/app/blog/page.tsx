@@ -1,7 +1,7 @@
 // app/posts/page.tsx
-import { Post } from './get-posts';
-import { Posts } from './posts';
-import { getAllPosts } from './get-posts';
+import { Post } from '../get-posts';
+import { Posts } from '../posts';
+import { getAllPosts } from '../get-posts';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 import PillarMenu from '@/modules/common/components/PillarMenu';
 import { H1 } from '@/app/blog/components/h1';
