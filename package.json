@@ -80,7 +80,7 @@
     "axios": "^1.7.9",
     "boxen": "^4.2.0",
     "eslint": "^9",
-    "eslint-config-next": "15.0.2",
+    "eslint-config-next": "15.1.5",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "formik": "^2.4.6",
