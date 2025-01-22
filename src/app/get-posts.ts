@@ -58,22 +58,25 @@ let cachedNonDraftPosts: BasePost[] | null = null;
  * Fetch all posts, optionally filtering out drafts.
  *
  * @param filterDrafts - if `true`, returns only published (non-draft) posts.
+ * @param currentBranch - the name of the current branch (e.g., 'main').
  * @returns Post[] - list of posts with dynamic `views` added.
  */
 export const getAllPosts = async (
   filterDrafts: boolean = false,
+  currentBranch: string = 'main', // Add branch as an argument
 ): Promise<Post[]> => {
   // Cache non-draft posts if we haven't yet
   if (!cachedNonDraftPosts) {
     cachedNonDraftPosts = typedPostsData.posts.filter((post) => !post.draft);
   }
 
-  // Grab all views in one Redis call (keyed by slug)
-  const allViews: Record<string, string> | null = await redis.hgetall('views');
+  // If the current branch is not 'main', default to zero for views
+  const allViews: Record<string, string> | null =
+    currentBranch === 'main' ? await redis.hgetall('views') : null;
 
   // 6) Attach `views`/`viewsFormatted` on the fly
   const postsWithViews: Post[] = cachedNonDraftPosts.map((post) => {
-    const views = Number(allViews?.[post.slug] ?? 0);
+    const views = currentBranch === 'main' ? Number(allViews?.[post.slug] ?? 0) : 0;
     return {
       ...post,
       views,
@@ -91,7 +94,7 @@ export const getAllPosts = async (
   const draftPosts: Post[] = typedPostsData.posts
     .filter((post) => post.draft)
     .map((post) => {
-      const views = Number(allViews?.[post.slug] ?? 0);
+      const views = currentBranch === 'main' ? Number(allViews?.[post.slug] ?? 0) : 0;
       return {
         ...post,
         views,

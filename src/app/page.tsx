@@ -12,6 +12,7 @@ export const revalidate = 60; // ISR: Revalidate every 60 seconds
 export default async function PostsPage() {
   const posts: Post[] = await getAllPosts(
     process.env.NODE_ENV === 'production',
+    process.env.VERCEL_GIT_COMMIT_REF
   );
 
   const buttons: ButtonsArrayType = [

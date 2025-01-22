@@ -82,7 +82,7 @@ function Views({
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
-    if ('development' === process.env.NODE_ENV) return;
+    if ('development' === process.env.NODE_ENV || 'main' === process.env.VERCEL_GIT_COMMIT_REF)  return;
     if (!didLogViewRef.current && id) {
       const url = '/api/view?incr=1&id=' + encodeURIComponent(id);
       fetch(url)
