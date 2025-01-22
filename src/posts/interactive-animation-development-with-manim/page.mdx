@@ -44,7 +44,7 @@ export const metadata = {
     'python'
   ],
   slug: 'interactive-animation-development-with-manim',
-  readingTime: 6,
+  readingTime: 7,
   draft: true
 };
 
@@ -246,44 +246,58 @@ command and update the resolution in the `custom_config.yml`.
 
 # Sublime Integration [#sublime-integration]
 
+Sublime Text Editor is used to create keyboard shortcuts that interact with Manim's animation 
+scenes.
+
 ## Adding Terminus [#adding terminus]
 
-Open your project using sublime text editor. Now hold cmd + shift + p to open command pallette, search
-for install package and select that, then search "Terminus".
+To get started using Sublime, open the cloned `manim-interactive` project using the sublime text editor. Now hold cmd + shift + p to open command pallette, search
+for install package and select that, then search "Terminus". This will install Terminus on your system. 
+
+Now, restart Sublime Text Editor, type cmd + shift + p again and search "Terminus."
+
+In the **Preferences: Terminus Key Bindings**, paste the following on the right hand side:
 
 ## Key Bindings [#key-bindings]
 
 ```json
 [
    {
-       "keys": ["ctrl+1"],
+       "keys": ["super+1"],
        "command": "terminus_open",
        "args": {
            "cmd": ["bash", "-i", "-l"],  // Start Bash as an interactive login shell
            "cwd": "${file_path:${folder}}",  // Set working directory
            "panel_name": "Terminus"
        }
-   }
-]
+   },
+    { "keys": ["shift+super+r"], "command": "manim_run_scene" },
+    { "keys": ["super+r"], "command": "manim_checkpoint_paste" },
+    { "keys": ["super+alt+r"], "command": "manim_recorded_checkpoint_paste" },
+    { "keys": ["super+ctrl+r"], "command": "manim_skipped_checkpoint_paste" },
+    { "keys": ["super+e"], "command": "manim_exit" },
+    { "keys": ["super+option+/"], "command": "comment_fold"},
 
-```
-
-## Command Pallette [#command-paletee]
-
-```json
-[
-   {
-        "caption": "Terminal (panel)",
-        "command": "terminus_open",
-        "args": {
-           "cmd": ["bash", "-i", "-l", "&&", "source ~/.bash_profile"],  // Start Bash as an interactive login shell
-           "cwd": "${file_path:${folder}}",  // Set the current working directory
-           "title": "Bash Terminal",        // Optional: Update the title
-           "panel_name": "Terminus"
-        }
-   }
 ]
 ```
+
+Before we use these key bindings, we need to copy the content inside 
+`sublime_custom_commands/*` into the Sublime application. To do this, you can run:
+
+```bash
+make sublime
+```
+
+Now restart Sublime Text Editor again. You are now able to open a terminal in Sublime using cmd+1. 
+
+Additionally, we have added Manim key bindings which enable:
+
+* cmd+shift+r: Highlight the `def construct(self):` line of your scene and press this command to run the Manim scene
+interactively in an animation window.
+* cmd+r: Highlight the full block of code in your scene which you wish to animate (include consistent indentation) and press these
+keys together to run that part of your animation in the animation window.
+* cmd+e: Press these keys to exit the interactive animation.
+
 
 # Resolution Shortcuts [#resolution-shortcuts]
 

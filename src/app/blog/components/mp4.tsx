@@ -28,7 +28,7 @@ export const MP4: React.FC<MP4Props> = ({
       loop={loop}
       muted={muted}
       playsInline // Ensures the video plays inline
-      className={`w-full h-auto rounded-md shadow-lg ${className}`} // TailwindCSS for responsiveness
+      className={`w-full h-auto rounded-md py-4 shadow-lg ${className}`} // TailwindCSS for responsiveness
       {...props}
     />
   );

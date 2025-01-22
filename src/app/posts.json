@@ -49,24 +49,6 @@
       "readingTime": 1
     },
     {
-      "slug": "ambient-writing-a-manifesto-for-creative-writing",
-      "date": "November 19, 2024",
-      "title": "Ambient Writing",
-      "draft": true,
-      "description": "A manifesto for creative writing by Patrick Prunty.",
-      "keywords": [
-        "creative writing",
-        "content creation",
-        "blogging",
-        "avant garde",
-        "writing"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/ambient-writing-a-manifesto-for-creative-writing/haiyang2.webp",
-      "readingTime": 2
-    },
-    {
       "slug": "elevenlabs-instant-voice-cloning-review",
       "date": "January 2, 2025",
       "title": "That's What My A.I Voice Sounds Like? Nice...",
@@ -105,7 +87,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/interactive-animation-development-with-manim/manim.png",
-      "readingTime": 6
+      "readingTime": 7
     },
     {
       "slug": "introducing-samwise-nextjs-15-blog-starter-template",
@@ -187,24 +169,6 @@
       "authorUrl": "https://patrickprunty.com",
       "image": "/images/untitled-01/PJ_dinner.webp",
       "readingTime": 2
-    },
-    {
-      "slug": "what-can-happen-in-just-one-second",
-      "date": "January 10, 2025",
-      "title": "00:01",
-      "draft": true,
-      "description": "A lot can happen in just one second... Here's a reminder of just how long one second is and what you might miss if you blink.",
-      "keywords": [
-        "software development",
-        "high-performance computing",
-        "HPC",
-        "quantitative trading",
-        "performance"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/what-can-happen-in-just-one-second/one-second.png",
-      "readingTime": 1
     }
   ]
 }
