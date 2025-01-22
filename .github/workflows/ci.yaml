@@ -23,7 +23,7 @@ jobs:
           node-version: '21.x'
 
       - name: Install Dependencies 🧹
-        run: npm install
+        run: npm install --force
 
       - name: Cache node modules
         uses: actions/cache@v3
