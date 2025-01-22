@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       ? '/manifest.prod.json'
       : '/manifest.json',
   openGraph: {
-    title: `${AUTHOR.name}`,
+    title: `${AUTHOR.name}'s Blog`,
     description: `${AUTHOR.description}`,
     url: SITE_URL,
     siteName: `${AUTHOR.name}`,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/icon.webp`,
-        alt: `${AUTHOR.name} profile picture`,
+        alt: `${AUTHOR.name}'s' profile picture`,
       },
     ],
   },
