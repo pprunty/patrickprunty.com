@@ -1,7 +1,7 @@
-import withPWA from 'next-pwa';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import createMDX from '@next/mdx';
+import withPWA from "next-pwa";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import createMDX from "@next/mdx";
 
 // Define the configuration for MDX
 const withMDX = createMDX({
@@ -17,39 +17,59 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
-  headers() {
+  async headers() {
     return [
-      // Add custom header for the /blog page
+      // Cache /blog for 1 minute + stale-while-revalidate
       {
-        source: '/blog',
+        source: "/blog",
         headers: [
           {
-            key: 'cache-control',
-            value: 'public, max-age=60, stale-while-revalidate=600',
+            key: "cache-control",
+            value: "public, max-age=60, stale-while-revalidate=600",
           },
         ],
       },
-      // Other headers (like for /images/me.WEBP)
+      // Cache a single /images/me.WEBP specifically
       {
-        source: '/images/me.WEBP',
+        source: "/images/me.WEBP",
         headers: [
           {
-            key: 'cache-control',
-            value: 'public, max-age=31536000, immutable',
+            key: "cache-control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Cache *all* images in /images/projects/ for 1 year (immutable)
+      {
+        source: "/images/projects/(.*)",
+        headers: [
+          {
+            key: "cache-control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Similarly, cache *all* images in /images/photography/ for 1 year (immutable)
+      {
+        source: "/images/photography/(.*)",
+        headers: [
+          {
+            key: "cache-control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
     ];
   },
-  pageExtensions: ['ts', 'tsx', 'mdx'],
+  pageExtensions: ["ts", "tsx", "mdx"],
 };
 
 const withBoth = (config) =>
   withPWA({
-    dest: 'public',
+    dest: "public",
     register: true,
     skipWaiting: true,
-    disable: process.env.NODE_ENV === 'development',
+    disable: process.env.NODE_ENV === "development",
   })(withMDX(config));
 
 // Export configuration
