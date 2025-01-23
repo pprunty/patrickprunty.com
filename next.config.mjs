@@ -24,7 +24,7 @@ const nextConfig = {
         source: '/blog',
         headers: [
           {
-            key: 'Cache-Control',
+            key: 'cache-control',
             value: 'public, max-age=60, stale-while-revalidate=600',
           },
         ],
@@ -34,7 +34,7 @@ const nextConfig = {
         source: '/images/me.WEBP',
         headers: [
           {
-            key: 'Cache-Control',
+            key: 'cache-control',
             value: 'public, max-age=31536000, immutable',
           },
         ],
