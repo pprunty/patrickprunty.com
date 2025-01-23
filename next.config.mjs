@@ -14,22 +14,33 @@ const withMDX = createMDX({
 
 const nextConfig = {
   reactStrictMode: true,
-    experimental: {
-      mdxRs: true,
-    },
+  experimental: {
+    mdxRs: true,
+  },
   headers() {
-      return [
-        {
-          source: "/images/me.WEBP",
-          headers: [
-            {
-              key: "cache-control",
-              value: "public, max-age=31536000, immutable",
-            },
-          ],
-        },
-      ];
-    },
+    return [
+      // Add custom header for the /blog page
+      {
+        source: '/blog',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=60, stale-while-revalidate=600',
+          },
+        ],
+      },
+      // Other headers (like for /images/me.WEBP)
+      {
+        source: '/images/me.WEBP',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
   pageExtensions: ['ts', 'tsx', 'mdx'],
 };
 
@@ -43,4 +54,3 @@ const withBoth = (config) =>
 
 // Export configuration
 export default withBoth(nextConfig);
-

@@ -1,37 +1,20 @@
-import type { Post } from '../get-posts';
-import { Posts } from '../posts';
-import { getAllPosts } from '../get-posts';
-import type { ButtonsArrayType } from '@/__samwise/types/Buttons';
-import PillarMenu from '@/modules/common/components/PillarMenu';
-import type { Metadata } from 'next';
+import type { Post } from "../get-posts"
+import { Posts } from "../posts"
+import { getAllPosts } from "../get-posts"
+import type { ButtonsArrayType } from "@/__samwise/types/Buttons"
+import PillarMenu from "@/modules/common/components/PillarMenu"
 
-export const revalidate = 60; // ISR: Revalidate every 60 seconds
-
-// Add this function to set cache headers
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    other: {
-      'Cache-Control': 'public, max-age=60, stale-while-revalidate=600',
-    },
-  };
-}
+export const revalidate = 60 // ISR: Revalidate every 60 seconds
 
 export default async function PostsPage() {
-  const posts: Post[] = await getAllPosts(
-    process.env.NODE_ENV === 'production',
-  );
+  const posts: Post[] = await getAllPosts(process.env.NODE_ENV === "production")
 
-  const buttons: ButtonsArrayType = [
-    { type: 'edit-blog' },
-    { type: 'create-post' },
-  ];
+  const buttons: ButtonsArrayType = [{ type: "edit-blog" }, { type: "create-post" }]
 
   return (
     <>
       <Posts posts={posts} />
-      {process.env.NODE_ENV === 'development' && (
-        <PillarMenu buttons={buttons} />
-      )}
+      {process.env.NODE_ENV === "development" && <PillarMenu buttons={buttons} />}
     </>
-  );
+  )
 }
