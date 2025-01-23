@@ -91,7 +91,7 @@ export default function RootLayout({
           <Header />
           {children}
         </main>
-      <ClientComponents />
+        <ClientComponents />
         <Analytics />
         <SpeedInsights />
         <script

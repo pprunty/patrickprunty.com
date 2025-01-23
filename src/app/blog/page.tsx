@@ -1,11 +1,20 @@
-// app/posts/page.tsx
-import { Post } from '../get-posts';
+import type { Post } from '../get-posts';
 import { Posts } from '../posts';
 import { getAllPosts } from '../get-posts';
-import { ButtonsArrayType } from '@/__samwise/types/Buttons';
+import type { ButtonsArrayType } from '@/__samwise/types/Buttons';
 import PillarMenu from '@/modules/common/components/PillarMenu';
+import type { Metadata } from 'next';
 
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
+
+// Add this function to set cache headers
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    other: {
+      'Cache-Control': 'public, max-age=60, stale-while-revalidate=600',
+    },
+  };
+}
 
 export default async function PostsPage() {
   const posts: Post[] = await getAllPosts(
@@ -16,14 +25,6 @@ export default async function PostsPage() {
     { type: 'edit-blog' },
     { type: 'create-post' },
   ];
-
-  const iconProps = {
-    width: 20,
-    height: 20,
-    fill: 'currentColor',
-    className: `text-[#1C1C1C] dark:text-[#fcfcfc]`,
-    role: 'link',
-  };
 
   return (
     <>
