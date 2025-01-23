@@ -4,6 +4,7 @@ import { getAllPosts } from "../get-posts"
 import type { ButtonsArrayType } from "@/__samwise/types/Buttons"
 import PillarMenu from "@/modules/common/components/PillarMenu"
 
+export const dynamic = 'force-static';
 export const revalidate = 60 // ISR: Revalidate every 60 seconds
 
 export default async function PostsPage() {
