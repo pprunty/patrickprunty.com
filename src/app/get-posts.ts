@@ -36,7 +36,7 @@ export const getAllPosts = async (
   }
 
   // Determine if the environment is production
-  const isProduction = process.env.VERCEL_GIT_COMMIT_REF === 'main';
+  const isProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL === 'patrickprunty.com';
 
   // Fetch all views from Redis if in production, otherwise set to zero
   const allViews: Record<string, string> | null = isProduction
