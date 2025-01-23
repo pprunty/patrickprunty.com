@@ -69,10 +69,10 @@ const Subscribe: React.FC<SubscribeProps> = ({
                   text-md
                   sm:text-sm
                   border
-                  border-black
+                  border-[#4B5563]
                   dark:border-[#555]
                   dark:active:border-[#fcfcfc]
-                  bg-[#F5F5F5]
+                  bg-[#f0f0f0]
                   dark:bg-[#1c1c1c]
                   dark:text-[#fcfcfc]
                   text-[#0F0F0F]
@@ -94,7 +94,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
              h-full
              px-4
              py-1
-             bg-[#444]
+             bg-[#4B5563]
              text-white
              rounded-r-md
              text-sm

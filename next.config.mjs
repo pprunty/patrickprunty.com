@@ -17,7 +17,7 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
-    removeConsole: process.env.NODE_ENV !== 'development',
+//     removeConsole: process.env.NODE_ENV !== 'development',
   },
   pageExtensions: ['ts', 'tsx', 'mdx'],
   experimental: {
