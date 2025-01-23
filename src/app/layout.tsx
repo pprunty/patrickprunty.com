@@ -90,8 +90,8 @@ export default function RootLayout({
         <main className="p-6 pt-3 md:pt-6 min-h-screen">
           <Header />
           {children}
-          <ClientComponents />
         </main>
+      <ClientComponents />
         <Analytics />
         <SpeedInsights />
         <script
