@@ -36,7 +36,8 @@ export const getAllPosts = async (
   }
 
   // Determine if the environment is production
-  const isProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL === 'patrickprunty.com';
+  const isProduction =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL === 'patrickprunty.com';
 
   // Fetch all views from Redis if in production, otherwise set to zero
   const allViews: Record<string, string> | null = isProduction
@@ -44,9 +45,7 @@ export const getAllPosts = async (
     : null;
 
   const postsWithViews: Post[] = cachedNonDraftPosts.map((post) => {
-    const views = isProduction
-      ? Number(allViews?.[post.slug] ?? 0)
-      : 0;
+    const views = isProduction ? Number(allViews?.[post.slug] ?? 0) : 0;
     return {
       ...post,
       views,
@@ -61,9 +60,7 @@ export const getAllPosts = async (
   const draftPosts: Post[] = typedPostsData.posts
     .filter((post) => post.draft)
     .map((post) => {
-      const views = isProduction
-        ? Number(allViews?.[post.slug] ?? 0)
-        : 0;
+      const views = isProduction ? Number(allViews?.[post.slug] ?? 0) : 0;
       return {
         ...post,
         views,

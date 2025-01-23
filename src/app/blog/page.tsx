@@ -2,6 +2,7 @@
 import { Post } from '../get-posts';
 import { Posts } from '../posts';
 import { getAllPosts } from '../get-posts';
+import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 import PillarMenu from '@/modules/common/components/PillarMenu';
 
 export const revalidate = 60; // ISR: Revalidate every 60 seconds

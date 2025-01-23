@@ -36,7 +36,8 @@ export async function GET(req: NextRequest) {
   }
 
   // Check if the deployment is in the production environment
-  const isProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL === 'patrickprunty.com';
+  const isProduction =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL === 'patrickprunty.com';
 
   // Increment or retrieve views from Redis only in production
   if (isProduction && url.searchParams.get('incr') != null) {

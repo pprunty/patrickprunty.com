@@ -51,7 +51,7 @@
     {
       "slug": "elevenlabs-instant-voice-cloning-review",
       "date": "January 2, 2025",
-      "title": "That's What My A.I Voice Sounds Like? Nice...",
+      "title": "I Used ElevenLabs AI to Clone My Voice: Here’s The Results",
       "draft": true,
       "description": "Testing AI voice synthesis with real before and after audio samples using ElevenLabs Instant Voice Cloning.",
       "keywords": [
@@ -67,7 +67,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/elevenlabs-instant-voice-cloning-review/elevenlabs.webp",
-      "readingTime": 4
+      "readingTime": 3
     },
     {
       "slug": "interactive-animation-development-with-manim",
