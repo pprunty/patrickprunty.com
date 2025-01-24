@@ -9,26 +9,27 @@ export function Logo() {
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
-    if (pathname === '/blog') {
+    // Trigger animation on all "/blog" and "/blog/*" routes
+    if (pathname.startsWith('/blog')) {
       // Trigger the first animation after 0.6 seconds
       const initialTimer = setTimeout(() => {
         setShouldAnimate(true); // Start animation
         setTimeout(() => setShouldAnimate(false), 1000); // Reset after the animation duration (1 second)
+      }, 600);
 
-        // Set up recurring animation every 3.2 seconds
-        const interval = setInterval(() => {
-          setShouldAnimate(true); // Start animation
-          setTimeout(() => setShouldAnimate(false), 1000); // Reset after the animation duration (1 second)
-        }, 3200); // Interval timing: 1 second for animation + 2.2 seconds rest
+      // Set up recurring animation every 3.2 seconds
+      const interval = setInterval(() => {
+        setShouldAnimate(true); // Start animation
+        setTimeout(() => setShouldAnimate(false), 1000); // Reset after the animation duration (1 second)
+      }, 3200); // Interval timing: 1 second animation + 2.2 seconds rest
 
-        // Cleanup interval
-        return () => clearInterval(interval);
-      }, 600); // Initial delay of 0.6 seconds
-
-      // Cleanup initial timer
-      return () => clearTimeout(initialTimer);
+      // Cleanup both the initial timer and interval
+      return () => {
+        clearTimeout(initialTimer);
+        clearInterval(interval);
+      };
     } else {
-      setShouldAnimate(false); // Stop animation when leaving `/blog`
+      setShouldAnimate(false); // Stop animation if not on `/blog/*`
     }
   }, [pathname]);
 
