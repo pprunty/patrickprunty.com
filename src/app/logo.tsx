@@ -10,14 +10,23 @@ export function Logo() {
 
   useEffect(() => {
     if (pathname === '/blog') {
-      // Trigger animation with a consistent interval
-      const interval = setInterval(() => {
+      // Trigger the first animation after 0.6 seconds
+      const initialTimer = setTimeout(() => {
         setShouldAnimate(true); // Start animation
-        setTimeout(() => setShouldAnimate(false), 1000); // End animation after the full duration (1 second for 2 pulses)
-      }, 2200); // Repeat every 1.6 seconds (1 second animation + 0.6 second pause)
+        setTimeout(() => setShouldAnimate(false), 1000); // Reset after the animation duration (1 second)
 
-      // Cleanup the interval
-      return () => clearInterval(interval);
+        // Set up recurring animation every 3.2 seconds
+        const interval = setInterval(() => {
+          setShouldAnimate(true); // Start animation
+          setTimeout(() => setShouldAnimate(false), 1000); // Reset after the animation duration (1 second)
+        }, 3200); // Interval timing: 1 second for animation + 2.2 seconds rest
+
+        // Cleanup interval
+        return () => clearInterval(interval);
+      }, 600); // Initial delay of 0.6 seconds
+
+      // Cleanup initial timer
+      return () => clearTimeout(initialTimer);
     } else {
       setShouldAnimate(false); // Stop animation when leaving `/blog`
     }
@@ -27,18 +36,14 @@ export function Logo() {
 
   return (
     <span
-      className={`text-md md:text-lg whitespace-nowrap font-bold rounded-md transition-colors ${animationClass}`}
+      className={`text-md md:text-lg whitespace-nowrap font-bold transition-colors ${animationClass}`}
     >
-      {pathname === '/' ? (
-        <span className="cursor-default">{AUTHOR.name}</span>
-      ) : (
-        <Link
-          href="/"
-          className="hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm transition-colors"
-        >
-          {AUTHOR.name}
-        </Link>
-      )}
+      <Link
+        href="/"
+        className="hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] p-2 rounded-sm -ml-2 transition-[background-color]"
+      >
+        {AUTHOR.name}
+      </Link>
     </span>
   );
 }
