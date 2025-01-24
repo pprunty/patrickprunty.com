@@ -8,7 +8,11 @@ const BottomBar = () => {
   const router = useRouter();
 
   const handleBack = () => {
-    router.back();
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/blog');
+    }
   };
 
   return (
@@ -17,7 +21,7 @@ const BottomBar = () => {
         onClick={handleBack}
         className="inline-flex items-center font-mono text-sm uppercase hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
       >
-        &larr; Back
+        &larr; Back to Blog
       </button>
       <ShareButton />
     </div>

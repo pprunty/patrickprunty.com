@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ExternalLink } from 'lucide-react'; // Importing the ExternalLink icon
 
 interface ProjectCardProps {
   imagePath: string;
@@ -38,9 +39,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
       {/* Text Section */}
       <div className="p-4 flex flex-col justify-center sm:w-1/2">
-        <h2 className="text-xl font-bold mt-2 mb-1 dark:text-gray-100">
-          {title}
-        </h2>
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl font-bold mt-2 mb-1 dark:text-gray-100">
+            {title}
+          </h2>
+          {isExternalLink && (
+            <ExternalLink
+              className="w-4 h-4 text-gray-600 dark:text-gray-300"
+              aria-label="External link"
+            />
+          )}
+        </div>
         <p className="my-5 text-[17px] line-clamp-4 text-gray-700 dark:text-[#c2c2c2]">
           {description}
         </p>

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Grid from "@/modules/common/components/Grid";
-import Carousel from "@/modules/common/components/Carousel";
+import React, { useEffect, useState } from 'react';
+import Grid from '@/modules/common/components/Grid';
+import Carousel from '@/modules/common/components/Carousel';
 
 interface ShowcaseProps {
   items: React.ReactNode[];
@@ -19,8 +19,8 @@ const Showcase: React.FC<ShowcaseProps> = ({ items }) => {
     };
     handleResize();
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (isCarousel) {
