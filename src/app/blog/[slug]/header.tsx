@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useSelectedLayoutSegments } from 'next/navigation';
-import { Post } from '../../get-posts';
-import { H1 } from '@/app/blog/components//h1';
+import type { Post } from '../../get-posts';
+import { H1 } from '@/app/blog/components/h1';
 import useSWR from 'swr';
-import { KeyedMutator } from 'swr';
+import type { KeyedMutator } from 'swr';
 import { ago } from 'time-ago';
+import { Calendar, BookOpen, Eye } from 'lucide-react'; // Import the icons
 
 interface HeaderProps {
   posts: Post[] | null;
@@ -18,9 +18,8 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function Header({ currentPost }: HeaderProps) {
   const slug = currentPost?.slug;
 
-  // Only call SWR if there is a valid slug
   const { data: post, mutate } = useSWR(
-    slug ? `/api/view?id=${slug}` : null, // <-- null will skip SWR if slug is falsy
+    slug ? `/api/view?id=${slug}` : null,
     fetcher,
     {
       fallbackData: currentPost,
@@ -34,30 +33,36 @@ export default function Header({ currentPost }: HeaderProps) {
     <>
       {/* Header Section */}
       <H1>{post.title}</H1>
-      <p className="font-mono flex text-xs text-gray-700 dark:text-[#999999]">
-        <span className="flex-grow">
+      <p className="font-mono flex flex-wrap justify-between items-center text-xs text-gray-700 dark:text-[#999999]">
+        {/* Left Section (Author, Date, and Mins Read) */}
+        <span className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
           <span className="hidden md:inline">
-            <span>
-              <a
-                href={post.authorUrl}
-                className="hover:text-gray-500 dark:hover:text-gray-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {post.author}
-              </a>
-            </span>
-
-            <span className="mx-2">|</span>
+            <a
+              href={post.authorUrl}
+              className="hover:text-gray-500 dark:hover:text-gray-300"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {post.author}
+            </a>
           </span>
-          <span suppressHydrationWarning={true}>
-            {post.date || 'Unknown date'}{' '}
-            <br className="sm:block md:hidden lg:hidden" />
-            {post.date ? `(${ago(post.date, true)} ago)` : ''} <span>| </span>
-            {post.readingTime} mins read
+
+          <span className="flex items-center">
+            <Calendar className="w-4 h-4 mr-2" />
+            <span suppressHydrationWarning={true}>
+              {post.date || 'Unknown date'} (
+              {post.date ? `${ago(post.date, true)} ago` : ''})
+            </span>
+          </span>
+
+          <span className="flex items-center md:ml-4">
+            <BookOpen className="w-4 h-4 mr-2" />
+            <span>{post.readingTime} mins read</span>
           </span>
         </span>
-        <span className="pr-1.5">
+
+        {/* Right Section (Views) */}
+        <span className="flex items-center mt-2 md:mt-0">
           <Views
             id={post.slug || post.id}
             mutate={mutate}
@@ -95,5 +100,14 @@ function Views({
     }
   });
 
-  return <>{views != null ? <span>{views} views</span> : null}</>;
+  return (
+    <>
+      {views != null ? (
+        <span className="flex items-center">
+          <Eye className="w-4 h-4 mr-2" />
+          {views} views
+        </span>
+      ) : null}
+    </>
+  );
 }
