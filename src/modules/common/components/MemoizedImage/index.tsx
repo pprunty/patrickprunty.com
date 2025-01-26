@@ -110,8 +110,8 @@ export const MemoizedImage = React.memo(function MemoizedImage({
           {...rest}
         />
                 {focusable && isImageLoaded && (
-                  <span className="absolute top-1 right-1 rounded-full p-1 shadow-md transition-transform duration-200 group-hover:scale-105">
-                    <Expand className="w-3 h-3 text-black dark:text-white" />
+                  <span className="absolute top-1 right-1 rounded-full transition-transform duration-200 group-hover:scale-105">
+                    <Expand className="w-3 h-3 text-gray-200 dark:text-gray-200" />
                   </span>
                 )}
       </span>
