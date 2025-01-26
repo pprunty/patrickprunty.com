@@ -19,7 +19,7 @@ export function Logo() {
       ([entry]) => {
         setIsInView(entry.isIntersecting); // Update state when in/out of view
       },
-      { threshold: 0.1 } // Trigger when 10% of the component is in view
+      { threshold: 0.1 }, // Trigger when 10% of the component is in view
     );
 
     if (logoRef.current) {

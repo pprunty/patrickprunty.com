@@ -45,7 +45,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </h2>
           {isExternalLink && (
             <ExternalLink
-              className="w-3 h-3 text-gray-600 dark:text-gray-300"
+              className="w-3.5 h-3.5 text-gray-600 dark:text-gray-300"
               aria-label="External link"
             />
           )}

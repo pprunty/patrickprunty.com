@@ -6,7 +6,7 @@ import { H1 } from '@/app/blog/components/h1';
 import useSWR from 'swr';
 import type { KeyedMutator } from 'swr';
 import { ago } from 'time-ago';
-import { Calendar, BookOpen, Eye } from 'lucide-react'; // Import the icons
+import { Calendar, BookOpenText, Eye } from 'lucide-react'; // Import the icons
 
 interface HeaderProps {
   posts: Post[] | null;
@@ -35,7 +35,8 @@ export default function Header({ currentPost }: HeaderProps) {
       <H1>{post.title}</H1>
       <p className="font-mono flex flex-wrap justify-between items-center text-xs text-gray-700 dark:text-[#999999]">
         {/* Left Section (Author, Date, and Mins Read) */}
-        <span className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+        <span className="flex flex-col md:flex-row items-start md:items-center md:gap-2 gap-2">
+          {/* Author */}
           <span className="hidden md:inline">
             <a
               href={post.authorUrl}
@@ -45,18 +46,22 @@ export default function Header({ currentPost }: HeaderProps) {
             >
               {post.author}
             </a>
+            <span className="hidden md:inline ml-2">|</span>
           </span>
 
+          {/* Date */}
           <span className="flex items-center">
             <Calendar className="w-4 h-4 mr-2" />
             <span suppressHydrationWarning={true}>
               {post.date || 'Unknown date'} (
               {post.date ? `${ago(post.date, true)} ago` : ''})
             </span>
+            <span className="hidden md:inline ml-2">|</span>
           </span>
 
-          <span className="flex items-center md:ml-4">
-            <BookOpen className="w-4 h-4 mr-2" />
+          {/* Mins Read */}
+          <span className="flex items-center">
+            <BookOpenText className="w-4 h-4 mr-2" />
             <span>{post.readingTime} mins read</span>
           </span>
         </span>
