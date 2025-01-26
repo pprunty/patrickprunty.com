@@ -8,7 +8,7 @@ const BottomBar = () => {
   const router = useRouter();
 
   const handleBack = () => {
-    if (window.history.length > 1) {
+    if (window.history.length > 2) {
       router.back();
     } else {
       router.push('/blog');
