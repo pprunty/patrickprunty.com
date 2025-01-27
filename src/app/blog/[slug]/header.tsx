@@ -51,7 +51,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Date */}
           <span className="flex items-center">
-            <Calendar className="w-4 h-4 mr-2" />
+            <Calendar className="w-3.5 h-3.5 mr-2" />
             <span suppressHydrationWarning={true}>
               {post.date || 'Unknown date'} (
               {post.date ? `${ago(post.date, true)} ago` : ''})
@@ -61,7 +61,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Mins Read */}
           <span className="flex items-center">
-            <BookOpenText className="w-4 h-4 mr-2" />
+            <BookOpenText className="w-3.5 h-3.5 mr-2" />
             <span>{post.readingTime} mins read</span>
           </span>
         </span>
@@ -109,7 +109,7 @@ function Views({
     <>
       {views != null ? (
         <span className="flex items-center">
-          <Eye className="w-4 h-4 mr-2" />
+          <Eye className="w-3.5 h-3.5 mr-2" />
           {views} views
         </span>
       ) : null}
