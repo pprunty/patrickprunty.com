@@ -106,7 +106,35 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/introducing-samwise-nextjs-15-blog-starter-template/samwise.webp",
+      "readingTime": 3
+    },
+    {
+      "slug": "on-ideas",
+      "date": "February 1, 2025",
+      "title": "On Ideas",
+      "draft": true,
+      "description": "jwedw",
+      "keywords": [
+        "edwe"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/on-ideas/on-ideas.webp",
       "readingTime": 1
+    },
+    {
+      "slug": "pixel-project-resources",
+      "date": "January 29, 2025",
+      "title": "Pixel Project Resources",
+      "draft": true,
+      "description": "[INTERNAL] Some resources for Pixel Projects",
+      "keywords": [
+        "pixel projects"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/pixel-project-resources/pixel-project-resources.webp",
+      "readingTime": 21
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
