@@ -179,7 +179,7 @@ function List({ posts, sort }: ListProps) {
                     </span>
                   )}
                   <div className="flex flex-nowrap grow">
-                    <span className="dark:text-gray-100 break-words flex-grow min-w-0">
+                    <span className="dark:text-gray-100 break-words flex-grow min-w-0 lowercase">
                       {post.title}
                     </span>
                     <span className="text-gray-500 dark:text-[#999999] text-right text-xs flex-shrink-0 whitespace-nowrap min-w-[48px]">
