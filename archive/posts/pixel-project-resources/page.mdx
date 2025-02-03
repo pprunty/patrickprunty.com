@@ -1,0 +1,925 @@
+import { SITE_URL, AUTHOR } from '@/config';
+
+export const metadata = {
+  title: 'Pixel Project Resources',
+  description: '[INTERNAL] Some resources for Pixel Projects',
+  image: '/images/pixel-project-resources/pixel-project-resources.webp',
+  date: '2025-01-29',
+  author: 'Patrick Prunty',
+  authorUrl: 'https://patrickprunty.com/about',
+  openGraph: {
+    title: 'Pixel Project Resources',
+    description: '[INTERNAL] Some resources for Pixel Projects',
+    url: '/blog/pixel-project-resources',
+    images: [
+      {
+        url: `/images/pixel-project-resources/pixel-project-resources.webp`,
+        alt: 'Pixel Project Resources'
+      }
+    ],
+    type: 'article',
+    tags: [
+      'pixel projects'
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pixel Project Resources',
+    description: '[INTERNAL] Some resources for Pixel Projects',
+    image: `/images/pixel-project-resources/pixel-project-resources.webp`
+  },
+  keywords: [
+    'pixel projects'
+  ],
+  slug: 'pixel-project-resources',
+  readingTime: 21,
+  draft: true
+};
+
+Long-form:
+
+1. Disease Spread Simulation
+2. Making music light up
+3. Pokémon Crystal played by DeepSeek LLM
+4. Geometric Brownian Motion
+5. Chess Reinforcement Learning
+6. General Adversarial Networks
+
+Short-form:
+
+1. OAuth2
+2. The Law of Large Numbers
+3. SHA-256
+4. Parallel Computing Exercise
+5. The Birthday Paradox/Winning The Lottery
+
+<YouTube videoId="n8m7lFQ3njk"/>
+
+```json
+{
+  "content_ideas": {
+    "Cryptography & Security": {
+      "short_form": [
+        {
+          "title": "SHA-256 Hashing",
+          "description": "How cryptographic hashing secures passwords and blockchain.",
+          "keywords": ["cryptography", "blockchain", "hashing algorithm", "avalanche effect", "cybersecurity"],
+          "hook": [
+            "What if a single letter could crash the entire internet?",
+            "Why does changing one letter create a digital explosion?"
+          ],
+          "music": ["Beethoven - Moonlight Sonata (First Movement)", "Bach - Toccata and Fugue in D Minor"],
+          "tone": "mysterious/tense",
+          "aha_moment": "Tiny input changes create completely different hashes.",
+          "demo": "Hash 'Hello' vs. 'hello' and watch the outputs diverge.",
+          "visual": "Side-by-side avalanche effect animation.",
+          "target_audience": "tech enthusiasts, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "OAuth Simplified",
+          "description": "How logging in with 'Google' works without sharing your password.",
+          "keywords": ["OAuth", "authentication", "tokens", "API security", "web development"],
+          "hook": [
+            "What if you could log in without ever sharing your password?",
+            "The secret key swap that keeps your data safe."
+          ],
+          "music": ["Mozart - Eine kleine Nachtmusik", "Chopin - Nocturne in E-Flat Major"],
+          "tone": "educational/intrigue",
+          "aha_moment": "Tokens act as temporary keys, not passwords.",
+          "demo": "Flowchart of user ↔ app ↔ Google handshake.",
+          "visual": "Animated 'key exchange' metaphor.",
+          "target_audience": "developers, general users",
+          "difficulty_level": "beginner",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "RSA Encryption",
+          "description": "Visualize how prime numbers secure the internet.",
+          "keywords": ["RSA", "prime numbers", "encryption", "public key", "cybersecurity"],
+          "hook": [
+            "Why spies use prime numbers to hide their secrets.",
+            "The math trick that protects your credit card online."
+          ],
+          "music": ["Holst - Mars, the Bringer of War", "Debussy - Clair de Lune"],
+          "tone": "suspenseful/mind-blowing",
+          "aha_moment": "Multiplying primes is easy; factoring their product is nearly impossible.",
+          "demo": "Encrypt/decrypt a message with public/private keys.",
+          "visual": "Prime number 'shield' animation.",
+          "target_audience": "math enthusiasts, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "Zero-Knowledge Proofs",
+          "description": "Proving you know a secret without revealing it.",
+          "keywords": ["ZKP", "privacy", "cryptography", "blockchain", "security"],
+          "hook": [
+            "How to prove a secret without saying a word.",
+            "The magic trick that keeps your passwords invisible."
+          ],
+          "music": ["Saint-Saëns - Danse Macabre", "Beethoven - Symphony No. 5"],
+          "tone": "mysterious/intrigue",
+          "aha_moment": "Validating a password without seeing it (magic door analogy).",
+          "demo": "Interactive 'cave story' ZKP example.",
+          "visual": "Animated proof verification steps.",
+          "target_audience": "tech enthusiasts, privacy advocates",
+          "difficulty_level": "advanced",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "The Enigma Machine",
+          "description": "Break down WWII cryptography with rotor mechanics.",
+          "keywords": ["Enigma", "WWII", "cryptography", "Alan Turing", "codebreaking"],
+          "hook": [
+            "The unbreakable code that nearly won WWII.",
+            "Why this machine had more settings than atoms in the universe."
+          ],
+          "music": ["Wagner - Ride of the Valkyries", "Tchaikovsky - 1812 Overture"],
+          "tone": "historical/dramatic",
+          "aha_moment": "10^114 possible settings made brute-forcing impossible.",
+          "demo": "Simulate rotor-based message scrambling.",
+          "visual": "Rotating cipher wheels and scrambled text.",
+          "target_audience": "history buffs, tech enthusiasts",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "RSA Encryption Deep Dive",
+          "description": "Build a mini RSA system in Python.",
+          "keywords": ["RSA", "Python", "prime factorization", "encryption", "cryptography"],
+          "hook": [
+            "Crack the code that guards the internet (with Python).",
+            "Why hackers can’t break this prime number shield."
+          ],
+          "music": ["Bach - Brandenburg Concerto No. 3", "Mozart - Requiem in D Minor"],
+          "tone": "educational/epic",
+          "aha_moment": "Factoring large primes is exponentially harder than multiplying them.",
+          "demo": "Encrypt/decrypt a secret message.",
+          "visual": "Prime number 'shield' cracking animation.",
+          "target_audience": "developers, math enthusiasts",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Machine Learning & AI": {
+      "short_form": [
+        {
+          "title": "GANs (General Adversarial Networks)",
+          "description": "AI vs. AI: One generates fake data, the other detects it.",
+          "keywords": ["GANs", "AI art", "deepfakes", "machine learning", "neural networks"],
+          "hook": [
+            "What if AI could create perfect fakes?",
+            "The robot art battle you won’t believe."
+          ],
+          "music": ["Debussy - Arabesque No. 1", "Vivaldi - The Four Seasons (Winter)"],
+          "tone": "futuristic/tense",
+          "aha_moment": "The generator improves through competition.",
+          "demo": "GAN evolving from blurry to realistic faces.",
+          "visual": "Timelapse of generated faces refining.",
+          "target_audience": "AI enthusiasts, artists",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "Reinforcement Learning in Games",
+          "description": "Simulate an AI learning to play a simple game (e.g., Flappy Bird).",
+          "keywords": ["reinforcement learning", "AI gaming", "Q-learning", "Flappy Bird", "machine learning"],
+          "hook": [
+            "How a robot learned to beat Flappy Bird.",
+            "Why AI fails 100 times… then becomes unbeatable."
+          ],
+          "music": ["Rossini - William Tell Overture", "Beethoven - Für Elise"],
+          "tone": "playful/mind-blowing",
+          "aha_moment": "Agent shifts from random moves to strategic ones.",
+          "demo": "AI mastering a maze.",
+          "visual": "Heatmap of Q-learning 'decisions'.",
+          "target_audience": "gamers, developers",
+          "difficulty_level": "beginner",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "How Transformers Work",
+          "description": "Animate the self-attention mechanism behind ChatGPT and LLMs.",
+          "keywords": ["transformers", "LLMs", "self-attention", "ChatGPT", "AI"],
+          "hook": [
+            "The secret language trick behind ChatGPT.",
+            "How words talk to each other inside AI."
+          ],
+          "music": ["Mozart - Symphony No. 40", "Chopin - Waltz in A Minor"],
+          "tone": "educational/curious",
+          "aha_moment": "Words 'talk' to each other via context (e.g., 'bank' in finance vs. rivers).",
+          "demo": "Highlight word connections in a sentence.",
+          "visual": "Glowing attention weights between words.",
+          "target_audience": "AI enthusiasts, linguists",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "Bias in Facial Recognition",
+          "description": "Discuss ethical implications of algorithmic bias.",
+          "keywords": ["AI bias", "facial recognition", "ethics", "algorithmic fairness", "machine learning"],
+          "hook": [
+            "Why your face might break AI.",
+            "The invisible bias hiding in your selfies."
+          ],
+          "music": ["Holst - Jupiter, the Bringer of Jollity", "Satie - Gymnopédie No. 1"],
+          "tone": "serious/thought-provoking",
+          "aha_moment": "Training data gaps lead to skewed accuracy.",
+          "demo": "Test a model on diverse faces.",
+          "visual": "Accuracy heatmaps across demographics.",
+          "target_audience": "ethics advocates, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Transformers & Self-Attention",
+          "description": "Code a mini-transformer to translate sentences.",
+          "keywords": ["transformers", "self-attention", "neural networks", "NLP", "machine learning"],
+          "hook": [
+            "Code the AI that reads minds (sort of).",
+            "How robots learn to speak human."
+          ],
+          "music": ["Bach - Goldberg Variations", "Debussy - La Mer"],
+          "tone": "technical/aspirational",
+          "aha_moment": "Words dynamically adjust context via attention weights.",
+          "demo": "Translate sentences with attention visualization.",
+          "visual": "Interactive sentence diagram with word relationships.",
+          "target_audience": "developers, AI researchers",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Algorithms & Data Structures": {
+      "short_form": [
+        {
+          "title": "A* Pathfinding",
+          "description": "Visualize how GPS apps find the shortest route using grids and heuristics.",
+          "keywords": ["A* algorithm", "pathfinding", "GPS", "heuristics", "AI"],
+          "hook": [
+            "How your GPS outsmarts traffic jams.",
+            "The math trick that finds shortcuts instantly."
+          ],
+          "music": ["Vivaldi - Spring (Four Seasons)", "Mozart - Rondo Alla Turca"],
+          "tone": "educational/energetic",
+          "aha_moment": "Prioritizing paths closer to the goal saves time.",
+          "demo": "Compare A* vs. brute-force in a maze.",
+          "visual": "Expanding color-coded search waves.",
+          "target_audience": "developers, students",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "PageRank Explained",
+          "description": "Use web graphs to show how Google ranks pages.",
+          "keywords": ["PageRank", "Google", "SEO", "web graphs", "algorithms"],
+          "hook": [
+            "The secret math that made Google a billion-dollar company.",
+            "Why some websites rule the internet."
+          ],
+          "music": ["Handel - Water Music", "Bach - Air on the G String"],
+          "tone": "educational/revelatory",
+          "aha_moment": "A page's importance depends on who links to it.",
+          "demo": "Simulate a small web graph.",
+          "visual": "Glowing 'important' nodes in a network.",
+          "target_audience": "SEO specialists, developers",
+          "difficulty_level": "beginner",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Backtracking (Sudoku Solvers)",
+          "description": "Animate recursive problem-solving with a Sudoku example.",
+          "keywords": ["backtracking", "Sudoku", "recursion", "algorithms", "problem-solving"],
+          "hook": [
+            "How robots solve Sudoku in seconds.",
+            "The AI trick that erases its own mistakes."
+          ],
+          "music": ["Beethoven - Pathétique Sonata", "Mozart - Piano Concerto No. 21"],
+          "tone": "methodical/curious",
+          "aha_moment": "Solver backtracks when it hits a dead end.",
+          "demo": "Watch the solver fill and erase cells.",
+          "visual": "Recursive branching animation.",
+          "target_audience": "puzzle lovers, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Mathematics & Probability": {
+      "short_form": [
+        {
+          "title": "Birthday Paradox",
+          "description": "Why 23 people have a 50% chance of shared birthdays.",
+          "keywords": ["birthday paradox", "probability", "combinatorics", "math puzzles", "statistics"],
+          "hook": [
+            "Why 23 people will blow your mind.",
+            "The math trick that beats the lottery."
+          ],
+          "music": ["Mozart - Eine kleine Nachtmusik", "Chopin - Waltz in D-Flat Major"],
+          "tone": "playful/mind-blowing",
+          "aha_moment": "Exponential growth of pair combinations.",
+          "demo": "Simulate 100 groups of 23 people.",
+          "visual": "Pair-counting animation vs. linear intuition.",
+          "target_audience": "math enthusiasts, students",
+          "difficulty_level": "beginner",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "The Monty Hall Problem",
+          "description": "Debunk the probability paradox with interactive door animations.",
+          "keywords": ["Monty Hall", "probability", "paradox", "game show", "statistics"],
+          "hook": [
+            "The game show trick that fooled millions.",
+            "Why math says always switch doors."
+          ],
+          "music": ["Saint-Saëns - The Carnival of the Animals", "Debussy - Prelude to the Afternoon of a Faun"],
+          "tone": "playful/controversial",
+          "aha_moment": "Switching doors doubles your chances of winning.",
+          "demo": "Simulate 1000 games with/without switching.",
+          "visual": "Doors revealing goats/cars dynamically.",
+          "target_audience": "puzzle lovers, general audience",
+          "difficulty_level": "beginner",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "Fractals in Nature",
+          "description": "Render the Mandelbrot set and link to natural patterns like ferns.",
+          "keywords": ["fractals", "Mandelbrot", "nature", "mathematics", "geometry"],
+          "hook": [
+            "The infinite shapes hidden in leaves and galaxies.",
+            "Why nature loves to repeat itself."
+          ],
+          "music": ["Debussy - Clair de Lune", "Ravel - Pavane pour une infante défunte"],
+          "tone": "awe-inspiring/calm",
+          "aha_moment": "Simple rules create infinitely complex shapes.",
+          "demo": "Zoom into the Mandelbrot set.",
+          "visual": "Fern leaf vs. fractal comparison.",
+          "target_audience": "artists, math enthusiasts",
+          "difficulty_level": "beginner",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Chaos Theory & Lorenz Attractors",
+          "description": "Simulate weather’s sensitivity to initial conditions.",
+          "keywords": ["chaos theory", "butterfly effect", "Lorenz attractor", "nonlinear systems", "math"],
+          "hook": [
+            "How a butterfly could cause a hurricane.",
+            "The math that proves the future is unpredictable."
+          ],
+          "music": ["Holst - The Planets (Mars)", "Wagner - Flight of the Valkyries"],
+          "tone": "epic/mind-blowing",
+          "aha_moment": "Two nearly identical simulations diverge into chaos.",
+          "demo": "Butterfly wing-flap altering a hurricane’s path.",
+          "visual": "3D Lorenz attractor fractal.",
+          "target_audience": "math enthusiasts, educators",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Philosophy/Logic/Reasoning": {
+      "short_form": [
+        {
+          "title": "Bayesian Reasoning",
+          "description": "Updating beliefs with evidence (e.g., disease tests).",
+          "keywords": ["Bayesian", "probability", "statistics", "medical testing", "logic"],
+          "hook": [
+            "Why even 99% accurate tests can lie.",
+            "The math trick that fixes fake news."
+          ],
+          "music": ["Bach - Cello Suite No. 1", "Mozart - Piano Sonata No. 16"],
+          "tone": "thought-provoking/educational",
+          "aha_moment": "Even 99% accurate tests can be wrong 50% of the time.",
+          "demo": "Calculate false positives in a population.",
+          "visual": "Probability tree vs. confusion matrix.",
+          "target_audience": "students, data scientists",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "Simpson’s Paradox",
+          "description": "Trends reverse when data is aggregated.",
+          "keywords": ["Simpson's paradox", "statistics", "data bias", "aggregation", "math"],
+          "hook": [
+            "Why this drug helps everyone… but kills the group.",
+            "The math trick that flips reality."
+          ],
+          "music": ["Beethoven - Symphony No. 7", "Satie - Gnossienne No. 1"],
+          "tone": "controversial/mind-bending",
+          "aha_moment": "A drug helps men/women separately but harms the group.",
+          "demo": "Visualize conflicting bar charts merging.",
+          "visual": "Side-by-side aggregated vs. stratified data.",
+          "target_audience": "data analysts, researchers",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Game Theory & Nash Equilibrium",
+          "description": "Why selfish decisions lead to suboptimal outcomes.",
+          "keywords": ["game theory", "Nash equilibrium", "Prisoner's Dilemma", "economics", "math"],
+          "hook": [
+            "Why selfishness destroys the world (mathematically).",
+            "The math trick that explains war and peace."
+          ],
+          "music": ["Mozart - Requiem", "Bach - Passacaglia and Fugue in C Minor"],
+          "tone": "serious/intrigue",
+          "aha_moment": "Prisoner’s Dilemma shows why cooperation is hard.",
+          "demo": "Simulate 100 rounds of competing vs. cooperating agents.",
+          "visual": "Payoff matrices and strategy evolution graphs.",
+          "target_audience": "economics students, strategists",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "Voting Systems & Arrow’s Theorem",
+          "description": "No perfect voting system exists.",
+          "keywords": ["Arrow's theorem", "voting systems", "ranked choice", "math", "politics"],
+          "hook": [
+            "Why democracy is mathematically impossible.",
+            "The voting trick that always backfires."
+          ],
+          "music": ["Handel - Messiah", "Vivaldi - Gloria"],
+          "tone": "controversial/educational",
+          "aha_moment": "Ranked-choice voting can produce counterintuitive losers.",
+          "demo": "Simulate an election with conflicting preferences.",
+          "visual": "Animated ballot shuffling and outcome shifts.",
+          "target_audience": "politically curious, math enthusiasts",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Evolution & Biology": {
+      "short_form": [
+        {
+          "title": "Genetic Algorithms",
+          "description": "Evolve solutions to optimization problems.",
+          "keywords": ["genetic algorithms", "evolution", "optimization", "AI", "biology"],
+          "hook": [
+            "How robots evolve to solve impossible problems.",
+            "Darwin’s theory… for machines."
+          ],
+          "music": ["Vivaldi - Summer (Four Seasons)", "Beethoven - Pastoral Symphony"],
+          "tone": "futuristic/energetic",
+          "aha_moment": "Random mutations + selection = 'smart' designs.",
+          "demo": "Evolve a car shape to climb a hill.",
+          "visual": "Generational timelapse of improving designs.",
+          "target_audience": "AI enthusiasts, biologists",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        },
+        {
+          "title": "Hardy-Weinberg Equilibrium",
+          "description": "Predict allele frequencies in populations.",
+          "keywords": ["Hardy-Weinberg", "genetics", "evolution", "alleles", "biology"],
+          "hook": [
+            "The math equation that stops evolution.",
+            "Why your genes are stuck in a loop."
+          ],
+          "music": ["Mozart - Symphony No. 25", "Bach - Jesu, Joy of Man's Desiring"],
+          "tone": "educational/curious",
+          "aha_moment": "No evolution = math stays constant.",
+          "demo": "Model allele shifts after selection pressure.",
+          "visual": "Punnett squares scaling to population graphs.",
+          "target_audience": "biology students, educators",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Evolutionary Game Theory",
+          "description": "Math of survival strategies (e.g., Hawk-Dove game).",
+          "keywords": ["evolutionary game theory", "Hawk-Dove", "biology", "math", "strategies"],
+          "hook": [
+            "Why war and peace are just math equations.",
+            "The secret strategy that rules nature."
+          ],
+          "music": ["Holst - The Planets (Jupiter)", "Wagner - Lohengrin Prelude"],
+          "tone": "epic/educational",
+          "aha_moment": "Aggressive vs. peaceful strategies balance ecosystems.",
+          "demo": "Simulate population dynamics with varying payoffs.",
+          "visual": "Animated species dominance cycles.",
+          "target_audience": "biology enthusiasts, economists",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "Phylogenetic Trees & Clustering",
+          "description": "Algorithmically reconstruct evolutionary trees.",
+          "keywords": ["phylogenetics", "DNA", "evolution", "clustering", "algorithms"],
+          "hook": [
+            "How math solves evolution’s greatest mysteries.",
+            "The DNA code that maps all life."
+          ],
+          "music": ["Debussy - La Cathédrale Engloutie", "Ravel - Boléro"],
+          "tone": "mysterious/educational",
+          "aha_moment": "DNA similarity = branch proximity.",
+          "demo": "Build a tree from genetic sequences.",
+          "visual": "Interactive tree with zoomable mutations.",
+          "target_audience": "biology students, data scientists",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Interdisciplinary Applications": {
+      "short_form": [],
+      "long_form": [
+        {
+          "title": "Math Behind Animation",
+          "description": "Break down Bézier curves and matrix transformations in CGI.",
+          "keywords": ["Bézier curves", "animation", "CGI", "math", "film"],
+          "hook": [
+            "The hidden math that brings cartoons to life.",
+            "How Pixar turns equations into emotions."
+          ],
+          "music": ["Tchaikovsky - Dance of the Sugar Plum Fairy", "Saint-Saëns - Aquarium"],
+          "tone": "creative/educational",
+          "aha_moment": "Control points turn lines into lifelike motion.",
+          "demo": "Animate a bouncing ball with cubic Béziers.",
+          "visual": "Control point 'handles' shaping curves.",
+          "target_audience": "animators, math enthusiasts",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "GPS & Relativity",
+          "description": "Explain how Einstein’s theories correct satellite timekeeping.",
+          "keywords": ["GPS", "relativity", "Einstein", "physics", "time dilation"],
+          "hook": [
+            "Why your GPS needs Einstein to work.",
+            "The time-travel trick in your phone."
+          ],
+          "music": ["Holst - The Planets (Neptune)", "Debussy - Nocturnes"],
+          "tone": "mind-blowing/educational",
+          "aha_moment": "Clocks in orbit tick faster than on Earth.",
+          "demo": "Simulate GPS clock adjustments.",
+          "visual": "Satellite vs. ground clock comparison.",
+          "target_audience": "physics enthusiasts, general audience",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "Sports Analytics",
+          "description": "Model win probabilities with graphs in basketball/football.",
+          "keywords": ["sports analytics", "win probability", "data science", "basketball", "football"],
+          "hook": [
+            "How math predicts the Super Bowl winner.",
+            "The data trick that coaches don’t want you to know."
+          ],
+          "music": ["Mozart - Horn Concerto No. 4", "Beethoven - Egmont Overture"],
+          "tone": "energetic/competitive",
+          "aha_moment": "Data reveals hidden team/player patterns.",
+          "demo": "Predict a game outcome using historical stats.",
+          "visual": "Win probability graph over time.",
+          "target_audience": "sports fans, data analysts",
+          "difficulty_level": "beginner",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Hands-On Projects": {
+      "short_form": [],
+      "long_form": [
+        {
+          "title": "Build a Simple Neural Network",
+          "description": "Code a basic MNIST digit classifier from scratch.",
+          "keywords": ["neural networks", "MNIST", "machine learning", "Python", "tensorflow"],
+          "hook": [
+            "Code the AI that reads handwriting.",
+            "How robots learn to see numbers."
+          ],
+          "music": ["Bach - Well-Tempered Clavier", "Mozart - Divertimento in D"],
+          "tone": "educational/hands-on",
+          "aha_moment": "The network suddenly recognizes a scribbled 7.",
+          "demo": "Train the model on MNIST data.",
+          "visual": "Layer activation visualizations.",
+          "target_audience": "developers, AI beginners",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "Procedural Music Generation",
+          "description": "Create algorithmically composed music using Markov chains.",
+          "keywords": ["procedural music", "Markov chains", "AI music", "algorithmic composition", "Python"],
+          "hook": [
+            "How robots compose Billboard hits.",
+            "The math trick that writes symphonies."
+          ],
+          "music": ["Chopin - Raindrop Prelude", "Debussy - Rêverie"],
+          "tone": "creative/technical",
+          "aha_moment": "Random rules create coherent melodies.",
+          "demo": "Generate a song in real-time.",
+          "visual": "MIDI note roll visualization.",
+          "target_audience": "musicians, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "Traffic Flow Simulation",
+          "description": "Model congestion and optimize traffic lights.",
+          "keywords": ["traffic simulation", "agent-based modeling", "optimization", "Python", "data science"],
+          "hook": [
+            "How math fixes traffic jams forever.",
+            "The AI trick that outsmarts rush hour."
+          ],
+          "music": ["Vivaldi - Autumn (Four Seasons)", "Mozart - Symphony No. 25"],
+          "tone": "educational/practical",
+          "aha_moment": "Small changes reduce gridlock dramatically.",
+          "demo": "Simulate traffic with/without optimizations.",
+          "visual": "Agent-based traffic heatmap.",
+          "target_audience": "urban planners, developers",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Computer Graphics & Visualization": {
+      "short_form": [
+        {
+          "title": "Ray Tracing Basics",
+          "description": "Animate light rays bouncing off objects to create 3D renders.",
+          "keywords": ["ray tracing", "3D rendering", "graphics", "light physics", "CGI"],
+          "hook": [
+            "How Hollywood fakes sunlight.",
+            "The math trick that creates perfect shadows."
+          ],
+          "music": ["Debussy - Arabesque No. 1", "Ravel - Jeux d'eau"],
+          "tone": "artistic/technical",
+          "aha_moment": "Realistic shadows/reflections emerge from simple rays.",
+          "demo": "Render a sphere with reflections.",
+          "visual": "Light path tracing animation.",
+          "target_audience": "animators, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Fourier Transforms in Audio",
+          "description": "Visualize sound waves as frequency spectra.",
+          "keywords": ["Fourier transform", "audio processing", "spectrogram", "music", "signal processing"],
+          "hook": [
+            "How math splits sound into secret frequencies.",
+            "The hidden code in every song."
+          ],
+          "music": ["Bach - Toccata and Fugue in D Minor", "Beethoven - Moonlight Sonata"],
+          "tone": "educational/artistic",
+          "aha_moment": "Complex sounds = sum of simple sine waves.",
+          "demo": "Decompose a song into frequencies.",
+          "visual": "Spectrogram vs. waveform comparison.",
+          "target_audience": "musicians, engineers",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Ethics & Society": {
+      "short_form": [],
+      "long_form": [
+        {
+          "title": "AI in Healthcare",
+          "description": "Discuss how models diagnose diseases and data privacy ethics.",
+          "keywords": ["AI healthcare", "medical ethics", "data privacy", "diagnostics", "machine learning"],
+          "hook": [
+            "Why AI could be your next doctor.",
+            "The life-saving (and risky) future of medicine."
+          ],
+          "music": ["Mozart - Lacrimosa", "Albinoni - Adagio in G Minor"],
+          "tone": "serious/thought-provoking",
+          "aha_moment": "AI spots tumors humans miss.",
+          "demo": "Highlight a tumor in an X-ray.",
+          "visual": "Model confidence heatmap overlay.",
+          "target_audience": "healthcare professionals, ethicists",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "The Ethics of Deepfakes",
+          "description": "Use GANs to demonstrate synthetic media risks.",
+          "keywords": ["deepfakes", "ethics", "GANs", "synthetic media", "AI"],
+          "hook": [
+            "Why you can’t trust your eyes anymore.",
+            "The AI trick that could destroy democracy."
+          ],
+          "music": ["Shostakovich - Symphony No. 5", "Barber - Adagio for Strings"],
+          "tone": "urgent/serious",
+          "aha_moment": "Deepfakes erode trust in visual evidence.",
+          "demo": "Swap faces in a video.",
+          "visual": "Side-by-side real vs. fake comparison.",
+          "target_audience": "general audience, policymakers",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Quantum Computing & Futuristic Tech": {
+      "short_form": [
+        {
+          "title": "Qubits & Superposition",
+          "description": "Use spinning coins to demystify quantum states.",
+          "keywords": ["qubits", "quantum computing", "superposition", "physics", "futurism"],
+          "hook": [
+            "The coin flip that breaks reality.",
+            "How quantum physics makes computers magical."
+          ],
+          "music": ["Debussy - Prélude à l'après-midi d'un faune", "Ravel - String Quartet in F Major"],
+          "tone": "mind-blowing/futuristic",
+          "aha_moment": "A qubit is 0 AND 1 until measured.",
+          "demo": "Simulate a quantum coin flip.",
+          "visual": "Blurred spinning coin resolving to heads/tails.",
+          "target_audience": "physics enthusiasts, tech futurists",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "Post-Quantum Cryptography",
+          "description": "Explore encryption methods that survive quantum attacks.",
+          "keywords": ["post-quantum cryptography", "quantum computing", "lattice math", "encryption", "cybersecurity"],
+          "hook": [
+            "The code that even quantum computers can’t break.",
+            "How math will save the internet from quantum hackers."
+          ],
+          "music": ["Holst - The Planets (Uranus)", "Wagner - Siegfried's Funeral March"],
+          "tone": "urgent/educational",
+          "aha_moment": "Lattice math defeats quantum factorization.",
+          "demo": "Compare classical vs. post-quantum encryption.",
+          "visual": "Lattice grid vs. prime number shields.",
+          "target_audience": "developers, cybersecurity experts",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Historical & Conceptual Deep Dives": {
+      "short_form": [],
+      "long_form": [
+        {
+          "title": "The Apollo Guidance Computer",
+          "description": "Link 1960s hardware to modern computational principles.",
+          "keywords": ["Apollo", "NASA", "AGC", "computing history", "moon landing"],
+          "hook": [
+            "The computer weaker than your toaster… that landed on the moon.",
+            "How 1960s code beat modern AI."
+          ],
+          "music": ["Strauss - Also sprach Zarathustra", "Copland - Fanfare for the Common Man"],
+          "tone": "nostalgic/inspiring",
+          "aha_moment": "Moon landing relied on code with less memory than a calculator.",
+          "demo": "Simulate AGC navigation calculations.",
+          "visual": "Vintage AGC vs. modern CPU comparison.",
+          "target_audience": "history buffs, engineers",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        },
+        {
+          "title": "P vs. NP: The Million-Dollar Question",
+          "description": "Simplify one of computer science’s greatest unsolved problems.",
+          "keywords": ["P vs NP", "computational complexity", "math", "millennium prize", "algorithms"],
+          "hook": [
+            "The math problem worth $1,000,000.",
+            "Why your Sudoku puzzle could break the internet."
+          ],
+          "music": ["Beethoven - Symphony No. 9", "Mussorgsky - Night on Bald Mountain"],
+          "tone": "epic/mind-blowing",
+          "aha_moment": "Easy to verify solutions ≠ easy to find them.",
+          "demo": "Solve vs. verify a Sudoku puzzle.",
+          "visual": "Complexity class hierarchy diagram.",
+          "target_audience": "math enthusiasts, developers",
+          "difficulty_level": "advanced",
+          "runtime": "15+ mins"
+        }
+      ]
+    },
+    "Fun & Games": {
+      "short_form": [
+        {
+          "title": "Procedural Game Worlds",
+          "description": "Generate infinite terrain using Perlin noise (Minecraft-style).",
+          "keywords": ["procedural generation", "Perlin noise", "game design", "Minecraft", "algorithms"],
+          "hook": [
+            "How math creates endless worlds.",
+            "The code trick that built Minecraft."
+          ],
+          "music": ["Tchaikovsky - Nutcracker Suite", "Grieg - In the Hall of the Mountain King"],
+          "tone": "playful/creative",
+          "aha_moment": "Random seeds create unique but cohesive landscapes.",
+          "demo": "Generate a world in real-time.",
+          "visual": "3D terrain evolving with parameters.",
+          "target_audience": "gamers, developers",
+          "difficulty_level": "intermediate",
+          "runtime": "2-3 mins"
+        }
+      ],
+      "long_form": [
+        {
+          "title": "The Math of Poker",
+          "description": "Calculate odds and game theory-optimal strategies.",
+          "keywords": ["poker math", "game theory", "probability", "bluffing", "statistics"],
+          "hook": [
+            "The math trick that makes you unbeatable at poker.",
+            "How robots calculate perfect bluffs."
+          ],
+          "music": ["Joplin - The Entertainer", "Strauss - The Blue Danube"],
+          "tone": "competitive/educational",
+          "aha_moment": "Bluffing frequency balances risk/reward.",
+          "demo": "Simulate 1000 poker hands.",
+          "visual": "Equilibrium strategy charts.",
+          "target_audience": "poker players, strategists",
+          "difficulty_level": "intermediate",
+          "runtime": "15+ mins"
+        }
+      ]
+    }
+  }
+}
+```
+
+# 5 Short Video Ideas for Best Success & Click-Through Rate (CTR)
+
+To maximize **click-through rate (CTR)** and early success, focus on topics that combine curiosity, visual appeal, and broad relevance. Here are the top 5 short-form videos (2–3 mins) to start with:
+
+---
+
+## 1. **SHA-256 Hashing**  
+**Title Example**: *"How a Tiny Change Breaks the Internet (SHA-256)"*  
+- **Why It Works**:  
+  - Cryptography is trending (blockchain, cybersecurity).  
+  - The "avalanche effect" is visually striking and counterintuitive.  
+- **Aha Moment**: Changing one letter (e.g., "Hello" → "hello") creates a *completely different hash*.  
+- **Visual Hook**: Side-by-side hash explosions with a tiny input tweak.  
+- **CTR Boost**: Thumbnail with **split-screen chaos** (calm text vs. scrambled hash).  
+
+---
+
+## 2. **The Birthday Paradox**  
+**Title Example**: *"Why 23 People Will Shock You (Birthday Math)"*  
+- **Why It Works**:  
+  - Probability paradoxes are viral gold.  
+  - The result feels impossible, sparking debate/sharing.  
+- **Aha Moment**: Simulating 23 people and showing >50% shared birthdays.  
+- **Visual Hook**: Rapid pair-counting animation vs. a linear counter.  
+- **CTR Boost**: Thumbnail with a crowded room and a **giant "50%?"** text.  
+
+---
+
+## 3. **GANs (General Adversarial Networks)**  
+**Title Example**: *"AI vs AI: How Fake Faces Get Scarily Real"*  
+- **Why It Works**:  
+  - AI-generated content is trending (deepfakes, art).  
+  - Timelapse of blurry→realistic faces is mesmerizing.  
+- **Aha Moment**: The generator "learns" to fool the discriminator.  
+- **Visual Hook**: Evolving faces with a progress bar (% realism).  
+- **CTR Boost**: Thumbnail with a **half-blurry, half-realistic face**.  
+
+---
+
+## 4. **The Monty Hall Problem/Russian Roulette**  
+**Title Example**: *"Why You Should Always Switch Doors (Monty Hall)"*  
+- **Why It Works**:  
+  - Classic paradox with endless debates.  
+  - Interactive doors (goat/car) create suspense.  
+- **Aha Moment**: Switching doors doubles your odds (from 33% → 66%).  
+- **Visual Hook**: Animated doors revealing goats/cars dynamically.  
+- **CTR Boost**: Thumbnail with **three doors** and a shocked emoji face.  
+
+---
+
+## 5. **A* Pathfinding**  
+**Title Example**: *"How Your GPS Finds the Fastest Route (A* Pathfinding)"*  
+- **Why It Works**:  
+  - Relatable (GPS apps) + visually satisfying (color-coded paths).  
+  - Demonstrates "smart" vs. brute-force logic.  
+- **Aha Moment**: The algorithm "zooms" toward the goal, ignoring dead ends.  
+- **Visual Hook**: Expanding waves of color in a maze.  
+- **CTR Boost**: Thumbnail with a **maze** and a glowing "shortest path."  
+
+---
+
+## Why These Videos Work 🎯  
+1. **Curiosity Gaps**: Titles/questions that make viewers *need* to click.  
+2. **Visual Shock Factor**: Animations that are impossible to scroll past.  
+3. **Broad Appeal**: Topics relevant to tech enthusiasts, students, and casual learners.  
+4. **Shareability**: Paradoxes (Birthday/Monty Hall) encourage debates in comments/social media.  
+
+## Pro Tips for Success 🚀  
+- Use **bright colors** and **dynamic motion** in thumbnails.  
+- Front-load the "aha moment" in the first 15 seconds to retain viewers.  
+- End with a hook like, *"Want to see how AI learns to lie? Subscribe for Part 2!"*  
+
+Start with these, then analyze YouTube Analytics to double down on what works!  

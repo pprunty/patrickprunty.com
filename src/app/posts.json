@@ -1,43 +1,9 @@
 {
   "posts": [
     {
-      "slug": "2024-in-review",
-      "date": "December 30, 2024",
-      "title": "2024 in Review",
-      "draft": true,
-      "description": "Promotions, triathlons, Vietnam and more. A look back on 2024 and planning for the year ahead.",
-      "keywords": [
-        "2024 review",
-        "vietnam travel",
-        "hanoi",
-        "sapa",
-        "artificial intelligence",
-        "ho chi minh city",
-        "triathlon",
-        "try a tri",
-        "senior developer promotion",
-        "web development",
-        "product design",
-        "work life balance",
-        "goals 2025",
-        "content creation",
-        "personal development",
-        "career growth",
-        "software engineering",
-        "travel blog",
-        "fitness goals",
-        "year in review",
-        "lifestyle"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/2024-in-review/starry-night.webp",
-      "readingTime": 5
-    },
-    {
       "slug": "2025-in-review",
-      "date": "January 21, 2025",
-      "title": "2025 in Review",
+      "date": "December 25, 2025",
+      "title": "2025 in review",
       "draft": true,
       "description": "Reflecting on this past year.",
       "keywords": [
@@ -49,69 +15,23 @@
       "readingTime": 1
     },
     {
-      "slug": "elevenlabs-instant-voice-cloning-review",
-      "date": "January 2, 2025",
-      "title": "I Used ElevenLabs AI to Clone My Voice: Here’s The Results",
+      "slug": "confidence",
+      "date": "February 2, 2025",
+      "title": "confidence",
       "draft": true,
-      "description": "Testing AI voice synthesis with real before and after audio samples using ElevenLabs Instant Voice Cloning.",
+      "description": "dw",
       "keywords": [
-        "artificial intelligence",
-        "voice cloning",
-        "ElevenLabs",
-        "content creation",
-        "content",
-        "a.i",
-        "AI-generated voices",
-        "voice synthesis"
+        "hwdwe"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/elevenlabs-instant-voice-cloning-review/elevenlabs.webp",
-      "readingTime": 3
-    },
-    {
-      "slug": "interactive-animation-development-with-manim",
-      "date": "January 2, 2025",
-      "title": "Interactive Animation Development with Manim",
-      "draft": true,
-      "description": "Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.",
-      "keywords": [
-        "mathematics",
-        "programming",
-        "manim",
-        "content creation",
-        "animation",
-        "software development",
-        "python"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/interactive-animation-development-with-manim/manim.png",
-      "readingTime": 7
-    },
-    {
-      "slug": "introducing-samwise-nextjs-15-blog-starter-template",
-      "date": "January 2, 2025",
-      "title": "Introducing Samwise - Next.js 15 Blog Starter Template",
-      "draft": true,
-      "description": "Explore Samwise, a high-performance Next.js 15 blog template designed for creators. Enjoy advanced SEO, seamless customization, and stunning design for free.",
-      "keywords": [
-        "samwise",
-        "next.js",
-        "open source",
-        "blogging",
-        "content creation",
-        "blog starter template"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/introducing-samwise-nextjs-15-blog-starter-template/samwise.webp",
-      "readingTime": 3
+      "image": "/images/confidence/confidence.webp",
+      "readingTime": 1
     },
     {
       "slug": "on-ideas",
       "date": "February 1, 2025",
-      "title": "On Ideas",
+      "title": "on ideas",
       "draft": true,
       "description": "jwedw",
       "keywords": [
@@ -121,20 +41,6 @@
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/on-ideas/on-ideas.webp",
       "readingTime": 1
-    },
-    {
-      "slug": "pixel-project-resources",
-      "date": "January 29, 2025",
-      "title": "Pixel Project Resources",
-      "draft": true,
-      "description": "[INTERNAL] Some resources for Pixel Projects",
-      "keywords": [
-        "pixel projects"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/pixel-project-resources/pixel-project-resources.webp",
-      "readingTime": 21
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
@@ -197,6 +103,21 @@
       "authorUrl": "https://patrickprunty.com",
       "image": "/images/untitled-01/PJ_dinner.webp",
       "readingTime": 2
+    },
+    {
+      "slug": "what-is-blogging",
+      "date": "February 3, 2025",
+      "title": "what is blogging?",
+      "draft": true,
+      "description": "blogging",
+      "keywords": [
+        "blogging",
+        "content creation"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/what-is-blogging/what-is-blogging.webp",
+      "readingTime": 1
     }
   ]
 }
