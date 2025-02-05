@@ -21,7 +21,7 @@
     @apply text-[#fcfcfc];
   }
 
-a[href*="//"]:not([href*="patrickprunty.com"]):after {
+a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after {
   content: "⌝";
 }
 

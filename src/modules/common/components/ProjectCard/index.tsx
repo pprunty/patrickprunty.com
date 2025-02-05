@@ -22,33 +22,41 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const isWebsiteExternal = websiteUrl.startsWith('https://');
   const isSourceExternal = sourceUrl ? sourceUrl.startsWith('https://') : false;
 
-  // Common link classes that match the A component styling:
+  // Common link classes that match the A component styling,
+  // including hover effects with ease-in-out transition.
   const linkClasses =
-    'border-b text-black border-gray-600 dark:text-white border-white flex items-center gap-1';
+    'border-b text-black border-gray-600 dark:text-white border-white flex items-center gap-1 transition ease-in-out duration-300 hover:text-blue-500 dark:hover:text-blue-300';
 
   return (
-    <div className="w-full h-full active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C]">
+    <div className="w-full h-full rounded-xl active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C] border dark:border-[#444] border-gray-300 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm">
       {/* Image Section */}
       <div className="w-full h-56 sm:h-auto p-0">
-        <Image
-          src={imagePath}
-          alt={title}
-          className="object-cover rounded-xl w-full h-full"
-          width={310}
-          height={310}
-          loading="lazy"
-        />
+        <Link
+          href={websiteUrl}
+          target={isWebsiteExternal ? '_blank' : undefined}
+          rel={isWebsiteExternal ? 'noopener noreferrer' : undefined}
+          className="no-after"
+        >
+          <Image
+            src={imagePath}
+            alt={title}
+            className="object-cover rounded-t-xl w-full h-full border-b dark:border-[#444] border-gray-200"
+            width={310}
+            height={310}
+            loading="lazy"
+          />
+        </Link>
       </div>
       {/* Text Section */}
-      <div className="py-4">
-        <h3 className="text-lg font-bold text-gray-700 dark:text-[#c2c2c2]">
+      <div className="p-4 min-h-[14rem] sm:min-h-0 flex flex-col justify-center">
+        <h3 className="text-lg font-bold text-gray-700 dark:text-[#ccc]">
           {title}
         </h3>
-        <p className="py-2 text-[17px] line-clamp-4 text-gray-700 dark:text-[#c2c2c2]">
+        <p className="py-4 text-[17px] line-clamp-5 text-gray-700 dark:text-[#ccc]">
           {description}
         </p>
         {/* Links Section */}
-        <div className="flex gap-4">
+        <div className="flex items-center text-md gap-1">
           <Link
             href={websiteUrl}
             target={isWebsiteExternal ? '_blank' : undefined}
@@ -58,14 +66,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             Website
           </Link>
           {sourceUrl && (
-            <Link
-              href={sourceUrl}
-              target={isSourceExternal ? '_blank' : undefined}
-              rel={isSourceExternal ? 'noopener noreferrer' : undefined}
-              className={linkClasses}
-            >
-              Source
-            </Link>
+            <>
+              <span className="text-gray-700 dark:text-[#c2c2c2]">,</span>
+              <Link
+                href={sourceUrl}
+                target={isSourceExternal ? '_blank' : undefined}
+                rel={isSourceExternal ? 'noopener noreferrer' : undefined}
+                className={linkClasses}
+              >
+                Source
+              </Link>
+            </>
           )}
         </div>
       </div>

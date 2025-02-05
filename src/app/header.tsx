@@ -65,7 +65,7 @@ export default function Header() {
             href={ctaUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
+            className="social-link inline-flex font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
           >
             <SocialIcon
               platform={ctaPlatform}
