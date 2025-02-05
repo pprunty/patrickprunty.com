@@ -21,6 +21,10 @@
     @apply text-[#fcfcfc];
   }
 
+a[href*="//"]:not([href*="patrickprunty.com"]):after {
+  content: "⌝";
+}
+
   /* Prevent transition delays */
   :root.pause-transitions * {
     transition-duration: 0ms !important;
