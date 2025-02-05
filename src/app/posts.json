@@ -29,6 +29,22 @@
       "readingTime": 1
     },
     {
+      "slug": "fifa-12-ultimate-team",
+      "date": "February 4, 2025",
+      "title": "FIFA Ultimate Team 12 and My (Questionable) Teenage Trading Strategies",
+      "draft": true,
+      "description": "Or how techniques developed while trading on the FIFA Ultimate Team 12 marketplace as a 15-year-old might apply to real-life markets.",
+      "keywords": [
+        "trading",
+        "FIFA Ultimate Team",
+        "football"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/fifa-12-ultimate-team/thiago_silva.png",
+      "readingTime": 3
+    },
+    {
       "slug": "on-ideas",
       "date": "February 1, 2025",
       "title": "On Ideas",
@@ -41,6 +57,24 @@
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/on-ideas/on-ideas.webp",
       "readingTime": 1
+    },
+    {
+      "slug": "polymorphic-web-design",
+      "date": "February 4, 2025",
+      "title": "Polymorphic Web Design",
+      "draft": true,
+      "description": "Exploring a web design approach using Next.js by abstracting the layout layer and controlling navigation through route configuration.",
+      "keywords": [
+        "next.js",
+        "web design",
+        "web design principles",
+        "programming",
+        "vercel"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/polymorphic-web-design/polymorphic-web-design.webp",
+      "readingTime": 2
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
@@ -109,15 +143,15 @@
       "date": "February 3, 2025",
       "title": "What is Blogging?",
       "draft": true,
-      "description": "blogging",
+      "description": "Or why in a world full of people trying to be somebody else, you should focus on being you.",
       "keywords": [
-        "blogging",
+        "Or why in a world full of people trying to be somebody else, you should focus on being you.",
         "content creation"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/what-is-blogging/what-is-blogging.webp",
-      "readingTime": 1
+      "readingTime": 4
     }
   ]
 }
