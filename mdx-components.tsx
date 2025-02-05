@@ -36,6 +36,16 @@ import MP3 from "@/app/blog/components/mp3";
 import { Del } from "@/app/blog/components/del"; // wherever you placed it
 import { MP4 } from "@/app/blog/components/mp4"; // Update the path as necessary
 
+function hashString(str: string): string {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const chr = str.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash).toString(36);
+}
+
 // Collect all components into an object
 export const MDXComponents = {
   a,
@@ -53,21 +63,27 @@ export const MDXComponents = {
   blockquote,
   Admonition,
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    const { src, alt } = props;
-    if (!src) return null;
-    const width = 620;
-    const height = 500;
-    return (
-      <MemoizedImage
-        src={src}
-        alt={alt || "Image"}
-        width={width}
-        height={height}
-        loading="lazy"
-        priority={false}
-      />
-    );
-  },
+        const { src, alt } = props;
+        if (!src) return null;
+        const width = 620;
+        const height = 500;
+
+        // Generate a random ID once per component instance.
+        const uniqueId = `img-${hashString(src + (alt || ''))}`;
+
+
+        return (
+          <MemoizedImage
+            src={src}
+            alt={alt || "Image"}
+            width={width}
+            height={height}
+            loading="lazy"
+            priority={false}
+            uniqueId={uniqueId} // Passing the random uniqueId here
+          />
+        );
+      },
   Figure,
   Caption,
   YouTube,

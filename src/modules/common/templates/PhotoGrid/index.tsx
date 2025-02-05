@@ -1,9 +1,7 @@
-// PhotoGrid.tsx
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Grid from '@/modules/common/components/Grid'; // Import the modular Grid component
+import Grid from '@/modules/common/components/Grid';
 import { MemoizedImage } from '@/modules/common/components/MemoizedImage';
 
 interface PhotoGridProps {
@@ -50,6 +48,8 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
             alt={`Photo ${index + 1}`}
             width={600}
             height={600}
+            id={`${index + 1}`}
+            uniqueId={index} // Pass a unique id here, e.g., the index
             loading="lazy"
             priority={false}
             sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 100vw"
@@ -61,5 +61,4 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
   );
 };
 
-// Wrap and export with React.memo
 export default React.memo(PhotoGrid);
