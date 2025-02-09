@@ -48,7 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </Link>
       </div>
       {/* Text Section */}
-      <div className="p-4 min-h-[14rem] sm:min-h-0 flex flex-col justify-center">
+      <div className="p-4 min-h-0 flex flex-col justify-center">
         <h3 className="text-lg font-bold text-gray-700 dark:text-[#ccc]">
           {title}
         </h3>

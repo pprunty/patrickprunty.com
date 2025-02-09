@@ -45,7 +45,6 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
             width={600}
             height={600}
             id={`${index + 1}`}
-            uniqueId={index} // Pass a unique id here, e.g., the index
             loading="lazy"
             priority={false}
             sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 100vw"

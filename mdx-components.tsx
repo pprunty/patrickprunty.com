@@ -67,11 +67,6 @@ export const MDXComponents = {
         if (!src) return null;
         const width = 620;
         const height = 500;
-
-        // Generate a random ID once per component instance.
-        const uniqueId = `img-${hashString(src + (alt || ''))}`;
-
-
         return (
           <MemoizedImage
             src={src}
@@ -80,7 +75,6 @@ export const MDXComponents = {
             height={height}
             loading="lazy"
             priority={false}
-            uniqueId={uniqueId} // Passing the random uniqueId here
           />
         );
       },

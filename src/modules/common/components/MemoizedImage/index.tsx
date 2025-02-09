@@ -1,20 +1,17 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Image, { ImageProps } from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { createPortal } from 'react-dom';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Image, { type ImageProps } from 'next/image';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
   className?: string;
-  uniqueId: string | number; // Unique identifier for shared layout animations
+  animate?: boolean;
 }
 
 export const MemoizedImage = React.memo(function MemoizedImage({
   src,
   alt = 'Image',
-  id,
   width,
   height,
   priority,
@@ -24,97 +21,117 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   sizes,
   quality,
   className = '',
-  uniqueId,
+  animate = true,
   ...rest
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [isImageLoaded, setImageLoaded] = useState(false);
+  const scrollPositionRef = useRef(0);
+  const imageRef = useRef<HTMLSpanElement>(null);
+  const hasIntersectedRef = useRef(false);
 
-  // Set mounted to true after the component mounts on the client
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const openModal = () => {
+  const openModal = useCallback(() => {
     if (focusable) {
+      scrollPositionRef.current = window.scrollY || window.pageYOffset;
+
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+
       setModalOpen(true);
     }
-  };
+  }, [focusable]);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalOpen(false);
-  };
 
-  // Create a unique layoutId for the shared element animation
-  const layoutId = `shared-image-${uniqueId}`;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+
+    window.scrollTo({
+      top: scrollPositionRef.current,
+      behavior: 'instant',
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!animate) return;
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasIntersectedRef.current) {
+          setImageLoaded(true);
+          hasIntersectedRef.current = true;
+          observer.disconnect();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      root: null,
+      threshold: 0.1,
+    });
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [animate]);
 
   return (
     <>
-      {/* Grid Image */}
-      <motion.span
+      <span
+        ref={imageRef}
+        data-animate-image
         className={`overflow-hidden ${focusable ? 'cursor-pointer' : ''}`}
         onClick={openModal}
-        layoutId={`shared-image-container-${uniqueId}`}
       >
-        <motion.div
-          layoutId={layoutId}
-          transition={{ layout: { duration: 0.3, ease: 'easeInOut' } }}
-        >
-          <Image
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-            quality={quality}
-            className={className}
-            priority={priority}
-            loading={loading}
-            fill={fill}
-            sizes={sizes}
-            {...rest}
-          />
-        </motion.div>
-      </motion.span>
+        <Image
+          src={src || '/placeholder.svg'}
+          alt={alt}
+          width={width}
+          height={height}
+          quality={quality}
+          className={`${animate && isImageLoaded ? 'animate-once' : ''} image-animate ${className}`}
+          data-animate={animate && isImageLoaded ? 'zoom-fade-small' : ''}
+          priority={priority}
+          loading={loading}
+          fill={fill}
+          sizes={sizes}
+          {...rest}
+        />
+      </span>
 
-      {/* Focused Modal Image rendered in a Portal after mount */}
-      {mounted &&
-        createPortal(
-          <AnimatePresence>
-            {isModalOpen && (
-              <motion.div
-                className="fixed inset-0 flex justify-center items-center"
-                onClick={closeModal}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                style={{ zIndex: 1000 }} // Ensures the modal is above the grid
-              >
-                <motion.div
-                  layoutId={layoutId}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeModal();
-                  }}
-                  style={{ cursor: 'pointer' }}
-                  transition={{ layout: { duration: 0.3, ease: 'easeInOut' } }}
-                >
-                  <Image
-                    src={src}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    quality={quality}
-                    className=""
-                    priority={true}
-                    {...rest}
-                  />
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body,
-        )}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#1c1c1c]/45 flex justify-center items-center z-50 transition-colors duration-300"
+          onClick={closeModal}
+          data-animate-image
+        >
+          <div
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={src || '/placeholder.svg'}
+              alt={alt}
+              width={width}
+              quality={quality}
+              height={height}
+              className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
+              onClick={closeModal}
+              priority={true}
+              {...rest}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 });
