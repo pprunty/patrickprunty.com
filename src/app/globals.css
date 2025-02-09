@@ -116,7 +116,7 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
 @keyframes zoom-fade-small {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(1.05);
   }
   100% {
     opacity: 1;
@@ -145,6 +145,7 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
   }
   50% {
     transform: scale(0.95);
+    opacity: 0.8;
   }
   100% {
     transform: scale(1);
@@ -170,24 +171,4 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
 .clickable-animation {
   animation: clickable-pulse 0.8s ease-in-out;
   transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.image-animate {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.image-animate[data-animate='zoom-fade-small'] {
-  animation: zoom-fade-small 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes zoom-fade-small {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
