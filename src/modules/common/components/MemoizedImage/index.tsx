@@ -109,14 +109,14 @@ export const MemoizedImage = React.memo(function MemoizedImage({
       </span>
 
       {isModalOpen && (
-        <div
+        <span
           className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#1c1c1c]/45 flex justify-center items-center z-50 transition-colors duration-300"
           onClick={closeModal}
           data-animate-image
         >
-          <div
+          <span
             className="relative w-full h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
+            onClick={closeModal}
           >
             <Image
               src={src || '/placeholder.svg'}
@@ -129,8 +129,8 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               priority={true}
               {...rest}
             />
-          </div>
-        </div>
+          </span>
+        </span>
       )}
     </>
   );
