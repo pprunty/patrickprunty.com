@@ -17,7 +17,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
 
       if (width >= 1024) {
         // lg breakpoint
-        setColumns(2);
+        setColumns(3);
       } else {
         setColumns(2);
       }
@@ -36,7 +36,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
   const imagesToDisplay = images.slice(0, numImagesToDisplay);
 
   return (
-    <Grid columns={columns} gap="gap-1" className="sm:grid-cols-2 py-4">
+    <Grid columns={columns} gap="gap-1" className="sm:grid-cols-3 py-4">
       {imagesToDisplay.map((src, index) => (
         <div key={index} className="relative aspect-square">
           <MemoizedImage

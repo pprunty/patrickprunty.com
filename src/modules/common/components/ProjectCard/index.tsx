@@ -25,12 +25,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   // Common link classes that match the A component styling,
   // including hover effects with ease-in-out transition.
   const linkClasses =
-    'border-b text-black border-gray-600 dark:text-white border-white flex items-center gap-1 transition ease-in-out duration-300 hover:text-blue-500 dark:hover:text-blue-300';
+    'border-b text-black border-gray-600 dark:text-white border-white flex items-center gap-1 transition ease-in-out duration-300 hover:text-[#DC70FF] dark:hover:text-[#999]';
 
   return (
     <div className="w-full h-full rounded-xl active:opacity-80 active:scale-98 bg-white dark:bg-[#1C1C1C] border dark:border-[#444] border-gray-300 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm">
       {/* Image Section */}
-      <div className="w-full h-56 sm:h-auto p-0">
+      <div className="w-full h-56 sm:h-[180px] p-0">
         <Link
           href={websiteUrl}
           target={isWebsiteExternal ? '_blank' : undefined}

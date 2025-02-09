@@ -19,6 +19,7 @@ export const photographyImages = [
     "/photography/IMG_6798.webp",
     "/photography/IMG_7218.webp",
     "/photography/IMG_7462.webp",
+    "/photography/IMG_7848.webp",
     "/photography/IMG_6023.webp",
 ];
 
@@ -60,7 +61,7 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 };
 
-# Hi! I'm Patrick
+# Hi! I'm Patrick 👋🏻
 
 <Image
 src="/images/me-sketch.png"
@@ -84,6 +85,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 Connect with me on [Twitter](https://twitter.com/patrickprunty), or reach out via
 [e-mail](mailto:patrickprunty.business@gmail.com) for business inquiries.
+
+{
+/*
 
 # YouTube Channels [#youtube-channels]
 
@@ -111,17 +115,16 @@ Connect with me on [Twitter](https://twitter.com/patrickprunty), or reach out vi
 />
 </Grid>
 
-# Popular Videos [#popular-videos]
+*/
+}
 
-<YouTube videoId="OqjFylGwAj8" />
+# Latest Videos [#latest-videos]
 
-{/*
 <YouTube videoId={"R0krUthYxF4"}/>
 <YouTube videoId={"wjZofJX0v4M"}/>
 <YouTube videoId={"8XEpK6FpNZc"}/>
-*/}
 
-# Code [[GitHub](https://patrickprunty.com)] [#code]
+# Code [GitHub](https://patrickprunty.com) [#code]
 
 {
 /*
@@ -135,7 +138,7 @@ Connect with me on [Twitter](https://twitter.com/patrickprunty), or reach out vi
 */
 }
 
-<Grid className="sm:grid-cols-2 py-4 grid-cols-1" gap="gap-2">
+<Grid className="sm:grid-cols-2 py-4 grid-cols-1" gap="sm:gap-4 gap-2">
 <ProjectCard
   key="tmplate"
   imagePath="/images/projects/tmplate.png"
@@ -143,6 +146,13 @@ Connect with me on [Twitter](https://twitter.com/patrickprunty), or reach out vi
   description="An open-source application and template showcasing Polymorphic Web Design Principals (work in progress)."
   websiteUrl="https://tmplate.xyz/"
 sourceUrl="https://github.com/pprunty/tmplate.xyz"
+/>
+<ProjectCard
+  key="samwise"
+  imagePath="/images/projects/samwise-v2.png"
+  title="samwise"
+  description="A high-performance open-source digital blog and portfolio starter template built with Next.js 15."
+  websiteUrl="https://samwise.wtf"
 />
 </Grid>
 
@@ -158,3 +168,21 @@ All posts are written in **500ish words**; making them easy for you to absorb. [
 # Photography [#photography]
 
 <PhotoGrid images={photographyImages} />
+
+# More About Me [#more-about-me]
+
+<Image
+src="/images/me.WEBP"
+alt="Patrick Prunty"
+className="pt-4 pb-2 rounded-md block mt-2 mb-5 mx-auto w-full sm:w-80 md:float-left sm:mr-5 sm:mb-5"
+unoptimized
+width={320}
+height={320}
+priority
+/>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis elementum lacus, sit amet tincidunt massa porta quis. Integer imperdiet gravida egestas. Sed finibus est nisi, vitae scelerisque dui elementum eget. Sed id neque leo. Vivamus nec nisl ante. Sed tincidunt massa non auctor iaculis. Mauris et libero egestas, maximus mauris in, aliquet lectus.
+
+Etiam consequat arcu elementum ex mollis auctor. Donec ac felis nisl. Morbi nulla lorem, faucibus vitae fringilla sed, iaculis viverra odio. Curabitur condimentum rutrum mi, sed ultrices urna imperdiet a.
+
+Etiam consequat arcu elementum ex mollis auctor. Donec ac felis nisl. Morbi nulla lorem, faucibus vitae fringilla sed, iaculis viverra odio. Curabitur condimentum rutrum mi, sed ultrices urna imperdiet a.
