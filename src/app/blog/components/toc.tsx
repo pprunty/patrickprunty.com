@@ -33,16 +33,29 @@ const TableOfContents = React.memo(() => {
         header.classList.add('scroll-offset');
       });
 
-      const tocItems = headers
-        .map((header) => {
-          const anchor = header.querySelector('a[id]');
-          const id = anchor?.getAttribute('id') || '';
-          const fullText = header.textContent || '';
-          const text = fullText.split('[#')[0].replace(/^#\s*/, '').trim();
-          const level = parseInt(header.tagName[1]);
-          return { id, text, level };
-        })
-        .filter((item) => item.id && item.text);
+const tocItems = headers
+  .map((header) => {
+    // Grab the anchor which holds the id attribute.
+    const anchor = header.querySelector('a[id]');
+    const id = anchor?.getAttribute('id') || '';
+
+    // Clone the header node so we can modify it without affecting the DOM.
+    const clonedHeader = header.cloneNode(true);
+
+    // Remove the anchor element (the auto-inserted hash) from the clone.
+    const anchorInClone = clonedHeader.querySelector('a');
+    if (anchorInClone) {
+      anchorInClone.remove();
+    }
+
+    // Now extract text without the '#' from the anchor.
+    const fullText = clonedHeader.textContent || '';
+    const text = fullText.split('[#')[0].replace(/^#\s*/, '').trim();
+    const level = parseInt(header.tagName[1]);
+
+    return { id, text, level };
+  })
+  .filter((item) => item.id && item.text);
 
       setToc(tocItems);
     }
