@@ -19,9 +19,8 @@ export default async function PostsPage() {
 
   return (
     <>
-{/* If you're not sure which to read, try How to Do Great Work, Having Kids, or How to Lose Time and Money.
-*/
-}
+      {/* If you're not sure which to read, try __, __, or __.
+       */}
       <Posts posts={posts} />
       {process.env.NODE_ENV === 'development' && (
         <PillarMenu buttons={buttons} />

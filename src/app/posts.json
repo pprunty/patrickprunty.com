@@ -15,20 +15,6 @@
       "readingTime": 1
     },
     {
-      "slug": "confidence",
-      "date": "February 2, 2025",
-      "title": "Confidence",
-      "draft": true,
-      "description": "dw",
-      "keywords": [
-        "hwdwe"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/confidence/confidence.webp",
-      "readingTime": 1
-    },
-    {
       "slug": "fifa-12-ultimate-team",
       "date": "February 4, 2025",
       "title": "FIFA Ultimate Team 12 and My (Questionable) Teenage Trading Strategies",
@@ -41,21 +27,22 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/fifa-12-ultimate-team/thiago_silva.png",
+      "image": "/images/fifa-12-ultimate-team/ut2.jpg",
       "readingTime": 3
     },
     {
-      "slug": "on-ideas",
-      "date": "February 1, 2025",
-      "title": "On Ideas",
+      "slug": "mobile-phones-the-swiss-army-knife-humanity-didnt-need",
+      "date": "February 10, 2025",
+      "title": "Mobile Phones: The Swiss Army Knife Humanity Didn't Need",
       "draft": true,
-      "description": "jwedw",
+      "description": "qdqw",
       "keywords": [
-        "edwe"
+        "mobile developement",
+        "technology"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/on-ideas/on-ideas.webp",
+      "image": "/images/mobile-phones-the-swiss-army-knife-humanity-didnt-need/mobile-phones-the-swiss-army-knife-humanity-didnt-need.webp",
       "readingTime": 1
     },
     {
@@ -92,7 +79,7 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/the-engineers-proclivity-for-perfection/the-engineers-proclivity-for-perfection.webp",
+      "image": "/images/the-engineers-proclivity-for-perfection/Golden_Gate.webp",
       "readingTime": 2
     },
     {
@@ -135,7 +122,7 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com",
-      "image": "/images/untitled-01/PJ_dinner.webp",
+      "image": "/images/untitled-01/splash.webp",
       "readingTime": 2
     },
     {
@@ -152,6 +139,21 @@
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/what-is-blogging/what-is-blogging.webp",
       "readingTime": 4
+    },
+    {
+      "slug": "why-im-optimistic-ai-wont-take-my-swe-job",
+      "date": "February 10, 2025",
+      "title": "Why I’m Optimistic AI Won’t Take My SWE Job",
+      "draft": true,
+      "description": "fefe",
+      "keywords": [
+        "programming",
+        "technology"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/why-im-optimistic-ai-wont-take-my-swe-job/why-im-optimistic-ai-wont-take-my-swe-job.webp",
+      "readingTime": 1
     }
   ]
 }

@@ -6,7 +6,7 @@ import { H1 } from '@/app/blog/components/h1';
 import useSWR from 'swr';
 import type { KeyedMutator } from 'swr';
 import { ago } from 'time-ago';
-import { Calendar, BookOpenText, Eye } from 'lucide-react'; // Import the icons
+import { Calendar1, BookOpenText, Eye } from 'lucide-react'; // Import the icons
 
 interface HeaderProps {
   posts: Post[] | null;
@@ -39,7 +39,7 @@ export default function Header({ currentPost }: HeaderProps) {
           {/* Author */}
           <span className="hidden md:inline">
             <a
-              href={post.authorUrl}
+              href={'https://x.com/pprunty_'}
               className="hover:text-gray-500 dark:hover:text-gray-300"
               target="_blank"
               rel="noopener noreferrer"
@@ -51,7 +51,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Date */}
           <span className="flex items-center">
-            <Calendar className="w-3.5 h-3.5 mr-2" />
+            <Calendar1 className="w-3.5 h-3.5 mr-2" />
             <span suppressHydrationWarning={true}>
               {post.date || 'Unknown date'} (
               {post.date ? `${ago(post.date, true)} ago` : ''})

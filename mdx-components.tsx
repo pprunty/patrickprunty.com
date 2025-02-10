@@ -62,22 +62,32 @@ export const MDXComponents = {
   code: InlineCode,
   blockquote,
   Admonition,
-    img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-        const { src, alt } = props;
-        if (!src) return null;
-        const width = 620;
-        const height = 500;
-        return (
-          <MemoizedImage
-            src={src}
-            alt={alt || "Image"}
-            width={width}
-            height={height}
-            loading="lazy"
-            priority={false}
-          />
-        );
-      },
+img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  // Destructure width and height to remove them from rest
+  const { src, alt, width: _unusedWidth, height: _unusedHeight, ...rest } = props;
+  if (!src) return null;
+
+  // Check if the src ends with '.gif' (case-insensitive)
+  const isGif = src.toLowerCase().endsWith('.gif');
+  const width = 620;
+  const height = 500;
+  return (
+    <MemoizedImage
+      src={src}
+      alt={alt || "Image"}
+      width={width}
+      height={height}
+      loading="lazy"
+      priority={false}
+      sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 100vw"
+      className="object-cover"
+      // If the image is a GIF, set unoptimized to true
+      unoptimized={isGif}
+      {...rest}
+    />
+  );
+},
+
   Figure,
   Caption,
   YouTube,

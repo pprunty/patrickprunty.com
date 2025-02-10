@@ -22,6 +22,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   quality,
   className = '',
   animate = true,
+  unoptimized = false,
   ...rest
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -104,6 +105,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
           loading={loading}
           fill={fill}
           sizes={sizes}
+          unoptimized={unoptimized}
           {...rest}
         />
       </span>
@@ -127,6 +129,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
               onClick={closeModal}
               priority={true}
+              unoptimized={unoptimized}
               {...rest}
             />
           </span>
