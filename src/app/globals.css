@@ -110,7 +110,7 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
 
 /* New animation when the image is clicked */
 .image-click-animate {
-  animation: click-animation 0.5s ease;
+  animation: click-animation 0.4s ease;
 }
 
 @keyframes zoom-fade-small {
@@ -144,8 +144,8 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
     opacity: 1;
   }
   50% {
-    transform: scale(0.95);
-    opacity: 0.8;
+    transform: scale(0.97);
+    opacity: 0.87;
   }
   100% {
     transform: scale(1);
