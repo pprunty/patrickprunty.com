@@ -29,7 +29,7 @@ export function InlineCode({
 
   if (isInlineCode) {
     return (
-      <code className="font-mono bg-gray-100 text-sm px-1 py-0.5 rounded">
+      <code className="font-mono rounded-xl bg-gray-100 text-sm px-1 py-0.5 rounded">
         {children}
       </code>
     );
@@ -38,8 +38,8 @@ export function InlineCode({
   return (
     <pre
       className={`
-        text-sm bg-gray-800 text-white dark:bg-gray-900 dark:text-gray-300
-        overflow-x-scroll rounded-md transition-opacity
+        text-sm text-white
+        overflow-x-scroll rounded-xl transition-opacity
         ${isHighlighted ? 'opacity-100' : 'opacity-0'}
       `}
     >

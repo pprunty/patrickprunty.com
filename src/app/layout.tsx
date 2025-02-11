@@ -86,7 +86,7 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="dark:text-gray-100 max-w-2xl m-auto">
+      <body className="dark:text-[#EEEEEE] text-[#111111] max-w-2xl m-auto">
         <main className="p-6 pt-3 md:pt-6 min-h-screen">
           <Header />
           {children}

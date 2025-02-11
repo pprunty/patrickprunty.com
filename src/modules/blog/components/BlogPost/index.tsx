@@ -43,7 +43,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
 
       {/* Image Section */}
       {post.image && (
-        <div className="relative w-[110px] h-[110px] flex-shrink-0 overflow-hidden rounded-sm">
+        <div className="relative w-[110px] h-[110px] flex-shrink-0 overflow-hidden rounded-lg">
           <Image
             src={post.image || '/placeholder.svg?height=220&width=220'}
             alt={post.title || 'Blog post image'}

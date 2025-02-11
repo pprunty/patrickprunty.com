@@ -41,8 +41,8 @@ const baseIconClasses = `
 
 export function SocialIcon({
   platform,
-  width = '22',
-  height = '22',
+  width = '20',
+  height = '20',
   className = '',
 }: SocialIconProps) {
   // Merged icon props
@@ -50,7 +50,7 @@ export function SocialIcon({
     width,
     height,
     fill: 'currentColor',
-    className: `text-current ${baseIconClasses} ${className}`,
+    className: `text-current sm:w-5 sm:h-5 ${baseIconClasses} ${className}`,
     'aria-label': `${platform} profile`,
     role: 'link',
   };

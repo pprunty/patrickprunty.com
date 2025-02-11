@@ -36,9 +36,39 @@ export const metadata = {
   draft: true
 };
 
+```rust
+fn opcode (bytes: &[u8]) -> (gba::Opcode, u16, u16) {
+let rom = gba:: ROM: : from_bytes (bytes. to_vec()) ;
+rom.opcode(0, laddress| bytes[address as usize])
+}
+#[test]
+fn test_opcodes () {
+assert_eq! (opcode(&[0x0]), (Opcode:: Noop, 1, 4)) ;
+```
 
+`example example example`
+
+<Tweet
+  id="1374492662061953034"
+  caption={
+    <>
+      Next.js continues to grow organically as developers{" "}
+      <a href="https://twitter.com/vincentchw/status/1392775589094838277">
+        explain it
+      </a>{" "}
+      and{" "}
+      <a href="https://twitter.com/vadim_kravcenko/status/1401937274972037122">
+        recommend it
+      </a>{" "}
+      to one another
+    </>
+  }
+/>
+
+{
+/*
 <Strava activityId="13459105961"/>
-
+*/}
 
 # Blogging [#blogging]
 

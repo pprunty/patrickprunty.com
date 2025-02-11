@@ -8,7 +8,7 @@ interface HeadingProps {
 
 export function H3({ children, classname = '' }: HeadingProps) {
   return (
-    <h3 className={`group font-bold text-lg my-8 relative ${classname}`}>
+    <h3 className={`group font-semibold text-lg my-8 relative ${classname}`}>
       {withHeadingId(children)}
     </h3>
   );

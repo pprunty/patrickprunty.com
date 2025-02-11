@@ -81,19 +81,20 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
   pre code {
     font-family: monospace;
     font-size: 14px;
+    border-radius: 0.25rem;
   }
 
   code {
     padding: 0.25rem;
     font-family: monospace;
+    border-radius: 0.25rem;
+    background-color: #2F2F2F; /* Dark mode background for inline code */
   }
 
-  :root.dark pre {
-    background-color: #2b2b2b; /* Dark mode background for pre */
-  }
 
   :root.dark code {
-    background-color: #2b2b2b; /* Dark mode background for inline code */
+    background-color: #2F2F2F; /* Dark mode background for inline code */
+    border-radius: 0.25rem;
   }
 }
 

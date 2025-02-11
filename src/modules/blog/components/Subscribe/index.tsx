@@ -53,7 +53,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
 
   return (
     <div className="w-full max-w-sm">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-0">
         <div className="relative">
           <input
             type="email"
@@ -69,6 +69,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
                   text-md
                   sm:text-sm
                   border
+                  min-w-[250px]
                   border-[#4B5563]
                   dark:border-[#555]
                   dark:active:border-[#fcfcfc]

@@ -7,7 +7,7 @@ interface PProps {
 
 export function P({ children, className = '' }: PProps) {
   return (
-    <p className={`my-5 text-[17px] [blockquote_&]:my-2 ${className}`}>
+    <p className={`my-5 text-md [blockquote_&]:my-2 ${className}`}>
       {children}
     </p>
   );

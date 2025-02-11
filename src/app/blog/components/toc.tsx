@@ -160,23 +160,25 @@ const TableOfContents = React.memo(() => {
           >
             <ul className="space-y-2">
               {toc.map((item, index) => (
-<li key={index} style={{ paddingLeft: `${(item.level - 1) * 1.5}rem` }}>
-  <a
-    href={`#${item.id}`}
-    onClick={(e) => handleClick(e, item.id)}
-    className={`block text-md hover:text-gray-400 dark:hover:text-[#CCCCCC] transition-colors group ${
-      selectedId === item.id
-        ? 'text-[#DC70FF]'
-        : 'text-gray-700 dark:text-[#999999]'
-    }`}
-  >
-    <span className="text-current opacity-50">
-      {generateNumbering(toc, index)}
-    </span>{' '}
-    {item.text}
-  </a>
-</li>
-
+                <li
+                  key={index}
+                  style={{ paddingLeft: `${(item.level - 1) * 1.5}rem` }}
+                >
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => handleClick(e, item.id)}
+                    className={`block text-md hover:text-gray-400 dark:hover:text-[#CCCCCC] transition-colors group ${
+                      selectedId === item.id
+                        ? 'text-[#DC70FF]'
+                        : 'text-gray-700 dark:text-[#999999]'
+                    }`}
+                  >
+                    <span className="text-current opacity-50">
+                      {generateNumbering(toc, index)}
+                    </span>{' '}
+                    {item.text}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
