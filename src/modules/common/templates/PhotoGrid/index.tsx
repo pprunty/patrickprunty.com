@@ -1,9 +1,7 @@
-// PhotoGrid.tsx
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Grid from '@/modules/common/components/Grid'; // Import the modular Grid component
+import Grid from '@/modules/common/components/Grid';
 import { MemoizedImage } from '@/modules/common/components/MemoizedImage';
 
 interface PhotoGridProps {
@@ -38,11 +36,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
   const imagesToDisplay = images.slice(0, numImagesToDisplay);
 
   return (
-    <Grid
-      columns={columns}
-      gap="gap-1"
-      className="sm:grid-cols-2 lg:grid-cols-3 py-4"
-    >
+    <Grid columns={columns} gap="gap-1" className="sm:grid-cols-3 py-4">
       {imagesToDisplay.map((src, index) => (
         <div key={index} className="relative aspect-square">
           <MemoizedImage
@@ -50,6 +44,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
             alt={`Photo ${index + 1}`}
             width={600}
             height={600}
+            id={`${index + 1}`}
             loading="lazy"
             priority={false}
             sizes="(min-width: 1024px) 20vw, (min-width: 768px) 50vw, 100vw"
@@ -61,5 +56,4 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
   );
 };
 
-// Wrap and export with React.memo
 export default React.memo(PhotoGrid);

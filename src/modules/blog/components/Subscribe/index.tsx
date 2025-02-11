@@ -73,7 +73,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
                   dark:border-[#555]
                   dark:active:border-[#fcfcfc]
                   bg-[#f0f0f0]
-                  dark:bg-[#1c1c1c]
+                  dark:bg-[#1F1F1F]
                   dark:text-[#fcfcfc]
                   text-[#0F0F0F]
              rounded-l-md
@@ -99,6 +99,8 @@ const Subscribe: React.FC<SubscribeProps> = ({
              rounded-r-md
              text-sm
              hover:bg-[#000]
+             dark:active:border-[#fcfcfc]
+             dark:active:border-2
              dark:bg-[#444]
              dark:hover:bg-[#555]
              transition-colors

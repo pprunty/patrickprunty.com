@@ -54,7 +54,7 @@ const Star: React.FC<StarProps> = ({ filled, onClick, locked }) => {
       version="1.1"
       viewBox="0 0 47.94 47.94"
       xmlSpace="preserve"
-      className={`cursor-pointer mr-2 ${locked ? 'cursor-not-allowed' : ''}`}
+      className={`mr-2`}
       onClick={!locked ? onClick : undefined}
     >
       <path

@@ -17,6 +17,7 @@ export const photographyImages = [
     "/photography/IMG_5905.webp",
     "/photography/c57ad8ca-ee1e-4d3d-a9f6-9b0222e211da.webp",
     "/photography/IMG_6798.webp",
+    "/photography/IMG_7848.webp",
     "/photography/IMG_7218.webp",
     "/photography/IMG_7462.webp",
     "/photography/IMG_6023.webp",
@@ -60,109 +61,88 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 };
 
-# About [#about]
+# Hi! I'm Patrick 👋🏻
 
 <Image
-src="/images/me.WEBP"
+src="/images/me-sketch.png"
 alt="Patrick Prunty"
-className="bg-gray-100 rounded-md min-h-[440px] block mt-2 mb-5 mx-auto w-full sm:w-80 md:float-right sm:ml-5 sm:mb-5"
+className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-64 h-64 sm:w-46 sm:h-46 md:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
 unoptimized
-quality={100}
-focusable={false}
-loading={"eager"}
-width={160}
-height={160}
+width={320}
+height={320}
 priority
 />
 
-
 I'm a senior full-stack web developer at [Optum Healthcare](https://en.wikipedia.org/wiki/Optum) based in Dublin, Ireland.
 
-My journey in technology has been unconventional. I began my career in construction, spending a year as a plumber before deciding to pursue higher education.
+I'm the creator of YouTube channel, [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1). An
+educational channel exploring topics in computational mathematics, computer science and much more through dynamic animations.
 
-I earned a B.A. in Mathematics and English Literature from [University College Dublin](https://www.ucd.ie/), followed by an M.Sc. in Computational Mathematics and High-Performance Computing at [Trinity College Dublin](https://www.tcd.ie/).
+I enjoy sharing my perspectives on life, technology, and open source projects in my [personal blog](/blog).
 
-Today, I design and develop web applications that empower healthcare providers to deliver better care to thousands of
-patients.
+Beyond programming, I enjoy training for triathlons, hiking, and spending quality time with my family and friends.
 
-In addition to my professional work, I dedicate my spare time to creative endeavors, including my [YouTube channels](/#youtube-channels), [personal blog](/blog) and [open-source projects](/#software-projects).
+Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries.
 
-When I’m not coding or working on creative projects, you can find me training for triathlons, hiking, or spending time with my loved ones.
-
-Connect with me on [Twitter](https://twitter.com/patrickprunty), or reach out via
-[E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries.
+My digital CV is available [here](https://read.cv/pprunty).
 
 {/*
-My [reading list](/reading-list) for 2025 can be found [here](/reading-list).
-*/}
+# Latest YouTube Video [#latest-youtube-video]
 
-# YouTube Channels [#youtube-channels]
-
-
-<Showcase items={[
-<ProjectCard
-  key="jigsaw-presents"
-  imagePath="/images/projects/jigsaw-presents.webp"
-  title="Jigsaw Presents"
-  description="A YouTube channel providing insight into trending films and television series through video essays."
-  url="https://www.youtube.com/channel/UCx8iHEGQMyeInLgPQ81-EJA?sub_confirmation=1"
-/>,
-<ProjectCard
-  key="patrick-prunty"
-  imagePath="/images/projects/patrick-prunty.png"
-  title="Patrick Prunty"
-  description="A personal YouTube channel documenting some of my adventures hiking, skiing, and more."
-  url="https://www.youtube.com/@patrickprunty?sub_confirmation=1"
-/>,
-<ProjectCard
-  key="pixel-projects"
-  imagePath="/images/projects/pixel-projects-4.png"
-  title="Pixel Projects"
-  description="A YouTube channel exploring computational mathematics and computer science through visual animations."
-  url="https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1"
-/>,
-]} />
-
-{/*
-<YouTube videoId={"R0krUthYxF4"}/>
 <YouTube videoId={"wjZofJX0v4M"}/>
+<YouTube videoId={"mn2Dcy-NDTw"}/>
 <YouTube videoId={"8XEpK6FpNZc"}/>
 */}
 
 # Software Projects [#software-projects]
 
+
+* **[tmplate.xyz](https://tmplate.xyz/)**: An open-source application and template showcasing Polymorphic Web Design Principals (work in progress). [Website](https://tmplate.xyz/), [Source](https://github.com/pprunty/tmplate.xyz)
+* **[samwise](https://samwise.wtf/)**: A high-performance, open-source and SEO-automatized digital blog and portfolio starter template built with Next.js 15. [Website](https://samwise.wtf/), [Source](https://github.com/pprunty/samwise)
+* **[manim-interactive](https://github.com/pprunty/manim-interactive)**: A streamlined interactive environment for [Manim](https://github.com/3b1b/manim), allowing seamless mathematical animation creation with Sublime Text integration, keyboard shortcuts, and an optimized workflow replicating that of 3blue1brown's Grant Sanderson. [Source](https://github.com/pprunty/manim-interactive)
+
+{/*
+* **[motormongo](https://motormongo.readthedocs.io/)**: An asynchronous Python ODM for MongoDB built on Motor with a mongoengine-like API for non-blocking CRUD operations. [Website](https://motormongo.readthedocs.io/), [Source](https://github.com/pprunty/motormongo)
+*/}
+
+To see a complete list of my work, visit my [GitHub profile](https://github.com/pprunty).
+
 {
 /*
-<ProjectCard
-  key="samwise"
-  imagePath="/images/projects/samwise-v2.png"
-  title="samwise"
-  description="A high-performance open-source digital blog and portfolio starter template built with Next.js 15."
-  url="https://samwise.wtf"
-/>,
-*/
-}
-
-
-<Showcase items={[
+<Grid className="sm:grid-cols-2 py-4 grid-cols-1" gap="gap-4">
 <ProjectCard
   key="tmplate"
   imagePath="/images/projects/tmplate.png"
   title="tmplate.xyz"
   description="An open-source application and template showcasing Polymorphic Web Design Principals (work in progress)."
-  url="https://tmplate.xyz/"
+  websiteUrl="https://tmplate.xyz/"
+sourceUrl="https://github.com/pprunty/tmplate.xyz"
 />
-]} />
+<ProjectCard
+  key="samwise"
+  imagePath="/images/projects/samwise-v2.png"
+  title="samwise"
+  description="A high-performance, open-source and SE0-automatized digital blog and portfolio starter template built with Next.js 15."
+  websiteUrl="https://samwise.wtf"
+/>
+</Grid>
 
-{/*
-# 500ish Blog [#blog]
+# About [#more-about-me]
 
-My [500ish Blog](/) covers a variety of topics, including web development, outdoor adventure, and content creation.
+My journey in technology has been unconventional. I began my career in construction—spending a year as an apprentice plumber—before discovering my passion for programming.
 
-All posts are written in **500ish words**; making them easy for you to absorb. [Browse the latest posts here](/).
+After earning a B.A. in Mathematics and English Literature from [University College Dublin](https://www.ucd.ie/), I pursued an M.Sc. in Computational Mathematics and High-Performance Computing at [Trinity College Dublin](https://www.tcd.ie/).
 
-*/}
+Today, I channel my diverse background into designing and developing web applications that empower healthcare providers to deliver better care to tens of thousands of patients.
 
-# Photography [#photography]
+I thrive on creative challenges—whether that's writing code, crafting content, or filmmaking—and find inspiration in the great outdoors through travel, hiking and triathlon.
+
+If you're interested in working together or simply want to say hello, reach out via my socials below.
+
+*/
+}
+
+# Photos [#photos]
 
 <PhotoGrid images={photographyImages} />
+

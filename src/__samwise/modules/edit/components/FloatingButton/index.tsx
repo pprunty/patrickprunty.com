@@ -1,7 +1,8 @@
-// src/modules/edit/components/FloatingButton.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TooltipWrapper from '@/modules/common/components/Tooltip';
-import { Edit, Trash2, Eye, Settings, FilePlus, Save } from 'lucide-react';
+import type { LucideProps } from 'lucide-react';
+
+type IconType = React.ComponentType<LucideProps>;
 
 interface FloatingButtonProps {
   onClick: () => void;
@@ -19,9 +20,31 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
   type,
   isEditMode,
 }) => {
-  // Do not render the button in production environments
-  if (process.env.NODE_ENV === 'production') {
-    return null;
+  const [icons, setIcons] = useState<{
+    Edit: IconType;
+    Trash2: IconType;
+    Eye: IconType;
+    Settings: IconType;
+    FilePlus: IconType;
+    Save: IconType;
+  } | null>(null);
+
+  useEffect(() => {
+    // Dynamically import lucide-react as an ESM
+    import('lucide-react').then((module) => {
+      setIcons({
+        Edit: module.Edit,
+        Trash2: module.Trash2,
+        Eye: module.Eye,
+        Settings: module.Settings,
+        FilePlus: module.FilePlus,
+        Save: module.Save,
+      });
+    });
+  }, []);
+
+  if (!icons) {
+    return null; // or a loading spinner if desired
   }
 
   const ariaLabel =
@@ -41,20 +64,20 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
 
   const IconComponent =
     type === 'delete-post'
-      ? Trash2
+      ? icons.Trash2
       : type === 'create-post'
-        ? FilePlus
+        ? icons.FilePlus
         : type === 'toggle-edit-mode'
           ? isEditMode
-            ? Eye
-            : Edit
-          : Settings;
+            ? icons.Eye
+            : icons.Edit
+          : icons.Settings;
 
   return (
     <TooltipWrapper message={ariaLabel} position="left">
       <button
         onClick={onClick}
-        className={`text-white p-2`}
+        className="text-white p-2"
         aria-label={ariaLabel}
       >
         <IconComponent size={16} className="text-current" />

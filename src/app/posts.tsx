@@ -1,13 +1,24 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import useSWR from 'swr';
-import { Post } from './get-posts';
 import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import Image from 'next/image';
+
+// --- Types
 
 type SortSetting = ['date' | 'views' | 'title', 'desc' | 'asc'];
+
+interface Post {
+  slug: string;
+  title: string;
+  date?: string | null;
+  views?: number;
+  description?: string;
+  image?: string;
+}
 
 interface PostsProps {
   posts: Post[];
@@ -15,14 +26,22 @@ interface PostsProps {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
+// --- Main Posts Component
+
 export function Posts({ posts: initialPosts }: PostsProps) {
   const [sort, setSort] = useState<SortSetting>(['date', 'desc']);
 
-  // Use SWR to fetch posts with fallback data as initialPosts
+  // Use SWR to fetch posts with fallback data
   const { data: posts } = useSWR('/api/posts', fetcher, {
     fallbackData: initialPosts,
     refreshInterval: 5000,
   });
+
+  // State for the hovered post and the mouse position
+  const [hoveredPost, setHoveredPost] = useState<Post | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // --- Sorting functions
 
   function sortDate() {
     setSort((prevSort) => [
@@ -46,61 +65,73 @@ export function Posts({ posts: initialPosts }: PostsProps) {
   }
 
   return (
-    <Suspense fallback={null}>
-      <main className="max-w-2xl font-mono m-auto text-sm">
-        <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
-          {/* Date Sort Button */}
-          <button
-            onClick={sortDate}
-            className={`w-12 h-9 text-left flex items-center ${
-              sort[0] === 'date'
-                ? 'text-black dark:text-white' // Active colors
-                : 'text-[#555] dark:text-[#999]'
-            }`}
-          >
-            date
-            <span className="ml-1">
-              <SortIcon sortKey="date" currentSort={sort} />
-            </span>
-          </button>
+    <>
+      <Suspense fallback={null}>
+        <main className="max-w-2xl font-mono m-auto text-sm relative">
+          <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
+            {/* Date Sort Button */}
+            <button
+              onClick={sortDate}
+              className={`w-12 h-9 text-left flex items-center ${
+                sort[0] === 'date'
+                  ? 'text-black dark:text-white'
+                  : 'text-[#555] dark:text-[#999]'
+              }`}
+            >
+              date
+              <span className="ml-1">
+                <SortIcon sortKey="date" currentSort={sort} />
+              </span>
+            </button>
 
-          {/* Title Sort Button */}
-          <button
-            onClick={sortTitle}
-            className={`h-9 pl-4 flex items-center flex-grow ${
-              sort[0] === 'title'
-                ? 'text-black dark:text-white' // Active colors
-                : 'text-[#555] dark:text-[#999]'
-            }`}
-          >
-            title
-            <span className="ml-1">
-              <SortIcon sortKey="title" currentSort={sort} />
-            </span>
-          </button>
+            {/* Title Sort Button */}
+            <button
+              onClick={sortTitle}
+              className={`h-9 pl-4 flex items-center flex-grow ${
+                sort[0] === 'title'
+                  ? 'text-black dark:text-white'
+                  : 'text-[#555] dark:text-[#999]'
+              }`}
+            >
+              title
+              <span className="ml-1">
+                <SortIcon sortKey="title" currentSort={sort} />
+              </span>
+            </button>
 
-          {/* Views Sort Button */}
-          <button
-            onClick={sortViews}
-            className={`h-9 pl-4 flex items-center ${
-              sort[0] === 'views'
-                ? 'text-black dark:text-white' // Active colors
-                : 'text-[#555] dark:text-[#999]'
-            }`}
-          >
-            views
-            <span className="ml-1">
-              <SortIcon sortKey="views" currentSort={sort} />
-            </span>
-          </button>
-        </header>
+            {/* Views Sort Button */}
+            <button
+              onClick={sortViews}
+              className={`h-9 pl-4 flex items-center ${
+                sort[0] === 'views'
+                  ? 'text-black dark:text-white'
+                  : 'text-[#555] dark:text-[#999]'
+              }`}
+            >
+              views
+              <span className="ml-1">
+                <SortIcon sortKey="views" currentSort={sort} />
+              </span>
+            </button>
+          </header>
 
-        {/* Pass the posts and sorting state to List */}
-        <List posts={posts} sort={sort} />
-      </main>
-    </Suspense>
+          {/* Pass callbacks to List so each item can report hover and mouse position */}
+          <List
+            posts={posts}
+            sort={sort}
+            onPostHover={(post) => setHoveredPost(post)}
+            onPostLeave={() => setHoveredPost(null)}
+            onPostMouseMove={(pos) => setMousePos(pos)}
+          />
+        </main>
+      </Suspense>
+      {/* Render the hover preview modal */}
+      <HoverPreviewModal hoveredPost={hoveredPost} mousePos={mousePos} />
+    </>
   );
 }
+
+// --- Sort Icon Component
 
 interface SortIconProps {
   sortKey: 'date' | 'views' | 'title';
@@ -121,12 +152,23 @@ function SortIcon({ sortKey, currentSort }: SortIconProps) {
   );
 }
 
+// --- List Component
+
 interface ListProps {
   posts: Post[];
   sort: SortSetting;
+  onPostHover: (post: Post) => void;
+  onPostLeave: () => void;
+  onPostMouseMove: (pos: { x: number; y: number }) => void;
 }
 
-function List({ posts, sort }: ListProps) {
+function List({
+  posts,
+  sort,
+  onPostHover,
+  onPostLeave,
+  onPostMouseMove,
+}: ListProps) {
   const sortedPosts = useMemo(() => {
     const [sortKey, sortDirection] = sort;
     return [...posts].sort((a, b) => {
@@ -159,14 +201,18 @@ function List({ posts, sort }: ListProps) {
           !sortedPosts[i + 1] || getYear(sortedPosts[i + 1].date) !== year;
 
         return (
-          <li key={post.slug}>
+          <li
+            key={post.slug}
+            onMouseEnter={() => onPostHover(post)}
+            onMouseMove={(e) => onPostMouseMove({ x: e.clientX, y: e.clientY })}
+            onMouseLeave={() => onPostLeave()}
+          >
             <Link href={`/blog/${post.slug}/`} prefetch>
               <span
                 className={`flex transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222] border-y dark:border-[#313131]
                           ${!firstOfYear ? 'border-t-0' : ''}
                           ${lastOfYear ? 'border-b-0' : ''}
-                          ${i === 0 ? 'border-t border-t-[#d4d4d4] dark:border-t-[#555]' : ''}
-                        `}
+                          ${i === 0 ? 'border-t border-t-[#d4d4d4] dark:border-t-[#555]' : ''}`}
               >
                 <span
                   className={`py-3 flex grow items-start ${
@@ -198,4 +244,102 @@ function List({ posts, sort }: ListProps) {
 
 function getYear(date?: string | null) {
   return date ? new Date(date).getFullYear() : 'Unknown';
+}
+
+interface HoverPreviewModalProps {
+  hoveredPost: Post | null;
+  mousePos: { x: number; y: number };
+}
+
+function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
+  // Animate modal position to follow the mouse with a slight delay.
+  const [modalPos, setModalPos] = useState({ x: mousePos.x, y: mousePos.y });
+  useEffect(() => {
+    let animationFrameId: number;
+    const updatePosition = () => {
+      setModalPos((prev) => ({
+        x: prev.x + (mousePos.x - prev.x) * 0.1,
+        y: prev.y + (mousePos.y - prev.y) * 0.1,
+      }));
+      animationFrameId = requestAnimationFrame(updatePosition);
+    };
+    updatePosition();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [mousePos]);
+
+  // Manage fade-in / fade-out: when hoveredPost becomes null, fade out and then clear activePost.
+  const [activePost, setActivePost] = useState<Post | null>(hoveredPost);
+  const [visible, setVisible] = useState(!!hoveredPost);
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (hoveredPost) {
+      setActivePost(hoveredPost);
+      setVisible(true);
+    } else {
+      setVisible(false);
+      timer = setTimeout(() => {
+        setActivePost(null);
+      }, 150); // Fade-out duration (150ms)
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [hoveredPost]);
+
+  // Cache modal content for posts that have already been hovered over.
+  const contentCache = useRef<Map<string, React.ReactElement>>(new Map());
+  let modalContent: React.ReactElement | null = null;
+  if (activePost) {
+    if (contentCache.current.has(activePost.slug)) {
+      modalContent = contentCache.current.get(activePost.slug)!;
+    } else {
+      modalContent = (
+        <>
+          {activePost.image && (
+            // Wrap Image in a relative container with fixed dimensions.
+            <div className="relative w-full h-40">
+              <Image
+                src={activePost.image}
+                alt={activePost.title}
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          )}
+          <div className="p-4">
+            <p className="text-[15px] h-[4.5rem] text-gray-700 dark:text-gray-300 line-clamp-3">
+              {activePost.description}
+            </p>
+          </div>
+        </>
+      );
+      contentCache.current.set(activePost.slug, modalContent);
+    }
+  }
+
+  // Render only on desktop devices.
+  if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+    return null;
+  }
+  if (!activePost) return null;
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        left: modalPos.x + 20, // 20px to the right of the mouse
+        top: modalPos.y + 32, // About 1.5rem (24px) below the mouse
+        pointerEvents: 'none',
+        zIndex: 1000,
+      }}
+    >
+      <div
+        className={`bg-white dark:bg-[#1F1F1F] rounded-lg shadow-xl border dark:border-[#444] w-80 overflow-hidden transition-opacity duration-150 ${
+          visible ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {modalContent}
+      </div>
+    </div>
+  );
 }

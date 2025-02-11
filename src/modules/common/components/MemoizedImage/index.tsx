@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Image, { ImageProps } from 'next/image';
+import Image, { type ImageProps } from 'next/image';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
   className?: string;
-  animate?: boolean; // Add the animate prop
+  animate?: boolean;
 }
 
 export const MemoizedImage = React.memo(function MemoizedImage({
@@ -21,13 +21,14 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   sizes,
   quality,
   className = '',
-  animate = true, // Default value for animate
+  animate = true,
+  unoptimized = false,
   ...rest
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isImageLoaded, setImageLoaded] = useState(false);
   const scrollPositionRef = useRef(0);
-  const imageRef = useRef<HTMLSpanElement>(null); // Changed to HTMLSpanElement
+  const imageRef = useRef<HTMLSpanElement>(null);
   const hasIntersectedRef = useRef(false);
 
   const openModal = useCallback(() => {
@@ -58,7 +59,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   }, []);
 
   useEffect(() => {
-    if (!animate) return; // Skip animation logic if animate is false
+    if (!animate) return;
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
@@ -93,39 +94,42 @@ export const MemoizedImage = React.memo(function MemoizedImage({
         onClick={openModal}
       >
         <Image
-          src={src}
+          src={src || '/placeholder.svg'}
           alt={alt}
           width={width}
           height={height}
           quality={quality}
-          className={`${
-            animate && isImageLoaded ? 'animate-once' : ''
-          } image-animate ${className}`}
+          className={`${animate && isImageLoaded ? 'animate-once' : ''} image-animate ${className}`}
           data-animate={animate && isImageLoaded ? 'zoom-fade-small' : ''}
           priority={priority}
           loading={loading}
           fill={fill}
           sizes={sizes}
+          unoptimized={unoptimized}
           {...rest}
         />
       </span>
 
       {isModalOpen && (
         <span
-          className="fixed inset-0 bg-white bg-opacity-45 backdrop-blur-lg dark:bg-black dark:bg-opacity-50 flex justify-center items-center z-50 p-4 transition-colors duration-300"
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#1F1F1F]/45 flex justify-center items-center z-50 transition-colors duration-300"
           onClick={closeModal}
           data-animate-image
         >
-          <span className="relative" onClick={(e) => e.stopPropagation()}>
+          <span
+            className="relative w-full h-full flex items-center justify-center"
+            onClick={closeModal}
+          >
             <Image
-              src={src}
+              src={src || '/placeholder.svg'}
               alt={alt}
               width={width}
               quality={quality}
               height={height}
-              className="cursor-pointer p-4 image-click-animate"
+              className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
               onClick={closeModal}
               priority={true}
+              unoptimized={unoptimized}
               {...rest}
             />
           </span>

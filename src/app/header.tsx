@@ -65,13 +65,13 @@ export default function Header() {
             href={ctaUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
+            className="no-after inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
           >
             <SocialIcon
               platform={ctaPlatform}
               width="15"
               height="15"
-              className="mr-2 text-[#1c1c1c] dark:text-[#fcfcfc]"
+              className="mr-1.5 text-[#1F1F1F] dark:text-[#fcfcfc]"
             />
             {/* Render first word always, additional words only on sm+ */}
             {firstWord}

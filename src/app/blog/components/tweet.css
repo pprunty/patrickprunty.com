@@ -4,6 +4,9 @@
   --tweet-container-margin: 0;
   --tweet-font-family: inherit;
   --tweet-font-color: inherit;
+  a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after {
+    content: "";
+  }
 
   /* light colors override */
   --tweet-bg-color-hover: --tweet-bg-color;

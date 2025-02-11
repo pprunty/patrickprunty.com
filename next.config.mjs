@@ -39,6 +39,15 @@ const nextConfig = {
           },
         ],
       },
+      {
+              source: "/images/me-sketch.png",
+              headers: [
+                {
+                  key: "cache-control",
+                  value: "public, max-age=31536000, immutable",
+                },
+              ],
+            },
       // Cache *all* images in /images/projects/ for 1 year (immutable)
       {
         source: "/images/projects/(.*)",

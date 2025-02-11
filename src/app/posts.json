@@ -15,18 +15,20 @@
       "readingTime": 1
     },
     {
-      "slug": "confidence",
-      "date": "February 2, 2025",
-      "title": "Confidence",
-      "draft": true,
-      "description": "dw",
+      "slug": "2025-reading-list",
+      "date": "January 1, 2025",
+      "title": "2025 Reading List",
+      "draft": false,
+      "description": "My reading list for 2025, including brief reviews and ratings.",
       "keywords": [
-        "hwdwe"
+        "reading list 2025",
+        "book review",
+        "reading challenge"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/confidence/confidence.webp",
-      "readingTime": 1
+      "image": "/images/2025-reading-list/2025-reading-list.webp",
+      "readingTime": 3
     },
     {
       "slug": "fifa-12-ultimate-team",
@@ -41,21 +43,22 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/fifa-12-ultimate-team/thiago_silva.png",
+      "image": "/images/fifa-12-ultimate-team/ut2.jpg",
       "readingTime": 3
     },
     {
-      "slug": "on-ideas",
-      "date": "February 1, 2025",
-      "title": "On Ideas",
+      "slug": "mobile-phones-the-swiss-army-knife-humanity-didnt-need",
+      "date": "February 10, 2025",
+      "title": "Mobile Phones: The Swiss Army Knife Humanity Didn't Need",
       "draft": true,
-      "description": "jwedw",
+      "description": "qdqw",
       "keywords": [
-        "edwe"
+        "mobile development",
+        "technology"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/on-ideas/on-ideas.webp",
+      "image": "/images/mobile-phones-the-swiss-army-knife-humanity-didnt-need/mobile-phones-the-swiss-army-knife-humanity-didnt-need.webp",
       "readingTime": 1
     },
     {
@@ -92,7 +95,7 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/the-engineers-proclivity-for-perfection/the-engineers-proclivity-for-perfection.webp",
+      "image": "/images/the-engineers-proclivity-for-perfection/Golden_Gate.webp",
       "readingTime": 2
     },
     {
@@ -135,7 +138,7 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com",
-      "image": "/images/untitled-01/PJ_dinner.webp",
+      "image": "/images/untitled-01/splash.webp",
       "readingTime": 2
     },
     {
@@ -143,15 +146,30 @@
       "date": "February 3, 2025",
       "title": "What is Blogging?",
       "draft": true,
-      "description": "Or why in a world full of people trying to be somebody else, you should focus on being you.",
+      "description": "Or why, in a world full of people trying to be somebody else, you should focus on being you.",
       "keywords": [
-        "Or why in a world full of people trying to be somebody else, you should focus on being you.",
+        "Or why, in a world full of people trying to be somebody else, you should focus on being you.",
         "content creation"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/what-is-blogging/what-is-blogging.webp",
       "readingTime": 4
+    },
+    {
+      "slug": "why-im-optimistic-ai-wont-take-my-swe-job",
+      "date": "February 10, 2025",
+      "title": "Why I’m Optimistic AI Won’t Take My SWE Job",
+      "draft": true,
+      "description": "fefe",
+      "keywords": [
+        "programming",
+        "technology"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/why-im-optimistic-ai-wont-take-my-swe-job/why-im-optimistic-ai-wont-take-my-swe-job.webp",
+      "readingTime": 1
     }
   ]
 }
