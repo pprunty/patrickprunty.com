@@ -33,29 +33,29 @@ const TableOfContents = React.memo(() => {
         header.classList.add('scroll-offset');
       });
 
-const tocItems = headers
-  .map((header) => {
-    // Grab the anchor which holds the id attribute.
-    const anchor = header.querySelector('a[id]');
-    const id = anchor?.getAttribute('id') || '';
+      const tocItems = headers
+        .map((header) => {
+          // Grab the anchor which holds the id attribute.
+          const anchor = header.querySelector('a[id]');
+          const id = anchor?.getAttribute('id') || '';
 
-    // Clone the header node so we can modify it without affecting the DOM.
-    const clonedHeader = header.cloneNode(true);
+          // Clone the header node so we can modify it without affecting the DOM.
+          const clonedHeader = header.cloneNode(true) as Element;
 
-    // Remove the anchor element (the auto-inserted hash) from the clone.
-    const anchorInClone = clonedHeader.querySelector('a');
-    if (anchorInClone) {
-      anchorInClone.remove();
-    }
+          // Remove the anchor element (the auto-inserted hash) from the clone.
+          const anchorInClone = clonedHeader.querySelector('a');
+          if (anchorInClone) {
+            anchorInClone.remove();
+          }
 
-    // Now extract text without the '#' from the anchor.
-    const fullText = clonedHeader.textContent || '';
-    const text = fullText.split('[#')[0].replace(/^#\s*/, '').trim();
-    const level = parseInt(header.tagName[1]);
+          // Now extract text without the '#' from the anchor.
+          const fullText = clonedHeader.textContent || '';
+          const text = fullText.split('[#')[0].replace(/^#\s*/, '').trim();
+          const level = parseInt(header.tagName[1]);
 
-    return { id, text, level };
-  })
-  .filter((item) => item.id && item.text);
+          return { id, text, level };
+        })
+        .filter((item) => item.id && item.text);
 
       setToc(tocItems);
     }
@@ -167,12 +167,6 @@ const tocItems = headers
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleClick(e, item.id)}
-                    aria-label={`Jump to section: ${item.text}`} // Add ARIA label for accessibility
-                    className={`block text-md hover:text-gray-400 dark:hover:text-[#CCCCCC] transition-colors ${
-                      selectedId === item.id
-                        ? 'text-[#DC70FF] font-medium'
-                        : 'text-gray-700 dark:text-[#999999]'
-                    }`}
                   >
                     {generateNumbering(toc, index)} {item.text}
                   </a>

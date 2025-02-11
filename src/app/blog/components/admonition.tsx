@@ -9,13 +9,13 @@ interface AdmonitionProps {
 
 export function Admonition({ type, title, children }: AdmonitionProps) {
   const typeStyles: { [key: string]: string } = {
-    note: 'bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-400 dark:border-blue-500',
-    tip: 'bg-green-50 dark:bg-green-900 border-l-4 border-green-400 dark:border-green-500',
-    info: 'bg-gray-50 dark:bg-gray-800 border-l-4 border-gray-400 dark:border-gray-500',
+    note: 'bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-400 dark:border-blue-500',
+    tip: 'bg-green-100 dark:bg-green-900 border-l-4 border-green-400 dark:border-green-500',
+    info: 'bg-gray-100 dark:bg-gray-800 border-l-4 border-gray-400 dark:border-gray-500',
     warning:
-      'bg-yellow-50 dark:bg-yellow-900 border-l-4 border-yellow-400 dark:border-yellow-500',
+      'bg-yellow-100 dark:bg-yellow-900 border-l-4 border-yellow-400 dark:border-yellow-500',
     danger:
-      'bg-red-50 dark:bg-red-900 border-l-4 border-red-400 dark:border-red-500',
+      'bg-red-100 dark:bg-red-900 border-l-4 border-red-400 dark:border-red-500',
   };
 
   const iconMap: { [key: string]: string } = {

@@ -16,9 +16,9 @@
     },
     {
       "slug": "2025-reading-list",
-      "date": "February 10, 2025",
+      "date": "January 1, 2025",
       "title": "2025 Reading List",
-      "draft": true,
+      "draft": false,
       "description": "My reading list for 2025, including brief reviews and ratings.",
       "keywords": [
         "reading list 2025",
@@ -28,7 +28,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/2025-reading-list/2025-reading-list.webp",
-      "readingTime": 1
+      "readingTime": 2
     },
     {
       "slug": "fifa-12-ultimate-team",
