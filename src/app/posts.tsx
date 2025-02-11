@@ -251,7 +251,39 @@ interface HoverPreviewModalProps {
   mousePos: { x: number; y: number };
 }
 
-function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
+// --- HoverImage Component
+
+interface HoverImageProps {
+  src: string;
+  alt: string;
+}
+
+export function HoverImage({ src, alt }: HoverImageProps) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="relative w-full h-40">
+      {/* Pulse overlay until image is loaded */}
+      {!loaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        style={{ objectFit: 'cover' }}
+        onLoadingComplete={() => setLoaded(true)}
+      />
+    </div>
+  );
+}
+
+// --- HoverPreviewModal Component
+
+export function HoverPreviewModal({
+  hoveredPost,
+  mousePos,
+}: HoverPreviewModalProps) {
   // Animate modal position to follow the mouse with a slight delay.
   const [modalPos, setModalPos] = useState({ x: mousePos.x, y: mousePos.y });
   useEffect(() => {
@@ -267,7 +299,7 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
     return () => cancelAnimationFrame(animationFrameId);
   }, [mousePos]);
 
-  // Manage fade-in / fade-out: when hoveredPost becomes null, fade out and then clear activePost.
+  // Manage fade-in / fade-out transitions.
   const [activePost, setActivePost] = useState<Post | null>(hoveredPost);
   const [visible, setVisible] = useState(!!hoveredPost);
   useEffect(() => {
@@ -279,7 +311,7 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
       setVisible(false);
       timer = setTimeout(() => {
         setActivePost(null);
-      }, 150); // Fade-out duration (150ms)
+      }, 150); // Fade-out duration in ms
     }
     return () => {
       if (timer) clearTimeout(timer);
@@ -296,15 +328,8 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
       modalContent = (
         <>
           {activePost.image && (
-            // Wrap Image in a relative container with fixed dimensions.
-            <div className="relative w-full h-40">
-              <Image
-                src={activePost.image}
-                alt={activePost.title}
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
+            // Use our HoverImage component here.
+            <HoverImage src={activePost.image} alt={activePost.title} />
           )}
           <div className="p-4">
             <p className="text-[15px] h-[4.5rem] text-gray-700 dark:text-gray-300 line-clamp-3">
@@ -317,7 +342,7 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
     }
   }
 
-  // Render only on desktop devices.
+  // Render the modal only on desktop devices.
   if (typeof window !== 'undefined' && window.innerWidth < 1024) {
     return null;
   }
@@ -327,8 +352,8 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
     <div
       style={{
         position: 'fixed',
-        left: modalPos.x + 20, // 20px to the right of the mouse
-        top: modalPos.y + 32, // About 1.5rem (24px) below the mouse
+        left: modalPos.x + 20, // 20px to the right of the mouse pointer
+        top: modalPos.y + 32, // About 1.5rem (24px) below the mouse pointer
         pointerEvents: 'none',
         zIndex: 1000,
       }}
