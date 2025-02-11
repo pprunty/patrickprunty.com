@@ -55,7 +55,7 @@ const InfoWithTooltip: React.FC<InfoWithTooltipProps> = ({ message }) => {
       </button>
       {isTooltipVisible && (
         <div
-          className={`absolute left-8 top-0 z-10 px-4 py-2 text-sm text-black dark:text-white bg-white dark:bg-[#1c1c1c] rounded-lg shadow-xl border dark:border-[#444] transition-transform duration-300 max-w-[200px] min-w-[160px] sm:min-w-[180px] sm:max-w-[220px] ${
+          className={`absolute left-8 top-0 z-10 px-4 py-2 text-sm text-black dark:text-white bg-white dark:bg-[#1F1F1F] rounded-lg shadow-xl border dark:border-[#444] transition-transform duration-300 max-w-[200px] min-w-[160px] sm:min-w-[180px] sm:max-w-[220px] ${
             isTooltipVisible ? 'animate-modalShow' : ''
           }`}
         >

@@ -334,7 +334,7 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
       }}
     >
       <div
-        className={`bg-white dark:bg-[#1c1c1c] rounded-lg shadow-xl border dark:border-[#444] w-80 overflow-hidden transition-opacity duration-150 ${
+        className={`bg-white dark:bg-[#1F1F1F] rounded-lg shadow-xl border dark:border-[#444] w-80 overflow-hidden transition-opacity duration-150 ${
           visible ? 'opacity-100' : 'opacity-0'
         }`}
       >
