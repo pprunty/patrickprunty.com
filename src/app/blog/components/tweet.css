@@ -20,7 +20,7 @@
    * user to force-select a light theme */
   --tweet-bg-color: #fff;
   --tweet-quoted-bg-color-hover: rgba(0, 0, 0, 0.03);
-  --tweet-border: 1px solid rgb(207, 217, 222);
+  --tweet-border: 1px solid rgb(207, 217, 2F2F2F);
   --tweet-skeleton-gradient: linear-gradient(
     270deg,
     #fafafa,
@@ -38,8 +38,8 @@
 }
 
 .dark .tweet .react-tweet-theme {
-  --tweet-bg-color: #222;
-  --tweet-bg-color-hover: #222;
+  --tweet-bg-color: #2F2F2F;
+  --tweet-bg-color-hover: #2F2F2F;
   --tweet-quoted-bg-color-hover: rgba(255, 255, 255, 0.03);
   --tweet-border: 1px solid #333;
   --tweet-color-blue-secondary: theme("colors.white");
