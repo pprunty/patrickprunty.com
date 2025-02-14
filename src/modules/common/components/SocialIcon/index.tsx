@@ -50,7 +50,7 @@ export function SocialIcon({
     width,
     height,
     fill: 'currentColor',
-    className: `text-current sm:w-5 sm:h-5 ${baseIconClasses} ${className}`,
+    className: `text-current ${baseIconClasses} ${className}`,
     'aria-label': `${platform} profile`,
     role: 'link',
   };
