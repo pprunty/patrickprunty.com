@@ -32,9 +32,57 @@ export const metadata = {
     'yearly review'
   ],
   slug: '2025-in-review',
-  readingTime: 1,
+  readingTime: 3,
   draft: true
 };
+
+In Rust, it is common to write unit tests in the same file, right next to function definitions! For instance, these were some of my opcode tests:
+
+```rust
+fn opcode(bytes: &[u8]) -> (gba::Opcode, u16, u16) {
+    let rom = gba::ROM::from_bytes(bytes.to_vec());
+    rom.opcode(0, |address| bytes[address as usize])
+}
+
+#[test]
+fn test_opcodes() {
+    assert_eq!(opcode(&[0x0]), (Opcode::Noop, 1, 4));
+}
+```
+
+Having the tests right next to the method felt really good, as it was helpful to see usages of the method right next to its definition. This also made it so easy to add a new unit test, as there was such a low barrier. Compared to JavaScript, where tests are usually in a separate-but-adjacent file, or Objective-C, where tests live in an entirely different build target, Rust tests felt really easy to make.
+
+# Very Concise
+Overall, I felt like Rust allowed me to be very concise in my coding. My toy emulator takes up only 3,000 lines of code. Though it can only play some simple ROMs, it implements most of the Game Boy system. If I were to have written it in JavaScript or Objective-C, I would expect it to be at least 10,000 lines of code. But more importantly, with Rust, the code still feels easy to follow, and not frustratingly dense.
+
+The best example of this is in the opcode parsing code. There are around 70 different opcodes, and the parsing code generally looks like this:
+
+```rust
+pub fn opcode(&self, address: u16, reader: impl Fn(u16) -> u8) -> (Opcode, u16, u16) {
+    let opcode_value = reader(address);
+    match opcode_value {
+        0x00 => (Opcode::Noop, 1, 4),
+        0x08 => (Opcode::SaveSP(immediate16()), 3, 20),
+        0x09 => (Opcode::AddHL(Register::B, Register::C), 1, 8),
+        0x19 => (Opcode::AddHL(Register::D, Register::E), 1, 8),
+        0x29 => (Opcode::AddHL(Register::H, Register::L), 1, 8),
+        0xCB => {
+            let cb_instr = immediate8();
+            let cycle_count = if (cb_instr & 0x7) == 0x6 {
+                if cb_instr >= 0x40 && cb_instr <= 0x7F {
+                    12
+                } else {
+                    16
+                }
+            } else {
+                8
+            };
+            (self.cb_opcode(cb_instr), 2, cycle_count)
+        }
+    }
+}
+```
+
 
 ```rust
 fn opcode (bytes: &[u8]) -> (gba::Opcode, u16, u16) {
