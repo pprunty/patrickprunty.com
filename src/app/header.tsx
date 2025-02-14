@@ -69,9 +69,9 @@ export default function Header() {
           >
             <SocialIcon
               platform={ctaPlatform}
-              width="15"
-              height="15"
-              className="mr-1.5 text-[#1F1F1F] dark:text-[#fcfcfc]"
+              width="13"
+              height="13"
+              className="mr-1.5 sm:w-4 sm:h-4 text-[#1F1F1F] dark:text-[#fcfcfc]"
             />
             {/* Render first word always, additional words only on sm+ */}
             {firstWord}

@@ -167,13 +167,19 @@ const TableOfContents = React.memo(() => {
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleClick(e, item.id)}
-                    className={`block text-md hover:text-gray-400 dark:hover:text-[#CCCCCC] transition-colors group ${
+                    className={`block text-md transition-colors group ${
                       selectedId === item.id
-                        ? 'text-[#DC70FF]'
-                        : 'text-gray-700 dark:text-[#999999]'
+                        ? 'text-[#DC70FF] hover:text-[#DC70FF]'
+                        : 'text-gray-700 dark:text-[#999999] hover:text-gray-400 dark:hover:text-[#CCCCCC]'
                     }`}
                   >
-                    <span className="text-current opacity-50">
+                    <span
+                      className={`opacity-50 ${
+                        selectedId === item.id
+                          ? 'text-gray-700 dark:text-[#999999]'
+                          : 'text-current'
+                      }`}
+                    >
                       {generateNumbering(toc, index)}
                     </span>{' '}
                     {item.text}
