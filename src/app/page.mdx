@@ -14,12 +14,12 @@ export const photographyImages = [
     "/photography/IMG_3572.webp",
     "/photography/IMG_4648.webp",
     "/photography/IMG_5905.webp",
-    "/images/me.jpg",
     "/photography/c57ad8ca-ee1e-4d3d-a9f6-9b0222e211da.webp",
     "/photography/IMG_6798.webp",
     "/photography/IMG_7848.webp",
     "/photography/IMG_7218.webp",
     "/photography/IMG_7462.webp",
+    "/images/me.jpg",
     "/photography/IMG_6023.webp",
 ];
 
@@ -61,16 +61,31 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 };
 
-<div className="flex items-center">
-  <Image
-    src="/images/me-sketch2.png"
-    alt="Patrick Prunty"
-    className="bg-gray-100 rounded-full w-24 h-24 object-cover overflow-hidden aspect-square mr-4"
-    width={100}
-    height={100}
-    priority
-  />
+<div className="flex items-center space-x-4">
+  {/* Profile Image */}
+  <div className="min-w-24">
+      <Image
+        src="/images/me-sketch2.png"
+        alt="Patrick Prunty"
+        className="bg-gray-100 rounded-full w-24 h-24 object-cover"
+        width={100}
+        height={100}
+        priority
+      />
+  </div>
+
+  {/* Text Content */}
+<div className="flex flex-col space-y-1">
+  <span className="font-semibold text-xl text-gray-900 dark:text-white leading-tight my-0">
+    Hi, I'm Patrick
+  </span>
+  <div className="text-[#555555] dark:text-[#B0AFB0] break-words leading-tight my-0">
+    Senior Web Developer based in Dublin, Ireland
+  </div>
 </div>
+</div>
+
+
 
 
 {
@@ -87,8 +102,6 @@ Outside of programming, you can find me training for triathlons, hiking, or spen
 Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries.
 
 My digital CV is available [here](https://read.cv/pprunty).
-*/
-}
 
 <Section
   sectionName="About"
@@ -102,6 +115,8 @@ I'm a senior web developer based in Dublin, Ireland.
   ]}
 />
 
+*/
+}
 
 
 {/*
@@ -111,6 +126,34 @@ I'm a senior web developer based in Dublin, Ireland.
 <YouTube videoId={"mn2Dcy-NDTw"}/>
 <YouTube videoId={"8XEpK6FpNZc"}/>
 */}
+
+<Section sectionName="Projects" items={[
+{
+      title: 'Pixel Projects at YouTube',
+      url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw',
+      year: '2025',
+      images: ['/images/projects/pixel-projects-4.png'],
+      description:
+        'Educational channel exploring computational mathematics and computer science through storytelling and visual animations (videos coming soon).',
+    },
+        {
+              title: 'Jigsaw Presents at YouTube',
+              url: 'https://www.youtube.com/@JigsawPresents',
+              year: '2025',
+              images: ['/images/projects/jigsaw-presents.webp'],
+              description:
+                'Providing insight into trending films and television series through video essays (videos coming soon).',
+        },
+    {
+          title: 'Personal Website & Blog',
+          url: 'https://patrickprunty.com',
+          year: '2025',
+          images: ["/images/projects/personal-blog-1.png"],
+          description:
+            'High-performance blog built with Next.js 15 and MDX, where I share insights on life, technology, and personal projects.',
+    }
+]} />
+
 
 <Section
   sectionName="Software"
@@ -136,30 +179,20 @@ I'm a senior web developer based in Dublin, Ireland.
       description:
         'Interactive Manim environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown’s workflow.',
     },
+    {
+          title: 'clunk',
+          url: 'https://github.com/pprunty/clunk',
+          year: '2025',
+          description:
+            'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
+        }
   ]}
 />
 
 
-<Section sectionName="Projects" items={[
-{
-      title: 'clunk',
-      url: 'https://github.com/your-username/clunk',
-      year: '2025',
-      images: ['/images/projects/jigsaw-presents.webp'],
-      description:
-        'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
-    }
-]} />
-
 <Section
   sectionName="Writing"
   items={[
-    {
-      year: ' ',
-      description: `
-      My full blog can be accessed here. If you're not sure which to read, try:
-      `,
-    },
     {
     year: '2025',
     title: "The Engineer's Proclivity for Perfection",
@@ -181,7 +214,7 @@ I'm a senior web developer based in Dublin, Ireland.
   ]}
 />
 
-<Section sectionName="Photos" items={[
+<Section sectionName="Photos" subtitle="A collection of photos showcasing my experiences travelling and how I interpret the world around me." items={[
 {
       title: '',
       year: '2020 - Now',

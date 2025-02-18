@@ -8,7 +8,7 @@ interface HeadingProps {
 
 export function H4({ children, classname = '' }: HeadingProps) {
   return (
-    <h4 className={`font-medium text-md relative ${classname}`}>
+    <h4 className={`text-md relative ${classname}`}>
       {withHeadingId(children)}
     </h4>
   );

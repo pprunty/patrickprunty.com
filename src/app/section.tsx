@@ -1,8 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import { H4 } from '@/app/blog/components/h4';
 
 interface SectionItem {
   title: string;
+  subtitle?: string; // New subtitle property
   url?: string;
   description?: string;
   year?: string | number;
@@ -30,12 +32,12 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
         >
           {/* Left Column (Year) - only render if a year is provided */}
           {item.year && (
-            <div className="md:w-1/4 text-base text-gray-500 dark:text-[#7D7D7D]">
+            <div className="md:w-1/4 text-sm mb-[-5px] text-gray-500 dark:text-[#7D7D7D]">
               {item.year}
             </div>
           )}
 
-          {/* Right Column (Title, Description, Images) */}
+          {/* Right Column (Title, Subtitle, Description, Images) */}
           <div className="md:w-3/4">
             {/* Title / URL */}
             <div className="text-base font-normal dark:text-[#EEEEEE] text-[#111111]">
@@ -53,6 +55,13 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
               )}
             </div>
 
+            {/* Subtitle (if available) */}
+            {item.subtitle && (
+              <p className="text-sm text-[#777777] dark:text-[#AAAAAA] mt-1">
+                {item.subtitle}
+              </p>
+            )}
+
             {/* Description */}
             {item.description && (
               <p className="mt-1 text-base text-[#555555] dark:text-[#B0AFB0]">
@@ -64,13 +73,14 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
             {item.images && item.images.length > 0 && (
               <div className="flex flex-wrap gap-2 my-4">
                 {item.images.map((src, idx) => (
-                  <img
+                  <Image
                     key={idx}
                     src={src}
                     alt={`${item.title} image ${idx + 1}`}
-                    className="max-w-xs rounded shadow rounded-2xl"
+                    className="max-w-xs rounded-2xl border border-[#E2E2E2] dark:border-[#343334]"
                     width={150}
                     height={150}
+                    priority
                   />
                 ))}
               </div>
