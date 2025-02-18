@@ -64,22 +64,25 @@ export const metadata = {
 # Hi! I'm Patrick 👋🏻
 
 <Image
-src="/images/me-sketch.png"
+src="/images/me-sketch2.png"
 alt="Patrick Prunty"
-className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-64 h-64 sm:w-80 sm:h-80 md:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
-unoptimized
-width={320}
-height={320}
+className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-24 h-24 object-cover overflow-hidden aspect-square"
+width={100}
+height={100}
 priority
 />
 
+<Section
+  sectionName="About"
+  items={[
+    {
+      year: ' ',
+      description: `
 I'm a senior web developer based in Dublin, Ireland.
 
 Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animations (videos coming soon).
 
-{/*
 I'm also founder of [thelastmanstanding.io]()...
-*/}
 
 I also share insights on life, technology, and open-source projects on my [personal blog](/blog).
 
@@ -88,6 +91,12 @@ Outside of programming, you can find me training for triathlons, hiking, or spen
 Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries.
 
 My digital CV is available [here](https://read.cv/pprunty).
+      `,
+    },
+  ]}
+/>
+
+
 
 {/*
 # Latest YouTube Video [#latest-youtube-video]
@@ -136,8 +145,14 @@ My digital CV is available [here](https://read.cv/pprunty).
     }
 ]} />
 
-
-#### Photos [#photos]
+<Section sectionName="Photos" items={[
+{
+      title: '',
+      year: '2020 - Now',
+      description:
+        'A collection of photos showcasing my experiences travelling and how I interpret the world around me.',
+    }
+]} />
 
 <PhotoGrid images={photographyImages} />
 
