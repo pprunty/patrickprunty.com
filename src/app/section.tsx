@@ -30,13 +30,13 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
         >
           {/* Left Column (Year) - only render if a year is provided */}
           {item.year && (
-            <div className="md:w-1/3 text-[15px] text-gray-500 dark:text-[#7D7D7D]">
+            <div className="md:w-1/4 text-[15px] text-gray-500 dark:text-[#7D7D7D]">
               {item.year}
             </div>
           )}
 
           {/* Right Column (Title, Description, Images) */}
-          <div className="md:w-2/3">
+          <div className="md:w-3/4">
             {/* Title / URL */}
             <div className="text-[15px] font-normal dark:text-[#EEEEEE] text-[#111111]">
               {item.url ? (
