@@ -19,7 +19,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
     <section className="">
       {/* Section Heading */}
       <div className="mb-4">
-        <H4 className="mb-4">{sectionName}</H4>
+        <H4>{sectionName}</H4>
       </div>
 
       {/* Section Items */}
