@@ -26,6 +26,13 @@ export async function GET() {
             },
             { language: 'en-us' },
             { lastBuildDate: new Date().toUTCString() },
+            {
+              image: [
+                { url: `${SITE_URL}/images/icon.png` },
+                { title: "Patrick Prunty's Blog" },
+                { link: SITE_URL },
+              ],
+            },
             // Add the required atom:link element
             {
               'atom:link': {
