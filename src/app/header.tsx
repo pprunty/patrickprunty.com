@@ -12,7 +12,7 @@ const ctaLabels: Record<SocialPlatform, string> = {
   instagram: 'Follow me',
   github: 'Source code',
   linkedin: 'Connect now',
-  youtube: 'Subscribe now',
+  youtube: 'Subscribe',
   strava: 'Follow me',
   reddit: 'Join me',
   patreon: 'Support me',
