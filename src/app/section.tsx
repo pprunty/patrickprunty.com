@@ -32,7 +32,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
         >
           {/* Left Column (Year) - only render if a year is provided */}
           {item.year && (
-            <div className="md:w-1/4 text-sm mb-[-5px] text-gray-500 dark:text-[#7D7D7D]">
+            <div className="md:w-1/4 text-md mb-[-5px] text-gray-500 dark:text-[#7D7D7D]">
               {item.year}
             </div>
           )}
@@ -44,8 +44,12 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
               {item.url ? (
                 <a
                   href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={item.url.startsWith('https://') ? '_blank' : '_self'}
+                  rel={
+                    item.url.startsWith('https://')
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
                   className="hover:underline"
                 >
                   {item.title}
@@ -77,7 +81,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
                     key={idx}
                     src={src}
                     alt={`${item.title} image ${idx + 1}`}
-                    className="max-w-xs rounded-2xl border border-[#E2E2E2] dark:border-[#343334]"
+                    className="max-w-xs rounded-xl border border-[#E2E2E2] dark:border-[#343334]"
                     width={150}
                     height={150}
                     priority

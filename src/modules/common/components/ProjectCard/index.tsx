@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     'border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-white dark:border-gray-500 dark:hover:border-white';
 
   return (
-    <div className="w-full h-full rounded-xl active:opacity-80 active:scale-98 bg-white dark:bg-[#1F1F1F] border dark:border-[#444] border-gray-300 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm">
+    <div className="w-full h-full rounded-xl active:opacity-80 active:scale-98 bg-white dark:bg-[#222222] border dark:border-[#444] border-gray-300 rounded-md overflow-hidden transition-all ease-in-out duration-300 hover:shadow-sm">
       {/* Image Section */}
       <div className="w-full h-56 sm:h-[180px] p-0">
         <Link

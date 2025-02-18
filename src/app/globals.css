@@ -10,14 +10,14 @@
     color-scheme: light;
 
     @apply bg-[#fcfcfc];
-    @apply text-[#1F1F1F];
+    @apply text-[#222222];
   }
 
   /* Dark mode settings */
   :root.dark {
     color-scheme: dark;
     /* You can change theme dark color here to #131313 for example, remember to change it in theme-effect.ts too */
-    @apply bg-[#1F1F1F];
+    @apply bg-[#222222];
     @apply text-[#fcfcfc];
   }
 
@@ -43,11 +43,11 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
     height: 6px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #1F1F1F;
+    background-color: #222222;
     border-radius: 0px;
   }
   .dark ::-webkit-scrollbar-track {
-    background: #1F1F1F;
+    background: #222222;
   }
   .dark ::-webkit-scrollbar-thumb {
     background-color: #ccc;

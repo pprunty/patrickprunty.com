@@ -1,6 +1,7 @@
 import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
 import Link from 'next/link';
 import Section from "./section";
+import ProfileCard from "./profile-card";
 
 export const photographyImages = [
     "/photography/0a94d7f5-834a-4567-86db-93f1ce8dc3ca.webp",
@@ -61,47 +62,10 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 };
 
-<div className="flex items-center space-x-4">
-  {/* Profile Image */}
-  <div className="min-w-24">
-      <Image
-        src="/images/me-sketch2.png"
-        alt="Patrick Prunty"
-        className="bg-gray-100 rounded-full w-24 h-24 object-cover"
-        width={100}
-        height={100}
-        priority
-      />
-  </div>
-
-  {/* Text Content */}
-<div className="flex flex-col space-y-1">
-  <span className="font-semibold text-xl text-gray-900 dark:text-white leading-tight my-0">
-    Hi, I'm Patrick
-  </span>
-  <div className="text-[#555555] dark:text-[#B0AFB0] break-words leading-tight my-0">
-    Senior Web Developer based in Dublin, Ireland
-  </div>
-</div>
-</div>
-
-
-
+<ProfileCard/>
 
 {
 /*
-
-Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animations (videos coming soon).
-
-I'm also founder of [thelastmanstanding.io]()...
-
-I also share insights on life, technology, and open-source projects on my [personal blog](/blog).
-
-Outside of programming, you can find me training for triathlons, hiking, or spending time with my loved ones.
-
-Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries.
-
-My digital CV is available [here](https://read.cv/pprunty).
 
 <Section
   sectionName="About"
@@ -214,14 +178,7 @@ I'm a senior web developer based in Dublin, Ireland.
   ]}
 />
 
-<Section sectionName="Photos" subtitle="A collection of photos showcasing my experiences travelling and how I interpret the world around me." items={[
-{
-      title: '',
-      year: '2020 - Now',
-      description:
-        'A collection of photos showcasing my experiences travelling and how I interpret the world around me.',
-    }
-]} />
+<Section sectionName="Photos" subtitle="A collection of photos showcasing my experiences travelling and how I interpret the world around me." items={[]} />
 
 <PhotoGrid images={photographyImages} />
 
