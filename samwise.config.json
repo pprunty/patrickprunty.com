@@ -23,7 +23,8 @@
     "instagram": "https://www.instagram.com/pprunty97/",
     "youtube": "https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1",
     "email": "",
-    "patreon": ""
+    "patreon": "",
+    "rss": "https://patrickprunty.com/api/rss"
   },
   "GA_MEASUREMENT_ID": "G-LSBKKYLNC4",
   "VERCEL_ANALYTICS": true,

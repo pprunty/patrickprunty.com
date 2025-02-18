@@ -17,6 +17,7 @@ const ctaLabels: Record<SocialPlatform, string> = {
   reddit: 'Join me',
   patreon: 'Support me',
   tiktok: 'Follow me',
+  rss: 'Subscribe',
 };
 
 const urlMapping: Record<SocialPlatform, string> = {
@@ -29,6 +30,7 @@ const urlMapping: Record<SocialPlatform, string> = {
   tiktok: SOCIAL_URLS.tiktok,
   youtube: SOCIAL_URLS.youtube,
   patreon: SOCIAL_URLS.patreon,
+  rss: SOCIAL_URLS.rss,
 };
 
 export default function Header() {

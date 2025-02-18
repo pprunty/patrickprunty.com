@@ -25,6 +25,7 @@ export default function Footer() {
                   'strava',
                   'linkedin',
                   'youtube',
+                  'rss',
                 ] as SocialPlatform[]
               ).map((platform) =>
                 urlMapping[platform] ? (
