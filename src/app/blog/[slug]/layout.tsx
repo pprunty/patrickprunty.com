@@ -3,7 +3,7 @@ import Header from './header';
 import RelatedPosts from '@/modules/blog/templates/RelatedPosts';
 import { ReactNode } from 'react';
 import BottomBar from '@/modules/blog/components/BottomBar';
-// import CommentsSection from '@/__samwise/modules/comments/templates/CommentsSection';
+import CommentsSection from '@/modules/comments/templates/CommentsSection';
 import { TableOfContents } from '@/app/blog/components/toc';
 import { redirect } from 'next/navigation';
 import PillarMenu from '@/modules/common/components/PillarMenu';
@@ -44,7 +44,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
       <BottomBar />
       {/*      <Newsletter />
        */}{' '}
-      {/* to be added in next version <CommentsSection/> */}
+      <CommentsSection/>
       <RelatedPosts
         currentPostSlug={slug}
         currentPostKeywords={currentPost.keywords}
