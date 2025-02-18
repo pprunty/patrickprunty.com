@@ -16,7 +16,7 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
   return (
-    <section className="">
+    <section className="my-4">
       {/* Section Heading */}
       <div className="mb-4">
         <H4>{sectionName}</H4>
@@ -30,7 +30,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
         >
           {/* Left Column (Year) - only render if a year is provided */}
           {item.year && (
-            <div className="md:w-1/3 text-gray-500 dark:text-[#7D7D7D]">
+            <div className="md:w-1/3 text-[15px] text-gray-500 dark:text-[#7D7D7D]">
               {item.year}
             </div>
           )}
@@ -38,7 +38,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
           {/* Right Column (Title, Description, Images) */}
           <div className="md:w-2/3">
             {/* Title / URL */}
-            <div className="text-md font-medium dark:text-[#EEEEEE] text-[#111111]">
+            <div className="text-[15px] font-normal dark:text-[#EEEEEE] text-[#111111]">
               {item.url ? (
                 <a
                   href={item.url}
@@ -62,7 +62,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
 
             {/* Images: Render all images side by side if provided */}
             {item.images && item.images.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-4">
+              <div className="flex flex-wrap gap-2 my-4">
                 {item.images.map((src, idx) => (
                   <img
                     key={idx}
