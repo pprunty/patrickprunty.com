@@ -73,7 +73,7 @@ export default function Header() {
               platform={ctaPlatform}
               width="13"
               height="13"
-              className="mr-1.5 w-4 h-4 text-[#1F1F1F] dark:text-[#fcfcfc]"
+              className="mr-1.5 w-4 h-4 text-[#222222] dark:text-[#fcfcfc]"
             />
             {/* Render first word always, additional words only on sm+ */}
             {firstWord}

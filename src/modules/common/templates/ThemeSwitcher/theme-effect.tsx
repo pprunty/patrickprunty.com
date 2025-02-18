@@ -16,7 +16,7 @@ export const themeEffect = function () {
     document.documentElement.classList.add('dark');
     document.head
       .querySelector('meta[name=theme-color]')
-      ?.setAttribute('content', '#1F1F1F');
+      ?.setAttribute('content', '#222222');
 
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');

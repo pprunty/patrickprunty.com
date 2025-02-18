@@ -12,7 +12,7 @@ const LinkButton: React.FC<ArrowButtonProps> = ({ url, label }) => {
       href={url}
       className={`
         flex items-center justify-center w-12 h-12 text-white
-        bg-[#1F1F1F] dark:bg-white dark:text-black
+        bg-[#222222] dark:bg-white dark:text-black
         transition-[border-radius] duration-[300ms] ease-out
         rounded-[0.8rem] hover:rounded-[1.1rem]
       `}
