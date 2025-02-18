@@ -1,8 +1,6 @@
 import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
 import Link from 'next/link';
-import Showcase from "@/modules/common/components/Showcase";
-import ProjectCard from "@/modules/common/components/ProjectCard";
-import MediaCarousel from "@/modules/common/components/MediaCarousel";
+import Section from "./section";
 
 export const photographyImages = [
     "/photography/0a94d7f5-834a-4567-86db-93f1ce8dc3ca.webp",
@@ -99,19 +97,47 @@ My digital CV is available [here](https://read.cv/pprunty).
 <YouTube videoId={"8XEpK6FpNZc"}/>
 */}
 
-# Software Projects [#software-projects]
+<Section
+  sectionName="Software"
+  items={[
+    {
+      title: 'tmplate.xyz',
+      url: 'https://tmplate.xyz/',
+      year: '2025',
+      description:
+        'Open-source application showcasing Polymorphic Web Design principles (work in progress).',
+    },
+    {
+      title: 'samwise',
+      url: 'https://samwise.wtf/',
+      year: '2025',
+      description:
+        'High-performance, SEO-optimized digital blog and portfolio starter built with Next.js 15.',
+    },
+    {
+      title: 'manim-interactive',
+      url: 'https://github.com/pprunty/manim-interactive',
+      year: '2025',
+      description:
+        'Interactive Manim environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown’s workflow.',
+    },
+  ]}
+/>
 
-* **[tmplate.xyz](https://tmplate.xyz/)**: Open-source application showcasing Polymorphic Web Design principles (work in progress). [Website](https://tmplate.xyz/), [Source](https://github.com/pprunty/tmplate.xyz)
-* **[samwise](https://samwise.wtf/)**: High-performance, SEO-optimized digital blog and portfolio starter built with Next.js 15. [Website](https://samwise.wtf/), [Source](https://github.com/pprunty/samwise)
-* **[manim-interactive](https://github.com/pprunty/manim-interactive)**: Interactive [Manim](https://github.com/3b1b/manim) environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown’s workflow. [Source](https://github.com/pprunty/manim-interactive)
 
-{/*
-* **[motormongo](https://motormongo.readthedocs.io/)**: An asynchronous Python ODM for MongoDB built on Motor with a mongoengine-like API for non-blocking CRUD operations. [Website](https://motormongo.readthedocs.io/), [Source](https://github.com/pprunty/motormongo)
-*/}
+<Section sectionName="Projects" items={[
+{
+      title: 'clunk',
+      url: 'https://github.com/your-username/clunk',
+      year: '2025',
+      images: ['/images/projects/jigsaw-presents.webp'],
+      description:
+        'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
+    }
+]} />
 
-To see a complete list of my work, visit my [GitHub profile](https://github.com/pprunty).
 
-# Photos [#photos]
+#### Photos [#photos]
 
 <PhotoGrid images={photographyImages} />
 
