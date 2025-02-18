@@ -225,7 +225,7 @@ function List({
                     </span>
                   )}
                   <div className="flex flex-nowrap grow">
-                    <span className="dark:text-gray-100 break-words flex-grow min-w-0 lowercase">
+                    <span className="dark:text-[#EEEEEE] text-[#111111] break-words flex-grow min-w-0 lowercase">
                       {post.title}
                     </span>
                     <span className="text-gray-500 dark:text-[#999999] text-right text-xs flex-shrink-0 whitespace-nowrap min-w-[48px]">
@@ -332,7 +332,7 @@ export function HoverPreviewModal({
             <HoverImage src={activePost.image} alt={activePost.title} />
           )}
           <div className="p-4">
-            <p className="text-[15px] h-[4.5rem] text-gray-700 dark:text-gray-300 line-clamp-3">
+            <p className="text-md h-[4.5rem] text-[#555555] dark:text-[#B0AFB0] line-clamp-3">
               {activePost.description}
             </p>
           </div>

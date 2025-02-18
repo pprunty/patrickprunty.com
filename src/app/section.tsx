@@ -30,7 +30,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
         >
           {/* Left Column (Year) - only render if a year is provided */}
           {item.year && (
-            <div className="md:w-1/4 text-[15px] text-gray-500 dark:text-[#7D7D7D]">
+            <div className="md:w-1/4 text-base text-gray-500 dark:text-[#7D7D7D]">
               {item.year}
             </div>
           )}
@@ -38,7 +38,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
           {/* Right Column (Title, Description, Images) */}
           <div className="md:w-3/4">
             {/* Title / URL */}
-            <div className="text-[15px] font-normal dark:text-[#EEEEEE] text-[#111111]">
+            <div className="text-base font-normal dark:text-[#EEEEEE] text-[#111111]">
               {item.url ? (
                 <a
                   href={item.url}
@@ -55,7 +55,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
 
             {/* Description */}
             {item.description && (
-              <p className="mt-1 text-[15px] text-[#555555] dark:text-[#B0AFB0]">
+              <p className="mt-1 text-base text-[#555555] dark:text-[#B0AFB0]">
                 {item.description}
               </p>
             )}
