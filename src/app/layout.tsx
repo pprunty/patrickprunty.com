@@ -84,6 +84,12 @@ export default function RootLayout({
             __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
           }}
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Patrick Prunty's Blog"
+          href={`${SITE_URL}/api/rss`}
+        />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
       <body className="dark:text-[#EEEEEE] text-[#111111] max-w-2xl m-auto">

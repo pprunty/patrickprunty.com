@@ -8,4 +8,5 @@ export type SocialPlatform =
   | 'tiktok'
   | 'instagram'
   | 'patreon'
-  | 'youtube';
+  | 'youtube'
+  | 'rss';
