@@ -28,8 +28,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = ({ media, title }) => {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   // Check if the media is a video (.mp4 or .mov)
-  const isVideo = (src: string) =>
-    src.endsWith('.mp4') || src.endsWith('.mov');
+  const isVideo = (src: string) => src.endsWith('.mp4') || src.endsWith('.mov');
 
   // Navigate to the next media item
   const nextItem = () => {
@@ -87,7 +86,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = ({ media, title }) => {
           <div className="flex gap-2 sm:px-0">
             {media.map((src, idx) => (
               <div key={idx} className="flex-shrink-0">
-                <span onClick={() => setActiveIndex(idx)} className="cursor-pointer">
+                <span
+                  onClick={() => setActiveIndex(idx)}
+                  className="cursor-pointer"
+                >
                   {isVideo(src) ? (
                     <video
                       src={src}
@@ -252,7 +254,9 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
                     {item.url ? (
                       <a
                         href={item.url}
-                        target={item.url.startsWith('https://') ? '_blank' : '_self'}
+                        target={
+                          item.url.startsWith('https://') ? '_blank' : '_self'
+                        }
                         rel={
                           item.url.startsWith('https://')
                             ? 'noopener noreferrer'
