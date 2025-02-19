@@ -9,6 +9,7 @@ import React, {
   memo,
 } from 'react';
 import Image from 'next/image';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { H2 } from '@/app/blog/components/h2';
 
 interface SectionItem {
@@ -33,7 +34,26 @@ interface MediaCarouselProps {
 
 const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [mediaLoaded, setMediaLoaded] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Reset the mediaLoaded state when the active media changes
+  useEffect(() => {
+    setMediaLoaded(false);
+  }, [activeIndex]);
+
+  // Debounce the spinner so it only shows if media takes longer than ~300ms to load
+  useEffect(() => {
+    if (!mediaLoaded) {
+      const timer = setTimeout(() => {
+        setShowSpinner(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSpinner(false);
+    }
+  }, [mediaLoaded, activeIndex]);
 
   // Memoized helper to check if a media source is a video
   const isVideo = useCallback(
@@ -126,11 +146,12 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     ));
   }, [media, title, isVideo]);
 
-  // Cache the carousel content for thumbnails
+  // Cache the carousel content for thumbnails.
+  // Added extra bottom margin (mb-1.5) on mobile devices.
   const carouselContent = useMemo(() => {
     if (media.length > 1) {
       return (
-        <div className="my-2 sm:mx-0">
+        <div className="mt-2 mb-1.5 sm:mx-0 sm:mb-0">
           <div className="overflow-x-auto overflow-y-hidden">
             <div className="flex gap-2 sm:px-0">{thumbnails}</div>
           </div>
@@ -138,7 +159,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
       );
     } else {
       return (
-        <div className="my-2 sm:mx-0">
+        <div className="mt-2 mb-1.5 sm:mx-0 sm:mb-0">
           <div className="sm:px-0">
             <span onClick={() => setActiveIndex(0)} className="cursor-pointer">
               {isVideo(media[0]) ? (
@@ -185,6 +206,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               playsInline
               loop
               ref={videoRef}
+              onLoadedData={() => setMediaLoaded(true)}
               className="object-contain w-full md:w-auto h-auto md:h-full"
             >
               Your browser does not support the video tag.
@@ -197,9 +219,17 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               height={600}
               unoptimized
               quality={100}
+              onLoad={() => setMediaLoaded(true)}
               className="object-contain w-full md:w-auto h-auto md:h-full"
               priority
             />
+          )}
+
+          {/* Spinner overlay (debounced) */}
+          {showSpinner && !mediaLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ClipLoader color="#888888" size={20} />
+            </div>
           )}
 
           {/* Bottom Left: Close Button */}
@@ -219,44 +249,38 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
             {activeIndex + 1}/{media.length}
           </button>
 
-          {/* Left Navigation Overlay */}
+          {/* Left Navigation Overlay with inline cursor style */}
           <div
-            className="absolute top-0 left-0 h-full w-1/2 nav-left"
+            className="absolute top-0 left-0 h-full w-1/2"
             onClick={prevItem}
+            style={{ cursor: 'w-resize' }}
           />
 
-          {/* Right Navigation Overlay */}
+          {/* Right Navigation Overlay with inline cursor style */}
           <div
-            className="absolute top-0 right-0 h-full w-1/2 nav-right"
+            className="absolute top-0 right-0 h-full w-1/2"
             onClick={nextItem}
+            style={{ cursor: 'e-resize' }}
           />
         </div>
       </div>
     );
-  }, [activeIndex, media, title, isVideo, nextItem, prevItem, closeModal]);
+  }, [
+    activeIndex,
+    media,
+    title,
+    isVideo,
+    nextItem,
+    prevItem,
+    closeModal,
+    mediaLoaded,
+    showSpinner,
+  ]);
 
   return (
     <>
       {carouselContent}
       {modalOverlay}
-
-      {/* Custom styles for dynamic cursors */}
-      <style jsx>{`
-        .nav-left {
-          cursor: pointer;
-        }
-        .nav-right {
-          cursor: pointer;
-        }
-        @media (min-width: 768px) {
-          .nav-left {
-            cursor: w-resize;
-          }
-          .nav-right {
-            cursor: e-resize;
-          }
-        }
-      `}</style>
     </>
   );
 });
