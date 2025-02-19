@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { SocialIcons } from './social-icons'; // adjust the import path if needed
+import UniqueViewers from './unique-viewers'; // adjust path if you created it separately
 
 const ProfileCard: React.FC = () => {
   return (
@@ -25,7 +26,10 @@ const ProfileCard: React.FC = () => {
           Senior Web Developer in Dublin, Ireland
         </div>
 
-        {/* Social Icons rendered under the web developer text */}
+        {/* Render UniqueViewers Component */}
+        <UniqueViewers />
+
+        {/* Optionally, render Social Icons */}
         {/* <SocialIcons containerClassName="flex flex-wrap mt-2" /> */}
       </div>
     </div>
