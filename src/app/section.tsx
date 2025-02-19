@@ -36,22 +36,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mediaLoaded, setMediaLoaded] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Refs for swipe (touch) handling
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-
-  // State to track if the device is mobile (using 768px as threshold)
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   // Reset the mediaLoaded state when the active media changes
   useEffect(() => {
@@ -115,13 +103,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
       return () => {
         document.body.style.overflow = '';
       };
-    }
-  }, [activeIndex]);
-
-  // Set volume for the unmuted video when modal opens
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.volume = 0.5;
     }
   }, [activeIndex]);
 
@@ -254,7 +235,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               muted={false}
               playsInline
               loop
-              ref={videoRef}
               onLoadedData={() => setMediaLoaded(true)}
               className="object-contain w-full md:w-auto h-auto md:h-full"
             >
@@ -298,18 +278,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
             {activeIndex + 1}/{media.length}
           </button>
 
-          {/* Left Navigation Overlay */}
+          {/* Left Navigation Overlay with inline cursor style */}
           <div
             className="absolute top-0 left-0 h-full w-1/2"
-            onClick={!isMobile ? prevItem : undefined}
-            style={{ cursor: !isMobile ? 'w-resize' : 'default' }}
+            onClick={prevItem}
+            style={{ cursor: 'w-resize' }}
           />
 
-          {/* Right Navigation Overlay */}
+          {/* Right Navigation Overlay with inline cursor style */}
           <div
             className="absolute top-0 right-0 h-full w-1/2"
-            onClick={!isMobile ? nextItem : undefined}
-            style={{ cursor: !isMobile ? 'e-resize' : 'default' }}
+            onClick={nextItem}
+            style={{ cursor: 'e-resize' }}
           />
         </div>
       </div>
@@ -324,7 +304,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     closeModal,
     mediaLoaded,
     showSpinner,
-    isMobile,
   ]);
 
   return (
