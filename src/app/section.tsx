@@ -42,6 +42,17 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
+  // State to track if the device is mobile (using 768px as threshold)
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Reset the mediaLoaded state when the active media changes
   useEffect(() => {
     setMediaLoaded(false);
@@ -97,10 +108,9 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [activeIndex, closeModal]);
 
-  // Prevent background scrolling and close modal on significant scroll (ignoring minor pinch-to-zoom)
+  // Prevent background scrolling while modal is open
   useEffect(() => {
     if (activeIndex !== null) {
-      // Prevent background scrolling
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = '';
@@ -288,18 +298,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
             {activeIndex + 1}/{media.length}
           </button>
 
-          {/* Left Navigation Overlay with inline cursor style */}
+          {/* Left Navigation Overlay */}
           <div
             className="absolute top-0 left-0 h-full w-1/2"
-            onClick={prevItem}
-            style={{ cursor: 'w-resize' }}
+            onClick={!isMobile ? prevItem : undefined}
+            style={{ cursor: !isMobile ? 'w-resize' : 'default' }}
           />
 
-          {/* Right Navigation Overlay with inline cursor style */}
+          {/* Right Navigation Overlay */}
           <div
             className="absolute top-0 right-0 h-full w-1/2"
-            onClick={nextItem}
-            style={{ cursor: 'e-resize' }}
+            onClick={!isMobile ? nextItem : undefined}
+            style={{ cursor: !isMobile ? 'e-resize' : 'default' }}
           />
         </div>
       </div>
@@ -314,6 +324,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     closeModal,
     mediaLoaded,
     showSpinner,
+    isMobile,
   ]);
 
   return (
