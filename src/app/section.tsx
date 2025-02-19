@@ -116,31 +116,34 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [activeIndex]);
 
-  // Touch handlers for swipe navigation
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
+const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  // Only process if there's exactly one touch
+  if (e.touches.length !== 1) return;
+  touchStartX.current = e.touches[0].clientX;
+};
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
+const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  // Only process if there's exactly one touch
+  if (e.touches.length !== 1) return;
+  touchEndX.current = e.touches[0].clientX;
+};
 
-  const handleTouchEnd = () => {
-    if (touchStartX.current !== null && touchEndX.current !== null) {
-      const distance = touchStartX.current - touchEndX.current;
-      const threshold = 50; // adjust threshold as needed
-      if (distance > threshold) {
-        // Swiped left: navigate to next item
-        nextItem();
-      } else if (distance < -threshold) {
-        // Swiped right: navigate to previous item
-        prevItem();
-      }
+const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+  // Ensure this was a single touch gesture
+  if (e.changedTouches.length !== 1) return;
+  if (touchStartX.current !== null && touchEndX.current !== null) {
+    const distance = touchStartX.current - touchEndX.current;
+    const threshold = 50; // adjust threshold as needed
+    if (distance > threshold) {
+      nextItem();
+    } else if (distance < -threshold) {
+      prevItem();
     }
-    // Reset touch positions
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
+  }
+  touchStartX.current = null;
+  touchEndX.current = null;
+};
+
 
   // Cache thumbnails so they aren’t rebuilt on every render
   const thumbnails = useMemo(() => {
