@@ -36,19 +36,6 @@ export default function Header({ currentPost }: HeaderProps) {
       <p className="font-mono text-xs flex flex-wrap justify-between items-center mt-3 text-gray-700 dark:text-[#888888]">
         {/* Left Section (Author, Date, and Mins Read) */}
         <span className="flex flex-col md:flex-row items-start md:items-center md:gap-2 gap-2">
-          {/* Author */}
-          <span className="hidden md:inline">
-            <a
-              href={'https://x.com/pprunty_'}
-              className="hover:text-gray-500 dark:hover:text-gray-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {post.author}
-            </a>
-            <span className="hidden md:inline ml-2">|</span>
-          </span>
-
           {/* Date */}
           <span className="flex items-center">
             <Calendar1 className="w-3.5 h-3.5 mr-2" />
