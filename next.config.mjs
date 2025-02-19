@@ -40,7 +40,7 @@ const nextConfig = {
         ],
       },
       {
-              source: "/images/me-sketch.png",
+              source: "/images/me-sketch2.png",
               headers: [
                 {
                   key: "cache-control",
