@@ -9,7 +9,7 @@ export function YouTube(props: YouTubeProps) {
   };
 
   return (
-    <div className="w-full max-w-full rounded-xl my-5 relative overflow-hidden pt-[56.25%]">
+    <div className="w-full max-w-full rounded-2xl my-5 relative overflow-hidden pt-[56.25%]">
       <YT
         {...props}
         opts={opts}

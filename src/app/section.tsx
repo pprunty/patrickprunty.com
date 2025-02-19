@@ -38,6 +38,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const [showSpinner, setShowSpinner] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Refs for swipe (touch) handling
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
   // Reset the mediaLoaded state when the active media changes
   useEffect(() => {
     setMediaLoaded(false);
@@ -93,11 +97,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [activeIndex, closeModal]);
 
-  // Prevent background scrolling and close modal on scroll when active
+  // Prevent background scrolling and close modal on significant scroll (ignoring minor pinch-to-zoom)
   useEffect(() => {
     if (activeIndex !== null) {
       document.body.style.overflow = 'hidden';
-      const handleScroll = () => closeModal();
+      const initialScrollY = window.scrollY;
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        // Only close if the scroll difference is greater than 20px (adjust as needed)
+        if (Math.abs(currentScrollY - initialScrollY) > 20) {
+          closeModal();
+        }
+      };
       window.addEventListener('scroll', handleScroll);
       return () => {
         document.body.style.overflow = '';
@@ -112,6 +123,32 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
       videoRef.current.volume = 0.5;
     }
   }, [activeIndex]);
+
+  // Touch handlers for swipe navigation
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const distance = touchStartX.current - touchEndX.current;
+      const threshold = 50; // adjust threshold as needed
+      if (distance > threshold) {
+        // Swiped left: move to the next item
+        nextItem();
+      } else if (distance < -threshold) {
+        // Swiped right: move to the previous item
+        prevItem();
+      }
+    }
+    // Reset touch positions
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
   // Cache thumbnails so that they aren’t rebuilt on every render
   const thumbnails = useMemo(() => {
@@ -196,7 +233,12 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const modalOverlay = useMemo(() => {
     if (activeIndex === null) return null;
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="relative w-full h-full flex items-center justify-center">
           {isVideo(media[activeIndex]) ? (
             <video
