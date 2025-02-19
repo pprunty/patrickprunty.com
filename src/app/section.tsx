@@ -100,22 +100,13 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   // Prevent background scrolling and close modal on significant scroll (ignoring minor pinch-to-zoom)
   useEffect(() => {
     if (activeIndex !== null) {
+      // Prevent background scrolling
       document.body.style.overflow = 'hidden';
-      const initialScrollY = window.scrollY;
-      const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        // Only close if the scroll difference is greater than 20px (adjust as needed)
-        if (Math.abs(currentScrollY - initialScrollY) > 20) {
-          closeModal();
-        }
-      };
-      window.addEventListener('scroll', handleScroll);
       return () => {
         document.body.style.overflow = '';
-        window.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [activeIndex, closeModal]);
+  }, [activeIndex]);
 
   // Set volume for the unmuted video when modal opens
   useEffect(() => {
@@ -235,6 +226,12 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     return (
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45"
+        onClick={(e) => {
+          // If the click is on the overlay (and not on a child element), close the modal
+          if (e.target === e.currentTarget) {
+            closeModal();
+          }
+        }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
