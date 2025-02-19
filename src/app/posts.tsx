@@ -334,7 +334,7 @@ export function HoverPreviewModal({
             <HoverImage src={activePost.image} alt={activePost.title} />
           )}
           <div className="p-4">
-            <p className="text-md h-[4.5rem] text-[#555555] dark:text-[#B0AFB0] line-clamp-3">
+            <p className="text-sm h-[4rem] text-[#555555] dark:text-[#B0AFB0] line-clamp-3">
               {activePost.description}
             </p>
           </div>

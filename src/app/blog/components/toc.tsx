@@ -167,7 +167,7 @@ const TableOfContents = React.memo(() => {
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleClick(e, item.id)}
-                    className={`block text-md transition-colors group ${
+                    className={`block text-sm transition-colors group ${
                       selectedId === item.id
                         ? 'text-[#DC70FF] hover:text-[#DC70FF]'
                         : 'text-gray-700 dark:text-[#999999] hover:text-gray-400 dark:hover:text-[#CCCCCC]'

@@ -37,7 +37,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
   }
 
   return (
-    <article className="text-gray-800 dark:text-gray-300 mb-10">
+    <article className="text-gray-800 dark:text-[#B0AFB0] mb-10">
       <Header posts={posts} currentPost={currentPost} />
       <TableOfContents />
       {children}

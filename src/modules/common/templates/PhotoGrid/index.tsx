@@ -17,9 +17,9 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
 
       if (width >= 1024) {
         // lg breakpoint
-        setColumns(4);
-      } else {
         setColumns(3);
+      } else {
+        setColumns(2);
       }
     };
 

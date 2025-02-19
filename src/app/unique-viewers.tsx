@@ -21,7 +21,7 @@ const UniqueViewers: React.FC = () => {
   return (
     <div className="font-mono text-xs text-[#555555] dark:text-[#B0AFB0]">
       {uniqueCount !== null ? (
-        ':' + uniqueCount
+        '(' + uniqueCount + ')'
       ) : (
         // Skeleton loader with pulse animation
         <span className="inline-block w-10 h-3 bg-gray-200 dark:bg-[#2F2F2F] animate-pulse rounded" />

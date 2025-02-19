@@ -35,7 +35,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({ images, title }) => {
                   alt={`${title} image ${idx + 1}`}
                   width={130}
                   height={130}
-                  className="rounded-xl border border-[#E2E2E2] dark:border-[#343334]"
+                  className="rounded-xl border sm:mb-1.5 border-[#E2E2E2] dark:border-[#343334]"
                   priority
                 />
               </div>
@@ -53,9 +53,9 @@ const SectionImages: React.FC<SectionImagesProps> = ({ images, title }) => {
         <Image
           src={images[0]}
           alt={`${title} image 1`}
-          width={150}
-          height={150}
-          className="max-w-xs rounded-xl border border-[#E2E2E2] dark:border-[#343334]"
+          width={130}
+          height={130}
+          className="max-w-xs rounded-xl sm:mb-1.5 border border-[#E2E2E2] dark:border-[#343334]"
           priority
         />
       </div>
