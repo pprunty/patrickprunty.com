@@ -22,24 +22,6 @@ interface SocialIconProps {
   className?: string;
 }
 
-// SocialIcon component that takes a platform prop and returns the appropriate SVG icon with consistent size and color
-const baseIconClasses = `
-  // Basic sizing/positioning
-  cursor-pointer
-
-  // Default text color in light/dark mode
-  text-[#6F6F6F] dark:text-[#999999]
-
-  // Transition for hover/active states
-  transition-colors duration-200
-
-  // Hover states for light/dark mode
-  hover:text-gray-900 dark:hover:text-white
-
-  // Press state
-  active:text-gray-900 active:hover:text-white
-`;
-
 export function SocialIcon({
   platform,
   width = '20',
@@ -51,7 +33,12 @@ export function SocialIcon({
     width,
     height,
     fill: 'currentColor',
-    className: `text-current ${baseIconClasses} ${className}`,
+    className: `text-current
+       cursor-pointer
+       text-[#666] dark:text-[#999999]
+       transition-colors duration-200
+       hover:text-gray-900 dark:hover:text-white
+       active:text-gray-900 active:hover:text-white ${className}`,
     'aria-label': `${platform} profile`,
     role: 'link',
   };
