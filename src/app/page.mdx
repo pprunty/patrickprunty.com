@@ -32,7 +32,7 @@ export const metadata = {
     title: `${AUTHOR.name}`,
     description: `Web developer, educational content creator, and outdoor enthusiast based in Dublin, Ireland.`,
     siteName: `${AUTHOR.name}'s website`,
-    images: [
+    media: [
       {
         url: `/images/me.WEBP`,
         width: 400,
@@ -45,7 +45,7 @@ export const metadata = {
     card: "summary_large_image",
     site: `${AUTHOR.twitterHandle}`,
     creator: `${AUTHOR.twitterHandle}`,
-    images: [
+    media: [
       {
         url: `/images/me.WEBP`,
         alt: `${AUTHOR.name}'s profile picture`,
@@ -99,13 +99,13 @@ My digital CV is available [here](https://read.cv/pprunty).
 <YouTube videoId={"8XEpK6FpNZc"}/>
 */}
 
-{/*
+
 <Section sectionName="Projects" items={[
 {
 title: 'Pixel Projects at YouTube',
 url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw',
 year: '2025',
-images: ['/images/projects/pixel-projects-4.png', '/images/projects/pixel-projects-4.png', '/images/projects/pixel-projects-4.png', '/images/projects/pixel-projects-4.png', '/images/projects/pixel-projects-4.png'],
+media: ['/images/projects/pixel-projects-4.png','/images/projects/GodelIncompleteness.mp4'],
 description:
 'Educational channel exploring computational mathematics and computer science through storytelling and visual animations (videos coming soon).',
 },
@@ -113,7 +113,7 @@ description:
 title: 'Jigsaw Presents at YouTube',
 url: 'https://www.youtube.com/@JigsawPresents',
 year: '2025',
-images: ['/images/projects/jigsaw-presents.webp'],
+media: ['/images/projects/jigsaw-presents.webp'],
 description:
 'Providing insight into trending films and television series through video essays (videos coming soon).',
 },
@@ -121,12 +121,12 @@ description:
 title: 'Personal Website & Blog',
 url: 'https://patrickprunty.com',
 year: '2025',
-images: ["/images/projects/personal-blog-1.png"],
+media: ["/images/projects/personal-blog-1.png", '/images/projects/Untitled.mov'],
 description:
 'High-performance blog built with Next.js 15 and MDX, where I share insights on life, technology, and personal projects.',
 }
 ]} />
-*/}
+
 
 <Section
   sectionName="Software"
@@ -142,6 +142,7 @@ description:
       title: 'samwise',
       url: 'https://samwise.wtf/',
       year: '2025',
+      hide: true,
       description:
         'High-performance, SEO-optimized digital blog and portfolio starter built with Next.js 15.',
     },
@@ -158,7 +159,15 @@ description:
           year: '2025',
           description:
             'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
-        }
+        },
+        {
+                  title: 'magikarp',
+                  url: 'https://github.com/pprunty/magikarp',
+                  year: '2025',
+                  media: ['/images/projects/magikarp.png'],
+                  description:
+                    'An autonomous AI agent capable of piloting the creation of an entire coding given a project outline using DeepSeek open-source LLMs. The user simply sits back and determines whether to accept/reject iterations (work in progress).',
+                }
   ]}
 />
 
