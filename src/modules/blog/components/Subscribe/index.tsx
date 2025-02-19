@@ -65,22 +65,24 @@ const Subscribe: React.FC<SubscribeProps> = ({
              w-full
                   px-4
                   py-2
-                  rounded-md
+                  rounded-lg
                   text-md
                   sm:text-sm
                   border
-                  min-w-[250px]
-                  border-[#4B5563]
+                  border-[#2F2F2F2]
+                  placeholder-[#646464]
+                  dark:placeholder-[#787878]
+                  active:border-[#555]
                   dark:border-[#555]
                   dark:active:border-[#fcfcfc]
-                  bg-[#f0f0f0]
+                  bg-[#F2F2F2]
                   dark:bg-[#222222]
-                  dark:text-[#fcfcfc]
+                  dark:text-[#B4B4B4]
                   text-[#0F0F0F]
-             rounded-l-md
+             rounded-l-lg
              focus:outline-none
              focus:ring-1
-             focus:ring-[#fff]
+             focus:ring-[#555]
              dark:focus:ring-[#fff]
              transition-colors
            `}
@@ -95,11 +97,11 @@ const Subscribe: React.FC<SubscribeProps> = ({
              h-full
              px-4
              py-1
-             bg-[#4B5563]
+             bg-[#646464]
              text-white
-             rounded-r-md
+             rounded-r-lg
              text-sm
-             hover:bg-[#000]
+             hover:bg-[#444]
              dark:active:border-[#fcfcfc]
              dark:active:border-2
              dark:bg-[#444]
