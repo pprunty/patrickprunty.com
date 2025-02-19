@@ -4,7 +4,7 @@ import { H4 } from '@/app/blog/components/h4';
 
 interface SectionItem {
   title: string;
-  subtitle?: string; // New subtitle property
+  subtitle?: string;
   url?: string;
   description?: string;
   year?: string | number;
@@ -15,6 +15,53 @@ interface SectionProps {
   sectionName: string;
   items: SectionItem[];
 }
+
+interface SectionImagesProps {
+  images: string[];
+  title: string;
+}
+
+const SectionImages: React.FC<SectionImagesProps> = ({ images, title }) => {
+  if (images.length > 1) {
+    return (
+      <div className="my-4 -mx-12 sm:mx-0">
+        <div className="overflow-x-auto overflow-y-hidden">
+          {/* Apply horizontal padding to align images with the description */}
+          <div className="flex gap-2 px-12 sm:px-0">
+            {images.map((src, idx) => (
+              <div key={idx} className="flex-shrink-0">
+                <Image
+                  src={src}
+                  alt={`${title} image ${idx + 1}`}
+                  width={150}
+                  height={150}
+                  className="rounded-xl mb-2 border border-[#E2E2E2] dark:border-[#343334]"
+                  priority
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // For a single image
+  return (
+    <div className="my-4 -mx-12 sm:mx-0">
+      <div className="px-12 sm:px-0">
+        <Image
+          src={images[0]}
+          alt={`${title} image 1`}
+          width={150}
+          height={150}
+          className="max-w-xs rounded-xl border border-[#E2E2E2] dark:border-[#343334]"
+          priority
+        />
+      </div>
+    </div>
+  );
+};
 
 const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
   return (
@@ -30,7 +77,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
           key={index}
           className="mb-6 ml-6 sm:ml-0 flex flex-col md:flex-row gap-2"
         >
-          {/* Left Column (Year) - only render if a year is provided */}
+          {/* Left Column (Year) */}
           {item.year && (
             <div className="md:w-1/4 text-md mb-[-5px] text-gray-500 dark:text-[#7D7D7D]">
               {item.year}
@@ -59,7 +106,7 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
               )}
             </div>
 
-            {/* Subtitle (if available) */}
+            {/* Subtitle */}
             {item.subtitle && (
               <p className="text-sm text-[#777777] dark:text-[#AAAAAA] mt-1">
                 {item.subtitle}
@@ -73,21 +120,9 @@ const Section: React.FC<SectionProps> = ({ sectionName, items }) => {
               </p>
             )}
 
-            {/* Images: Render all images side by side if provided */}
+            {/* Images */}
             {item.images && item.images.length > 0 && (
-              <div className="flex flex-wrap gap-2 my-4">
-                {item.images.map((src, idx) => (
-                  <Image
-                    key={idx}
-                    src={src}
-                    alt={`${item.title} image ${idx + 1}`}
-                    className="max-w-xs rounded-xl border border-[#E2E2E2] dark:border-[#343334]"
-                    width={150}
-                    height={150}
-                    priority
-                  />
-                ))}
-              </div>
+              <SectionImages images={item.images} title={item.title} />
             )}
           </div>
         </div>

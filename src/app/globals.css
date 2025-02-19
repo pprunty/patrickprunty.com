@@ -39,23 +39,22 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
 
   /* Customize scrollbar for WebKit browsers */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #222222;
-    border-radius: 0px;
+    background-color: #383838;
+    border-radius: 15px;
   }
   .dark ::-webkit-scrollbar-track {
-    background: #222222;
+    background: #383838;
   }
   .dark ::-webkit-scrollbar-thumb {
-    background-color: #ccc;
+    background-color: #666666;
   }
 
-  /* Customize scrollbar for Firefox */
-  * {
-    scrollbar-width: thin; /* Make scrollbar narrower */
+  .scroll-touch {
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Various rendering tweaks */
