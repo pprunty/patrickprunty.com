@@ -5,7 +5,7 @@ import { TabNavigation } from './tab-navigation';
 
 const Header: React.FC = () => {
   return (
-    <div className="my-8">
+    <div className="mt-4 mb-8">
       <div className="flex items-center space-x-4">
         {/* Profile Image */}
         <div className="min-w-24">
