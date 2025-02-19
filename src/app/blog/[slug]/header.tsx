@@ -33,7 +33,7 @@ export default function Header({ currentPost }: HeaderProps) {
     <>
       {/* Header Section */}
       <H1>{post.title}</H1>
-      <p className="font-mono flex flex-wrap justify-between items-center text-xs text-gray-700 dark:text-[#888888]">
+      <p className="font-mono text-xs flex flex-wrap justify-between items-center mt-3 text-gray-700 dark:text-[#888888]">
         {/* Left Section (Author, Date, and Mins Read) */}
         <span className="flex flex-col md:flex-row items-start md:items-center md:gap-2 gap-2">
           {/* Author */}
