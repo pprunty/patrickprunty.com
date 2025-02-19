@@ -36,12 +36,22 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mediaLoaded, setMediaLoaded] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Refs for swipe (touch) handling
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
-  // Reset the mediaLoaded state when the active media changes
+  // Detect if device is mobile (using 768px as threshold)
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset mediaLoaded state when activeIndex changes
   useEffect(() => {
     setMediaLoaded(false);
   }, [activeIndex]);
@@ -58,13 +68,13 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [mediaLoaded, activeIndex]);
 
-  // Memoized helper to check if a media source is a video
+  // Helper to check if a media source is a video
   const isVideo = useCallback(
     (src: string) => src.endsWith('.mp4') || src.endsWith('.mov'),
-    [],
+    []
   );
 
-  // Memoized navigation handlers
+  // Navigation handlers
   const nextItem = useCallback(() => {
     setActiveIndex((prev) => {
       if (prev === null) return prev;
@@ -120,10 +130,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
       const distance = touchStartX.current - touchEndX.current;
       const threshold = 50; // adjust threshold as needed
       if (distance > threshold) {
-        // Swiped left: move to the next item
+        // Swiped left: navigate to next item
         nextItem();
       } else if (distance < -threshold) {
-        // Swiped right: move to the previous item
+        // Swiped right: navigate to previous item
         prevItem();
       }
     }
@@ -132,7 +142,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     touchEndX.current = null;
   };
 
-  // Cache thumbnails so that they aren’t rebuilt on every render
+  // Cache thumbnails so they aren’t rebuilt on every render
   const thumbnails = useMemo(() => {
     return media.map((src, idx) => (
       <div key={idx} className="flex-shrink-0">
@@ -165,8 +175,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     ));
   }, [media, title, isVideo]);
 
-  // Cache the carousel content for thumbnails.
-  // Added extra bottom margin (mb-1.5) on mobile devices.
+  // Cache carousel content for thumbnails
   const carouselContent = useMemo(() => {
     if (media.length > 1) {
       return (
@@ -211,14 +220,15 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [media, title, isVideo, thumbnails]);
 
-  // Cache the modal overlay content so it isn’t recreated unless needed
+  // Cache modal overlay content so it isn’t recreated unless needed.
+  // On mobile, click navigation is disabled (only drag/swipe is allowed).
   const modalOverlay = useMemo(() => {
     if (activeIndex === null) return null;
     return (
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45"
         onClick={(e) => {
-          // If the click is on the overlay (and not on a child element), close the modal
+          // If the click is on the overlay (and not on a child element), close the modal.
           if (e.target === e.currentTarget) {
             closeModal();
           }
@@ -254,14 +264,12 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
             />
           )}
 
-          {/* Spinner overlay (debounced) */}
           {showSpinner && !mediaLoaded && (
             <div className="absolute inset-0 flex items-center justify-center">
               <ClipLoader color="#888888" size={20} />
             </div>
           )}
 
-          {/* Bottom Left: Close Button */}
           <button
             onClick={closeModal}
             style={{ zIndex: 10 }}
@@ -270,7 +278,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
             Close
           </button>
 
-          {/* Bottom Right: Index Indicator */}
           <button
             onClick={nextItem}
             className="absolute bottom-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full"
@@ -278,18 +285,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
             {activeIndex + 1}/{media.length}
           </button>
 
-          {/* Left Navigation Overlay with inline cursor style */}
+          {/* Left Navigation Overlay */}
           <div
             className="absolute top-0 left-0 h-full w-1/2"
-            onClick={prevItem}
-            style={{ cursor: 'w-resize' }}
+            onClick={!isMobile ? prevItem : undefined}
+            style={{ cursor: !isMobile ? 'w-resize' : 'default' }}
           />
 
-          {/* Right Navigation Overlay with inline cursor style */}
+          {/* Right Navigation Overlay */}
           <div
             className="absolute top-0 right-0 h-full w-1/2"
-            onClick={nextItem}
-            style={{ cursor: 'e-resize' }}
+            onClick={!isMobile ? nextItem : undefined}
+            style={{ cursor: !isMobile ? 'e-resize' : 'default' }}
           />
         </div>
       </div>
@@ -304,6 +311,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     closeModal,
     mediaLoaded,
     showSpinner,
+    isMobile,
   ]);
 
   return (
@@ -324,7 +332,6 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
       </div>
       <ul className="list-disc list-outside pl-6 space-y-2">
         {items.map((item, index) => {
-          // If the hide prop is true, skip rendering this item
           if (item.hide) return null;
           return (
             <li key={index} className="list-item">
@@ -334,14 +341,8 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     {item.url ? (
                       <a
                         href={item.url}
-                        target={
-                          item.url.startsWith('https://') ? '_blank' : '_self'
-                        }
-                        rel={
-                          item.url.startsWith('https://')
-                            ? 'noopener noreferrer'
-                            : undefined
-                        }
+                        target={item.url.startsWith('https://') ? '_blank' : '_self'}
+                        rel={item.url.startsWith('https://') ? 'noopener noreferrer' : undefined}
                         className="border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#111111] dark:border-gray-500 dark:hover:border-white"
                       >
                         {item.title}
