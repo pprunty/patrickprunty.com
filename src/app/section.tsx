@@ -163,7 +163,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = ({ media, title }) => {
               <video
                 src={media[activeIndex]}
                 autoPlay
-                muted
+                muted={false}
                 playsInline
                 loop
                 className="object-contain w-full md:w-auto h-auto md:h-full"
