@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import useSWR from 'swr';
 import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import Image from 'next/image';
+import ProfileCard from './profile-card';
 
 // --- Types
 
@@ -67,6 +68,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
   return (
     <>
       <Suspense fallback={null}>
+        <ProfileCard />
         <main className="max-w-2xl font-mono m-auto text-sm relative">
           <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
             {/* Date Sort Button */}

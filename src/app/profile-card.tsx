@@ -4,7 +4,7 @@ import UniqueViewers from './unique-viewers'; // adjust path if you created it s
 
 const ProfileCard: React.FC = () => {
   return (
-    <div className="flex items-center space-x-4 mb-12">
+    <div className="flex items-center space-x-4 mb-6 mt-6">
       {/* Profile Image */}
       <div className="min-w-24">
         <Image
@@ -20,10 +20,10 @@ const ProfileCard: React.FC = () => {
       {/* Text Content */}
       <div className="flex flex-col space-y-1">
         <span className="font-medium text-xl text-gray-900 dark:text-white leading-tight my-0">
-          Hi, I&apos;m Patrick 👋🏻
+          Patrick Prunty
         </span>
         <div className="text-[#555555] dark:text-[#B0AFB0] font-md break-words leading-tight my-0">
-          Senior Web Developer in Dublin, Ireland
+          Senior Web Developer based in Dublin, Ireland
         </div>
 
         {/* Render UniqueViewers Component */}

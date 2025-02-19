@@ -69,7 +69,6 @@ const Subscribe: React.FC<SubscribeProps> = ({
                   text-md
                   sm:text-sm
                   border
-                  min-w-[250px]
                   border-[#4B5563]
                   dark:border-[#555]
                   dark:active:border-[#fcfcfc]
