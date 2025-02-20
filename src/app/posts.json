@@ -7,7 +7,10 @@
       "draft": true,
       "description": "Reflecting on this past year.",
       "keywords": [
-        "yearly review"
+        "2025",
+        "reflection",
+        "year in review",
+        "personal growth"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -21,9 +24,11 @@
       "draft": false,
       "description": "My reading list for 2025, including brief reviews and ratings.",
       "keywords": [
-        "reading list 2025",
-        "book review",
-        "reading challenge"
+        "2025",
+        "reading list",
+        "book reviews",
+        "reading challenge",
+        "books"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -37,9 +42,13 @@
       "draft": true,
       "description": "Or how techniques developed while trading on the FIFA Ultimate Team 12 marketplace as a 15-year-old might apply to real-life markets.",
       "keywords": [
+        "FIFA",
+        "gaming",
         "trading",
-        "FIFA Ultimate Team",
-        "football"
+        "football",
+        "virtual economy",
+        "economics",
+        "Ultimate Team"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -53,8 +62,10 @@
       "draft": true,
       "description": "qdqw",
       "keywords": [
-        "mobile development",
-        "technology"
+        "mobile phones",
+        "technology",
+        "society",
+        "modern life"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -70,8 +81,8 @@
       "keywords": [
         "next.js",
         "web design",
-        "web design principles",
         "programming",
+        "web development",
         "vercel"
       ],
       "author": "Patrick Prunty",
@@ -88,10 +99,10 @@
       "keywords": [
         "software development",
         "engineering",
+        "programming",
         "perfection",
         "productivity",
-        "obsession",
-        "programming"
+        "technology"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -105,19 +116,15 @@
       "draft": false,
       "description": "Download preview chapters of The Winds of Winter by George R.R. Martin in eBook, Kindle, or PDF formats.",
       "keywords": [
-        "Game of Thrones",
+        "fantasy",
         "ASOIAF",
-        "George R.R Martin",
-        "George R.R. Martin free downloads",
-        "A Song of Ice and Fire",
-        "The Winds of Winter",
-        "The Winds of Winter PDF",
-        "George R.R. Martin new book",
-        "PDF",
-        "The Winds of Winter Preview Chapters",
-        "free eBook download",
-        "TWOW release",
-        "free downloads"
+        "Game of Thrones",
+        "ebook",
+        "pdf",
+        "George R.R. Martin",
+        "reading",
+        "book preview",
+        "downloads"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -132,7 +139,7 @@
       "description": "An experimental poem by Patrick Prunty.",
       "keywords": [
         "poetry",
-        "experimental",
+        "experimental writing",
         "creative writing",
         "writing"
       ],
@@ -148,8 +155,11 @@
       "draft": true,
       "description": "Or why, in a world full of people trying to be somebody else, you should focus on being you.",
       "keywords": [
-        "Or why, in a world full of people trying to be somebody else, you should focus on being you.",
-        "content creation"
+        "blogging",
+        "authenticity",
+        "content creation",
+        "self-expression",
+        "writing"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -163,8 +173,11 @@
       "draft": true,
       "description": "fefe",
       "keywords": [
+        "AI",
+        "software engineering",
         "programming",
-        "technology"
+        "technology",
+        "job security"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
@@ -178,10 +191,11 @@
       "draft": true,
       "description": "Exploring what makes Irish movies typically Irish.",
       "keywords": [
-        "film",
-        "video essay",
-        "youtube video essay",
         "irish film",
+        "film analysis",
+        "video essay",
+        "irish culture",
+        "cinema",
         "jigsaw presents"
       ],
       "author": "Patrick Prunty",
