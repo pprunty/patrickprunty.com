@@ -51,14 +51,9 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Cache loaded state for media items
-  const loadedMediaRef = useRef<{ [key: number]: boolean }>({});
-
-  // Only reset mediaLoaded if the active media hasn't been loaded before
+  // Reset mediaLoaded state when activeIndex changes
   useEffect(() => {
-    if (activeIndex !== null && !loadedMediaRef.current[activeIndex]) {
-      setMediaLoaded(false);
-    }
+    setMediaLoaded(false);
   }, [activeIndex]);
 
   // Debounce the spinner so it only shows if media takes longer than ~300ms to load
@@ -76,7 +71,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   // Helper to check if a media source is a video
   const isVideo = useCallback(
     (src: string) => src.endsWith('.mp4') || src.endsWith('.mov'),
-    [],
+    []
   );
 
   // Navigation handlers
@@ -121,30 +116,34 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [activeIndex]);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length !== 1) return;
-    touchStartX.current = e.touches[0].clientX;
-  };
+const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  // Only process if there's exactly one touch
+  if (e.touches.length !== 1) return;
+  touchStartX.current = e.touches[0].clientX;
+};
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length !== 1) return;
-    touchEndX.current = e.touches[0].clientX;
-  };
+const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  // Only process if there's exactly one touch
+  if (e.touches.length !== 1) return;
+  touchEndX.current = e.touches[0].clientX;
+};
 
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.changedTouches.length !== 1) return;
-    if (touchStartX.current !== null && touchEndX.current !== null) {
-      const distance = touchStartX.current - touchEndX.current;
-      const threshold = 50; // adjust threshold as needed
-      if (distance > threshold) {
-        nextItem();
-      } else if (distance < -threshold) {
-        prevItem();
-      }
+const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+  // Ensure this was a single touch gesture
+  if (e.changedTouches.length !== 1) return;
+  if (touchStartX.current !== null && touchEndX.current !== null) {
+    const distance = touchStartX.current - touchEndX.current;
+    const threshold = 50; // adjust threshold as needed
+    if (distance > threshold) {
+      nextItem();
+    } else if (distance < -threshold) {
+      prevItem();
     }
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
+  }
+  touchStartX.current = null;
+  touchEndX.current = null;
+};
+
 
   // Cache thumbnails so they aren’t rebuilt on every render
   const thumbnails = useMemo(() => {
@@ -225,12 +224,14 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   }, [media, title, isVideo, thumbnails]);
 
   // Cache modal overlay content so it isn’t recreated unless needed.
+  // On mobile, click navigation is disabled (only drag/swipe is allowed).
   const modalOverlay = useMemo(() => {
     if (activeIndex === null) return null;
     return (
       <div
         className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45"
         onClick={(e) => {
+          // If the click is on the overlay (and not on a child element), close the modal.
           if (e.target === e.currentTarget) {
             closeModal();
           }
@@ -247,10 +248,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               muted={false}
               playsInline
               loop
-              onLoadedData={() => {
-                setMediaLoaded(true);
-                loadedMediaRef.current[activeIndex] = true;
-              }}
+              onLoadedData={() => setMediaLoaded(true)}
               className="object-contain w-full md:w-auto h-auto md:h-full"
             >
               Your browser does not support the video tag.
@@ -263,10 +261,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               height={600}
               unoptimized
               quality={100}
-              onLoad={() => {
-                setMediaLoaded(true);
-                loadedMediaRef.current[activeIndex] = true;
-              }}
+              onLoad={() => setMediaLoaded(true)}
               className="object-contain w-full md:w-auto h-auto md:h-full"
               priority
             />
@@ -349,14 +344,8 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     {item.url ? (
                       <a
                         href={item.url}
-                        target={
-                          item.url.startsWith('https://') ? '_blank' : '_self'
-                        }
-                        rel={
-                          item.url.startsWith('https://')
-                            ? 'noopener noreferrer'
-                            : undefined
-                        }
+                        target={item.url.startsWith('https://') ? '_blank' : '_self'}
+                        rel={item.url.startsWith('https://') ? 'noopener noreferrer' : undefined}
                         className="border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#111111] dark:border-gray-500 dark:hover:border-white"
                       >
                         {item.title}
