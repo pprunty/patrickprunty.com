@@ -27,9 +27,9 @@ async function processImage(imagePath) {
 
   try {
     await sharp(imagePath)
-//      .resize(width, height, {
-//        fit: 'cover', // Adjust the resize strategy to fit your needs
-//      })
+      //      .resize(width, height, {
+      //        fit: 'cover', // Adjust the resize strategy to fit your needs
+      //      })
       .toFormat('webp')
       .toFile(path.join(outputDir, `${fileName}.webp`));
 
@@ -46,7 +46,17 @@ async function processAllImages() {
 
     // Include WebP files in the list of supported extensions
     const imageFiles = files.filter((file) =>
-      ['.jpg', '.jpeg', '.png', '.tiff', '.bmp', '.HEIC', '.heic', '.gif', '.webp'].includes(path.extname(file).toLowerCase())
+      [
+        '.jpg',
+        '.jpeg',
+        '.png',
+        '.tiff',
+        '.bmp',
+        '.HEIC',
+        '.heic',
+        '.gif',
+        '.webp',
+      ].includes(path.extname(file).toLowerCase()),
     );
 
     if (imageFiles.length === 0) {

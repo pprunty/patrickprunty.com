@@ -2,15 +2,17 @@ import { SITE_URL } from '@/config';
 
 export const metadata = {
   title: "Where's the Makefile?",
-  description: "Exploring the lack of Makefiles used in industry and arguing why they should be standard for every software repository and project.",
-  image: "/images/where-the-makefile/makefile.webp",
-  date: "2024-11-07",
-  author: "Patrick Prunty",
-  authorUrl: "https://patrickprunty.com/about",
+  description:
+    'Exploring the lack of Makefiles used in industry and arguing why they should be standard for every software repository and project.',
+  image: '/images/where-the-makefile/makefile.webp',
+  date: '2024-11-07',
+  author: 'Patrick Prunty',
+  authorUrl: 'https://patrickprunty.com/about',
   openGraph: {
     title: "Where's the Makefile?",
-    description: "Exploring the lack of Makefiles used in industry and arguing why they should be standard for every software repository and project.",
-    url: "/blog/where-the-makefile",
+    description:
+      'Exploring the lack of Makefiles used in industry and arguing why they should be standard for every software repository and project.',
+    url: '/blog/where-the-makefile',
     images: [
       {
         url: `${SITE_URL}/images/where-the-makefile/makefile.webp`,
@@ -18,18 +20,33 @@ export const metadata = {
       },
     ],
     type: 'article',
-    tags: ["programming", "makefile", "GNU", "software developement", "technology", "industry standards"],
+    tags: [
+      'programming',
+      'makefile',
+      'GNU',
+      'software developement',
+      'technology',
+      'industry standards',
+    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: "Where's the Makefile?",
-    description: "Exploring the lack of Makefiles used in industry and arguing why they should be standard for every software repository and project.",
+    description:
+      'Exploring the lack of Makefiles used in industry and arguing why they should be standard for every software repository and project.',
     image: `${SITE_URL}/images/where-the-makefile/makefile.webp`,
   },
-  keywords: ["programming", "makefile", "GNU", "software developement", "technology", "industry standards"],
-  slug: "where-the-makefile",
+  keywords: [
+    'programming',
+    'makefile',
+    'GNU',
+    'software developement',
+    'technology',
+    'industry standards',
+  ],
+  slug: 'where-the-makefile',
   readingTime: 2,
-  draft: true
+  draft: true,
 };
 
 Wouldn't it be so easy?
@@ -51,7 +68,7 @@ That's the power the Makefile gives you and your team.
 
 A Makefile is a file which sits at the root of your project.
 
-It should *always* be called 'Makefile', no file extension is required.
+It should _always_ be called 'Makefile', no file extension is required.
 
 The Makefile collects the commands you should use to run your project.
 
@@ -67,10 +84,7 @@ python main.py
 
 To install the requirements for the project, you know you
 
-
 Putting it all together, you can check if the user has a venv created, create it.
-
-
 
 # What are Pre-Required Software?
 
@@ -81,8 +95,8 @@ NextJS 15 project?
 
 The requirements for NextJS are:
 
-* `node`
-* `docker` (optional)
+- `node`
+- `docker` (optional)
 
 So can simply do this in your Makefile:
 
@@ -119,14 +133,12 @@ help:
 
 # Makefile and Docker [#makefile-and-docker]
 
-
 # Makefiles are Monsters [#makefiles-are-monsters]
 
-If I haven't already convinced you, *Makefiles are monsters*.
+If I haven't already convinced you, _Makefiles are monsters_.
 
 They should be industry standard and maintained by developers on every project.
 
 Not to mention,
 with the advance of LLM (Large Language Models), a Makefile provides a one-stop-shop for an artificially intelligent
 agent to discover, clone and run a project.
-

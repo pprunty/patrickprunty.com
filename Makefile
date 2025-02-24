@@ -23,9 +23,10 @@ start:
 	NODE_ENV=$(NODE_ENV) npm run start
 
 # Lint the project
+# Lint the project
 .PHONY: lint
 lint:
-	npm run lint:fix
+	npm run lint:fix && npm run format
 
 # Clean the build artifacts and node_modules
 .PHONY: clean

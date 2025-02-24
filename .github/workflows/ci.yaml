@@ -11,7 +11,7 @@ on:
 
 jobs:
   setup:
-    name: "Setup: Installing dependencies 🛒"
+    name: 'Setup: Installing dependencies 🛒'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code 🛒
@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-node-
 
   lint:
-    name: "Linting: Running eslint against application 🧹"
+    name: 'Linting: Running eslint against application 🧹'
     needs: setup
     runs-on: ubuntu-latest
     steps:

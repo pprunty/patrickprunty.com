@@ -16,7 +16,7 @@ interface SectionItem {
   title: string;
   subtitle?: string;
   url?: string;
-  description?: string;
+  description?: React.ReactNode;
   year?: string | number;
   media?: string[];
   hide?: boolean; // New property to conditionally hide items

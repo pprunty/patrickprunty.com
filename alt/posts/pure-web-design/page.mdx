@@ -2,20 +2,22 @@ import { SITE_URL, AUTHOR } from '@/config';
 
 export const metadata = {
   title: 'Pure Web Design [tmplate.xyz]',
-  description: 'Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.',
+  description:
+    'Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.',
   image: '/images/pure-web-design/pure-web-design.webp',
   date: '2024-12-10',
   author: 'Patrick Prunty',
   authorUrl: 'https://patrickprunty.com/about',
   openGraph: {
     title: 'Pure Web Design [tmplate.xyz]',
-    description: 'Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.',
+    description:
+      'Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.',
     url: '/blog/pure-web-design',
     images: [
       {
         url: `/images/pure-web-design/pure-web-design.webp`,
-        alt: 'Pure Web Design [tmplate.xyz]'
-      }
+        alt: 'Pure Web Design [tmplate.xyz]',
+      },
     ],
     type: 'article',
     tags: [
@@ -26,14 +28,15 @@ export const metadata = {
       'Next.js',
       'Abstraction',
       'software development',
-      'programming'
-    ]
+      'programming',
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pure Web Design [tmplate.xyz]',
-    description: 'Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.',
-    image: `/images/pure-web-design/pure-web-design.webp`
+    description:
+      'Exploring a web design approach using Next.js by abstracting layout, container, and widget layers while centralizing route configurations for streamlined application management.',
+    image: `/images/pure-web-design/pure-web-design.webp`,
   },
   keywords: [
     'UI/UX',
@@ -42,22 +45,21 @@ export const metadata = {
     'Web Design',
     'Next.js',
     'Abstraction',
-  'software development',
-  'programming'
+    'software development',
+    'programming',
   ],
   slug: 'pure-web-design',
   readingTime: 4,
-  draft: true
+  draft: true,
 };
 
 Pure (Polymorphic) Web Design consists of implementing three distinct abstract layers:
-**Structural**, **Latent** and **Widget** layers. The idea being if the structural layout 
-(controlling layout, e.g header, footer and navigation links) and latent layers (containers e.g grid, 
-stacked, vertical snap-scroll/tiktok scroll) can be optimized and configurable out-of-the-box, then 
-developers need only worry about the developement of widgets (individual or composite components, e.g ...) 
-which provide core-value offering for your productthrough interactig with an API via the click of a button, card or 
-filling out of a form. 
-
+**Structural**, **Latent** and **Widget** layers. The idea being if the structural layout
+(controlling layout, e.g header, footer and navigation links) and latent layers (containers e.g grid,
+stacked, vertical snap-scroll/tiktok scroll) can be optimized and configurable out-of-the-box, then
+developers need only worry about the developement of widgets (individual or composite components, e.g ...)
+which provide core-value offering for your productthrough interactig with an API via the click of a button, card or
+filling out of a form.
 
 This method breaks down application architecture into three distinct layers: **Layout**, **Container**, and **Widget**.
 By abstracting these layers and centralizing configuration, developers can create polymorphic web interfaces suitable
@@ -85,11 +87,12 @@ for any SaaS product.
 |                                                     |
 +-----------------------------------------------------+
 ```
-<Caption>The Abstract Layers of Web Design: Layout, Containers and Widgets</Caption>
 
+<Caption>
+  The Abstract Layers of Web Design: Layout, Containers and Widgets
+</Caption>
 
 # Configuration [#app-configuration]
-
 
 # Layout Layer [#layout-layer]
 
@@ -131,7 +134,7 @@ abstract layout, you can create something which will do the following:
 </Layout>
 ```
 
-It is important you track for the user, where in the application they are. This is done in different ways, depending on the 
+It is important you track for the user, where in the application they are. This is done in different ways, depending on the
 type of layout.
 
 # The Container Layer [#the-container-layer]
@@ -149,9 +152,9 @@ The most common organizations are:
 
 # Modals [#modals]
 
-Only use an entirely new webpage, if the content you plan to display on that webpage will not 
-fit within a Modal/pop-up. Even if you consider the content to be too much, think of ways of how 
-you can reduce the content such that it will fit in a Modal. If it still will not fit, only then 
+Only use an entirely new webpage, if the content you plan to display on that webpage will not
+fit within a Modal/pop-up. Even if you consider the content to be too much, think of ways of how
+you can reduce the content such that it will fit in a Modal. If it still will not fit, only then
 use a new webpage and route.
 
 # The Widget Layer [#the-widget-layer]
@@ -163,15 +166,11 @@ A widget can be a single component such as a button, or made up of multiple comp
 to as a **template** (if it's a reusable structure) or a **composite component** (if it combines multiple elements and
 interactions).
 
-
-
 ## Widget Catalogue [#widget-catalogue]
 
-*** 
+---
 
-If you made it this far, the great news for you is that I have made the initial 
+If you made it this far, the great news for you is that I have made the initial
 version of this template open source on GitHub for your personal use. It is free to
 use under MIT License and better than most of the drool Next.js paid templates you see
 advertised on [r/sideproject]() and Twitter.
-
-

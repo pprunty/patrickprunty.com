@@ -2,20 +2,22 @@ import { SITE_URL, AUTHOR } from '@/config';
 
 export const metadata = {
   title: 'Interactive Animation Development with Manim',
-  description: 'Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.',
+  description:
+    'Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.',
   image: '/images/interactive-animation-development-with-manim/manim.png',
   date: '2025-01-02',
   author: 'Patrick Prunty',
   authorUrl: 'https://patrickprunty.com/about',
   openGraph: {
     title: 'Interactive Animation Development with Manim',
-    description: 'Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.',
+    description:
+      'Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.',
     url: '/blog/interactive-animation-development-with-manim',
     images: [
       {
         url: `/images/interactive-animation-development-with-manim/manim.png`,
-        alt: 'Interactive Animation Development with Manim'
-      }
+        alt: 'Interactive Animation Development with Manim',
+      },
     ],
     type: 'article',
     tags: [
@@ -25,14 +27,15 @@ export const metadata = {
       'content creation',
       'animation',
       'software development',
-      'python'
-    ]
+      'python',
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Interactive Animation Development with Manim',
-    description: 'Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.',
-    image: `/images/interactive-animation-development-with-manim/manim.png`
+    description:
+      'Discover how to set up an interactive editing environment with Manim to create sleek, professional animations for illustrating mathematical concepts.',
+    image: `/images/interactive-animation-development-with-manim/manim.png`,
   },
   keywords: [
     'mathematics',
@@ -41,39 +44,39 @@ export const metadata = {
     'content creation',
     'animation',
     'software development',
-    'python'
+    'python',
   ],
   slug: 'interactive-animation-development-with-manim',
   readingTime: 7,
-  draft: true
+  draft: true,
 };
 
 [Manim](https://github.com/3b1b/manim) is an open-source Python library designed for creating mathematical animations. Originally developed by [Grant Sanderson](https://twitter.com/3blue1brown) for his YouTube channel [3Blue1Brown](https://www.youtube.com/c/3blue1brown), Manim is ideal for producing visually stunning mathematical visualizations. However, its flexibility makes it a powerful general-purpose animation engine for those with experience in software development.
 
-In Grant Sanderson's video with Numberphille's ___, he demonstrates his workflow for using Manim interactively, through 
+In Grant Sanderson's video with Numberphille's \_\_\_, he demonstrates his workflow for using Manim interactively, through
 code highlighting, keyboard shortcuts and different windows. Whilst there is enough detail online to replicate Sanderson's workflow, there is
 no complete tutorial. This is why I created the `manim-interactive` project, to help with just that.
 
 By the end of this guide, you'll be able to:
 
 1. **Create animations like this**:
-    <MP4
-      src="/videos/sample-video.mp4"
-      controls
-      autoplay
-      loop
-      muted
-      className="rounded-md shadow-lg"
-    />
+   <MP4
+     src="/videos/sample-video.mp4"
+     controls
+     autoplay
+     loop
+     muted
+     className="rounded-md shadow-lg"
+   />
 2. **Using an interactive animation development environment like this**:
-    <MP4
-      src="/videos/sample-video.mp4"
-        controls
-        autoplay
-        loop
-        muted
-      className="rounded-md shadow-lg"
-    />
+   <MP4
+     src="/videos/sample-video.mp4"
+     controls
+     autoplay
+     loop
+     muted
+     className="rounded-md shadow-lg"
+   />
 
 # Why Manim [#why-manim]
 
@@ -81,9 +84,9 @@ As a math and computer science enthusiast with a passion for educational content
 of creating content](/blog/2024-in-review#new-year-resolution) for my educational YouTube channel, [Pixel Projects](). While it was designed for
 mathematical animations, Manim offers:
 
-* A smaller learning curve compared to tools like Adobe After Effects for Python developers.
-* Flexibility to create custom animations using Python.
-* Open-source freedom to explore and contribute.
+- A smaller learning curve compared to tools like Adobe After Effects for Python developers.
+- Flexibility to create custom animations using Python.
+- Open-source freedom to explore and contribute.
 
 # Pre-requisites [#pre-requisites]
 
@@ -118,7 +121,7 @@ This will:
 1. Install `ffmpeg` and `mactex` using `brew`.
 2. Set up Manim in editable mode using Python's `pip`.
 3. Install `setuptools` using `pip` (manimgl breaks if not installed).
-3. Update the `custom_config.yml` with paths on your local machine.
+4. Update the `custom_config.yml` with paths on your local machine.
 
 ## Step 3 [#step-3]
 
@@ -131,7 +134,7 @@ manimgl --help
 # Using the Makefile [#using-the-makefile]
 
 The Makefile includes several commands to streamline your workflow and is a wrapper around the `manimgl` cli.
- To see a list of available commands, run:
+To see a list of available commands, run:
 
 ```bash
 make --help
@@ -192,12 +195,12 @@ ran `make install`. Here's a breakdown of the paths used:
 To render an animation, use the animations provided in `projects/guides/*.py`. They are
 listed:
 
-* `projects/guides/text.py`
-* `projects/guides/image.py`
-* `projects/guides/equation.py`
-* `projects/guides/graph.py`
-* `projects/guides/grouping.py`
-* `projects/guides/3d.py`
+- `projects/guides/text.py`
+- `projects/guides/image.py`
+- `projects/guides/equation.py`
+- `projects/guides/graph.py`
+- `projects/guides/grouping.py`
+- `projects/guides/3d.py`
 
 These animations showcase isolated animations that can be used and referenced when creating complex
 animations later.
@@ -212,9 +215,9 @@ This will open an interactive window with the example animation.
 
 You can interact with the animation using your mouse and keys:
 
-* scroll the middle mouse button to move the screen up and down
-* hold down the **z** on the keyboard while scrolling to zoom the screen
-* hold down the **d** key on the keyboard and move the mouse to change the three-dimensional perspective.
+- scroll the middle mouse button to move the screen up and down
+- hold down the **z** on the keyboard while scrolling to zoom the screen
+- hold down the **d** key on the keyboard and move the mouse to change the three-dimensional perspective.
 
 Press **r** to reset scroll position, or **⌘** + **q** to close the window.
 
@@ -243,20 +246,21 @@ make export f=projects/guide/text.py s=TextScene
 By default the mp4 file will be saved as `videos/projects/guide/text/TextScene.mp4`.
 
 <Admonition type="info" title="Note">
-By default exports are saved in 4K resolution. I do not see a reason why you would want to export
-in lower quality, but if so you can remove the `--uhd` flag from the `Makefile` on the `make export`
-command and update the resolution in the `custom_config.yml`.
+  By default exports are saved in 4K resolution. I do not see a reason why you
+  would want to export in lower quality, but if so you can remove the `--uhd`
+  flag from the `Makefile` on the `make export` command and update the
+  resolution in the `custom_config.yml`.
 </Admonition>
 
 # Sublime Integration [#sublime-integration]
 
-Sublime Text Editor is used to create keyboard shortcuts that interact with Manim's animation 
+Sublime Text Editor is used to create keyboard shortcuts that interact with Manim's animation
 scenes.
 
 ## Adding Terminus [#adding terminus]
 
 To get started using Sublime, open the cloned `manim-interactive` project using the sublime text editor. Now hold cmd + shift + p to open command pallette, search
-for install package and select that, then search "Terminus". This will install Terminus on your system. 
+for install package and select that, then search "Terminus". This will install Terminus on your system.
 
 Now, restart Sublime Text Editor, type cmd + shift + p again and search "Terminus."
 
@@ -266,42 +270,40 @@ In the **Preferences: Terminus Key Bindings**, paste the following on the right 
 
 ```json
 [
-   {
-       "keys": ["super+1"],
-       "command": "terminus_open",
-       "args": {
-           "cmd": ["bash", "-i", "-l"],  // Start Bash as an interactive login shell
-           "cwd": "${file_path:${folder}}",  // Set working directory
-           "panel_name": "Terminus"
-       }
-   },
-    { "keys": ["shift+super+r"], "command": "manim_run_scene" },
-    { "keys": ["super+r"], "command": "manim_checkpoint_paste" },
-    { "keys": ["super+alt+r"], "command": "manim_recorded_checkpoint_paste" },
-    { "keys": ["super+ctrl+r"], "command": "manim_skipped_checkpoint_paste" },
-    { "keys": ["super+e"], "command": "manim_exit" },
-    { "keys": ["super+option+/"], "command": "comment_fold"},
-
+  {
+    "keys": ["super+1"],
+    "command": "terminus_open",
+    "args": {
+      "cmd": ["bash", "-i", "-l"], // Start Bash as an interactive login shell
+      "cwd": "${file_path:${folder}}", // Set working directory
+      "panel_name": "Terminus"
+    }
+  },
+  { "keys": ["shift+super+r"], "command": "manim_run_scene" },
+  { "keys": ["super+r"], "command": "manim_checkpoint_paste" },
+  { "keys": ["super+alt+r"], "command": "manim_recorded_checkpoint_paste" },
+  { "keys": ["super+ctrl+r"], "command": "manim_skipped_checkpoint_paste" },
+  { "keys": ["super+e"], "command": "manim_exit" },
+  { "keys": ["super+option+/"], "command": "comment_fold" }
 ]
 ```
 
-Before we use these key bindings, we need to copy the content inside 
+Before we use these key bindings, we need to copy the content inside
 `sublime_custom_commands/*` into the Sublime application. To do this, you can run:
 
 ```bash
 make sublime
 ```
 
-Now restart Sublime Text Editor again. You are now able to open a terminal in Sublime using cmd+1. 
+Now restart Sublime Text Editor again. You are now able to open a terminal in Sublime using cmd+1.
 
 Additionally, we have added Manim key bindings which enable:
 
-* cmd+shift+r: Highlight the `def construct(self):` line of your scene and press this command to run the Manim scene
-interactively in an animation window.
-* cmd+r: Highlight the full block of code in your scene which you wish to animate (include consistent indentation) and press these
-keys together to run that part of your animation in the animation window.
-* cmd+e: Press these keys to exit the interactive animation.
-
+- cmd+shift+r: Highlight the `def construct(self):` line of your scene and press this command to run the Manim scene
+  interactively in an animation window.
+- cmd+r: Highlight the full block of code in your scene which you wish to animate (include consistent indentation) and press these
+  keys together to run that part of your animation in the animation window.
+- cmd+e: Press these keys to exit the interactive animation.
 
 # Resolution Shortcuts [#resolution-shortcuts]
 
@@ -325,9 +327,10 @@ make video
 # Upgrading Manim [#upgrading-manim]
 
 <Admonition type="warning" title="warning">
-`manim-interactive` uses a static version of the `3b1b/manim` repository. If you are currently working on an existing project,
-upgrading manim is not recommended as some changed made in the 3blue1brown maintained reposiotry could break your
-current animation project.
+  `manim-interactive` uses a static version of the `3b1b/manim` repository. If
+  you are currently working on an existing project, upgrading manim is not
+  recommended as some changed made in the 3blue1brown maintained reposiotry
+  could break your current animation project.
 </Admonition>
 
 This project uses a static version of `3b1b/manim`, namely (#). If you wish to upgrade the verison of manim

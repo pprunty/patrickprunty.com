@@ -1,27 +1,27 @@
 import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
 import Link from 'next/link';
 import UniqueViewers from './unique-viewers';
-import Section from "./section";
+import Section from './section';
 
 export const photographyImages = [
-    "/photography/0a94d7f5-834a-4567-86db-93f1ce8dc3ca.webp",
-    "/photography/232afccf-fb3e-443d-af60-c1c67a6189d0.webp",
-    "/photography/2add6d50-7a3e-4142-9707-b3d7d0e8ed7e.webp",
-    "/photography/2d8324a2-e783-47d8-aa1c-3891e7a8b541.webp",
-    "/photography/3cf5f5a9-843c-44e2-9482-45c765a84d30.webp",
-    "/photography/60a53698-deec-4b91-94a8-5513e534c24a.webp",
-    "/photography/62b1ca5f-d849-41a7-a83e-42ca04b3b47c.webp",
-    "/photography/9977ee3f-d4bd-4ce6-a57c-04397898b222.webp",
-    "/photography/IMG_3572.webp",
-    "/photography/IMG_4648.webp",
-    "/photography/IMG_5905.webp",
-    "/images/me.jpg",
-    "/photography/c57ad8ca-ee1e-4d3d-a9f6-9b0222e211da.webp",
-    "/photography/IMG_6798.webp",
-    "/photography/IMG_7848.webp",
-    "/photography/IMG_7218.webp",
-    "/photography/IMG_7462.webp",
-    "/photography/IMG_6023.webp",
+  '/photography/0a94d7f5-834a-4567-86db-93f1ce8dc3ca.webp',
+  '/photography/232afccf-fb3e-443d-af60-c1c67a6189d0.webp',
+  '/photography/2add6d50-7a3e-4142-9707-b3d7d0e8ed7e.webp',
+  '/photography/2d8324a2-e783-47d8-aa1c-3891e7a8b541.webp',
+  '/photography/3cf5f5a9-843c-44e2-9482-45c765a84d30.webp',
+  '/photography/60a53698-deec-4b91-94a8-5513e534c24a.webp',
+  '/photography/62b1ca5f-d849-41a7-a83e-42ca04b3b47c.webp',
+  '/photography/9977ee3f-d4bd-4ce6-a57c-04397898b222.webp',
+  '/photography/IMG_3572.webp',
+  '/photography/IMG_4648.webp',
+  '/photography/IMG_5905.webp',
+  '/images/me.jpg',
+  '/photography/c57ad8ca-ee1e-4d3d-a9f6-9b0222e211da.webp',
+  '/photography/IMG_6798.webp',
+  '/photography/IMG_7848.webp',
+  '/photography/IMG_7218.webp',
+  '/photography/IMG_7462.webp',
+  '/photography/IMG_6023.webp',
 ];
 
 export const metadata = {
@@ -42,7 +42,7 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     site: `${AUTHOR.twitterHandle}`,
     creator: `${AUTHOR.twitterHandle}`,
     media: [
@@ -54,34 +54,30 @@ export const metadata = {
   },
   keywords: DEFAULT_KEYWORDS.concat([
     AUTHOR.name,
-    "Software Engineer",
-    "Dublin",
-    "Ireland",
-    "technology"
+    'Software Engineer',
+    'Dublin',
+    'Ireland',
+    'technology',
   ]),
   metadataBase: new URL(SITE_URL),
 };
 
 # Hi! I'm Patrick 👋🏻
 
-<UniqueViewers/>
+<UniqueViewers />
 
 <Image
-src="/images/me-sketch2.png"
-alt="Patrick Prunty"
-className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-40 h-40 md:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
-width={150}
-height={150}
-priority
+  src="/images/me-sketch2.png"
+  alt="Patrick Prunty"
+  className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-40 h-40 md:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
+  width={150}
+  height={150}
+  priority
 />
 
 I'm a senior web developer based in Dublin, Ireland.
 
 Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animations (videos coming soon).
-
-{/*
-I'm also founder of [thelastmanstanding.io]()...
-*/}
 
 I share insights on life, technology, and open-source projects on my [personal blog](/blog).
 
@@ -90,51 +86,75 @@ When I'm not programming or working on creative projects, you can find me traini
 Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries. My professional CV is available [here](https://read.cv/pprunty).
 
 {/*
+
 ## Latest YouTube Video [#latest-youtube-video]
 
-<YouTube videoId={"wjZofJX0v4M"}/>
-<YouTube videoId={"mn2Dcy-NDTw"}/>
-<YouTube videoId={"8XEpK6FpNZc"}/>
+<YouTube videoId={'wjZofJX0v4M'} />
+<YouTube videoId={'mn2Dcy-NDTw'} />
+<YouTube videoId={'8XEpK6FpNZc'} />
 */}
 
-
-<Section sectionName="Projects" items={[
-{
-title: 'Pixel Projects at YouTube',
-url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw',
-year: '2025',
-media: ['/images/projects/pixel-projects-4.png','/images/projects/GodelIncompleteness.mp4'],
-description:
-'Educational channel exploring computational mathematics and computer science through storytelling and visual animations (videos coming soon).',
-},
-{
-title: 'Jigsaw Presents at YouTube',
-url: 'https://www.youtube.com/@JigsawPresents',
-year: '2025',
-media: ['/images/projects/jigsaw-presents.webp'],
-description:
-'Providing insight into trending films and television series through video essays (videos coming soon).',
-},
-{
-title: 'Personal Website & Blog',
-url: '/blog',
-year: '2025',
-media: ["/images/projects/personal-blog-1.png", '/images/projects/Untitled.mov'],
-description:
-'High-performance blog built with Next.js 15 and MDX, where I share insights on life, technology, and personal projects.',
-}
-]} />
-
+<Section
+  sectionName="Projects"
+  items={[
+    {
+      title: 'Pixel Projects at YouTube',
+      url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw',
+      year: '2025',
+      media: [
+        '/images/projects/pixel-projects-4.png',
+        '/images/projects/GodelIncompleteness.mp4',
+      ],
+      description:
+        'Educational channel exploring computational mathematics and computer science through storytelling and visual animations (videos coming soon).',
+    },
+    {
+      title: 'Jigsaw Presents at YouTube',
+      url: 'https://www.youtube.com/@JigsawPresents',
+      year: '2025',
+      media: ['/images/projects/jigsaw-presents.webp'],
+      description:
+        'Providing insight into trending films and television series through video essays (videos coming soon).',
+    },
+    {
+      title: 'Personal Website & Blog',
+      url: '/blog',
+      year: '2025',
+      media: [
+        '/images/projects/personal-blog-1.png',
+        '/images/projects/Untitled.mov',
+      ],
+      description:
+        'High-performance blog built with Next.js 15 and MDX, where I share insights on life, technology, and personal projects.',
+    },
+  ]}
+/>
 
 <Section
   sectionName="Software"
   items={[
     {
+      title: 'adair-ui',
+      url: 'https://adair.vercel.app/',
+      year: '2025',
+      description:
+        <>
+        Adair is a collection of open source and progressively-styled reusable React TailwindCSS components based on
+        {' '}
+        <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">
+        shadcn/ui
+        </a>
+        {' '}
+        . Designed to be highly modular, accessible, and customizable. (work in progress).
+        </>
+    },
+    {
       title: 'tmplate.xyz',
       url: 'https://tmplate.xyz/',
       year: '2025',
+      hide: true,
       description:
-        'Open-source application showcasing Polymorphic Web Design principles (work in progress).',
+        'Open-source application showcasing Polymorphic Web Design principles. (work in progress).',
     },
     {
       title: 'samwise',
@@ -152,20 +172,22 @@ description:
         'Interactive Manim environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown’s workflow through code highlighting and keyboard binding shortcuts.',
     },
     {
-          title: 'clunk',
-          url: 'https://github.com/pprunty/clunk',
-          year: '2025',
-          description:
-            'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
-        },
-        {
-                  title: 'magikarp',
-                  url: 'https://github.com/pprunty/magikarp',
-                  year: '2025',
-                  media: ['/images/projects/magikarp.png'],
-                  description:
-                    'An autonomous AI agent capable of piloting the creation of an entire coding given a project outline using DeepSeek open-source LLMs. The user interacts with the agent and accepts/rejects file updates (work in progress).',
-                }
+      title: 'clunk',
+      url: 'https://github.com/pprunty/clunk',
+      year: '2025',
+      hide: false,
+      description:
+        'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks. (work in progress).',
+    },
+    {
+      title: 'magikarp',
+      url: 'https://github.com/pprunty/magikarp',
+      year: '2025',
+      media: ['/images/projects/magikarp.png'],
+      hide: false,
+      description:
+        'An autonomous AI agent capable of piloting the creation of an entire coding given a project outline using DeepSeek open-source LLMs. The user interacts with the agent and accepts/rejects file updates. (work in progress).',
+    },
   ]}
 />
 
@@ -174,4 +196,3 @@ To see a complete list of my work, visit my [GitHub profile](https://github.com/
 ## Photos [#photos]
 
 <PhotoGrid images={photographyImages} />
-

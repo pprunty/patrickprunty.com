@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Font setup */
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
 
@@ -21,9 +21,10 @@
     @apply text-[#fcfcfc];
   }
 
-a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after {
-  content: "⌝";
-}
+  a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
+  {
+    content: '⌝';
+  }
 
   /* Prevent transition delays */
   :root.pause-transitions * {
@@ -33,7 +34,7 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
   /* Optimize font rendering */
   @supports (font-variation-settings: normal) {
     :root {
-      font-family: "Inter var", sans-serif;
+      font-family: 'Inter var', sans-serif;
     }
   }
 
@@ -88,12 +89,11 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
     padding: 0.25rem;
     font-family: monospace;
     border-radius: 0.25rem;
-    background-color: #2F2F2F; /* Dark mode background for inline code */
+    background-color: #2f2f2f; /* Dark mode background for inline code */
   }
 
-
   :root.dark code {
-    background-color: #2F2F2F; /* Dark mode background for inline code */
+    background-color: #2f2f2f; /* Dark mode background for inline code */
     border-radius: 0.25rem;
   }
 }
@@ -105,7 +105,8 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
 }
 
 /* Animation when the image comes into view */
-[data-animate-image] .image-animate.animate-once[data-animate="zoom-fade-small"] {
+[data-animate-image]
+  .image-animate.animate-once[data-animate='zoom-fade-small'] {
   animation: zoom-fade-small 0.8s ease-in forwards;
 }
 
@@ -171,5 +172,7 @@ a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
 
 .clickable-animation {
   animation: clickable-pulse 0.8s ease-in-out;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
