@@ -36,7 +36,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mediaLoaded, setMediaLoaded] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Refs for swipe (touch) handling
   const touchStartX = useRef<number | null>(null);
@@ -51,7 +50,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Reset mediaLoaded state when activeIndex changes
+  // If the active item changes, reset loader states
   useEffect(() => {
     setMediaLoaded(false);
   }, [activeIndex]);
@@ -69,10 +68,9 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   }, [mediaLoaded, activeIndex]);
 
   // Helper to check if a media source is a video
-  const isVideo = useCallback(
-    (src: string) => src.endsWith('.mp4') || src.endsWith('.mov'),
-    []
-  );
+  const isVideo = useCallback((src: string) => {
+    return src.endsWith('.mp4') || src.endsWith('.mov');
+  }, []);
 
   // Navigation handlers
   const nextItem = useCallback(() => {
@@ -116,36 +114,36 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [activeIndex]);
 
-const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-  // Only process if there's exactly one touch
-  if (e.touches.length !== 1) return;
-  touchStartX.current = e.touches[0].clientX;
-};
+  // Touch handlers
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    // Only process if there's exactly one touch
+    if (e.touches.length !== 1) return;
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-  // Only process if there's exactly one touch
-  if (e.touches.length !== 1) return;
-  touchEndX.current = e.touches[0].clientX;
-};
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    // Only process if there's exactly one touch
+    if (e.touches.length !== 1) return;
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-  // Ensure this was a single touch gesture
-  if (e.changedTouches.length !== 1) return;
-  if (touchStartX.current !== null && touchEndX.current !== null) {
-    const distance = touchStartX.current - touchEndX.current;
-    const threshold = 50; // adjust threshold as needed
-    if (distance > threshold) {
-      nextItem();
-    } else if (distance < -threshold) {
-      prevItem();
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    // Ensure this was a single touch gesture
+    if (e.changedTouches.length !== 1) return;
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const distance = touchStartX.current - touchEndX.current;
+      const threshold = 50; // adjust threshold as needed
+      if (distance > threshold) {
+        nextItem();
+      } else if (distance < -threshold) {
+        prevItem();
+      }
     }
-  }
-  touchStartX.current = null;
-  touchEndX.current = null;
-};
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
-
-  // Cache thumbnails so they aren’t rebuilt on every render
+  // Create clickable thumbnails
   const thumbnails = useMemo(() => {
     return media.map((src, idx) => (
       <div key={idx} className="flex-shrink-0">
@@ -155,6 +153,7 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
               src={src}
               width={130}
               height={130}
+              preload="metadata"
               className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
               autoPlay
               playsInline
@@ -178,7 +177,7 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     ));
   }, [media, title, isVideo]);
 
-  // Cache carousel content for thumbnails
+  // Decide how thumbnails are rendered (carousel for multiple, single image for one)
   const carouselContent = useMemo(() => {
     if (media.length > 1) {
       return (
@@ -198,6 +197,7 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
                   src={media[0]}
                   width={130}
                   height={130}
+                  preload="metadata"
                   className="max-w-xs rounded-xl sm:mb-1.5 border border-[#E2E2E2] dark:border-[#343334]"
                   autoPlay
                   playsInline
@@ -223,15 +223,20 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     }
   }, [media, title, isVideo, thumbnails]);
 
-  // Cache modal overlay content so it isn’t recreated unless needed.
-  // On mobile, click navigation is disabled (only drag/swipe is allowed).
+  // Always render the modal DOM, but hide it if activeIndex is null
   const modalOverlay = useMemo(() => {
-    if (activeIndex === null) return null;
+    // We add a conditional 'hidden' class or style if not active
+    const hiddenClass = activeIndex === null ? 'hidden' : '';
+
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45"
+        className={
+          `fixed inset-0 z-50 flex items-center justify-center
+           bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45
+           ` + hiddenClass
+        }
         onClick={(e) => {
-          // If the click is on the overlay (and not on a child element), close the modal.
+          // Only close if user clicked the backdrop itself
           if (e.target === e.currentTarget) {
             closeModal();
           }
@@ -241,19 +246,20 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
         onTouchEnd={handleTouchEnd}
       >
         <div className="relative w-full h-full flex items-center justify-center">
-          {isVideo(media[activeIndex]) ? (
+          {activeIndex !== null && isVideo(media[activeIndex]) ? (
             <video
               src={media[activeIndex]}
               autoPlay
-              muted={false}
+              preload="auto"
               playsInline
+              muted={false}
               loop
               onLoadedData={() => setMediaLoaded(true)}
               className="object-contain w-full md:w-auto h-auto md:h-full"
             >
               Your browser does not support the video tag.
             </video>
-          ) : (
+          ) : activeIndex !== null ? (
             <Image
               src={media[activeIndex]}
               alt={`${title} modal image`}
@@ -265,9 +271,9 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
               className="object-contain w-full md:w-auto h-auto md:h-full"
               priority
             />
-          )}
+          ) : null}
 
-          {showSpinner && !mediaLoaded && (
+          {showSpinner && !mediaLoaded && activeIndex !== null && (
             <div className="absolute inset-0 flex items-center justify-center">
               <ClipLoader color="#888888" size={20} />
             </div>
@@ -281,21 +287,23 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
             Close
           </button>
 
-          <button
-            onClick={nextItem}
-            className="absolute bottom-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full"
-          >
-            {activeIndex + 1}/{media.length}
-          </button>
+          {activeIndex !== null && (
+            <button
+              onClick={nextItem}
+              className="absolute bottom-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full"
+            >
+              {activeIndex + 1}/{media.length}
+            </button>
+          )}
 
-          {/* Left Navigation Overlay */}
+          {/* Left Navigation Overlay (Desktop only) */}
           <div
             className="absolute top-0 left-0 h-full w-1/2"
             onClick={!isMobile ? prevItem : undefined}
             style={{ cursor: !isMobile ? 'w-resize' : 'default' }}
           />
 
-          {/* Right Navigation Overlay */}
+          {/* Right Navigation Overlay (Desktop only) */}
           <div
             className="absolute top-0 right-0 h-full w-1/2"
             onClick={!isMobile ? nextItem : undefined}
@@ -315,6 +323,9 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     mediaLoaded,
     showSpinner,
     isMobile,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
   ]);
 
   return (
@@ -344,8 +355,14 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     {item.url ? (
                       <a
                         href={item.url}
-                        target={item.url.startsWith('https://') ? '_blank' : '_self'}
-                        rel={item.url.startsWith('https://') ? 'noopener noreferrer' : undefined}
+                        target={
+                          item.url.startsWith('https://') ? '_blank' : '_self'
+                        }
+                        rel={
+                          item.url.startsWith('https://')
+                            ? 'noopener noreferrer'
+                            : undefined
+                        }
                         className="border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#111111] dark:border-gray-500 dark:hover:border-white"
                       >
                         {item.title}
