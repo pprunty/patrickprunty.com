@@ -37,9 +37,12 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   const [mediaLoaded, setMediaLoaded] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
 
-  // Refs for swipe (touch) handling
+  // Refs for swipe (touch) handling - horizontal
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  // New refs for vertical swipe detection
+  const touchStartY = useRef<number | null>(null);
+  const touchEndY = useRef<number | null>(null);
 
   // Detect if device is mobile (using 768px as threshold)
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -114,33 +117,56 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
     }
   }, [activeIndex]);
 
-  // Touch handlers
+  // Touch handlers - now including vertical movement
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     // Only process if there's exactly one touch
     if (e.touches.length !== 1) return;
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     // Only process if there's exactly one touch
     if (e.touches.length !== 1) return;
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     // Ensure this was a single touch gesture
     if (e.changedTouches.length !== 1) return;
-    if (touchStartX.current !== null && touchEndX.current !== null) {
-      const distance = touchStartX.current - touchEndX.current;
-      const threshold = 50; // adjust threshold as needed
-      if (distance > threshold) {
-        nextItem();
-      } else if (distance < -threshold) {
-        prevItem();
+    const threshold = 50; // adjust threshold as needed
+    if (
+      touchStartX.current !== null &&
+      touchEndX.current !== null &&
+      touchStartY.current !== null &&
+      touchEndY.current !== null
+    ) {
+      const deltaX = touchStartX.current - touchEndX.current;
+      const deltaY = touchStartY.current - touchEndY.current;
+      // Use the dominant direction
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > threshold) {
+          nextItem();
+        } else if (deltaX < -threshold) {
+          prevItem();
+        }
+      } else {
+        if (deltaY > threshold) {
+          // Drag down: finger moved downwards (startY < endY) gives deltaY negative.
+          // But here, deltaY positive means upward swipe.
+          // So, if deltaY > threshold, it's an upward swipe -> trigger prevItem (as drag up = drag right)
+          prevItem();
+        } else if (deltaY < -threshold) {
+          // Drag down (finger moved downward) -> trigger nextItem (as drag down = drag left)
+          nextItem();
+        }
       }
     }
     touchStartX.current = null;
     touchEndX.current = null;
+    touchStartY.current = null;
+    touchEndY.current = null;
   };
 
   // Create clickable thumbnails
