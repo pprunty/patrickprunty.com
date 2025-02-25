@@ -24,7 +24,7 @@ interface SectionItem {
 }
 
 interface SectionProps {
-  sectionName: string;
+  sectionName: string | React.ReactNode;
   items: SectionItem[];
 }
 
@@ -239,8 +239,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
                   alt={`${title} image`}
                   width={130}
                   height={130}
+                  quality={100}
                   className="max-w-xs rounded-xl h-24 w-auto sm:mb-1.5 border border-[#E2E2E2] dark:border-[#343334]"
                   priority
+                  unoptimized
                 />
               )}
             </span>
@@ -293,6 +295,8 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               width={800}
               height={600}
               onLoad={() => setMediaLoaded(true)}
+              unoptimized
+              quality={100}
               className="object-contain w-full md:w-auto h-auto md:h-full"
               priority
             />
