@@ -7,14 +7,14 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import Image from 'next/image';
 import ClipLoader from 'react-spinners/ClipLoader';
+import Image from 'next/image';
 
 interface PhotoGridProps {
   images: string[];
 }
 
-const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
+const PhotoGrid: React.FC<PhotoGridProps> = React.memo(({ images }) => {
   const [columns, setColumns] = useState(2);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mediaLoaded, setMediaLoaded] = useState(false);
@@ -45,18 +45,8 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
 
   useEffect(() => {
     setMediaLoaded(false);
+    setShowSpinner(true);
   }, []);
-
-  useEffect(() => {
-    if (!mediaLoaded) {
-      const timer = setTimeout(() => {
-        setShowSpinner(true);
-      }, 300);
-      return () => clearTimeout(timer);
-    } else {
-      setShowSpinner(false);
-    }
-  }, [mediaLoaded]);
 
   useEffect(() => {
     if (activeIndex !== null) {
@@ -133,10 +123,8 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
           }
         } else {
           if (deltaY > threshold) {
-            // Swipe up (finger moved upwards)
             nextItem();
           } else if (deltaY < -threshold) {
-            // Swipe down (finger moved downwards)
             prevItem();
           }
         }
@@ -169,23 +157,27 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
           onClick={(e) => e.stopPropagation()}
         >
           {activeIndex !== null && (
-            <Image
-              src={images[activeIndex] || '/placeholder.svg'}
-              alt={`Photo ${activeIndex + 1}`}
-              width={800}
-              height={600}
-              unoptimized
-              quality={100}
-              onLoad={() => setMediaLoaded(true)}
-              className="object-contain w-full md:w-auto h-auto md:h-full"
-              priority
-            />
-          )}
-
-          {showSpinner && !mediaLoaded && activeIndex !== null && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <ClipLoader color="#888888" size={20} />
-            </div>
+            <>
+              {showSpinner && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <ClipLoader color="#888888" size={20} />
+                </div>
+              )}
+              <Image
+                src={images[activeIndex] || '/placeholder.svg'}
+                alt={`Photo ${activeIndex + 1}`}
+                width={800}
+                height={600}
+                unoptimized
+                quality={100}
+                onLoad={() => {
+                  setMediaLoaded(true);
+                  setShowSpinner(false);
+                }}
+                className={`object-contain w-full md:w-auto h-auto md:h-full ${!mediaLoaded ? 'invisible' : ''}`}
+                priority
+              />
+            </>
           )}
 
           <button
@@ -256,6 +248,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
               height={600}
               className="object-cover cursor-pointer"
               onClick={() => setActiveIndex(index)}
+              unoptimized={false}
             />
           </div>
         ))}
@@ -263,6 +256,8 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
       {modalOverlay}
     </>
   );
-};
+});
 
-export default React.memo(PhotoGrid);
+PhotoGrid.displayName = 'PhotoGrid';
+
+export default PhotoGrid;
