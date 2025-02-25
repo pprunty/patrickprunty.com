@@ -181,7 +181,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               width={130}
               height={130}
               preload="metadata"
-              className="rounded-xl border h-26 w-auto border-[#E2E2E2] dark:border-[#343334]"
+              className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
               autoPlay
               playsInline
               muted
@@ -195,7 +195,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
               alt={`${title} image ${idx + 1}`}
               width={130}
               height={130}
-              className="rounded-xl border h-26 w-auto border-[#E2E2E2] dark:border-[#343334]"
+              className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
               priority
             />
           )}
@@ -239,7 +239,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
                   alt={`${title} image`}
                   width={130}
                   height={130}
-                  className="max-w-xs rounded-xl sm:mb-1.5 h-26 w-auto border border-[#E2E2E2] dark:border-[#343334]"
+                  className="max-w-xs rounded-xl h-24 w-auto sm:mb-1.5 border border-[#E2E2E2] dark:border-[#343334]"
                   priority
                 />
               )}
