@@ -91,6 +91,24 @@
       "readingTime": 3
     },
     {
+      "slug": "so-you-want-to-start-youtube",
+      "date": "February 26, 2025",
+      "title": "So You Want to Start YouTube?",
+      "draft": true,
+      "description": "Or how I make videos.",
+      "keywords": [
+        "youtube",
+        "content creation",
+        "guide to youtube",
+        "new youtubers",
+        "creative process"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/so-you-want-to-start-youtube/so-you-want-to-start-youtube.webp",
+      "readingTime": 1
+    },
+    {
       "slug": "the-engineers-proclivity-for-perfection",
       "date": "February 18, 2025",
       "title": "The Engineer's Proclivity for Perfection",
