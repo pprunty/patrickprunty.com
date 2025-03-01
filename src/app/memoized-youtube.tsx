@@ -52,7 +52,7 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
   return (
     <>
       <div
-        className={`cursor-pointer ${className} h-24 w-[10.5rem] overflow-hidden flex-shrink-0`}
+        className={`cursor-pointer ${className} h-24 min-w-[10.5rem] max-w-[10.5rem] overflow-hidden flex-shrink-0`}
         onClick={openModal}
       >
         <img
