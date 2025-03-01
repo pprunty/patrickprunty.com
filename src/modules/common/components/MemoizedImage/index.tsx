@@ -118,7 +118,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
         >
           <span
             className="relative w-full h-full flex items-center justify-center"
-            onClick={closeModal}
+            onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={src || '/placeholder.svg'}
@@ -127,11 +127,16 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               quality={quality}
               height={height}
               className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
-              onClick={closeModal}
               priority={true}
               unoptimized={unoptimized}
               {...rest}
             />
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full"
+            >
+              Close
+            </button>
           </span>
         </span>
       )}

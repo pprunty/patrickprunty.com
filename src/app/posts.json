@@ -88,14 +88,14 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/polymorphic-web-design/polymorphic-web-design.webp",
-      "readingTime": 3
+      "readingTime": 4
     },
     {
       "slug": "so-you-want-to-start-youtube",
       "date": "February 26, 2025",
       "title": "So You Want to Start YouTube?",
       "draft": true,
-      "description": "Or how I make videos.",
+      "description": "Or the process behind how I make digital content (YouTube videos and blog posts) and how it will help you.",
       "keywords": [
         "youtube",
         "content creation",
@@ -106,7 +106,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/so-you-want-to-start-youtube/so-you-want-to-start-youtube.webp",
-      "readingTime": 1
+      "readingTime": 3
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",

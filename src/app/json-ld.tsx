@@ -16,6 +16,7 @@ export default function JsonLdScript() {
       SOCIAL_URLS.github,
       SOCIAL_URLS.reddit,
       SOCIAL_URLS.linkedin,
+      SOCIAL_URLS.youtube,
     ],
   };
 

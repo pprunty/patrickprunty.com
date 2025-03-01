@@ -28,9 +28,50 @@ export const metadata = {
   },
   keywords: ["next.js", "web design", "programming", "web development", "vercel"],
   slug: 'polymorphic-web-design',
-  readingTime: 3,
+  readingTime: 4,
   draft: true
 };
+
+
+## Navigation Routes [#navigation-routes]
+
+The first thing you're going to want to do is define the routes for the different pages in your application. You 
+can do that in the `routes.ts` file. These routes have a default key `hide` key for hiding the route. By default the 
+routes defined in this file will be rendered in the `sidebar.tsx`, `header.tsx` and `bottom-bar.tsx`. You can extend this 
+file to use `bottomBarRoutes` for example for more complex navigation. 
+
+### SEO Metadata
+
+The routes.tsx file also used a metdataMap such that you can manage SEO for all your pages in a single file and reference this mapping 
+in your new page.tsx file to create SEO for that new page.
+
+## Layout [#layout]
+
+As hinted above, there are reusable components for crafting the type of layout you want in your 
+application. Some of these take props for styling. 
+
+`bottom-bar.tsx` has a `showLabels` prop. 
+`header.tsx` has a `scrollResponsive` and `mobileResponsive` prop.
+`sidebar.tsx` has ...
+
+## Color Pallette / Theming 
+
+## Reusable Components
+
+## Backend Integration [#backend-integration]
+
+For the backend, I use Python FastAPI because I'm partial to using Python for my backend. But I understand people's desire to keep it in 
+the (same programming language) family and host their APIs with Express/Node/Next.js APIs. If you choose to do this, you will need to 
+recreate the APIs in [vercel-fastapi-backend]().
+
+### Locally
+
+### Cloud
+
+
+
+---
+
 
 Every other day, I see somebody spam-advertising their Next.js template on Reddit/X/Hackernews, usually accompanied by a questionable screenshot of their first 100ish sales. [Marc Lou](), most notably
 started this trend with his product [ShipFast]() and has had huge success. At least, *according to him*. 
