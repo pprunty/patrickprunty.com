@@ -8,8 +8,6 @@ export function ThemeSwitcher() {
     undefined,
   );
   const [currentTheme, setCurrentTheme] = useState<null | string>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isHoveringOverride, setIsHoveringOverride] = useState(false);
 
   const onMediaChange = useCallback(() => {
     const current = themeEffect();
@@ -17,6 +15,7 @@ export function ThemeSwitcher() {
   }, []);
 
   useLayoutEffect(() => {
+    // Default to system theme on initial load (if no value is stored)
     setPreference(localStorage.getItem('theme'));
     const current = themeEffect();
     setCurrentTheme(current);
@@ -26,12 +25,9 @@ export function ThemeSwitcher() {
     return () => matchMedia.removeEventListener('change', onMediaChange);
   }, [onMediaChange]);
 
-  const onStorageChange = useCallback(
-    (event: StorageEvent) => {
-      if (event.key === 'theme') setPreference(event.newValue);
-    },
-    [setPreference],
-  );
+  const onStorageChange = useCallback((event: StorageEvent) => {
+    if (event.key === 'theme') setPreference(event.newValue);
+  }, []);
 
   useEffect(() => {
     setCurrentTheme(themeEffect());
@@ -40,53 +36,20 @@ export function ThemeSwitcher() {
   useEffect(() => {
     window.addEventListener('storage', onStorageChange);
     return () => window.removeEventListener('storage', onStorageChange);
-  });
+  }, [onStorageChange]);
 
   return (
     <>
-      {isHovering && (
-        <span className="text-[9px] text-gray-400 mr-[-5px] hidden md:inline">
-          {preference === null
-            ? 'System'
-            : preference === 'dark'
-              ? 'Dark'
-              : 'Light'}
-        </span>
-      )}
-
+      {/* Removed hover-based descriptor */}
       <button
         aria-label="Toggle theme"
-        className={`inline-flex ${
-          isHovering && !isHoveringOverride
-            ? 'bg-gray-200 dark:bg-[#313131]'
-            : ''
-        } active:bg-gray-300 transition-[background-color] dark:active:bg-[#242424] rounded-sm p-2
-          bg-gray-200 dark:bg-[#313131] theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline
-        }`}
+        className="inline-flex active:bg-gray-300 transition-[background-color] dark:active:bg-[#242424] rounded-sm p-2 bg-background theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline"
         onClick={(ev) => {
           ev.preventDefault();
-          setIsHoveringOverride(true);
-
-          let newPreference: string | null =
-            currentTheme === 'dark' ? 'light' : 'dark';
-          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-            .matches
-            ? 'dark'
-            : 'light';
-
-          if (preference !== null && systemTheme === currentTheme) {
-            newPreference = null;
-            localStorage.removeItem('theme');
-          } else {
-            localStorage.setItem('theme', newPreference);
-          }
-
+          // Toggle strictly between dark and light
+          const newPreference = currentTheme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('theme', newPreference);
           setPreference(newPreference);
-        }}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => {
-          setIsHovering(false);
-          setIsHoveringOverride(false);
         }}
       >
         <span className="sun-icon">

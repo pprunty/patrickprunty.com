@@ -1,10 +1,12 @@
-import Link from 'next/link'; // Import Link from next/link
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // Import usePathname to detect current route
 import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
 import { Logo } from './logo';
-import React from 'react';
 import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
 import { SocialIcon } from '@/modules/common/components/SocialIcon';
-import { SocialPlatform } from '@/__samwise/types/SocialPlatform';
+import type { SocialPlatform } from '@/__samwise/types/SocialPlatform';
 
 // Mappings
 const ctaLabels: Record<SocialPlatform, string> = {
@@ -34,6 +36,9 @@ const urlMapping: Record<SocialPlatform, string> = {
 };
 
 export default function Header() {
+  const pathname = usePathname(); // Get current pathname
+  const isBlogActive = pathname === '/blog' || pathname?.startsWith('/blog/');
+
   const ctaPlatform = CTA_SOCIAL_PLATFORM as SocialPlatform;
   const ctaUrl = urlMapping[ctaPlatform];
   const ctaLabel = ctaLabels[ctaPlatform];
@@ -56,7 +61,11 @@ export default function Header() {
         <Link
           href="/blog"
           prefetch={true}
-          className="inline-flex font-mono items-center hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
+          className={`inline-flex font-mono items-center rounded-sm p-2 transition-[background-color] ${
+            isBlogActive
+              ? 'bg-gray-200 dark:bg-[#313131] text-black dark:text-white'
+              : 'hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424]'
+          }`}
         >
           Blog
         </Link>
