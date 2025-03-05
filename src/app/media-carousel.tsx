@@ -23,7 +23,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
         className="overflow-x-auto overflow-y-hidden"
         style={{ scrollSnapType: 'none' }}
       >
-        <div className="flex gap-2 sm:px-0">
+        <div className="flex gap-2 sm:px-0 mb-2">
           {media.map((item, idx) => (
             <div key={idx} className="flex-shrink-0">
               {item.type === 'video' ? (
