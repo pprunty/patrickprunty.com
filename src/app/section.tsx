@@ -69,7 +69,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
             <li key={index} className="list-item">
               <div className="flex flex-col md:flex-row gap-2">
                 <div className="w-full">
-                  <div className="font-normal dark:text-[#EEEEEE] text-[#111111]">
+                  <div className="font-normal">
                     {item.url ? (
                       <a
                         href={item.url}
@@ -81,7 +81,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                             ? 'noopener noreferrer'
                             : undefined
                         }
-                        className="border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#111111] dark:border-gray-500 dark:hover:border-white"
+                        className="border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-white text-black dark:border-gray-500 dark:hover:border-white"
                       >
                         {item.title}
                       </a>
@@ -90,12 +90,12 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     )}
                   </div>
                   {item.subtitle && (
-                    <p className="text-base text-[#111111] dark:text-[#AAAAAA] mt-1">
+                    <p className="text-base mt-1">
                       {item.subtitle}
                     </p>
                   )}
                   {item.description && (
-                    <p className="mt-1 text-base text-[#111111] dark:text-[#B0AFB0]">
+                    <p className="mt-1 text-base">
                       {item.description}
                     </p>
                   )}
