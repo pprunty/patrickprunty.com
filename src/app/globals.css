@@ -5,16 +5,17 @@
 @layer base {
   :root {
     /* Font setup */
-    --font-sans: var(--font-sans), "Source Sans Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-serif: var(--font-serif), "Source Serif Pro", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-sans: var(--font-inter), var(--font-gideon-roman), "Source Sans Pro", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: var(--font-gideon-roman), "Source Serif Pro", ui-serif, Georgia, Cambria, "Times New Roman", Times,
+      serif;
 
-    font-family: var(--font-sans);
+    font-family: var(--font-gideon-roman), var(--font-sans);
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
 
     @apply bg-[#fcfcfc];
-    @apply text-[#222222];
+    @apply text-[#161616];
   }
 
   /* Apply serif font to headings */
@@ -24,14 +25,14 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-serif);
+    font-family: var(--font-gideon-roman), var(--font-serif);
   }
 
   /* Dark mode settings */
   :root.dark {
     color-scheme: dark;
     /* You can change theme dark color here to #131313 for example, remember to change it in theme-effect.ts too */
-    @apply bg-[#222222];
+    @apply bg-[#161616];
     @apply text-[#fcfcfc];
   }
 
@@ -47,7 +48,7 @@
   /* Optimize font rendering */
   @supports (font-variation-settings: normal) {
     :root {
-      font-family: var(--font-sans);
+      font-family: var(--font-gideon-roman), var(--font-sans);
     }
   }
 
@@ -57,11 +58,11 @@
     height: 6px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #222222;
+    background-color: #161616;
     border-radius: 0px;
   }
   .dark ::-webkit-scrollbar-track {
-    background: #222222;
+    background: #161616;
   }
   .dark ::-webkit-scrollbar-thumb {
     background-color: #ccc;
@@ -79,7 +80,8 @@
   ;
   -webkit-font-smoothing:antialiased
   ;
-  -webkit-text-size-adjust: 100
+  -webkit-text-size-adjust:
+  100
   %
   ;
   -moz-tab-size:

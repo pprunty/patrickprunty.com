@@ -76,7 +76,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
                   dark:border-[#555]
                   dark:active:border-[#fcfcfc]
                   bg-[#F2F2F2]
-                  dark:bg-[#222222]
+                  dark:bg-[#161616]
                   dark:text-[#B4B4B4]
                   text-[#0F0F0F]
              rounded-l-sm

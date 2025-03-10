@@ -145,7 +145,7 @@ const PillarMenu: React.FC<PillarMenuProps> = ({
     <div className="fixed top-1/2 right-0 transform -translate-y-1/2 flex flex-col mr-4 z-50">
       {/* Menu Container */}
       <div
-        className={`transition-all shadow-lg duration-300 ease-in-out py-1 flex flex-col items-center rounded-full bg-[#222222] dark:border-[#555] border`}
+        className={`transition-all shadow-lg duration-300 ease-in-out py-1 flex flex-col items-center rounded-full bg-[#161616] dark:border-[#555] border`}
         style={{
           height: 'auto',
           opacity: 1,

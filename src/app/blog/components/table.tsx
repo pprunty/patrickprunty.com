@@ -17,7 +17,7 @@ export const Table: React.FC<{ children: React.ReactNode }> = ({
 export const TableHeader: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => (
-  <th className="border border-gray-300 dark:border-[#252525] px-4 py-2 text-xs text-left font-semibold bg-gray-100 dark:bg-[#222222] dark:text-gray-100">
+  <th className="border border-gray-300 dark:border-[#252525] px-4 py-2 text-xs text-left font-semibold bg-gray-100 dark:bg-[#161616] dark:text-gray-100">
     {children}
   </th>
 );
@@ -40,7 +40,7 @@ export const TableRow: React.FC<{
     className={
       isHeader
         ? 'bg-gray-50 dark:bg-gray-900'
-        : 'hover:bg-gray-100 dark:hover:bg-[#222222]'
+        : 'hover:bg-gray-100 dark:hover:bg-[#161616]'
     }
   >
     {children}

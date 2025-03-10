@@ -261,7 +261,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
       <div
         className={
           `fixed inset-0 z-50 flex items-center justify-center
-           bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45
+           bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#161616]/45
            ` + hiddenClass
         }
         onClick={(e) => {

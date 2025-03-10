@@ -45,14 +45,14 @@ const Modal: React.FC<ModalProps> = ({
     >
       {/*
         Light mode: #fcfcfc w/ ~70% opacity
-        Dark mode: #222222 w/ ~70% opacity
+        Dark mode: #161616 w/ ~70% opacity
         Adds small blur via backdrop-blur-sm
       */}
       <div
         className="
           absolute inset-0
           bg-[#fcfcfc]/40
-          dark:bg-[#222222]/40
+          dark:bg-[#161616]/40
           backdrop-blur-sm
         "
         aria-hidden="true"
@@ -63,7 +63,7 @@ const Modal: React.FC<ModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className={`bg-white dark:bg-[#222222] rounded-lg shadow-xl border dark:border-[#444] transition-transform duration-300 ${
+          className={`bg-white dark:bg-[#161616] rounded-lg shadow-xl border dark:border-[#444] transition-transform duration-300 ${
             isOpen ? 'animate-modalShow' : ''
           }`}
         >
@@ -74,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({
                 {title}
               </h2>
               <button
-                className="p-2 rounded-lg dark:border-[#444] bg-[#fff] dark:bg-[#222222] hover:bg-gray-300 dark:hover:bg-[#313131] transition-opacity"
+                className="p-2 rounded-lg dark:border-[#444] bg-[#fff] dark:bg-[#161616] hover:bg-gray-300 dark:hover:bg-[#313131] transition-opacity"
                 onClick={onClose}
                 aria-label="Close"
               >

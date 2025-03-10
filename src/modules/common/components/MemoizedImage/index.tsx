@@ -112,7 +112,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 
       {isModalOpen && (
         <span
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300"
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#161616]/45 flex justify-center items-center z-50 transition-colors duration-300"
           onClick={closeModal}
           data-animate-image
         >
