@@ -12,7 +12,7 @@ const PostList: React.FC<PostListProps> = ({ posts }) => (
       {posts.map((post, index) => (
         <li
           key={post.slug}
-          className="border-b border-[#bdbdbd] dark:border-[#555] sm:border-0 last:border-b-0"
+          className="border-b border-dotted border-[#bdbdbd] dark:border-[#555] sm:border-0 last:border-b-0"
         >
           <BlogPost post={post} index={index} />
         </li>

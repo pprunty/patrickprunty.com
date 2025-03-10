@@ -5,12 +5,26 @@
 @layer base {
   :root {
     /* Font setup */
-    font-family: 'Inter', sans-serif;
+    --font-sans: var(--font-sans), "Source Sans Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: var(--font-serif), "Source Serif Pro", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+    font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
 
     @apply bg-[#fcfcfc];
     @apply text-[#222222];
+  }
+
+  /* Apply serif font to headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
   }
 
   /* Dark mode settings */
@@ -21,9 +35,8 @@
     @apply text-[#fcfcfc];
   }
 
-  a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
-  {
-    content: '⌝';
+  a:not(.social-link, .no-after)[href*="//"]:not([href*="patrickprunty.com"]):after {
+    content: "⌝";
   }
 
   /* Prevent transition delays */
@@ -34,7 +47,7 @@
   /* Optimize font rendering */
   @supports (font-variation-settings: normal) {
     :root {
-      font-family: 'Inter var', sans-serif;
+      font-family: var(--font-sans);
     }
   }
 
@@ -60,15 +73,28 @@
   }
 
   /* Various rendering tweaks */
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  font-feature-settings: normal;
-  font-variation-settings: normal;
+  -moz-osx-font-smoothing:grayscale
+  ;
+  text-rendering:optimizeLegibility
+  ;
+  -webkit-font-smoothing:antialiased
+  ;
+  -webkit-text-size-adjust: 100
+  %
+  ;
+  -moz-tab-size:
+  4
+  ;
+  -o-tab-size:
+  4
+  ;
+  tab-size:
+  4
+  ;
+  font-feature-settings:normal
+  ;
+  font-variation-settings:normal
+  ;
 
   img {
     height: inherit !important;
@@ -105,8 +131,7 @@
 }
 
 /* Animation when the image comes into view */
-[data-animate-image]
-  .image-animate.animate-once[data-animate='zoom-fade-small'] {
+[data-animate-image] .image-animate.animate-once[data-animate="zoom-fade-small"] {
   animation: zoom-fade-small 0.8s ease-in forwards;
 }
 
@@ -172,9 +197,7 @@
 
 .clickable-animation {
   animation: clickable-pulse 0.8s ease-in-out;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 @keyframes zoomFadeSmall {
@@ -191,3 +214,4 @@
 .animate-zoom-fade-small {
   animation: zoomFadeSmall 0.5s ease-out forwards;
 }
+
