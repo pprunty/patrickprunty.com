@@ -28,3 +28,32 @@ export const USE_LOGO_FOR_HEADSHOT = configData.USE_LOGO_FOR_HEADSHOT;
 export const USE_ARCHIVE = configData.USE_ARCHIVE;
 export const ARCHIVE_ITEMS_TO_SHOW = configData.ARCHIVE_ITEMS_TO_SHOW;
 export const CTA_SOCIAL_PLATFORM = configData.CTA_SOCIAL_PLATFORM;
+
+const config = {
+  url:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://tmplate.xyz',
+  companyName: 'tmplate.xyz',
+  companyDescription:
+    'Your company description goes here. This is a great place to introduce your business and its mission.',
+  socials: {
+    twitter: 'https://x.com/pprunty_',
+    strava: 'https://www.strava.com/athletes/72636452',
+    github: 'https://github.com/pprunty',
+    linkedin: 'https://www.linkedin.com/in/patrickprunty/',
+    reddit: '',
+    tiktok: '',
+    instagram: 'https://www.instagram.com/pprunty97/',
+    youtube: 'https://www.youtube.com/@patrickprunty?sub_confirmation=1',
+    email: '',
+  },
+  AUTH: {
+    API_BASE_URL:
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:9000'
+        : 'https://api.tmplate.xyz',
+  },
+};
+
+export default config;

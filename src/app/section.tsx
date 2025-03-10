@@ -69,7 +69,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
             <li key={index} className="list-item">
               <div className="flex flex-col md:flex-row gap-2">
                 <div className="w-full">
-                  <div className="font-normal dark:text-[#EEEEEE] text-[#111111]">
+                  <div className="font-normal">
                     {item.url ? (
                       <a
                         href={item.url}

@@ -13,7 +13,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
     return (
       <a
         href={href}
-        className={`border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#111111] dark:border-gray-500 dark:hover:border-white ${className}`}
+        className={`border-b border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#000] dark:border-gray-500 dark:hover:border-white ${className}`}
         {...props}
       >
         {children}
@@ -24,7 +24,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
     return (
       <Link
         href={href}
-        className={`border-b text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-white dark:border-gray-500 dark:hover:border-white ${className}`}
+        className={`border-b border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-white text-black dark:border-gray-500 dark:hover:border-white ${className}`}
         {...props}
       >
         {children}

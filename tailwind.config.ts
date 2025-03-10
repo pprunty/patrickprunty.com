@@ -1,55 +1,71 @@
-// tailwind.config.ts
+import type { Config } from 'tailwindcss';
 
-import { Config } from 'tailwindcss';
-import plugin from 'tailwindcss/plugin';
-
-// Import the scrollbar-hide plugin
-const scrollbarHide = require('tailwind-scrollbar-hide');
-
-const config: Config = {
+export default {
   darkMode: 'class',
   content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './scripts/**/*.{js,ts,jsx,tsx,mdx}', // Fix wildcard pattern for scripts folder
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-light':
-          'linear-gradient(90deg, #fcfcfc 2px, transparent 1%) 50%, linear-gradient(#fcfcfc 2px, transparent 1%) 50%, #000',
-        'gradient-dark':
-          'linear-gradient(90deg, #333333 2px, transparent 1%) 50%, linear-gradient(#333333 2px, transparent 1%) 50%, #fcfcfc',
-      },
-      keyframes: {
-        modalShow: {
-          '0%': { opacity: '0', transform: 'scale(0.95)' }, // Cast opacity as a string
-          '100%': { opacity: '1', transform: 'scale(1)' }, // Cast opacity as a string
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        'background-90': 'var(--background-90)',
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
         },
-        modalHide: {
-          '0%': { opacity: '1', transform: 'scale(1)' }, // Cast opacity as a string
-          '100%': { opacity: '0', transform: 'scale(0.95)' }, // Cast opacity as a string
+        popover: {
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
         },
-      },
-      animation: {
-        modalShow: 'modalShow 0.3s ease-out forwards',
-        modalHide: 'modalHide 0.3s ease-out forwards',
+        primary: {
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
+          hover: 'var(--primary-hover)', // Add this line
+        },
+        secondary: {
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
+          hover: 'var(--secondary-hover)',
+        },
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
+        },
+        destructive: {
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
+        },
+        action: {
+          DEFAULT: 'var(--action)',
+          foreground: 'var(--action-foreground)',
+          hover: 'var(--action-hover)',
+        },
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+        chart: {
+          '1': 'var(--chart-1)',
+          '2': 'var(--chart-2)',
+          '3': 'var(--chart-3)',
+          '4': 'var(--chart-4)',
+          '5': 'var(--chart-5)',
+        },
+        boxShadow: {
+          'floating-light': '0 0 10px rgba(0, 0, 0, 0.1)',
+          'floating-light-hover': '0 0 15px rgba(0, 0, 0, 0.15)',
+          'floating-dark': '0 0 10px rgba(0, 0, 0, 0.2)',
+          'floating-dark-hover': '0 0 15px rgba(0, 0, 0, 0.3)',
+        },
       },
     },
   },
-  plugins: [
-    plugin(function ({
-      addVariant,
-    }: {
-      addVariant: (name: string, rule: string) => void;
-    }) {
-      // Adding theme-system variant
-      addVariant('theme-system', '.theme-system &');
-    }),
-    scrollbarHide, // Add the scrollbar-hide plugin here
-  ],
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
-};
-
-export default config;
+  plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar-hide')],
+} satisfies Config;

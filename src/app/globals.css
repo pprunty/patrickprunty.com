@@ -8,22 +8,17 @@
     font-family: 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
-
-    @apply bg-[#fcfcfc];
+    @apply bg-[#FFFEFC];
     @apply text-[#222222];
+    --scrollbar-width: 12px;
+    --webkit-overflow-scrolling: touch;
   }
 
   /* Dark mode settings */
   :root.dark {
     color-scheme: dark;
-    /* You can change theme dark color here to #131313 for example, remember to change it in theme-effect.ts too */
     @apply bg-[#222222];
-    @apply text-[#fcfcfc];
-  }
-
-  a:not(.social-link,.no-after)[href*="//"]:not([href*="patrickprunty.com"]):after
-  {
-    content: '⌝';
+    @apply text-[#FFFEFC];
   }
 
   /* Prevent transition delays */
@@ -38,63 +33,139 @@
     }
   }
 
-  /* Customize scrollbar for WebKit browsers */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #222222;
-    border-radius: 0px;
-  }
-  .dark ::-webkit-scrollbar-track {
-    background: #222222;
-  }
-  .dark ::-webkit-scrollbar-thumb {
-    background-color: #ccc;
+  body.overflow-hidden {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width);
   }
 
-  /* Customize scrollbar for Firefox */
+  html {
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+  }
+
+  :root {
+    --background: #fffefc;
+    --background-90: rgba(255, 254, 252, 0.875);
+    --foreground: #09090b;
+    --card: #fffefc;
+    --card-foreground: #09090b;
+    --popover: #fffefc;
+    --popover-foreground: #09090b;
+    --primary: #18181b;
+    --primary-foreground: #fafafa;
+    --primary-hover: #2d2c2c; /* A darker shade of your primary color */
+    --secondary: #fffefc;
+    --secondary-foreground: #18181b;
+    --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
+    --muted: #f4f4f4;
+    --muted-foreground: #717171;
+    --accent: #f4f4f4;
+    --accent-foreground: #18181b;
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
+    --action: #2f74da; /* New action color */
+    --action-foreground: #fffefc; /* Text color for action buttons */
+    --action-hover: #2661b9; /* Hover state for action buttons */
+    --border: #e0e0e0;
+    --input: #fffefc;
+    --ring: #09090b;
+    --chart-1: #e76e50;
+    --chart-2: #2a9d8f;
+    --chart-3: #273354;
+    --chart-4: #e8c468;
+    --chart-5: #f4a362;
+    --radius: 0.5rem;
+    --scrollbar: rgba(0, 0, 0, 0.2);
+    --scrollbar-hover: rgba(0, 0, 0, 0.3);
+    --scrollbar-track: rgba(
+      0,
+      0,
+      0,
+      0.1
+    ); /* New variable for scrollbar track */
+    --spotify-green: #1cd760;
+  }
+
+  .dark {
+    --background: #222222;
+    --background-90: rgba(34, 34, 34, 0.875);
+    --foreground: #fafafa;
+    --card: #2a2a2a;
+    --card-foreground: #fafafa;
+    --popover: #09090b;
+    --popover-foreground: #fafafa;
+    --primary: #fafafa;
+    --primary-foreground: #18181b;
+    --primary-hover: #e0e0e0; /* A slightly darker shade of your dark mode primary color */
+    --secondary: #272727;
+    --secondary-foreground: #fafafa;
+    --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
+    --muted: #272727;
+    --muted-foreground: #a1a1a1;
+    --accent: #424142;
+    --accent-foreground: #fafafa;
+    --destructive: #db1414;
+    --destructive-foreground: #fafafa;
+    --action: #3b82f6; /* Brighter blue for dark mode */
+    --action-foreground: #fffefc; /* Text color for action buttons in dark mode */
+    --action-hover: #2563eb; /* Hover state for action buttons in dark mode */
+    --border: #393838;
+    --input: #2a2a2a;
+    --ring: #d3d3d3;
+    --chart-1: #269dd9;
+    --chart-2: #2eb88a;
+    --chart-3: #e88c30;
+    --chart-4: #af57db;
+    --chart-5: #e236a9;
+    --scrollbar: #c1c1c1;
+    --scrollbar-hover: rgba(255, 254, 252, 0.3);
+    --scrollbar-track: #fafafa; /* New variable for scrollbar track in dark mode */
+    --spotify-green: #1cd760;
+  }
+
+  a:not(.social-link,.no-after,.tweet)[href*="//"]:not([href*="tmplate.xyz"]):after
+  {
+    content: '⌝';
+  }
+
   * {
-    scrollbar-width: thin; /* Make scrollbar narrower */
+    /* Firefox */
+    scrollbar-width: var(--scrollbar-width);
+    scrollbar-color: var(--scrollbar) var(--scrollbar-track);
   }
 
-  /* Various rendering tweaks */
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  font-feature-settings: normal;
-  font-variation-settings: normal;
-
-  img {
-    height: inherit !important;
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width); /* For horizontal scrollbars */
   }
 
-  pre {
-    margin: 1rem 0 !important;
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: calc(var(--scrollbar-width) / 2);
   }
 
-  /* Apply global styles to pre and code tags */
-  pre code {
-    font-family: monospace;
-    font-size: 14px;
-    border-radius: 0.25rem;
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: calc(var(--scrollbar-width) / 2);
   }
 
-  code {
-    padding: 0.25rem;
-    font-family: monospace;
-    border-radius: 0.25rem;
-    background-color: #2f2f2f; /* Dark mode background for inline code */
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-hover);
   }
 
-  :root.dark code {
-    background-color: #2f2f2f; /* Dark mode background for inline code */
-    border-radius: 0.25rem;
+  /* Adjust padding for elements with overflow when scrollbar is visible */
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto {
+    padding-right: var(--scrollbar-width);
   }
 }
 

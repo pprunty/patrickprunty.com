@@ -11,6 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
 import { Inter } from 'next/font/google';
 import ClientComponents from './client';
+import Sidebar from './sidebar';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -92,7 +93,8 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="dark:text-[#EEEEEE] text-[#111111] max-w-2xl m-auto">
+      <body className="text-gray-800 dark:text-gray-300 max-w-2xl m-auto">
+      <Sidebar/>
         <main className="p-6 z-[100] pt-3 md:pt-6 min-h-screen">
           <Header />
           {children}
