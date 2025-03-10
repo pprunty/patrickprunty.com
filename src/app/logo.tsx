@@ -1,78 +1,89 @@
-'use client';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { AUTHOR } from '@/config';
-import { useEffect, useRef, useState } from 'react';
+"use client"
+import { usePathname } from "next/navigation"
+import Link from "next/link"
+import { useEffect, useRef, useState } from "react"
 
 export function Logo() {
-  const pathname = usePathname();
-  const [shouldAnimate, setShouldAnimate] = useState(false);
-  const logoRef = useRef<HTMLSpanElement | null>(null); // Reference for the logo element
-  const [isInView, setIsInView] = useState(false); // Track if the component is in view
+  const pathname = usePathname()
+  const [shouldAnimate, setShouldAnimate] = useState(false)
+  const logoRef = useRef<HTMLSpanElement | null>(null)
+  const [isInView, setIsInView] = useState(false)
 
   // Configure whether to include subpaths ("/blog/*")
-  const includeSubPaths = true; // Change to false to trigger only on "/blog"
+  const includeSubPaths = true // Change to false to trigger only on "/blog"
 
   // Intersection Observer to track visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting); // Update state when in/out of view
+        setIsInView(entry.isIntersecting)
       },
-      { threshold: 0.1 }, // Trigger when 10% of the component is in view
-    );
+      { threshold: 0.1 },
+    )
 
     if (logoRef.current) {
-      observer.observe(logoRef.current);
+      observer.observe(logoRef.current)
     }
 
     return () => {
-      if (logoRef.current) observer.unobserve(logoRef.current);
-    };
-  }, []);
+      if (logoRef.current) observer.unobserve(logoRef.current)
+    }
+  }, [])
 
   // Trigger animations only when component is in view and matches route
   useEffect(() => {
-    const shouldTriggerAnimation = includeSubPaths
-      ? pathname.startsWith('/blog') // Match "/blog" and all subpaths
-      : pathname === '/blog'; // Match only "/blog"
+    const shouldTriggerAnimation = includeSubPaths ? pathname.startsWith("/blog") : pathname === "/blog"
 
     if (shouldTriggerAnimation && isInView) {
       // Trigger the first animation after 0.8 seconds
       const initialTimer = setTimeout(() => {
-        setShouldAnimate(true); // Start animation
-        setTimeout(() => setShouldAnimate(false), 1400); // Reset after the animation duration (1.2 seconds)
-      }, 900);
+        setShouldAnimate(true)
+        setTimeout(() => setShouldAnimate(false), 1400)
+      }, 900)
 
       // Set up recurring animation every 4.3 seconds
       const interval = setInterval(() => {
-        setShouldAnimate(true); // Start animation
-        setTimeout(() => setShouldAnimate(false), 1400); // Reset after the animation duration (1.2 seconds)
-      }, 4300); // Interval timing: 1.2 second animation + 3.1 seconds rest
+        setShouldAnimate(true)
+        setTimeout(() => setShouldAnimate(false), 1400)
+      }, 4300)
 
       // Cleanup both the initial timer and interval
       return () => {
-        clearTimeout(initialTimer);
-        clearInterval(interval);
-      };
+        clearTimeout(initialTimer)
+        clearInterval(interval)
+      }
     } else {
-      setShouldAnimate(false); // Stop animation if not on `/blog` or not in view
+      setShouldAnimate(false)
     }
-  }, [pathname, isInView]);
+  }, [pathname, isInView])
 
-  const animationClass = shouldAnimate ? 'animate-custom-pulse' : '';
+  const animationClass = shouldAnimate ? "animate-custom-pulse" : ""
 
   return (
     <span
-      ref={logoRef} // Attach the ref to track visibility
+      ref={logoRef}
       className={`text-md md:text-lg whitespace-nowrap font-bold transition-colors ${animationClass}`}
     >
       <Link
         href="/"
         className="hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] p-2 rounded-sm -ml-2 transition-[background-color]"
       >
-        {AUTHOR.name}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 145 244"
+          preserveAspectRatio="xMidYMid meet"
+          className="w-6 h-6"
+          fill="currentColor"
+        >
+          <path
+            d="M722 1701 l-724 -726 493 -487 493 -488 233 0 c128 0 233 3 233 7 0
+          5 -172 180 -382 390 l-383 383 383 0 382 0 0 825 c0 454 -1 824 -2 824 -2 -1
+          -329 -328 -726 -728z m358 -331 l0 -200 -200 0 -201 0 198 200 c109 110 199
+          200 201 200 1 0 2 -90 2 -200z"
+          />
+        </svg>
       </Link>
     </span>
-  );
+  )
 }
+

@@ -1,5 +1,5 @@
 import type React from "react"
-import { User, Image, Code, YoutubeLogo } from "@phosphor-icons/react/dist/ssr"
+import { User, Image, Code, Books, YoutubeLogo } from "@phosphor-icons/react/dist/ssr"
 import type { Metadata } from "next"
 import config from "@/config"
 import type { IconProps } from "@phosphor-icons/react"
@@ -111,6 +111,17 @@ export const routes: RouteItem[] = [
       description: "Check out my YouTube channel and videos.",
     },
   },
+  {
+      href: "/blog",
+      label: "Blog",
+      icon: Books,
+      hide: false,
+      external: false,
+      metadata: {
+        title: "YouTube | My Website",
+        description: "Check out my YouTube channel and videos.",
+      },
+    },
 ].filter((route) => !route.hide)
 
 // Create a metadata map for main navigation routes
