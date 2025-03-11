@@ -90,14 +90,10 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     )}
                   </div>
                   {item.subtitle && (
-                    <p className="text-base mt-1">
-                      {item.subtitle}
-                    </p>
+                    <p className="text-base mt-1">{item.subtitle}</p>
                   )}
                   {item.description && (
-                    <p className="mt-1 text-base">
-                      {item.description}
-                    </p>
+                    <p className="mt-1 text-base">{item.description}</p>
                   )}
                   {mediaItems.length > 0 && (
                     <MediaCarousel media={mediaItems} title={item.title} />
