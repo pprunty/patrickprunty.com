@@ -1,61 +1,6 @@
 {
   "posts": [
     {
-      "slug": "2025-in-review",
-      "date": "December 25, 2025",
-      "title": "2025 in Review",
-      "draft": true,
-      "description": "Reflecting on this past year.",
-      "keywords": [
-        "2025",
-        "reflection",
-        "year in review",
-        "personal growth"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/2025-in-review/picasso.png",
-      "readingTime": 3
-    },
-    {
-      "slug": "2025-reading-list",
-      "date": "January 1, 2025",
-      "title": "2025 Reading List",
-      "draft": false,
-      "description": "My reading list for 2025, including brief reviews and ratings.",
-      "keywords": [
-        "2025",
-        "reading list",
-        "book reviews",
-        "reading challenge",
-        "books"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/2025-reading-list/2025-reading-list.webp",
-      "readingTime": 4
-    },
-    {
-      "slug": "fifa-12-ultimate-team",
-      "date": "February 4, 2025",
-      "title": "FIFA Ultimate Team 12 and My (Questionable) Teenage Trading Strategies",
-      "draft": true,
-      "description": "Or how techniques developed while trading on the FIFA Ultimate Team 12 marketplace as a 15-year-old might apply to real-life markets.",
-      "keywords": [
-        "FIFA",
-        "gaming",
-        "trading",
-        "football",
-        "virtual economy",
-        "economics",
-        "Ultimate Team"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/fifa-12-ultimate-team/ut2.jpg",
-      "readingTime": 3
-    },
-    {
       "slug": "mobile-phones-the-swiss-army-knife-humanity-didnt-need",
       "date": "February 10, 2025",
       "title": "Mobile Phones: The Swiss Army Knife Humanity Didn't Need",
@@ -71,59 +16,6 @@
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/mobile-phones-the-swiss-army-knife-humanity-didnt-need/mobile-phones-the-swiss-army-knife-humanity-didnt-need.webp",
       "readingTime": 1
-    },
-    {
-      "slug": "polymorphic-web-design",
-      "date": "February 4, 2025",
-      "title": "Polymorphic Web Design",
-      "draft": true,
-      "description": "Exploring a web design approach using Next.js by abstracting the layout layer and controlling navigation through route configuration.",
-      "keywords": [
-        "next.js",
-        "web design",
-        "programming",
-        "web development",
-        "vercel"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/polymorphic-web-design/polymorphic-web-design.webp",
-      "readingTime": 4
-    },
-    {
-      "slug": "should-it-look-good-or-work-well",
-      "date": "March 3, 2025",
-      "title": "Should It Look Good or Work Well?",
-      "draft": true,
-      "description": "Or how to balance aesthetic experience with practical functionality.",
-      "keywords": [
-        "web developement",
-        "next.js",
-        "programming",
-        "product design"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/should-it-look-good-or-work-well/should-it-look-good-or-work-well.webp",
-      "readingTime": 1
-    },
-    {
-      "slug": "so-you-want-to-start-youtube",
-      "date": "February 26, 2025",
-      "title": "So You Want to Start YouTube?",
-      "draft": true,
-      "description": "Or the process behind how I make digital content (YouTube videos and blog posts) and how it will help you.",
-      "keywords": [
-        "youtube",
-        "content creation",
-        "guide to youtube",
-        "new youtubers",
-        "creative process"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/so-you-want-to-start-youtube/so-you-want-to-start-youtube.webp",
-      "readingTime": 3
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
@@ -188,7 +80,7 @@
       "date": "February 3, 2025",
       "title": "What is Blogging?",
       "draft": true,
-      "description": "Or why, in a world full of people trying to be somebody else, you should focus on being you.",
+      "description": "Or why in a world full of people trying to be somebody else, you should focus on being you.",
       "keywords": [
         "blogging",
         "authenticity",
@@ -206,7 +98,7 @@
       "date": "February 10, 2025",
       "title": "Why I’m Optimistic AI Won’t Take My SWE Job",
       "draft": true,
-      "description": "fefe",
+      "description": "Or why AI is but another abstraction layer for software development. ",
       "keywords": [
         "AI",
         "software engineering",

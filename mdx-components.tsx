@@ -1,5 +1,4 @@
-// mdx-components.js
-
+import React from 'react';
 import { A as a } from '@/app/blog/components/a';
 import { P as p } from '@/app/blog/components/p';
 import { H1 as h1 } from '@/app/blog/components/h1';
@@ -40,6 +39,10 @@ import StarRating from '@/app/blog/components/rating';
 import MP3 from '@/app/blog/components/mp3';
 import { Del } from '@/app/blog/components/del'; // wherever you placed it
 import { MP4 } from '@/app/blog/components/mp4'; // Update the path as necessary
+// Import KaTeX components
+import 'katex/dist/katex.min.css'; // Import KaTeX CSS
+import { InlineMath, BlockMath } from 'react-katex';
+import { Latex } from '@/app/blog/components/latex';
 
 function hashString(str: string): string {
   let hash = 0;
@@ -126,6 +129,9 @@ export const MDXComponents = {
   MP3,
   MP4, // Add MP4 component here
   video: MP4,
+  InlineMath,
+  BlockMath,
+  Latex,
 };
 
 // Export useMDXComponents function
