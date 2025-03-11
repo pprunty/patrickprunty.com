@@ -1,0 +1,112 @@
+import { SITE_URL, AUTHOR } from '@/config';
+
+export const metadata = {
+  title: 'Polymorphic Web Design',
+  description: 'Exploring a web design approach using Next.js by abstracting the layout layer and controlling navigation through route configuration.',
+  image: '/images/polymorphic-web-design/polymorphic-web-design.webp',
+  date: '2025-02-04',
+  author: 'Patrick Prunty',
+  authorUrl: 'https://patrickprunty.com/about',
+  openGraph: {
+    title: 'Polymorphic Web Design',
+    description: 'Exploring a web design approach using Next.js by abstracting the layout layer and controlling navigation through route configuration.',
+    url: '/blog/polymorphic-web-design',
+    images: [
+      {
+        url: `/images/polymorphic-web-design/polymorphic-web-design.webp`,
+        alt: 'Polymorphic Web Design'
+      }
+    ],
+    type: 'article',
+    tags: ["next.js", "web design", "programming", "web development", "vercel"]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Polymorphic Web Design',
+    description: 'Exploring a web design approach using Next.js by abstracting the layout layer and controlling navigation through route configuration.',
+    image: `/images/polymorphic-web-design/polymorphic-web-design.webp`
+  },
+  keywords: ["next.js", "web design", "programming", "web development", "vercel"],
+  slug: 'polymorphic-web-design',
+  readingTime: 4,
+  draft: true
+};
+
+
+## Navigation Routes [#navigation-routes]
+
+The first thing you're going to want to do is define the routes for the different pages in your application. You
+can do that in the `routes.ts` file. These routes have a default key `hide` key for hiding the route. By default the
+routes defined in this file will be rendered in the `sidebar.tsx`, `header.tsx` and `bottom-bar.tsx`. You can extend this
+file to use `bottomBarRoutes` for example for more complex navigation.
+
+### SEO Metadata
+
+The routes.tsx file also used a metdataMap such that you can manage SEO for all your pages in a single file and reference this mapping
+in your new page.tsx file to create SEO for that new page.
+
+## Layout [#layout]
+
+As hinted above, there are reusable components for crafting the type of layout you want in your
+application. Some of these take props for styling.
+
+`bottom-bar.tsx` has a `showLabels` prop.
+`header.tsx` has a `scrollResponsive` and `mobileResponsive` prop.
+`sidebar.tsx` has ...
+
+## Color Pallette / Theming
+
+## Reusable Components
+
+## Backend Integration [#backend-integration]
+
+For the backend, I use Python FastAPI because I'm partial to using Python for my backend. But I understand people's desire to keep it in
+the (same programming language) family and host their APIs with Express/Node/Next.js APIs. If you choose to do this, you will need to
+recreate the APIs in [vercel-fastapi-backend]().
+
+### Locally
+
+### Cloud
+
+
+
+---
+
+
+Every other day, I see somebody spam-advertising their Next.js template on Reddit/X/Hackernews, usually accompanied by a questionable screenshot of their first 100ish sales. [Marc Lou](), most notably
+started this trend with his product [ShipFast]() and has had huge success. At least, *according to him*.
+
+If you know how to code and you're not looking for shortcuts, you'll know that everybody's code looks different and that every product
+use case is different. There's no one-size fits all. If you're going to use software to make more software, the software you're using
+needs to operate at an abstract/decoupled layer, like through `pip`, `npm`, or an open-source GitHub repository. Not behind a paywall.
+
+Purchasing Marc Lou's template is probably good for one thing, and one thing only, to
+create another Next.js shitplate you can fob off as better than his. But that'll only work if you have a bigger social media following than
+him, _doubt_. It might sound harsh. But you're not going to build the next Facebook using one of these templates.
+
+I know these templates don't work because I tried to create one myself.
+
+I worked on integrating all the secret sauce: `i8ln` for global translation, `next-auth` for authentication with providers
+such as Google and Apple, `tailwindcss` for styling, `stripe.js` for payment integration, and more. Then after like 2 hard iterations, I asked myself, _**what the
+fuck am I doing?**_
+
+I'm building a supercharged shuffle that looks state-of-the-art but once it touches the gravel, all the pretty pieces
+start to fall off.
+
+I realised that building these templates is simply a way of procrastinating the developement of a meaningful
+product. _"Once the template is perfect, I'll be ready to go, you'll see"_ - I would tell myself. With the believe that if
+all else fails, well then I can just make the template the product.
+
+Should a failed codebase not good enough to create a
+meaningful product ever be ethically monetized and sold to others trying to do the same? My answer: a hard no. This not only goes against everything good
+that open source represents but is also irrational.
+
+And so, I pivoted.
+
+In knowing I wasn't ready to create a meaningful product, I focused on the hardest part of any web application (in my opinion). Which
+is the layout, navigation and user experience.
+
+<FootNotes>
+  <FootNote>Blog Post Image Source: ASCII generated image of random Anime character</FootNote>
+  <Image className="py-2" src="/images/polymorphic-web-design/polymorphic-web-design.webp" alt="ASCII Anime Character" width={200} height={200}/>
+</FootNotes>
