@@ -48,7 +48,7 @@ export default function Header() {
   const [firstWord, ...rest] = words;
 
   return (
-    <header className="sticky top-0 z-10 border-b border-[#e0e0e0] dark:border-[#666666] bg-[#fcfcfc] dark:bg-[#222222] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-lg dark:backdrop-blur-lg">
+    <header className="sticky top-0 z-10 border-b border-[#bdbdbd] dark:border-[#666666] bg-[#fcfcfc] dark:bg-[#222222] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-lg dark:backdrop-blur-lg">
       <div className="max-w-2xl mx-auto flex items-center py-3 px-6">
         {/* Left: Logo */}
         <div className="flex items-center">
