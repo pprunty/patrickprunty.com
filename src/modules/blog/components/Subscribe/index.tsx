@@ -99,6 +99,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               dark:text-black
               rounded-lg
               text-sm
+              font-medium
               hover:bg-gray-800
               dark:hover:bg-gray-100
               border
