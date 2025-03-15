@@ -53,8 +53,8 @@ const Subscribe: React.FC<SubscribeProps> = ({
 
   return (
     <div className="w-full max-w-sm">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-0">
-        <div className="relative">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <div className="flex gap-2">
           <input
             type="email"
             placeholder="you@domain.com"
@@ -91,28 +91,27 @@ const Subscribe: React.FC<SubscribeProps> = ({
             type="submit"
             disabled={loading}
             className="
-             absolute
-             top-0
-             right-0
-             h-full
-             px-4
-             py-1
-             bg-[#646464]
-             text-white
-             rounded-r-lg
-             text-sm
-             hover:bg-[#444]
-             dark:active:border-[#fcfcfc]
-             dark:active:border-2
-             dark:bg-[#444]
-             dark:hover:bg-[#555]
-             transition-colors
-           "
+              px-4
+              py-2
+              bg-black
+              text-white
+              dark:bg-white
+              dark:text-black
+              rounded-lg
+              text-sm
+              hover:bg-gray-800
+              dark:hover:bg-gray-100
+              border
+              border-black
+              dark:border-white
+              transition-colors
+              whitespace-nowrap
+            "
             style={{ minWidth: '100px' }} // Ensure button width remains consistent
           >
             {loading ? (
               <div className="flex justify-center items-center">
-                <ClipLoader size={15} color="#fff" />
+                <ClipLoader size={15} color="currentColor" />
               </div>
             ) : (
               'Subscribe'

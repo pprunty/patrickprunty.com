@@ -3,7 +3,7 @@
 import type React from 'react';
 import { memo, useMemo } from 'react';
 import MediaCarousel from './media-carousel';
-import { H2 } from '@/app/blog/components/h2';
+import { H1 } from '@/app/blog/components/h1';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
@@ -57,7 +57,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
   return (
     <section className="my-6 text-base">
       <div className="mb-6">
-        <H2>{sectionName}</H2>
+        <H1>{sectionName}</H1>
       </div>
       <ul className="list-disc list-outside pl-6 space-y-2">
         {items.map((item, index) => {

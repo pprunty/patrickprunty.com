@@ -48,50 +48,52 @@ export default function Header() {
   const [firstWord, ...rest] = words;
 
   return (
-    <header className="flex mb-5 md:mb-10 items-center">
-      {/* Left: Logo */}
-      <div className="flex items-center">
-        <Logo />
-      </div>
+    <header className="sticky top-0 z-10 border-b border-[#e0e0e0] dark:border-[#666666] bg-[#fcfcfc] dark:bg-[#222222] bg-opacity-95 dark:bg-opacity-95 backdrop-blur-lg dark:backdrop-blur-lg">
+      <div className="max-w-2xl mx-auto flex items-center py-3 px-6">
+        {/* Left: Logo */}
+        <div className="flex items-center">
+          <Logo />
+        </div>
 
-      {/* Right: Navbar Links */}
-      <nav className="font-mono text-xs grow justify-end items-center flex gap-1 md:gap-3">
-        <ThemeSwitcher />
+        {/* Right: Navbar Links */}
+        <nav className="font-mono text-xs grow justify-end items-center flex gap-1 md:gap-3">
+          <ThemeSwitcher />
 
-        <Link
-          href="/blog"
-          prefetch={true}
-          className={`inline-flex font-mono items-center rounded-sm p-2 transition-[background-color] ${
-            isBlogActive
-              ? 'bg-gray-200 dark:bg-[#313131] text-black dark:text-white'
-              : 'hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424]'
-          }`}
-        >
-          Blog
-        </Link>
-
-        {/* CTA Social Icon Link */}
-        {ctaUrl && ctaLabel && (
-          <a
-            href={ctaUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="no-after inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
+          <Link
+            href="/blog"
+            prefetch={true}
+            className={`inline-flex font-mono items-center rounded-sm p-2 transition-[background-color] ${
+              isBlogActive
+                ? 'bg-gray-200 dark:bg-[#313131] text-black dark:text-white'
+                : 'hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424]'
+            }`}
           >
-            <SocialIcon
-              platform={ctaPlatform}
-              width="13"
-              height="13"
-              className="mr-1.5 w-4 h-4 text-[#222222] dark:text-[#fcfcfc]"
-            />
-            {/* Render first word always, additional words only on sm+ */}
-            {firstWord}
-            {rest.length > 0 && (
-              <span className="hidden sm:inline ml-2">{rest.join(' ')}</span>
-            )}
-          </a>
-        )}
-      </nav>
+            Blog
+          </Link>
+
+          {/* CTA Social Icon Link */}
+          {ctaUrl && ctaLabel && (
+            <a
+              href={ctaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-after inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
+            >
+              <SocialIcon
+                platform={ctaPlatform}
+                width="13"
+                height="13"
+                className="mr-1.5 w-4 h-4 text-[#222222] dark:text-[#fcfcfc]"
+              />
+              {/* Render first word always, additional words only on sm+ */}
+              {firstWord}
+              {rest.length > 0 && (
+                <span className="hidden sm:inline ml-2">{rest.join(' ')}</span>
+              )}
+            </a>
+          )}
+        </nav>
+      </div>
     </header>
   );
 }
