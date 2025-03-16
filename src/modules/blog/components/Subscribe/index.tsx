@@ -1,19 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
-import ClipLoader from 'react-spinners/ClipLoader'; // Import a spinner from react-spinners
+import React, { useState, useEffect } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 interface SubscribeProps {
-  scriptUrl?: string;
+  redisApiEndpoint?: string;
 }
 
 const Subscribe: React.FC<SubscribeProps> = ({
-  scriptUrl = 'https://script.google.com/macros/s/AKfycbxYXBP_GiOutJgd6hSkO2_PGXOrRNd7yQV066B7Sq3iOCE7nKFgO-mr7gQwy9BhKZNI/exec',
+  redisApiEndpoint = '/api/subscribe',
 }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [fadeOut, setFadeOut] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+  const [showSubscribedMessage, setShowSubscribedMessage] =
+    useState<boolean>(false);
+
+  // Check if user is already subscribed when component mounts
+  useEffect(() => {
+    const subscriptionStatus = localStorage.getItem('isSubscribed');
+    if (subscriptionStatus === 'true') {
+      setIsSubscribed(true);
+      // We don't show the message on initial load, only after submission
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,19 +37,30 @@ const Subscribe: React.FC<SubscribeProps> = ({
     setLoading(true);
     setMessage('');
     setFadeOut(false);
+    setShowSubscribedMessage(false); // Reset the message visibility
 
     try {
-      await fetch(scriptUrl, {
+      const response = await fetch(redisApiEndpoint, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
       });
 
-      setMessage('Thank you for subscribing!');
-      setEmail('');
+      const data = await response.json();
+
+      if (data.alreadySubscribed) {
+        setMessage('You are already subscribed!');
+        setIsSubscribed(true);
+        setShowSubscribedMessage(false); // Message is shown in the regular message area
+      } else {
+        setMessage('Thank you for subscribing!');
+        setEmail('');
+        setIsSubscribed(true);
+        setShowSubscribedMessage(false); // Message is shown in the regular message area
+      }
+
       localStorage.setItem('isSubscribed', 'true');
     } catch (error) {
       console.error('Error subscribing:', error);
@@ -47,7 +70,14 @@ const Subscribe: React.FC<SubscribeProps> = ({
 
       // Clear the message after 5 seconds with fade-out effect
       setTimeout(() => setFadeOut(true), 4000);
-      setTimeout(() => setMessage(''), 5000);
+      setTimeout(() => {
+        setMessage('');
+        // Only show the persistent subscribed message after form submission
+        // and after the temporary message fades out
+        if (isSubscribed) {
+          setShowSubscribedMessage(true);
+        }
+      }, 5000);
     }
   };
 
@@ -61,31 +91,23 @@ const Subscribe: React.FC<SubscribeProps> = ({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
-            className={`
-             w-full
-                  px-4
-                  py-2
-                  rounded-lg
-                  text-md
-                  sm:text-sm
-                  border
-                  border-[#2F2F2F2]
-                  placeholder-[#646464]
-                  dark:placeholder-[#787878]
-                  active:border-[#555]
-                  dark:border-[#555]
-                  dark:active:border-[#fcfcfc]
-                  bg-[#F2F2F2]
-                  dark:bg-[#222222]
-                  dark:text-[#B4B4B4]
-                  text-[#0F0F0F]
-             rounded-l-lg
-             focus:outline-none
-             focus:ring-1
-             focus:ring-[#555]
-             dark:focus:ring-[#fff]
-             transition-colors
-           `}
+            className="
+              w-full
+              px-4
+              py-2
+              rounded-lg
+              text-md
+              border
+              border-border
+              bg-input
+              text-foreground
+              placeholder-muted-foreground/60
+              focus:outline-none
+              focus:ring-1
+              focus:ring-ring
+              disabled:opacity-70
+              transition-colors
+            "
           />
           <button
             type="submit"
@@ -93,27 +115,25 @@ const Subscribe: React.FC<SubscribeProps> = ({
             className="
               px-4
               py-2
-              bg-black
-              text-white
-              dark:bg-white
-              dark:text-black
+              bg-primary
+              text-primary-foreground
+              hover:bg-primary-hover
               rounded-lg
               text-sm
               font-medium
-              hover:bg-gray-800
-              dark:hover:bg-gray-100
               border
-              border-black
-              dark:border-white
+              border-primary
               transition-colors
               whitespace-nowrap
+              disabled:opacity-70
+              min-w-[100px]
+              flex
+              justify-center
+              items-center
             "
-            style={{ minWidth: '100px' }} // Ensure button width remains consistent
           >
             {loading ? (
-              <div className="flex justify-center items-center">
-                <ClipLoader size={15} color="currentColor" />
-              </div>
+              <ClipLoader size={15} color="currentColor" />
             ) : (
               'Subscribe'
             )}
@@ -123,15 +143,19 @@ const Subscribe: React.FC<SubscribeProps> = ({
           <p
             className={`
               ${
-                message.includes('Thank you')
-                  ? 'text-green-600'
-                  : 'text-red-600'
+                message.includes('Thank you') ||
+                message.includes('already subscribed')
+                  ? 'text-action'
+                  : 'text-destructive'
               } text-sm transition-opacity duration-1000 ease-out
               ${fadeOut ? 'opacity-0' : 'opacity-100'}
             `}
           >
             {message}
           </p>
+        )}
+        {isSubscribed && !message && showSubscribedMessage && (
+          <p className="text-action text-sm">You are already subscribed!</p>
         )}
       </form>
     </div>

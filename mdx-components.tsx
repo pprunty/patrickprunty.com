@@ -43,6 +43,7 @@ import { MP4 } from '@/app/blog/components/mp4'; // Update the path as necessary
 import 'katex/dist/katex.min.css'; // Import KaTeX CSS
 import { InlineMath, BlockMath } from 'react-katex';
 import { Latex } from '@/app/blog/components/latex';
+import './src/app/globals.css';
 
 function hashString(str: string): string {
   let hash = 0;

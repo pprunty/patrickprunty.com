@@ -81,7 +81,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                             ? 'noopener noreferrer'
                             : undefined
                         }
-                        className="border-b font-semibold text-gray-600 border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-white text-black dark:border-gray-500 dark:hover:border-white"
+                        className="border-b font-semibold border-gray-300 transition-[border-color] hover:border-gray-600 dark:text-[#EEEEEE] text-[#000] dark:border-gray-500 dark:hover:border-white"
                       >
                         {item.title}
                       </a>

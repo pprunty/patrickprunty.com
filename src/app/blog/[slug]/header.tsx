@@ -6,7 +6,7 @@ import { H1 } from '@/app/blog/components/h1';
 import useSWR from 'swr';
 import type { KeyedMutator } from 'swr';
 import { ago } from 'time-ago';
-import { Calendar1, BookOpenText, Eye } from 'lucide-react'; // Import the icons
+import { Calendar, BookOpen, Eye } from '@phosphor-icons/react'; // Updated to Phosphor icons
 
 interface HeaderProps {
   posts: Post[] | null;
@@ -51,7 +51,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Date */}
           <span className="flex items-center">
-            <Calendar1 className="w-3.5 h-3.5 mr-2" />
+            <Calendar weight="regular" className="w-3.5 h-3.5 mr-2" />
             <span suppressHydrationWarning={true}>
               {post.date || 'Unknown date'} (
               {post.date ? `${ago(post.date, true)} ago` : ''})
@@ -61,7 +61,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Mins Read */}
           <span className="flex items-center">
-            <BookOpenText className="w-3.5 h-3.5 mr-2" />
+            <BookOpen weight="regular" className="w-3.5 h-3.5 mr-2" />
             <span>{post.readingTime} mins read</span>
           </span>
         </span>
@@ -109,7 +109,7 @@ function Views({
     <>
       {views != null ? (
         <span className="flex items-center">
-          <Eye className="w-3.5 h-3.5 mr-2" />
+          <Eye weight="regular" className="w-3.5 h-3.5 mr-2" />
           {views} views
         </span>
       ) : null}
