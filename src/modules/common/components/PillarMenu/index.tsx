@@ -173,7 +173,6 @@ const PillarMenu: React.FC<PillarMenuProps> = ({
         <Modal
           isOpen={isEditBlogModalOpen}
           onClose={closeEditBlogModal}
-          size="lg"
           title="Configure Blog"
         >
           <EditBlogForm
@@ -188,7 +187,6 @@ const PillarMenu: React.FC<PillarMenuProps> = ({
         <Modal
           isOpen={isCreatePostModalOpen}
           onClose={closeCreatePostModal}
-          size="lg"
           title="Create New Post"
         >
           <EditPostForm
@@ -206,7 +204,6 @@ const PillarMenu: React.FC<PillarMenuProps> = ({
         <Modal
           isOpen={isEditPostModalOpen}
           onClose={closeEditPostModal}
-          size="lg"
           title="Edit Post"
         >
           <EditPostForm
@@ -224,7 +221,6 @@ const PillarMenu: React.FC<PillarMenuProps> = ({
         <Modal
           isOpen={isDeletePostModalOpen}
           onClose={closeDeletePostModal}
-          size="lg"
           title="Delete Blog Post"
         >
           <div className="p-6">

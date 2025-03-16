@@ -68,7 +68,7 @@ const TableOfContents = React.memo(() => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
         router.push(`#${id}`, { scroll: false });
-        setSelectedId(id); // Update selectedId to track the user’s selection
+        setSelectedId(id); // Update selectedId to track the user's selection
         setIsOpen(false);
       }
     },
@@ -151,12 +151,13 @@ const TableOfContents = React.memo(() => {
         <Modal
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          size={'lg'}
           title={'Contents'}
+          width="responsive"
+          type="blur"
         >
           <div
             ref={tocContainerRef}
-            className="overflow-y-auto max-h-[60vh] px-4 py-2"
+            className="overflow-y-auto max-h-[60vh] w-full py-2"
           >
             <ul className="space-y-2">
               {toc.map((item, index) => (

@@ -29,7 +29,7 @@ export function InlineCode({
 
   if (isInlineCode) {
     return (
-      <code className="font-mono rounded-xl bg-gray-100 text-sm px-1 py-0.5 rounded">
+      <code className="font-mono rounded-xl text-sm px-1 py-0.5 rounded">
         {children}
       </code>
     );
