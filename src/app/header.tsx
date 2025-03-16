@@ -1,12 +1,10 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Import usePathname to detect current route
 import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
 import { Logo } from './logo';
 import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
 import { SocialIcon } from '@/modules/common/components/SocialIcon';
 import type { SocialPlatform } from '@/__samwise/types/SocialPlatform';
+import ActiveLink from './active-link';
 
 // Mappings
 const ctaLabels: Record<SocialPlatform, string> = {
@@ -35,10 +33,8 @@ const urlMapping: Record<SocialPlatform, string> = {
   rss: SOCIAL_URLS.rss,
 };
 
+// Main server component
 export default function Header() {
-  const pathname = usePathname(); // Get current pathname
-  const isBlogActive = pathname === '/blog' || pathname?.startsWith('/blog/');
-
   const ctaPlatform = CTA_SOCIAL_PLATFORM as SocialPlatform;
   const ctaUrl = urlMapping[ctaPlatform];
   const ctaLabel = ctaLabels[ctaPlatform];
@@ -57,19 +53,7 @@ export default function Header() {
 
         {/* Right: Navbar Links */}
         <nav className="font-mono text-xs grow justify-end items-center flex gap-1 md:gap-3">
-          <ThemeSwitcher />
-
-          <Link
-            href="/blog"
-            prefetch={true}
-            className={`inline-flex font-mono items-center rounded-sm p-2 transition-[background-color] ${
-              isBlogActive
-                ? 'bg-gray-200 dark:bg-[#313131] text-black dark:text-white'
-                : 'hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424]'
-            }`}
-          >
-            Blog
-          </Link>
+          <ActiveLink href="/blog">Blog</ActiveLink>
 
           {/* CTA Social Icon Link */}
           {ctaUrl && ctaLabel && (
@@ -77,7 +61,7 @@ export default function Header() {
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="no-after inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
+              className="no-after inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-md transition-[background-color] whitespace-nowrap -mr-2"
             >
               <SocialIcon
                 platform={ctaPlatform}

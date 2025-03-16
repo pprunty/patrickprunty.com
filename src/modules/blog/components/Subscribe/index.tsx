@@ -120,7 +120,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               hover:bg-primary-hover
               rounded-lg
               text-sm
-              font-medium
+              font-semibold
               border
               border-primary
               transition-colors
