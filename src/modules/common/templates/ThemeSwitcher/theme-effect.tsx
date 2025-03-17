@@ -27,7 +27,7 @@ export const themeEffect = function () {
     document.documentElement.classList.remove('dark');
     document.head
       .querySelector('meta[name=theme-color]')
-      ?.setAttribute('content', '#FCFCFC');
+      ?.setAttribute('content', '#fffefc');
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');
     });

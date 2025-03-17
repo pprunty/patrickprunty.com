@@ -118,12 +118,17 @@ const Subscribe: React.FC<SubscribeProps> = ({
               bg-primary
               text-primary-foreground
               hover:bg-primary-hover
+              active:bg-primary-hover
+              active:scale-96
               rounded-lg
               text-sm
               font-semibold
               border
               border-primary
               transition-colors
+              transition-transform
+              duration-200
+              ease-in-out
               whitespace-nowrap
               disabled:opacity-70
               min-w-[100px]

@@ -59,7 +59,7 @@
 
   :root {
     --background: #fffefc;
-    --background-90: rgba(255, 254, 252, 0.875);
+    --background-90: rgba(255, 254, 252, 0.95);
     --foreground: #09090b;
     --card: #fffefc;
     --card-foreground: #09090b;
@@ -71,9 +71,9 @@
     --secondary: #fffefc;
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
-    --muted: #f4f4f4;
+    --muted: #FFFEFC;
     --muted-foreground: #717171;
-    --accent: #f4f4f4;
+    --accent: #FFFEFC;
     --accent-foreground: #18181b;
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
