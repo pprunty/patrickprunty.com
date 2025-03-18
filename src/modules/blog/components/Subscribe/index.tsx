@@ -113,7 +113,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
             type="submit"
             disabled={loading}
             className="
-              px-4
+              px-5
               py-2
               bg-primary
               text-primary-foreground

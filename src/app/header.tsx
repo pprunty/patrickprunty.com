@@ -44,7 +44,7 @@ export default function Header() {
   const [firstWord, ...rest] = words;
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background-90 backdrop-blur-lg">
+    <header className="sticky top-0 z-10 border-b border-border bg-background">
       <div className="max-w-2xl mx-auto flex items-center py-3 px-6">
         {/* Left: Logo */}
         <div className="flex items-center">
