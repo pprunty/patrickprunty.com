@@ -44,7 +44,7 @@ export default function Header({ currentPost }: HeaderProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {post.author}
+              @pprunty_
             </a>
             <span className="hidden md:inline ml-2">|</span>
           </span>
