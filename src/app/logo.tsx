@@ -11,7 +11,7 @@ export function Logo() {
   return (
     <span
       ref={logoRef}
-      className="text-md md:text-lg whitespace-nowrap font-bold transition-colors"
+      className="text-md md:text-xl dark:text-gray-100 whitespace-nowrap font-bold transition-colors"
     >
       <Link
         href="/"
