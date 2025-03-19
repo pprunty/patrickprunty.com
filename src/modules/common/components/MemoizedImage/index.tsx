@@ -1,106 +1,124 @@
-'use client';
+"use client"
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Image, { type ImageProps } from 'next/image';
+import React, { useState, useEffect, useRef, useCallback } from "react"
+import Image, { type ImageProps } from "next/image"
 
-interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
-  focusable?: boolean;
-  className?: string;
-  animate?: boolean;
+interface MemoizedImageProps extends Omit<ImageProps, "onClick"> {
+  focusable?: boolean
+  className?: string
+  animate?: boolean
 }
 
 export const MemoizedImage = React.memo(function MemoizedImage({
   src,
-  alt = 'Image',
+  alt = "Image",
   width,
   height,
   priority,
-  loading = 'lazy',
+  loading = "lazy",
   focusable = true,
   fill,
   sizes,
   quality,
-  className = '',
+  className = "",
   animate = true,
   unoptimized = false,
   ...rest
 }: MemoizedImageProps) {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isImageLoaded, setImageLoaded] = useState(false);
-  const scrollPositionRef = useRef(0);
-  const imageRef = useRef<HTMLSpanElement>(null);
-  const hasIntersectedRef = useRef(false);
+  const [isModalOpen, setModalOpen] = useState(false)
+  const [isImageLoaded, setImageLoaded] = useState(false)
+  const scrollPositionRef = useRef(0)
+  const imageRef = useRef<HTMLSpanElement>(null)
+  const modalRef = useRef<HTMLSpanElement>(null)
+  const hasIntersectedRef = useRef(false)
 
   const openModal = useCallback(() => {
     if (focusable) {
-      scrollPositionRef.current = window.scrollY || window.pageYOffset;
+      scrollPositionRef.current = window.scrollY || window.pageYOffset
 
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPositionRef.current}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
+      document.body.style.position = "fixed"
+      document.body.style.top = `-${scrollPositionRef.current}px`
+      document.body.style.left = "0"
+      document.body.style.right = "0"
 
-      setModalOpen(true);
+      setModalOpen(true)
     }
-  }, [focusable]);
+  }, [focusable])
 
   const closeModal = useCallback(() => {
-    setModalOpen(false);
+    setModalOpen(false)
 
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
+    document.body.style.position = ""
+    document.body.style.top = ""
+    document.body.style.left = ""
+    document.body.style.right = ""
 
     window.scrollTo({
       top: scrollPositionRef.current,
-      behavior: 'instant',
-    });
-  }, []);
+      behavior: "instant",
+    })
+  }, [])
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        closeModal()
+      }
+    }
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isModalOpen, closeModal])
 
   useEffect(() => {
-    if (!animate) return;
+    if (!animate) return
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !hasIntersectedRef.current) {
-          setImageLoaded(true);
-          hasIntersectedRef.current = true;
-          observer.disconnect();
+          setImageLoaded(true)
+          hasIntersectedRef.current = true
+          observer.disconnect()
         }
-      });
-    };
+      })
+    }
 
     const observer = new IntersectionObserver(observerCallback, {
       root: null,
       threshold: 0.1,
-    });
+    })
 
     if (imageRef.current) {
-      observer.observe(imageRef.current);
+      observer.observe(imageRef.current)
     }
 
     return () => {
-      observer.disconnect();
-    };
-  }, [animate]);
+      observer.disconnect()
+    }
+  }, [animate])
 
   return (
     <>
       <span
         ref={imageRef}
         data-animate-image
-        className={`overflow-hidden ${focusable ? 'cursor-pointer' : ''}`}
+        className={`overflow-hidden ${focusable ? "cursor-pointer" : ""}`}
         onClick={openModal}
       >
         <Image
-          src={src || '/placeholder.svg'}
+          src={src || "/placeholder.svg"}
           alt={alt}
           width={width}
           height={height}
           quality={quality}
-          className={`${animate && isImageLoaded ? 'animate-once' : ''} image-animate ${className}`}
-          data-animate={animate && isImageLoaded ? 'zoom-fade-small' : ''}
+          className={`${animate && isImageLoaded ? "animate-once" : ""} image-animate ${className}`}
+          data-animate={animate && isImageLoaded ? "zoom-fade-small" : ""}
           priority={priority}
           loading={loading}
           fill={fill}
@@ -111,17 +129,10 @@ export const MemoizedImage = React.memo(function MemoizedImage({
       </span>
 
       {isModalOpen && (
-        <span
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300"
-          onClick={closeModal}
-          data-animate-image
-        >
-          <span
-            className="relative w-full h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <span className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300">
+          <span ref={modalRef} className="relative w-full h-full flex items-center justify-center">
             <Image
-              src={src || '/placeholder.svg'}
+              src={src || "/placeholder.svg"}
               alt={alt}
               width={width}
               quality={quality}
@@ -141,5 +152,6 @@ export const MemoizedImage = React.memo(function MemoizedImage({
         </span>
       )}
     </>
-  );
-});
+  )
+})
+

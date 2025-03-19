@@ -1,14 +1,14 @@
-'use client';
+"use client"
 
-import React, { useState, useCallback, memo } from 'react';
-import { YouTube } from '@/app/blog/components/youtube';
+import React, { useState, useCallback, memo, useEffect, useRef } from "react"
+import { YouTube } from "@/app/blog/components/youtube"
 
 interface MemoizedYouTubeProps {
-  videoId: string;
-  title: string;
-  width: number;
-  height: number;
-  className?: string;
+  videoId: string
+  title: string
+  width: number
+  height: number
+  className?: string
 }
 
 export const MemoizedYouTube = memo(function MemoizedYouTube({
@@ -16,38 +16,56 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
   title,
   width,
   height,
-  className = '',
+  className = "",
 }: MemoizedYouTubeProps) {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const scrollPositionRef = React.useRef(0);
+  const [isModalOpen, setModalOpen] = useState(false)
+  const scrollPositionRef = React.useRef(0)
+  const modalRef = useRef<HTMLDivElement>(null)
 
   const openModal = useCallback(() => {
-    scrollPositionRef.current = window.scrollY || window.pageYOffset;
+    scrollPositionRef.current = window.scrollY || window.pageYOffset
 
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollPositionRef.current}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
+    document.body.style.position = "fixed"
+    document.body.style.top = `-${scrollPositionRef.current}px`
+    document.body.style.left = "0"
+    document.body.style.right = "0"
 
-    setModalOpen(true);
-  }, []);
+    setModalOpen(true)
+  }, [])
 
   const closeModal = useCallback(() => {
-    setModalOpen(false);
+    setModalOpen(false)
 
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
+    document.body.style.position = ""
+    document.body.style.top = ""
+    document.body.style.left = ""
+    document.body.style.right = ""
 
     window.scrollTo({
       top: scrollPositionRef.current,
-      behavior: 'instant',
-    });
-  }, []);
+      behavior: "instant",
+    })
+  }, [])
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        closeModal()
+      }
+    }
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isModalOpen, closeModal])
 
   // Use the high quality thumbnail URL
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
 
   return (
     <>
@@ -56,7 +74,7 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
         onClick={openModal}
       >
         <img
-          src={thumbnailUrl || '/placeholder.svg'}
+          src={thumbnailUrl || "/placeholder.svg"}
           alt={title}
           className="w-full h-full object-cover"
           loading="lazy"
@@ -64,13 +82,10 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
       </div>
 
       {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300"
-          onClick={closeModal}
-        >
+        <div className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300">
           <div
+            ref={modalRef}
             className="relative w-full h-full max-w-4xl max-h-[calc(100vh-4rem)] flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
           >
             <YouTube videoId={videoId} />
             <button
@@ -83,5 +98,6 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
         </div>
       )}
     </>
-  );
-});
+  )
+})
+
