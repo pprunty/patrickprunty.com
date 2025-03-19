@@ -62,7 +62,7 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 };
 
-# About [#about]
+## About [#about]
 
 <UniqueViewers />
 
@@ -80,25 +80,12 @@ I'm a senior web developer based in Dublin, Ireland.
 Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animations (videos coming soon).
 
 I share insights on life, technology, and software projects on my [personal blog](/blog).
-{/* If you're not sure what to read, try ... */}
-
-{/*
-I spent most of my time working to design beautiful web applications, write well, and understand how to program
-computers. In general, to make great things.
-*/}
 
 When I'm not programming or working on creative projects, you can find me training for triathlons, hiking, or spending time with my loved ones.
 
 Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries. My professional CV is available [here](https://read.cv/pprunty).
 
-{/*
-
-## Latest YouTube Video [#latest-youtube-video]
-
-<YouTube videoId={'wjZofJX0v4M'} />
-<YouTube videoId={'mn2Dcy-NDTw'} />
-<YouTube videoId={'8XEpK6FpNZc'} />
-*/}
+## Projects [#projects]
 
 <Section
   sectionName={<>Projects [#projects]</>}
@@ -131,45 +118,46 @@ Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto
         '/images/projects/Untitled.mov',
       ],
       description:
-        'High-performance blog built with Next.js 15 and MDX, where I share insights on life, technology, and personal projects.',
+        'High-performance personal blog built with Next.js 15 and MDX, where I share insights on life, technology, and personal projects.',
     },
   ]}
 />
+
+## Open Source [#open-source]
 
 <Section
   sectionName={<>Software [#software]</>}
   items={[
     {
-      title: 'adair-ui',
-      url: 'https://adair.vercel.app/',
+      title: 'deltacomponents.dev',
+      url: 'https://deltacomponents.dev/',
       year: '2025',
-      hide: true,
-//       media: ['/images/projects/neobrutalism.png'],
+      media: ['/images/projects/deltacomponents.webp'],
+      hide: false,
       description:
         <>
-        Adair is a collection of open source and progressively-styled reusable React TailwindCSS components based on
+Components that make the difference. Delta Components is a comprehensive collection of open-source, progressively-styled UI elements designed for seamless integration with
         {' '}
         <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">
-        shadcn/ui
+        shadcn
         </a>
-        {' '}
-        . Designed to be highly modular, accessible, and customizable (work in progress).
+        {' '} and {' '}
+        <a href="https://v0.dev/chat" target="_blank" rel="noopener noreferrer">
+        v0
+        </a>
+        . Combining modern aesthetics with exceptional performance.
         </>
     },
     {
       title: 'tmplate.xyz',
       url: 'https://tmplate.xyz/',
       year: '2025',
-    media: ['/images/projects/tmplate.xyz.webp', '/images/projects/tmplate-blog-screenshot.png'],
+      media: ['/images/projects/tmplate.xyz.webp', '/images/projects/tmplate-blog-screenshot.png'],
       hide: false,
       description:
-              <>
-An open-source Next.js template featuring progressively styled, reusable React components and layouts. Includes built-in authentication, SEO optimization, and a clean foundation for SaaS products. Ideal for developers seeking a minimalist yet extensible starting point. (Work in progress).              {' '}
-              {/*
-              <a href="https://github.com/pprunty/tmplate.xyz" target="_blank" rel="noopener noreferrer">
-            Source
-            </a>.*/}
-              </>,
+        <>
+        An open-source Next.js template featuring progressively styled, reusable React components and layouts. Includes built-in authentication, SEO optimization, and a clean foundation for SaaS products. Ideal for developers seeking a minimalist yet extensible starting point. (Work in progress).
+        </>,
     },
     {
       title: 'samwise',
@@ -183,8 +171,9 @@ An open-source Next.js template featuring progressively styled, reusable React c
       title: 'manim-interactive',
       url: 'https://github.com/pprunty/manim-interactive',
       year: '2025',
+      hide: true,
       description:
-        'Interactive Manim environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown’s workflow through code highlighting and keyboard binding shortcuts.',
+        "Interactive Manim environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown's workflow through code highlighting and keyboard binding shortcuts.",
     },
     {
       title: 'clunk',
@@ -203,21 +192,30 @@ An open-source Next.js template featuring progressively styled, reusable React c
       description:
         'An autonomous AI agent capable of piloting the creation of an entire coding given a project outline using DeepSeek open-source LLMs. The user interacts with the agent and accepts/rejects file updates (work in progress).',
     },
-        {
-          title: 'motormongo (archived)',
-          url: 'https://motormongo.readthedocs.io/en/latest/',
-          year: '2023',
-          hide: false,
-          description:
-                        <>
-A lightweight, asynchronous Object Document Mapper (ODM) for MongoDB, built on top of the official Motor driver. Designed to provide non-blocking MongoDB access for Python applications using asyncio or Tornado and providing a similar API to mongoengine (<code>pip install motormongo</code>).
-                        </>,
-        },
+    {
+      title: 'motormongo (archived)',
+      url: 'https://motormongo.readthedocs.io/en/latest/',
+      year: '2023',
+      hide: true,
+      description:
+        <>
+        A lightweight, asynchronous Object Document Mapper (ODM) for MongoDB, built on top of the official Motor driver. Designed to provide non-blocking MongoDB access for Python applications using asyncio or Tornado and providing a similar API to mongoengine (<code>pip install motormongo</code>).
+        </>,
+    },
   ]}
 />
 
 To see a complete list of my work, visit my [GitHub profile](https://github.com/pprunty).
 
-# Photos [#photos]
+## 2025 Reading List [#reading-list]
+
+1. <del>*[A Dance with Dragons](https://en.wikipedia.org/wiki/A_Dance_with_Dragons)* by George R.R. Martin</del>
+2. <del>*[Small Things Like These](https://en.wikipedia.org/wiki/Small_Things_Like_These)* by Claire Keegan</del>
+3. <del>*[Meditations](https://en.wikipedia.org/wiki/Meditations)* by Marcus Aurelius</del>
+4. <del>[*The Alchemist*](https://en.wikipedia.org/wiki/The_Alchemist_(novel)) by Paulo Coelho</del>
+5. [*Blood Meridian*](https://en.wikipedia.org/wiki/Blood_Meridian) by Cormac McCarthy
+
+### Photos [#photos]
 
 <PhotoGrid images={photographyImages} />
+

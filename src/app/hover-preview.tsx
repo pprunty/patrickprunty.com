@@ -71,7 +71,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
     <>
       <Suspense fallback={null}>
         <main className="max-w-2xl font-mono m-auto text-sm relative">
-          <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
+          <header className="text-muted-foreground flex items-center text-xs">
             {/* Date Sort Button */}
             <button
               onClick={sortDate}
@@ -312,7 +312,7 @@ function HoverPreviewModal({ hoveredPost, mousePos }: HoverPreviewModalProps) {
               alt={hoveredPost.title}
               className="w-48 h-32 object-cover mb-2"
             />
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-muted-foreground">
               {postDetails.description}
             </p>
           </div>

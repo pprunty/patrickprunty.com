@@ -48,7 +48,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
   return (
     <Suspense fallback={null}>
       <main className="max-w-2xl font-mono m-auto text-sm">
-        <header className="text-gray-700 dark:text-gray-300 flex items-center text-xs">
+        <header className="text-muted-foreground flex items-center text-xs">
           {/* Date Sort Button */}
           <button
             onClick={sortDate}
