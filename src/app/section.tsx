@@ -76,7 +76,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="text-md no-after font-medium text-primary underline decoration-wavy underline-offset-2 decoration-muted-foreground hover:decoration-primary active:decoration-primary flex items-center gap-1"
+                    className="text-md no-after font-medium text-primary underline decoration-wavy underline-offset-4 decoration-muted-foreground hover:decoration-primary active:decoration-primary flex items-center gap-1"
                   >
                     {item.title}
                     <ArrowUpRight
