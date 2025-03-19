@@ -20,7 +20,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
   return (
     <div className="mt-2 mb-1.5 sm:mx-0 sm:mb-0">
       <div
-        className="overflow-x-auto overflow-y-hidden"
+        className="overflow-x-auto overflow-y-hidden scrollbar-hide"
         style={{ scrollSnapType: 'none' }}
       >
         <div className="flex gap-2 sm:px-0 mb-2">
