@@ -55,7 +55,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
   }, [items]);
 
   return (
-    <section className="text-base">
+    <section className="text-base my-5">
       <div className="space-y-4">
         {items.map((item, index) => {
           if (item.hide) return null;
