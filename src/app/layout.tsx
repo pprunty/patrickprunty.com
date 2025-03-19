@@ -93,7 +93,7 @@ export default function RootLayout({
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
       <body className="text-gray-800 dark:text-gray-300 pt-3">
-            <Header />
+        <Header />
         <main className="p-6 z-[100] pt-5 sm:pt-6 min-h-screen max-w-2xl m-auto">
           {children}
         </main>

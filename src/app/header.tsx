@@ -1,23 +1,23 @@
-import ThemeSwitcher from "@/modules/common/templates/ThemeSwitcher"
-import { Logo } from "./logo"
-import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from "@/config"
-import { SocialIcon } from "@/modules/common/components/SocialIcon"
-import type { SocialPlatform } from "@/__samwise/types/SocialPlatform"
-import ActiveLink from "./active-link"
+import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
+import { Logo } from './logo';
+import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
+import { SocialIcon } from '@/modules/common/components/SocialIcon';
+import type { SocialPlatform } from '@/__samwise/types/SocialPlatform';
+import ActiveLink from './active-link';
 
 // Mappings
 const ctaLabels: Record<SocialPlatform, string> = {
-  twitter: "Follow me",
-  instagram: "Follow me",
-  github: "Source code",
-  linkedin: "Connect now",
-  youtube: "Subscribe",
-  strava: "Follow me",
-  reddit: "Join me",
-  patreon: "Support me",
-  tiktok: "Follow me",
-  rss: "Subscribe",
-}
+  twitter: 'Follow me',
+  instagram: 'Follow me',
+  github: 'Source code',
+  linkedin: 'Connect now',
+  youtube: 'Subscribe',
+  strava: 'Follow me',
+  reddit: 'Join me',
+  patreon: 'Support me',
+  tiktok: 'Follow me',
+  rss: 'Subscribe',
+};
 
 const urlMapping: Record<SocialPlatform, string> = {
   github: SOCIAL_URLS.github,
@@ -30,17 +30,17 @@ const urlMapping: Record<SocialPlatform, string> = {
   youtube: SOCIAL_URLS.youtube,
   patreon: SOCIAL_URLS.patreon,
   rss: SOCIAL_URLS.rss,
-}
+};
 
 // Main server component
 export default function Header() {
-  const ctaPlatform = CTA_SOCIAL_PLATFORM as SocialPlatform
-  const ctaUrl = urlMapping[ctaPlatform]
-  const ctaLabel = ctaLabels[ctaPlatform]
+  const ctaPlatform = CTA_SOCIAL_PLATFORM as SocialPlatform;
+  const ctaUrl = urlMapping[ctaPlatform];
+  const ctaLabel = ctaLabels[ctaPlatform];
 
   // Split the CTA label so we can hide extra words on mobile
-  const words = ctaLabel?.split(" ") ?? []
-  const [firstWord, ...rest] = words
+  const words = ctaLabel?.split(' ') ?? [];
+  const [firstWord, ...rest] = words;
 
   return (
     <header className="z-10 bg-background">
@@ -71,12 +71,13 @@ export default function Header() {
               />
               {/* Render first word always, additional words only on sm+ */}
               {firstWord}
-              {rest.length > 0 && <span className="hidden sm:inline ml-2">{rest.join(" ")}</span>}
+              {rest.length > 0 && (
+                <span className="hidden sm:inline ml-2">{rest.join(' ')}</span>
+              )}
             </a>
           )}
         </nav>
       </div>
     </header>
-  )
+  );
 }
-
