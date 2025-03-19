@@ -71,9 +71,9 @@
     --secondary: #fffefc;
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
-    --muted: #FFFEFC;
+    --muted: #fffefc;
     --muted-foreground: #717171;
-    --accent: #FFFEFC;
+    --accent: #fffefc;
     --accent-foreground: #18181b;
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
