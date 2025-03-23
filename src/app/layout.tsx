@@ -94,7 +94,7 @@ export default function RootLayout({
       </head>
       <body className="text-gray-800 dark:text-gray-300 pt-3">
         <Header />
-        <main className="p-6 z-[100] pt-5 sm:pt-6 min-h-screen max-w-2xl m-auto">
+        <main className="p-6 z-[100] pt-3 sm:pt-6 min-h-screen max-w-2xl m-auto">
           {children}
         </main>
         <ClientComponents />
