@@ -7,7 +7,7 @@ interface HeadingProps {
 
 export function H2({ children }: HeadingProps) {
   return (
-    <h2 className="group font-semibold my-3 text-2xl relative dark:text-gray-100">
+    <h2 className="group font-semibold my-3 text-2xl relative dark:text-[#FABD2E]">
       {withHeadingId(children)}
     </h2>
   );

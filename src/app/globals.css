@@ -17,8 +17,8 @@
   /* Dark mode settings */
   :root.dark {
     color-scheme: dark;
-    @apply bg-[#222222];
-    @apply text-[#FFFEFC];
+    @apply bg-[#282828];
+    @apply text-[#FBF1C7];
   }
 
   /* Darker mode settings */
@@ -103,7 +103,7 @@
   .dark {
     --background: #222222;
     --background-90: rgba(34, 34, 34, 0.94);
-    --foreground: #fafafa;
+    --foreground: #FBF1C7;
     --card: #2a2a2a;
     --card-foreground: #fafafa;
     --popover: #09090b;

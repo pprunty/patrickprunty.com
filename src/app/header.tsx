@@ -43,7 +43,7 @@ export default function Header() {
   const [firstWord, ...rest] = words;
 
   return (
-    <header className="z-10 bg-background">
+    <header className="z-10">
       <div className="max-w-2xl mx-auto flex items-center px-6">
         {/* Left: Logo */}
         <div className="flex items-center">
