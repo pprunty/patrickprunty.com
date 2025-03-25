@@ -1,9 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
-const UniqueViewers: React.FC = () => {
+interface UniqueViewersProps {
+  // Optional path override, if not provided will use current path
+  path?: string;
+}
+
+const UniqueViewers: React.FC<UniqueViewersProps> = ({ path }) => {
   const [uniqueCount, setUniqueCount] = useState<number | null>(null);
+  const pathname = usePathname();
+
+  // Use provided path or current pathname
+  const currentPath = path || pathname;
 
   // Track whether the user is pressing cmd and/or b
   const [isMetaDown, setIsMetaDown] = useState(false);
@@ -15,7 +25,10 @@ const UniqueViewers: React.FC = () => {
   useEffect(() => {
     async function fetchCount() {
       try {
-        const res = await fetch('/api/viewers');
+        // Pass the current path as a query parameter
+        const res = await fetch(
+          `/api/viewers?path=${encodeURIComponent(currentPath)}`,
+        );
         const data = await res.json();
         setUniqueCount(data.count);
       } catch (error) {
@@ -23,7 +36,7 @@ const UniqueViewers: React.FC = () => {
       }
     }
     fetchCount();
-  }, []);
+  }, [currentPath]); // Re-fetch when path changes
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { SITE_URL } from '@/config';
 import { notFound } from 'next/navigation';
+import UniqueViewers from '../../unique-viewers';
 
 type Params = Promise<{ slug: string }>;
 
@@ -55,6 +56,7 @@ export default async function Page({ params }: PageProps) {
 
     return (
       <div className="break-words">
+        <UniqueViewers />
         <Content />
       </div>
     );
