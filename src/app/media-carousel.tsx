@@ -115,6 +115,8 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
                 <MemoizedYouTube
                   videoId={item.src}
                   title={`${title} YouTube video ${idx + 1}`}
+                  width={130}
+                  height={130}
                   className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
                 />
               ) : (

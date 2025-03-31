@@ -17,6 +17,16 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        port: '',
+        pathname: '/vi/**',
+      },
+    ],
+  },
   async headers() {
     return [
       // Cache /blog for 1 minute + stale-while-revalidate
