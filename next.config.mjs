@@ -17,9 +17,6 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
-  images: {
-    domains: ['img.youtube.com'],
-  },
   async headers() {
     return [
       // Cache /blog for 1 minute + stale-while-revalidate
