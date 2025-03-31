@@ -1,7 +1,7 @@
-import ThemeSwitcher from '@/modules/common/templates/ThemeSwitcher';
+import ThemeSwitcher from '@/components/theme-switcher';
 import { Logo } from './logo';
 import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
-import { SocialIcon } from '@/modules/common/components/SocialIcon';
+import { SocialIcon } from '@/components/social-icon';
 import type { SocialPlatform } from '@/__samwise/types/SocialPlatform';
 import ActiveLink from './active-link';
 

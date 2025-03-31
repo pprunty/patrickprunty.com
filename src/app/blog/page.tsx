@@ -2,7 +2,7 @@ import type { Post } from '../get-posts';
 import { Posts } from '../posts';
 import { getAllPosts } from '../get-posts';
 import type { ButtonsArrayType } from '@/__samwise/types/Buttons';
-import PillarMenu from '@/modules/common/components/PillarMenu';
+import PillarMenu from '@/components/pillar-menu';
 import UniqueViewers from '../unique-viewers';
 
 export const dynamic = 'force-static';

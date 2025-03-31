@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import Switch from 'react-switch';
 import { Post } from '../../../../app/get-posts';
 import { ImageIcon, XIcon, Info } from 'lucide-react';
-import TooltipWrapper from '@/modules/common/components/Tooltip'; // Adjust the path as necessary
+import TooltipWrapper from '@/components/tooltip'; // Adjust the path as necessary
 import { AUTHOR } from '@/config';
 import { toast } from 'react-toastify';
 

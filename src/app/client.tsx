@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 const ClientSideScrollRestorer = dynamic(
-  () => import('@/modules/common/components/ClientSideScrollRestorer'),
+  () => import('@/components/client-side-scroll-restorer'),
   {
     ssr: false,
   },

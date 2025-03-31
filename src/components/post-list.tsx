@@ -1,6 +1,6 @@
 import React from 'react';
-import { Post } from '../../../../app/get-posts';
-import BlogPost from '@/modules/blog/components/BlogPost';
+import { Post } from '@/app/get-posts';
+import BlogPost from './blog-post';
 
 interface PostListProps {
   posts: Post[];

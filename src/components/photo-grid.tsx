@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Grid from '@/modules/common/components/Grid';
-import { MemoizedImage } from '@/modules/common/components/MemoizedImage';
+import Grid from './grid';
+import { MemoizedImage } from './memoized-image';
 
 interface PhotoGridProps {
   images: string[];

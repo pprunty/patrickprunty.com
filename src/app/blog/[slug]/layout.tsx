@@ -1,14 +1,14 @@
 import { getAllPosts } from '../../get-posts';
 import Header from './header';
-import RelatedPosts from '@/modules/blog/templates/RelatedPosts';
+import RelatedPosts from '@/components/related-posts';
 import { ReactNode } from 'react';
-import BottomBar from '@/modules/blog/components/BottomBar';
+import BottomBar from '@/components/bottom-bar';
 // import CommentsSection from '@/__samwise/modules/comments/templates/CommentsSection';
 import { TableOfContents } from '@/app/blog/components/toc';
 import { redirect } from 'next/navigation';
-import PillarMenu from '@/modules/common/components/PillarMenu';
+import PillarMenu from '@/components/pillar-menu';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
-import Newsletter from '@/modules/blog/components/Newsletter'; // Adjust the import path based on your project structure
+import Newsletter from '@/components/newsletter'; // Adjust the import path based on your project structure
 
 export const revalidate = 60;
 

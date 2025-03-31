@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import ShareButton from '@/modules/blog/components/ShareButton'; // Assuming ShareButton component is in the same directory
+import ShareButton from './share-button'; // Assuming ShareButton component is in the same directory
 import { useRouter } from 'next/navigation';
 
 const BottomBar = () => {

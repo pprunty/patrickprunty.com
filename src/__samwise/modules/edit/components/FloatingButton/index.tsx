@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TooltipWrapper from '@/modules/common/components/Tooltip';
+import TooltipWrapper from '@/components/tooltip';
 import type { LucideProps } from 'lucide-react';
 
 type IconType = React.ComponentType<LucideProps>;

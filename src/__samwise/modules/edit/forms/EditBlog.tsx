@@ -26,7 +26,7 @@ import {
 import { SocialPlatform } from '@/__samwise/types/SocialPlatform';
 
 // Import Tooltip component
-import TooltipWrapper from '@/modules/common/components/Tooltip';
+import TooltipWrapper from '@/components/tooltip';
 
 type SocialLink = {
   type: string;

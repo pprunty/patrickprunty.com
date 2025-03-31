@@ -17,7 +17,7 @@ import { Blockquote as blockquote } from '@/app/blog/components/blockquote';
 import { InlineCode } from '@/app/blog/components/code';
 import { Admonition } from '@/app/blog/components/admonition';
 import { TableOfContents } from '@/app/blog/components/toc';
-import PhotoGrid from '@/modules/common/templates/PhotoGrid';
+import PhotoGrid from '@/components/photo-grid';
 import Strava from '@/app/blog/components/strava';
 import TikTok from '@/app/blog/components/tiktok';
 import LinkedIn from '@/app/blog/components/linkedin';
@@ -30,10 +30,9 @@ import {
   TableRow,
 } from '@/app/blog/components/table';
 import Image from 'next/image';
-import { MemoizedImage } from '@/modules/common/components/MemoizedImage';
-import Grid from '@/modules/common/components/Grid';
-import Carousel from '@/modules/common/components/Carousel';
-import LinkButton from '@/modules/common/components/LinkButton';
+import { MemoizedImage } from '@/components/memoized-image';
+import Grid from '@/components/grid';
+import LinkButton from '@/components/link-button';
 import PDF from '@/app/blog/components/pdf'; // Import PDFViewer component
 import StarRating from '@/app/blog/components/rating';
 import MP3 from '@/app/blog/components/mp3';
@@ -122,7 +121,6 @@ export const MDXComponents = {
   tr: TableRow,
   Image,
   Grid,
-  Carousel,
   LinkButton,
   MemoizedImage,
   PDF,

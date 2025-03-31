@@ -13,7 +13,7 @@ const LinkButton: React.FC<ArrowButtonProps> = ({ url, label }) => {
       className={`
         flex items-center justify-center w-12 h-12 text-white
         bg-[#222222] dark:bg-white dark:text-black
-        transition-[border-radius] duration-[300ms] ease-out
+        transition-[border-radius] duration-300 ease-out
         rounded-[0.8rem] hover:rounded-[1.1rem]
       `}
     >

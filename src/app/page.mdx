@@ -69,7 +69,7 @@ export const metadata = {
 <Image
   src="/images/me-sketch2.png"
   alt="Patrick Prunty"
-  className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-40 h-40 md:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
+  className="bg-gray-100 rounded-full block mt-5 mb-5 mx-auto w-40 h-40 sm:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
   width={150}
   height={150}
   priority
@@ -99,6 +99,17 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
 <Section
   sectionName={<>Projects [#projects]</>}
   items={[
+      {
+        title: 'Patrick Prunty at YouTube',
+        url: 'https://www.youtube.com/@patrickprunty',
+        year: '2025',
+  //       youtubeIds: [
+  //       'DcYLT37ImBY',
+  //       'wjZofJX0v4M',
+  //       ],
+        description:
+          'Experimental art examining pop culture and media through re-contextualization and visual/audio mashing.',
+      },
     {
       title: 'Pixel Projects at YouTube',
       url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw',
@@ -119,6 +130,7 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
       url: 'https://www.youtube.com/@JigsawPresents',
       year: '(Coming Soon)',
       media: ['/images/projects/jigsaw-presents.webp'],
+      hide: true,
       description:
         'Providing insight into trending films and television series through video essays.',
     },

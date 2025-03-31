@@ -3,7 +3,7 @@
 'use client';
 
 import React from 'react';
-import Subscribe from '@/modules/blog/components/Subscribe'; // Adjust the import path based on your project structure
+import Subscribe from './subscribe'; // Adjust the import path based on your project structure
 
 const Newsletter: React.FC = () => {
   return (
