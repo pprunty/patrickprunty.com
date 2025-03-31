@@ -2,17 +2,20 @@
 
 import React, { useState, useCallback, memo, useEffect, useRef } from 'react';
 import { YouTube } from '@/app/blog/components/youtube';
-import Image from 'next/image';
 
 interface MemoizedYouTubeProps {
   videoId: string;
   title: string;
+  width: number;
+  height: number;
   className?: string;
 }
 
 export const MemoizedYouTube = memo(function MemoizedYouTube({
   videoId,
   title,
+  width,
+  height,
   className = '',
 }: MemoizedYouTubeProps) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -73,11 +76,9 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
         className={`cursor-pointer ${className} h-24 min-w-[10.5rem] max-w-[10.5rem] overflow-hidden flex-shrink-0`}
         onClick={openModal}
       >
-        <Image
+        <img
           src={thumbnailUrl || '/placeholder.svg'}
           alt={title}
-          width={420}
-          height={236}
           className="w-full h-full object-cover"
           loading="lazy"
         />
