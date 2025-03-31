@@ -4,14 +4,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import FloatingButton from '@/__samwise/modules/edit/components/FloatingButton';
-import Modal from '@/modules/common/components/Modal';
+import Modal from '@/components/modal';
 import EditBlogForm from '@/__samwise/modules/edit/forms/EditBlog';
 import EditPostForm from '@/__samwise/modules/edit/forms/EditPost';
 import { IS_BLOG_USER_CONFIGURED } from '@/config';
 import axios from 'axios';
 import { AlertTriangle } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { Post } from '../../../../app/get-posts';
+import { Post } from '@/app/get-posts';
 import { ButtonsArrayType } from '@/__samwise/types/Buttons';
 
 interface PillarMenuProps {
