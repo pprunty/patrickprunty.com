@@ -5,5 +5,5 @@ interface ULProps {
 }
 
 export function UL({ children }: ULProps) {
-  return <ul className="my-5 list-none list-inside">{children}</ul>;
+  return <ul className="my-5 list-disc pl-8 space-y-1">{children}</ul>;
 }
