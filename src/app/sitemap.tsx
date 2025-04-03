@@ -29,10 +29,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/about`,
+      url: `${SITE_URL}/blog`,
+      lastModified: new Date().toISOString(),
+      changefreq: 'daily',
+      priority: 1.0,
+    },
+    {
+      url: `${SITE_URL}/achievements`,
       lastModified: new Date().toISOString(),
       changefreq: 'monthly',
-      priority: 0.8,
+      priority: 0.4,
+    },
+    {
+      url: `${SITE_URL}/content`,
+      lastModified: new Date().toISOString(),
+      changefreq: 'weekly',
+      priority: 0.4,
     },
     // Add other static pages if necessary
   ];
