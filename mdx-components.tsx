@@ -23,6 +23,7 @@ import TikTok from '@/app/blog/components/tiktok';
 import LinkedIn from '@/app/blog/components/linkedin';
 import { Tweet } from '@/app/blog/components/tweet';
 import Instagram from '@/app/blog/components/instagram'; // <-- new import
+import Newsletter from '@/components/newsletter'; // Import Newsletter component
 import {
   Table,
   TableHeader,
@@ -111,6 +112,7 @@ export const MDXComponents = {
   LinkedIn,
   Instagram,
   Tweet,
+  Newsletter, // Add Newsletter component
   Ref,
   FootNotes,
   FootNote,

@@ -1,20 +1,24 @@
 {
   "posts": [
     {
-      "slug": "mobile-phones-the-swiss-army-knife-humanity-didnt-need",
-      "date": "February 10, 2025",
-      "title": "Mobile Phones: The Swiss Army Knife Humanity Didn't Need",
+      "slug": "indie-hackers-and-liars",
+      "date": "April 6, 2025",
+      "title": "Indie Hackers and Liars",
       "draft": true,
-      "description": "qdqw",
+      "description": "to be filled",
       "keywords": [
-        "mobile phones",
-        "technology",
-        "society",
-        "modern life"
+        "indiehacker",
+        "liars",
+        "buildinpublic",
+        "bootstrapping",
+        "programming",
+        "saas",
+        "startup",
+        "FOMO"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/mobile-phones-the-swiss-army-knife-humanity-didnt-need/mobile-phones-the-swiss-army-knife-humanity-didnt-need.webp",
+      "image": "/images/indie-hackers-and-liars/indie-hackers-and-liars2.webp",
       "readingTime": 1
     },
     {
@@ -110,25 +114,6 @@
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/why-im-optimistic-ai-wont-take-my-swe-job/why-im-optimistic-ai-wont-take-my-swe-job.webp",
       "readingTime": 2
-    },
-    {
-      "slug": "why-irish-movies-feel-well-so-irish",
-      "date": "February 14, 2025",
-      "title": "Video Essay: Why Irish Movies Feel Well, So Irish",
-      "draft": true,
-      "description": "Exploring what makes Irish movies typically Irish.",
-      "keywords": [
-        "irish film",
-        "film analysis",
-        "video essay",
-        "irish culture",
-        "cinema",
-        "jigsaw presents"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/why-irish-movies-feel-well-so-irish/why-irish-movies-feel-well-so-irish.webp",
-      "readingTime": 1
     }
   ]
 }
