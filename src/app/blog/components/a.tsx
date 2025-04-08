@@ -13,7 +13,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
     return (
       <a
         href={href}
-        className={`underline decoration-wavy underline-offset-4 decoration-muted-foreground hover:decoration-primary active:decoration-primary ${className}`}
+        className={`underline decoration-wavy underline-offset-4 text-primary decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground ${className}`}
         {...props}
       >
         {children}
@@ -24,7 +24,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
     return (
       <Link
         href={href}
-        className={`underline decoration-wavy underline-offset-4 decoration-muted-foreground hover:decoration-primary active:decoration-primary ${className}`}
+        className={`underline decoration-wavy underline-offset-4 text-primary decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground ${className}`}
         {...props}
       >
         {children}
