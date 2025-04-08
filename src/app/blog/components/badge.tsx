@@ -8,7 +8,7 @@ interface BadgeProps {
 export function Badge({ className = '' }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium my-1 bg-green-100 text-green-800 ml-2 ${className}`}
+      className={`inline-flex items-center gap-1 rounded-md px-2 py-1 text-[9px] sm:text-[11px] font-medium my-1 font-mono bg-green-100 text-green-800 ml-2 ${className}`}
     >
       <Check size={12} weight="bold" />
       READ
