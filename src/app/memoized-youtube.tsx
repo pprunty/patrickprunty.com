@@ -46,21 +46,19 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
 
   // Handle click outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
+    // No need for complex event handlers, using the onClick prop directly on the overlay div
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isModalOpen) {
         closeModal();
       }
     };
 
     if (isModalOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isModalOpen, closeModal]);
 
@@ -84,7 +82,15 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300">
+        <div 
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300 youtube-modal-overlay"
+          onClick={(e) => {
+            // Only close if the click is directly on the overlay background
+            if (e.target === e.currentTarget) {
+              closeModal();
+            }
+          }}
+        >
           <div
             ref={modalRef}
             className="relative w-full h-full max-w-4xl max-h-[calc(100vh-4rem)] flex items-center justify-center"

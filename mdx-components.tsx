@@ -84,7 +84,7 @@ export const MDXComponents = {
 
     // Check if the src ends with '.gif' (case-insensitive)
     const isGif = src.toLowerCase().endsWith('.gif');
-    const width = 620;
+    const width = 672;
     const height = 500;
     return (
       <MemoizedImage
