@@ -21,6 +21,31 @@ export const MemoizedVideo = memo(function MemoizedVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const scrollPositionRef = useRef(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '50px',
+      },
+    );
+
+    if (videoContainerRef.current) {
+      observer.observe(videoContainerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const openModal = useCallback(() => {
     scrollPositionRef.current = window.scrollY || window.pageYOffset;
@@ -71,25 +96,29 @@ export const MemoizedVideo = memo(function MemoizedVideo({
 
   return (
     <>
-      <video
-        src={src}
-        width={width}
-        height={height}
-        className={`cursor-pointer ${className}`}
-        autoPlay
-        playsInline
-        muted
-        loop
-        onClick={openModal}
-      >
-        Your browser does not support the video tag.
-      </video>
+      <div ref={videoContainerRef}>
+        {isVisible && (
+          <video
+            src={src}
+            width={width}
+            height={height}
+            className={`cursor-pointer ${className}`}
+            autoPlay
+            playsInline
+            muted
+            loop
+            onClick={openModal}
+            onLoadedData={() => setIsLoaded(true)}
+          >
+            Your browser does not support the video tag.
+          </video>
+        )}
+      </div>
 
       {isModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300 video-modal-overlay"
           onClick={(e) => {
-            // Only close if the click is directly on the overlay background
             if (e.target === e.currentTarget) {
               closeModal();
             }

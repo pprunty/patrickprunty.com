@@ -44,7 +44,7 @@ export default function Header() {
 
   return (
     <header className="z-10 bg-background">
-      <div className="max-w-2xl mx-auto flex items-center px-6 sm:px-0">
+      <div className="max-w-2xl mx-auto flex items-center ">
         {/* Left: Logo */}
         <div className="flex items-center">
           <Logo />

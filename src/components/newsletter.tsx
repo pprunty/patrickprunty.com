@@ -9,7 +9,7 @@ interface NewsletterProps {
 }
 
 const Newsletter: React.FC<NewsletterProps> = ({
-  title = 'Stay Updated',
+  title = 'Join the Journey',
   subtitle = "Like what you're reading? Subscribe to get notified when I publish new posts.",
 }) => {
   return (

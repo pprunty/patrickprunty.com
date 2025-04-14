@@ -129,7 +129,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
       </span>
 
       {isModalOpen && (
-        <span 
+        <span
           className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300 modal-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
@@ -149,6 +149,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               height={height}
               className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
               priority={true}
+              loading="eager"
               unoptimized={unoptimized}
               {...rest}
             />

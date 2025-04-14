@@ -92,9 +92,9 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="text-gray-800 dark:text-gray-300 pt-3 sm:pt-6">
+      <body className="text-gray-800 dark:text-gray-300 pt-3 sm:pt-6 p-6 sm:px-4">
         <Header />
-        <main className="p-6 sm:px-0 z-[100] min-h-screen max-w-2xl m-auto">
+        <main className="z-[100] min-h-screen max-w-2xl pt-12 m-auto text-pretty">
           {children}
         </main>
         <ClientComponents />
