@@ -78,20 +78,6 @@ const nextConfig = {
           },
         ],
       },
-      // Cache PDF files in downloads directory
-      {
-        source: '/downloads/:path*',
-        headers: [
-          {
-            key: 'cache-control',
-            value: 'public, max-age=31536000, immutable',
-          },
-          {
-            key: 'content-disposition',
-            value: 'attachment',
-          },
-        ],
-      },
     ];
   },
   pageExtensions: ['ts', 'tsx', 'mdx'],
