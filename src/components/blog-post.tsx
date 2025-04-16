@@ -16,10 +16,9 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
   >
     <article
       className="flex sm:p-4 gap-4 items-start pb-4
-
-             sm:border sm:border-gray-300 sm:dark:border-[#555]
+             sm:border sm:border-border
              rounded-0 sm:rounded-md
-             sm:hover:border-gray-600 sm:dark:hover:border-[#dbdbdb]
+             hover:border-foreground
              sm:transition-colors sm:duration-300"
     >
       <div className="flex-grow space-y-2 min-w-0">

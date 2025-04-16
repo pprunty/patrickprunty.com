@@ -12,7 +12,7 @@ export default function ActiveLink({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isBlogActive = pathname === href || pathname?.startsWith(`${href}/`);
+  const isBlogActive = pathname === href;
 
   return (
     <Link

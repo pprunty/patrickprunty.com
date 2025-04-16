@@ -33,7 +33,12 @@ export default function Header({ currentPost }: HeaderProps) {
     <>
       {/* Header Section */}
       <H1>{post.title}</H1>
-      <p className="font-mono text-xs flex flex-wrap justify-between items-center mt-3 text-gray-700 dark:text-[#888888]">
+      {post.description && (
+        <p className="italic mt-2 text-xl font-serif text-muted-foreground">
+          {post.description}
+        </p>
+      )}
+      <p className="font-mono border-t border-border border-b py-4 text-xs flex flex-wrap justify-between items-center mt-3 text-muted-foreground">
         {/* Left Section (Author, Date, and Mins Read) */}
         <span className="flex flex-col md:flex-row items-start md:items-center md:gap-2 gap-2">
           {/* Author */}
@@ -51,7 +56,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Date */}
           <span className="flex items-center">
-            <Calendar weight="regular" className="w-3.5 h-3.5 mr-2" />
+            <Calendar weight="regular" className="w-4 h-4 mr-2" />
             <span suppressHydrationWarning={true}>
               {post.date || 'Unknown date'} (
               {post.date ? `${ago(post.date, true)} ago` : ''})
@@ -61,7 +66,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Mins Read */}
           <span className="flex items-center">
-            <BookOpen weight="regular" className="w-3.5 h-3.5 mr-2" />
+            <BookOpen weight="regular" className="w-4 h-4 mr-2" />
             <span>{post.readingTime} mins read</span>
           </span>
         </span>
@@ -109,7 +114,7 @@ function Views({
     <>
       {views != null ? (
         <span className="flex items-center">
-          <Eye weight="regular" className="w-3.5 h-3.5 mr-2" />
+          <Eye weight="regular" className="w-4 h-4 mr-2" />
           {views} views
         </span>
       ) : null}

@@ -212,6 +212,37 @@
   .overflow-x-auto {
     padding-right: var(--scrollbar-width);
   }
+
+  /* Apply global styles to pre and code tags */
+  pre code {
+    font-family: monospace;
+    font-size: 14px;
+    background-color: hsl(
+      0 0% 18.5%
+    ); /* Dark mode background for inline code */
+  }
+
+  /* Original code styling */
+  code {
+    padding: 0.25rem;
+    font-family: monospace;
+    border-radius: 0.25rem;
+    background-color: hsl(
+      0 0% 18.5%
+    ); /* Dark mode background for inline code */
+  }
+
+  :root.dark code {
+    background-color: hsl(0 0% 16.5%); /* Updated for new dark mode */
+    border-radius: 0.25rem;
+  }
+
+  :root.darker code {
+    background-color: hsl(
+      0 0% 18.5%
+    ); /* Original dark mode background for inline code */
+    border-radius: 0.25rem;
+  }
 }
 
 @keyframes iconPulse {
@@ -226,30 +257,6 @@
   }
   100% {
     transform: scale(1);
-  }
-
-  pre {
-    margin: 1rem 0 !important;
-  }
-
-  /* Apply global styles to pre and code tags */
-  pre code {
-    font-family: monospace;
-    font-size: 14px;
-    border-radius: 0.25rem;
-  }
-
-  code {
-    padding: 0.25rem;
-    font-family: monospace;
-    border-radius: 0.25rem;
-    background-color: #2f2f2f; /* Dark mode background for inline code */
-  }
-
-  :root.dark code,
-  :root.darker code {
-    background-color: #2f2f2f; /* Dark mode background for inline code */
-    border-radius: 0.25rem;
   }
 }
 

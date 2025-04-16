@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "slug": "2025-04-18",
+      "date": "April 16, 2025",
+      "title": "2025-04-18",
+      "draft": true,
+      "description": "Weekly musings from my heart and mind: joyful discoveries and interesting moments",
+      "keywords": [
+        "newsletter",
+        "ai",
+        "programming"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/2025-04-18/2025-04-18.webp",
+      "readingTime": 1
+    },
+    {
       "slug": "indie-hackers-and-liars",
       "date": "April 6, 2025",
       "title": "Indie Hackers and Liars",
@@ -26,7 +42,7 @@
       "date": "February 18, 2025",
       "title": "The Engineer's Proclivity for Perfection",
       "draft": false,
-      "description": "Or why it'll never be perfect—let alone \"done\".",
+      "description": "or: Why It'll Never Be Perfect—Let Alone \"Done\".",
       "keywords": [
         "software development",
         "engineering",
