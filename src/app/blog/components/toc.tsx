@@ -109,7 +109,7 @@ const TableOfContents = React.memo(() => {
     <>
       {/* Render Table of Contents */}
       <div className="fixed bottom-4 left-0 right-0 flex justify-center z-50 pointer-events-none">
-        <div className="w-full max-w-2xl mx-auto px-6 mb-2 flex justify-end space-x-2">
+        <div className="w-full max-w-2xl px-6 sm:px-0 mx-auto mb-2 flex justify-end space-x-2">
           {toc.length >= MIN_ITEMS_TO_SHOW && (
             <button
               onClick={() => setIsOpen(!isOpen)}
