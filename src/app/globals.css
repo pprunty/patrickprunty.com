@@ -217,9 +217,7 @@
   pre code {
     font-family: monospace;
     font-size: 14px;
-    background-color: hsl(
-      0 0% 18.5%
-    ); /* Dark mode background for inline code */
+    background-color: hsl(0 0% 95%); /* Light mode background for inline code */
   }
 
   /* Original code styling */
@@ -227,20 +225,20 @@
     padding: 0.25rem;
     font-family: monospace;
     border-radius: 0.25rem;
-    background-color: hsl(
-      0 0% 18.5%
-    ); /* Dark mode background for inline code */
+    background-color: hsl(0 0% 95%); /* Light mode background for inline code */
   }
 
   :root.dark code {
-    background-color: hsl(0 0% 16.5%); /* Updated for new dark mode */
+    background-color: hsl(
+      0 0% 16.5%
+    ); /* Dark mode background for inline code */
     border-radius: 0.25rem;
   }
 
   :root.darker code {
     background-color: hsl(
       0 0% 18.5%
-    ); /* Original dark mode background for inline code */
+    ); /* Darker mode background for inline code */
     border-radius: 0.25rem;
   }
 }

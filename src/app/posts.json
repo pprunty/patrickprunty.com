@@ -3,18 +3,21 @@
     {
       "slug": "2025-04-18",
       "date": "April 16, 2025",
-      "title": "2025-04-18",
-      "draft": true,
-      "description": "Weekly musings from my heart and mind: joyful discoveries and interesting moments",
+      "title": "#1 Weekly Stand-Up",
+      "draft": false,
+      "description": "Weekly Stand‑Up: AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.",
       "keywords": [
-        "newsletter",
-        "ai",
-        "programming"
+        "programming",
+        "saas",
+        "weekly stand‑up newsletter",
+        "software engineering",
+        "artificial intelligence",
+        "Go"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/2025-04-18/2025-04-18.webp",
-      "readingTime": 1
+      "readingTime": 6
     },
     {
       "slug": "indie-hackers-and-liars",
@@ -39,10 +42,10 @@
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
-      "date": "February 18, 2025",
+      "date": "March 18, 2025",
       "title": "The Engineer's Proclivity for Perfection",
       "draft": false,
-      "description": "or: Why It'll Never Be Perfect—Let Alone \"Done\".",
+      "description": "Or: Why It'll Never Be Perfect—Let Alone \"Done\".",
       "keywords": [
         "software development",
         "engineering",
@@ -53,7 +56,7 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/the-engineers-proclivity-for-perfection/Golden_Gate.webp",
+      "image": "/images/the-engineers-proclivity-for-perfection/gg_resized.webp",
       "readingTime": 2
     },
     {
