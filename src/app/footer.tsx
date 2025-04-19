@@ -43,7 +43,7 @@ export default function Footer() {
               )}
             </div>
             {/* © Section */}
-            <div className="mt-4 text-xs font-mono text-gray-600 dark:text-[#999999]">
+            <div className="mt-5 text-xs font-mono text-gray-600 dark:text-[#999999]">
               © {new Date().getFullYear()} Patrick Prunty.
             </div>
           </div>

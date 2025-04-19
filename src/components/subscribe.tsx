@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { Check } from '@phosphor-icons/react';
 
 interface SubscribeProps {
   redisApiEndpoint?: string;
@@ -145,15 +146,27 @@ const Subscribe: React.FC<SubscribeProps> = ({
             )}
           </button>
         </div>
+        {!isSubscribed && (
+          <p className="text-xs font-mono text-left text-gray-600 dark:text-[#999999]">
+            * Unsubscribe anytime
+          </p>
+        )}
+        {isSubscribed && !message && (
+          <p className="text-xs font-mono text-left text-green-600 dark:text-green-400 flex items-center gap-1">
+            <Check size={14} weight="bold" />
+            You are already subscribed
+          </p>
+        )}
         {message && (
           <p
             className={`
+              text-xs font-mono text-left
               ${
                 message.includes('Thank you') ||
                 message.includes('already subscribed')
-                  ? 'text-action'
-                  : 'text-destructive'
-              } text-sm transition-opacity duration-1000 ease-out
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-red-600 dark:text-red-400'
+              } transition-opacity duration-1000 ease-out
               ${fadeOut ? 'opacity-0' : 'opacity-100'}
             `}
           >
