@@ -6,29 +6,31 @@ import { Share } from 'lucide-react'; // Import Share icon from lucide-react
 
 interface ShareButtonProps {
   message?: string; // Optional prop for the share message
+  className?: string; // Optional className prop
 }
 
 const ShareButton: React.FC<ShareButtonProps> = ({
   message = `Check out ${AUTHOR.name}'s blog post: `,
+  className = '',
 }) => {
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setUrl(window.location.href);
     setTitle(document.title);
+    setIsDesktop(window.innerWidth >= 1024);
   }, []);
-
-  const isDesktopDevice = () => window.innerWidth >= 1024;
 
   const handleShare = async () => {
     const text = message; // Use the provided message or default value
-    if (isDesktopDevice()) {
+    if (isDesktop) {
       setIsNotificationVisible(true);
       setTimeout(() => setIsNotificationVisible(false), 2000);
     }
-    if (navigator.share && !isDesktopDevice()) {
+    if (navigator.share && !isDesktop) {
       try {
         await navigator.share({ title, text, url });
       } catch (error) {
@@ -39,7 +41,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({
     } else {
       try {
         await navigator.clipboard.writeText(url);
-        if (!isDesktopDevice()) {
+        if (!isDesktop) {
           setIsNotificationVisible(true);
           setTimeout(() => setIsNotificationVisible(false), 2000);
         }
@@ -54,7 +56,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({
     <>
       <button
         onClick={handleShare}
-        className="inline-flex items-center font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color]"
+        className={`inline-flex items-center font-mono hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-2 transition-[background-color] ${className}`}
         aria-label="Share"
       >
         <Share
@@ -68,7 +70,8 @@ const ShareButton: React.FC<ShareButtonProps> = ({
       <div
         className={`fixed top-0 left-0 right-0 mx-auto transform mt-2 w-full max-w-2xl h-10 text-center py-2 text-sm z-50
           transition-opacity duration-500 ease-in-out ${isNotificationVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}
-          bg-black dark:bg-white text-white dark:text-black`}
+          bg-black dark:bg-white text-white dark:text-black
+          ${isDesktop ? 'left-1/2 -translate-x-1/2 w-auto px-4' : ''}`}
       >
         <p className="m-0">Link copied</p>
       </div>

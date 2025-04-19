@@ -1,23 +1,23 @@
 import { SITE_URL, AUTHOR } from '@/config';
 
 export const metadata = {
-  title: '#1 Weekly Stand-Up',
+  title: '#1 The Weekly Standup',
   description:
-    'Newsletter: This week features AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.',
+    'AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.',
   image: '/images/2025-04-18/2025-04-18.webp',
   date: '2025-04-16',
   author: 'Patrick Prunty',
   authorUrl: 'https://patrickprunty.com/about',
 
   openGraph: {
-    title: '#1 Weekly Stand-Up',
+    title: '#1 The Weekly Standup',
     description:
-      'Newsletter: This week features AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.',
+      'AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.',
     url: '/blog/2025-04-18',
     images: [
       {
         url: '/images/2025-04-18/2025-04-18.webp',
-        alt: '#1 Weekly Stand-Up'
+        alt: '#1 The Weekly Standup'
       }
     ],
     type: 'article',
@@ -39,9 +39,9 @@ export const metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: '#1 Weekly Stand-Up',
+    title: '#1 The Weekly Standup',
     description:
-      'Newsletter: This week features AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.',
+      'AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.',
     image: '/images/2025-04-18/2025-04-18.webp'
   },
 
@@ -53,28 +53,29 @@ export const metadata = {
     'artificial intelligence',
     'Go',
   ],
-
-  slug: '#1 Weekly Stand-Up',
-  readingTime: 7,
+  slug: '2025-04-18',
+  readingTime: 6,
   draft: false
 };
 
 
 
-Hello hello!  
-  
-I'm no stranger to ambitious plans that fizzle out, but here we are—attempting a newsletter. Let's see if this one sticks.  
-  
-This being the first in its (indefinite) series, I should probably introduce myself. I'm **Patrick Prunty**: web‑developer, wannabe artist, wannabe entrepreneur, and wannabe financially free kind of person. I like endurance sports, sunny weather (haha, I'm from Ireland), and a few beers on the weekend (…also from Ireland).  
-  
+Hello hello!
+
+I'm no stranger to ambitious plans that fizzle out, but here we are—attempting a newsletter. Let's see if this one sticks.
+
+This being the first in its (indefinite) series, I should probably introduce myself. I'm **Patrick Prunty**: web‑developer, wannabe artist, wannabe entrepreneur, and wannabe financially free kind of person. I like endurance sports, sunny weather (haha, I'm from Ireland), and a few beers on the weekend (…also from Ireland).
+
 Software engineers—developers, tech‑bros, whatever you want to call us—take part in the often tortuous thing known as the daily **stand‑up**:
 > what did you yesterday → what are you going to do today → is there anything blocking you from doing your work → ***(“AGHH I NEED HELP!”)***.
 
 I call them tortuous but really, they're great. They're the social glue that prompts collaboration, idea‑sharing and the odd weather joke. This newsletter will be my **<em>weekly stand‑up</em>**: side‑projects I'm tinkering with, articles that made me think, new software trends, and anything else that sparks joy.
-  
+
 Primarily I'm writing to future‑me—to reread and cringe, and/or smile, and/or discover something new about myself. But if anything here helps you, even better. My inbox is always open.
 
-***  
+<Newsletter title={"The Weekly Standup Newsletter"} subtitle={"Ramblings about AI, web design, life and more. If you find the content in my newsletter of value, subscribe for weekly updates by email. Unsubscribe at anytime."}/>
+
+***
 
 * "I try to write using ordinary words and simple sentences. That kind of writing is easier to read, and the easier something is to read, the more deeply readers will engage with it." Paul Graham's essay on how to [write simply](https://paulgraham.com/simply.html) transformed my approach to content creation. Coming from an academic background where big words are used to facade intelligence, writing for the internet has been refreshingly different—I re‑read that piece before nearly every post.
 * Thorsten Bell's post on [How to Build an Agent](https://ampcode.com/how-to-build-an-agent) (*"or: The Emperor Has No Clothes"*) went viral this week on X and demonstrates how-to create a Cursor-like code-editing AI agent in under 300 lines of code. The article details how LLMs are fine-tuned and "eager" to use what is known as "tools" to help them do certain things by executing some code you have predefined. A "tool" can be code to `read_file`, `edit_file`, `call_api`, etc.
@@ -82,44 +83,37 @@ Primarily I'm writing to future‑me—to reread and cringe, and/or smile, and/o
 * Inspired, I shipped [magikarp](https://github.com/pprunty/magikarp) —a plugin‑based agentic LLM framework in Go. It's early days, but I'm exploring a system where the agent can *create* tools on demand ("Could you convert this PNG to SVG?" → "Let me create a tool for that" → creates tool → runs tool → "Here you go, I've converted your PNG to SVG using a new `png_to_svg` tool). More to follow and contributions are welcome!
 * I've historically face‑planted at salary negotiation time during interview processes. Reading Patrick McKenzie's classic "[Salary Negotiation: Make More Money, Be More Valued](https://www.kalzumeus.com/2012/01/23/salary-negotiation/)" was a splash of cold water:
 
-  > "Your salary negotiation—**which routinely takes less than five minutes**—has an outsized influence on your compensation."  
+  > "Your salary negotiation—**which routinely takes less than five minutes**—has an outsized influence on your compensation."
+
   > "We overwhelmingly *suck* at it. We've turned sucking at it into a perverse badge of virtue."
-  
+
   Game plan for next time:
-  
-  1. **Apply only to jobs you actually want.**  
-  2. In the first recruiter screen, *never* volunteer a number. Say:  
-     > "I'm focused on whether the role and team are the right fit; we can discuss comp later."  
+
+  1. **Apply only to jobs you actually want.**
+  2. In the first recruiter screen, *never* volunteer a number. Say:
+     > "I'm focused on whether the role and team are the right fit; we can discuss comp later."
      If pressed: "Let's start at $1 so we can keep talking." (Delivered with a smile.)
-  3. Ace the interviews and prove you're the *rockstar* they need.  
+  3. Ace the interviews and prove you're the *rockstar* they need.
   4. Research the **top** of the range salaries with [Glassdoor](https://www.glassdoor.com) and [Levels.fyi](https://www.levels.fyi) for the **role you interviewing for**, i.e "L2 Software Engineer". Aim for that—or higher, adjusted for inflation. That's not a ridiculous thing to ask for; the numbers on those sites **are real**.
-  5. When HR asks, "Would that be a deal‑breaker?" answer:  
-     > "Yes‑if we can't get closer on salary, I'll need to rethink."  
-     They've sunk time and budget into you; don't flinch. Always be a Yes‑If person, never a No person. If you were silly enough to give a number during the initial stage of the interview process and you interviewed brilliant, HR are already laughing at how underpaid you're going to be if you accept their incoming low-ball over. If you provided a number during the initial interview and interviewed terribly, turn your phone back to vibrate, you know the answer already.
+  5. When HR asks, "Would that be a deal‑breaker?" answer:
+     > "Yes‑if we can't get closer on salary, I'll need to rethink."
+
+     They've sunk time and budget into you; don't flinch. Always be a Yes‑If person, never a No person.
   6. **Don't let fear push you to settle.** Patrick McKenzie notes that recruiters who shave a few grand off your offer might get "a dinner at TGI Friday's," but if they land a high‑priced A‑player they look like heroes to their boss. By the time you're negotiating, the company has invested thousands in interviews—the *worst* that can happen is you end up with the original offer, because "negotiating never makes worthwhile offers worse". Rescinding an offer over a polite counter is very rare, especially for high performing candidates. They don't want to lose you.
-  
+
   **TL;DR:** If you can outperform the average in your industry, grab the fruit on the highest branches.
 
 * I've been hearing [this](https://open.spotify.com/track/2YZ7CJV3Q1OGh7ZL9PYWcP?si=gUTjKby8SpOwBJ61G01Yxg&context=spotify%3Aartist%3A1Sdc6ySbIvzO0X9vbyHzWm  ) background music in a lot of Instagram Reels/TikToks. Ogryzek's music isn't my typical cup of tea but it makes for great background music during a workout or running session.
 * I subscribed to X Premium this week and have [started posting](https://twitter.com/pprunty_) more regularly with moderate success. I've almost hit double digits for followers. Double digits as in one, zero. 10... This might take some time.
 * [Middle-Aged Man Trading Cards Go Viral in Rural Japan Town](https://www.tokyoweekender.com/entertainment/middle-aged-man-trading-cards-go-viral-in-japan/)—now they just need a women's expansion pack for all the great moms out there.
 * An [Unsure Calculator](https://filiph.github.io/unsure/) for when your numbers come with uncertainty—useful for estimating living expenses, forecast investment returns, or sanity‑check any estimate that can't be nailed down to one exact value.
-* A [fabulously designed website](https://www.heftwerk.com/) and service making Indie magazine printing painless and accessible for independent creators and small businesses.
+* A [fabulously designed website](https://www.heftwerk.com/) and service. Heftwork makes Indie magazine printing painless and accessible for independent creators and small businesses.
 * "But the most powerful tool on the web is still words. I wrote [these words](https://justinjackson.ca/words.html), and you're reading them: _that's_ magical." [Justin Jackson](https://justinjackson.ca/words.html) puts it beautifully. A picture tells a thousand words but words are still the glue that gives information its value.
 * Wondering how I made the profile picture on my site? I ran a plain selfie through **[PINTR](https://javier.xyz/pintr)**, a browser‑only tool by Javier Arce that converts photos into plotter‑style single‑line SVG/PNG drawings. Very cool.
-<div className="mx-auto w-full md:w-1/3">
-  <Image
-    src="/images/me-sketch2.png"
-    alt="Portrait of Patrick Prunty using PINTR"
-    width={949}
-    height={29}
-    className="w-full h-auto"
-  />
-</div>
 * [Crossing the uncanny valley of conversational voice](https://www.sesame.com/research/crossing_the_uncanny_valley_of_voice#demo) explores fascinating territory in voice technology. Human speech relies on subtle pitch movements to encode additional meaning—compare a flat, downward‑gliding **"Hmm … I don't know."** (↘︎ signals closure) with a curious, upward‑tilted **"I have no idea, actually"** (↗︎ invites the other person to continue). Linguists call the first a *falling intonation*, often used for certainty or disengagement, and the second a *rising contour*, which keeps the conversational floor open. Children learn these cues early as emotional sign‑posts, and English dialects even have hybrid rise‑fall tunes that mix both effects. Training AI to decode and reproduce such nuances is hard, but—as Sesame's demo shows—progress is real.
 * I've chosen my *big* SaaS focus for the year—details soon. Stay tuned. The mission is huge.
 * Joined the standing‑desk club. My posture already thanks me.
-<div className="mx-auto w-full md:w-1/3">
+<div className="mx-auto w-full md:w-3/5">
   <Image
     src="/photography/e5aas16nxgable8qdg1i.webp"
     alt="Standing Desk"

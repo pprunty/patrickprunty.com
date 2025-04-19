@@ -82,7 +82,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
   };
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-sm mx-auto">
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div className="flex gap-2">
           <input
@@ -135,6 +135,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               flex
               justify-center
               items-center
+              flex-shrink-0
             "
           >
             {loading ? (

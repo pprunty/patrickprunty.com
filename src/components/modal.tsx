@@ -114,7 +114,7 @@ const Modal: React.FC<ModalProps> = ({
 
   const getModalClasses = () => {
     let baseClasses =
-      'bg-background text-card-foreground rounded-2xl shadow-lg m-4 relative';
+      'bg-background min-w-md text-card-foreground rounded-2xl shadow-lg m-4 relative';
 
     // Add width classes based on the width prop
     if (width === 'full') {
@@ -162,7 +162,7 @@ const Modal: React.FC<ModalProps> = ({
                 {showCloseButton && (
                   <button
                     onClick={onClose}
-                    className="p-1 rounded-md hover:bg-muted text-foreground transition-colors"
+                    className="p-3 rounded-md hover:bg-muted text-foreground transition-colors"
                     aria-label="Close modal"
                   >
                     <X size={16} weight="bold" />

@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/modal';
+import ShareButton from '@/components/share-button';
 
 interface TOCItem {
   id: string;
@@ -132,6 +133,7 @@ const TableOfContents = React.memo(() => {
               </svg>
             </button>
           )}
+          <ShareButton className="px-2 py-2 shadow-2xl !rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] opacity-80 pointer-events-auto z-50 rounded-lg" />
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="px-2 py-2 shadow-2xl rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] opacity-80 pointer-events-auto z-50"
