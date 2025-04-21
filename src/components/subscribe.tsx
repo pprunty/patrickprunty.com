@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { Check } from '@phosphor-icons/react';
+import { CheckCircle } from '@phosphor-icons/react';
 
 interface SubscribeProps {
   redisApiEndpoint?: string;
@@ -153,7 +153,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
         )}
         {isSubscribed && !message && (
           <p className="text-xs font-mono text-left text-green-600 dark:text-green-400 flex items-center gap-1">
-            <Check size={14} weight="bold" />
+            <CheckCircle size={14} />
             You are already subscribed
           </p>
         )}

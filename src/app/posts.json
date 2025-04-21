@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "slug": "2025-04-18",
+      "slug": "1-weekly-standup",
       "date": "April 16, 2025",
       "title": "#1 The Weekly Standup",
       "draft": false,
@@ -16,8 +16,24 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/2025-04-18/2025-04-18.webp",
-      "readingTime": 6
+      "image": "/images/1-weekly-standup/cows.webp",
+      "readingTime": 7
+    },
+    {
+      "slug": "2-weekly-standup",
+      "date": "April 21, 2025",
+      "title": "#2 The Weekly Standup",
+      "draft": true,
+      "description": "to be filled",
+      "keywords": [
+        "newsletter",
+        "AI",
+        "software development"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/2-weekly-standup/2-weekly-standup.webp",
+      "readingTime": 1
     },
     {
       "slug": "indie-hackers-and-liars",

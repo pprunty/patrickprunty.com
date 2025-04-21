@@ -114,7 +114,7 @@ const TableOfContents = React.memo(() => {
           {toc.length >= MIN_ITEMS_TO_SHOW && (
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="px-2 py-2 shadow-2xl rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] opacity-80 pointer-events-auto z-50"
+              className="px-2 py-2 shadow-2xl rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] active:bg-gray-300 dark:active:bg-[#242424] opacity-80 pointer-events-auto z-50 transition-[background-color]"
               aria-label="Toggle table of contents"
             >
               {/* Menu Icon */}
@@ -133,10 +133,10 @@ const TableOfContents = React.memo(() => {
               </svg>
             </button>
           )}
-          <ShareButton className="px-2 py-2 shadow-2xl !rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] opacity-80 pointer-events-auto z-50 rounded-lg" />
+          <ShareButton className="px-2 py-2 shadow-2xl !rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] active:bg-gray-300 dark:active:bg-[#242424] opacity-80 pointer-events-auto z-50 transition-[background-color]" />
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="px-2 py-2 shadow-2xl rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] opacity-80 pointer-events-auto z-50"
+            className="px-2 py-2 shadow-2xl rounded-lg border dark:border-[#313131] border-gray-200 bg-gray-200 dark:bg-[#313131] hover:bg-gray-300 dark:hover:bg-[#424242] active:bg-gray-300 dark:active:bg-[#242424] opacity-80 pointer-events-auto z-50 transition-[background-color]"
             aria-label="Scroll to top"
           >
             {/* Scroll to Top Icon */}
