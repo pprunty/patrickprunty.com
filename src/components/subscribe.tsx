@@ -147,12 +147,12 @@ const Subscribe: React.FC<SubscribeProps> = ({
           </button>
         </div>
         {!isSubscribed && (
-          <p className="text-xs font-mono text-left text-gray-600 dark:text-[#999999]">
+          <p className="text-xs font-mono mt-3 sm:mt-0 text-left text-gray-600 dark:text-[#999999]">
             * Unsubscribe anytime
           </p>
         )}
         {isSubscribed && !message && (
-          <p className="text-xs font-mono text-left text-green-600 dark:text-green-400 flex items-center gap-1">
+          <p className="text-xs font-mono mt-3 sm:mt-0 text-left text-green-600 dark:text-green-400 flex items-center gap-1">
             <CheckCircle size={14} />
             You are already subscribed
           </p>
@@ -160,7 +160,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
         {message && (
           <p
             className={`
-              text-xs font-mono text-left
+              text-xs font-mono mt-3 sm:mt-0 text-left
               ${
                 message.includes('Thank you') ||
                 message.includes('already subscribed')
