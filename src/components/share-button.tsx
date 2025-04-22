@@ -68,10 +68,10 @@ const ShareButton: React.FC<ShareButtonProps> = ({
       </button>
 
       <div
-        className={`fixed top-0 left-0 right-0 mx-auto transform mt-2 w-full max-w-2xl h-10 text-center py-2 text-sm z-50
+        className={`fixed top-0 left-0 right-0 transform mt-2 w-full max-w-3xl h-10 text-center py-2 text-sm z-50
           transition-opacity duration-500 ease-in-out ${isNotificationVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}
           bg-black dark:bg-white text-white dark:text-black
-          ${isDesktop ? 'left-1/2 -translate-x-1/2 w-auto px-4' : ''}`}
+          ${isDesktop ? 'left-1/2 -translate-x-1/2 w-auto' : ''}`}
       >
         <p className="m-0">Link copied</p>
       </div>
