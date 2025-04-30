@@ -5,5 +5,9 @@ interface OLProps {
 }
 
 export function OL({ children }: OLProps) {
-  return <ol className="my-5 list-decimal pl-8 space-y-1">{children}</ol>;
+  return (
+    <ol className="my-5 list-decimal pl-8 space-y-1 text-muted-foreground">
+      {children}
+    </ol>
+  );
 }

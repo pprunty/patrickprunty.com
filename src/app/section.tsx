@@ -92,7 +92,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                 )}
               </div>
 
-              <div className="text-base">
+              <div className="text-base text-muted-foreground">
                 {item.year && (
                   <div className="flex items-baseline">
                     {item.description && (

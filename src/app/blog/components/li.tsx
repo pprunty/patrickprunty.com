@@ -10,6 +10,7 @@ export function LI({ children }: LIProps) {
       className={`
         my-2
         text-md
+        text-muted-foreground
 
         [ul_&]:relative
         [ul_&]:before:text-gray-400

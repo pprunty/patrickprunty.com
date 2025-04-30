@@ -3,13 +3,24 @@
 import React, { useState, useEffect } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { CheckCircle } from '@phosphor-icons/react';
+import { cn } from '@/lib/utils';
 
 interface SubscribeProps {
   redisApiEndpoint?: string;
+  className?: string;
+  containerClassName?: string;
+  inputClassName?: string;
+  buttonClassName?: string;
+  stackButtonOnMobile?: boolean;
 }
 
 const Subscribe: React.FC<SubscribeProps> = ({
   redisApiEndpoint = '/api/subscribe',
+  className = '',
+  containerClassName = '',
+  inputClassName = '',
+  buttonClassName = '',
+  stackButtonOnMobile = false,
 }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -83,21 +94,32 @@ const Subscribe: React.FC<SubscribeProps> = ({
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-        <div className="flex gap-2">
+    <div className={cn('w-full', className)}>
+      <form
+        onSubmit={handleSubmit}
+        className={cn('flex flex-col gap-2', containerClassName)}
+      >
+        <div
+          className={cn(
+            stackButtonOnMobile
+              ? 'flex flex-col sm:flex-row gap-1 sm:gap-2'
+              : 'flex gap-2',
+          )}
+        >
           <input
             type="email"
             placeholder="you@domain.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
-            className="
+            className={cn(
+              `
               w-full
               px-4
-              py-2
-              rounded-lg
+              py-2.5
+              rounded-md
               text-md
+              sm:text-base
               border
               border-border
               bg-input
@@ -108,21 +130,25 @@ const Subscribe: React.FC<SubscribeProps> = ({
               focus:ring-ring
               disabled:opacity-70
               transition-colors
-            "
+            `,
+              inputClassName,
+            )}
           />
           <button
             type="submit"
             disabled={loading}
-            className="
+            className={cn(
+              `
               px-5
-              py-2
+              py-2.5
               bg-primary
               text-primary-foreground
               hover:bg-primary-hover
               active:bg-primary-hover
               active:scale-96
-              rounded-lg
-              text-sm
+              rounded-md
+              text-md
+              sm:text-base
               font-semibold
               border
               border-primary
@@ -137,7 +163,10 @@ const Subscribe: React.FC<SubscribeProps> = ({
               justify-center
               items-center
               flex-shrink-0
-            "
+              ${stackButtonOnMobile ? 'w-full sm:w-auto' : ''}
+            `,
+              buttonClassName,
+            )}
           >
             {loading ? (
               <ClipLoader size={15} color="currentColor" />

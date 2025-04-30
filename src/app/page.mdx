@@ -77,25 +77,11 @@ export const metadata = {
   src="/images/me-sketch2.png"
   alt="Patrick Prunty"
   className="bg-gray-100 block mt-5 mb-5 mx-auto w-40 rounded-full h-auto sm:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
-  width={400}
-  height={500}
+  width={200}
+  height={200}
   priority
   quality={100}
 />
-
-{/*
-<div className="h-auto w-4/5 sm:w-2/5 block mt-5 mb-5 sm:ml-5 sm:float-right mx-auto">
-  <Image
-    src="/images/me-alt.png"
-    alt="Standing Desk"
-    width={672}
-    height={900}
-    className="w-full bg-gray-100 h-auto border-[.5rem] border-foreground"
-    priority
-    quality={100}
-  />
-</div>
-*/}
 
 I'm a senior web developer based in Dublin, Ireland.
 
@@ -103,7 +89,7 @@ Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPk
 
 When I'm not programming or working on creative projects, you can find me training for triathlons, hiking, or spending time with loved ones.
 
-Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries. My professional CV is available as a [downloadable PDF](https://patrickprunty.com/downloads/pprunty_CV.pdf).
+Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries. My professional CV is available as a <Link href="https://patrickprunty.com/downloads/pprunty_CV.pdf" target="_blank" className="underline decoration-wavy underline-offset-4 text-primary decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground" rel="noopener noreferrer">downloadable PDF</Link>.
 
 ## Blog [#blog]
 
@@ -199,6 +185,15 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
         </>
     },
     {
+      title: 'magikarp',
+      url: 'https://github.com/pprunty/magikarp',
+      year: '(Work in progress)',
+      media: ['/images/projects/magikarp.png'],
+      hide: false,
+      description:
+        "A flexible plugin-based agentic LLM framework built with Go. Magikarp provides a foundation for building AI-powered agents that can interact with the user using 'tools'—custom code which the agent can execute to help them complete their task.",
+    },
+    {
       title: 'tmplate.xyz',
       url: 'https://tmplate.xyz/',
       year: '2025',
@@ -232,15 +227,6 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
       hide: true,
       description:
         'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
-    },
-    {
-      title: 'magikarp',
-      url: 'https://github.com/pprunty/magikarp',
-      year: '(Work in progress)',
-      media: ['/images/projects/magikarp.png'],
-      hide: false,
-      description:
-        "A flexible plugin-based agentic LLM framework built with Go. Magikarp provides a foundation for building AI-powered agents that can interact with the user using 'tools'—custom code which the agent can execute to help them complete their task.",
     },
     {
       title: 'motormongo (archived)',

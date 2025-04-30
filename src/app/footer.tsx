@@ -9,10 +9,18 @@ export default function Footer() {
   return (
     <>
       <footer className={`container max-w-2xl mx-auto py-12`}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* 3) Stay Connected (Row 2, Col 1) */}
-          <div>
-            <div className="flex flex-wrap">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+          {/* Swapping order for mobile - Subscribe first, social links second */}
+          {/* 1) Newsletter (First on mobile) */}
+          <div className="md:order-2 w-full">
+            <div className="mb-4 w-full">
+              <Subscribe />
+            </div>
+          </div>
+
+          {/* 2) Stay Connected (Second on mobile) */}
+          <div className="md:order-1 w-full">
+            <div className="flex flex-wrap w-full">
               {(
                 [
                   'github',
@@ -46,13 +54,6 @@ export default function Footer() {
             <p className="mt-5 text-xs font-mono text-gray-600 dark:text-[#999999]">
               © {new Date().getFullYear()} Patrick Prunty
             </p>
-          </div>
-
-          {/* 4) Newsletter (Row 2, Col 2) */}
-          <div>
-            <div className="mb-8">
-              <Subscribe />
-            </div>
           </div>
         </div>
       </footer>

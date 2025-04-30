@@ -11,8 +11,8 @@ export function Caption({ children, large = false }: CaptionProps) {
     <span
       className={`block w-full font-mono ${
         large
-          ? 'text-[13px] text-gray-500 dark:text-[#b0b0b0]'
-          : 'text-xs text-gray-700 dark:text-[#999999]'
+          ? 'text-[13px] text-muted-foreground/80'
+          : 'text-xs text-muted-foreground'
       } my-3 text-center leading-normal`}
     >
       <Balancer>

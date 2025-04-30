@@ -72,7 +72,7 @@
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
     --muted: #fffefc;
-    --muted-foreground: #717171;
+    --muted-foreground: #545454; /* Darker gray for better contrast in light mode */
     --accent: #fffefc;
     --accent-foreground: #18181b;
     --destructive: #ef4444;
@@ -115,7 +115,7 @@
     --secondary-foreground: #fafafa;
     --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
     --muted: #272727;
-    --muted-foreground: #a1a1a1;
+    --muted-foreground: #c4c4c4; /* Lighter gray for better contrast in dark mode */
     --accent: #424142;
     --accent-foreground: #fafafa;
     --destructive: #db1414;
@@ -153,7 +153,7 @@
     --secondary-foreground: #fafafa;
     --secondary-hover: #252525;
     --muted: #1a1a1a;
-    --muted-foreground: #a1a1a1;
+    --muted-foreground: #c4c4c4; /* Lighter gray for better contrast in darker mode */
     --accent: #2c2c2c;
     --accent-foreground: #fafafa;
     --destructive: #db1414;
