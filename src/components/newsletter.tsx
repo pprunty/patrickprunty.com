@@ -68,6 +68,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
             alt="Newsletter image"
             width={600}
             height={400}
+            priority
             className="w-full h-full object-cover sm:rounded-lg"
           />
         </div>
@@ -79,7 +80,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
             {title}
           </h2>
           {/* Description */}
-          <p className="mb-3 sm:mb-6 text-sm sm:text-base opacity-90">
+          <p className="mb-3 sm:mb-6 text-base text-muted-foreground">
             {subtitle}
           </p>
           {/* Subscribe Form */}
@@ -91,14 +92,15 @@ const Newsletter: React.FC<NewsletterProps> = ({
               text-accent-foreground dark:text-white
               border-accent-foreground/20 dark:border-white/30
               placeholder-accent-foreground/50 dark:placeholder-white/50
-              text-sm
+              text-md sm:text-sm
             "
             buttonClassName="
               bg-black text-white
               border-black hover:bg-black/90
               dark:bg-white dark:text-black
               dark:border-white dark:hover:bg-white/90
-              text-sm px-3 sm:px-5
+              px-3 sm:px-5
+              text-sm sm:text-sm
               mt-1 sm:mt-0
             "
           />
