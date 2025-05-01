@@ -27,7 +27,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.95 }, // Trigger when 95% of the element is visible
+      { threshold: 0.8 }, // Trigger when 95% of the element is visible
     );
 
     observer.observe(ref.current);
