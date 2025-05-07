@@ -9,13 +9,19 @@ import type { Metadata, Viewport } from 'next';
 import { Analytics } from './analytics';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
-import { Inter } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import ClientComponents from './client';
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-geist',
+});
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-geist-mono',
 });
 
 export const viewport: Viewport = {
@@ -76,7 +82,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} font-sans antialiased`}
+      className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}
     >
       <head>
         <script
@@ -94,7 +100,7 @@ export default function RootLayout({
       </head>
       <body className="text-gray-800 dark:text-gray-300 pt-3 sm:pt-6 p-6 sm:px-4">
         <Header />
-        <main className="z-[100] min-h-screen max-w-2xl pt-12 m-auto text-pretty">
+        <main className="z-[100] min-h-screen max-w-2xl pt-28 sm:pt-12 m-auto text-pretty">
           {children}
         </main>
         <ClientComponents />

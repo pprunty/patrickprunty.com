@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import type { Post } from '../../get-posts';
-import { H1 } from '@/app/blog/components/h1';
 import useSWR from 'swr';
 import type { KeyedMutator } from 'swr';
 import { ago } from 'time-ago';
@@ -32,13 +31,15 @@ export default function Header({ currentPost }: HeaderProps) {
   return (
     <>
       {/* Header Section */}
-      <H1>{post.title}</H1>
+      <h1 className="text-3xl sm:text-4xl font-semibold dark:text-gray-100">
+        {post.title}
+      </h1>
       {post.description && (
         <p className="italic mt-2 text-xl font-serif text-muted-foreground">
           {post.description}
         </p>
       )}
-      <p className="font-mono pb-3 text-xs flex flex-wrap justify-between items-center mt-3 text-muted-foreground">
+      <p className="font-mono pb-3 text-xs flex flex-wrap justify-between items-center mt-3 text-muted-foreground/70">
         {/* Left Section (Author, Date, and Mins Read) */}
         <span className="flex flex-col md:flex-row items-start md:items-center md:gap-2 gap-2">
           {/* Author */}
@@ -56,7 +57,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Date */}
           <span className="flex items-center">
-            <Calendar weight="regular" className="w-4 h-4 mr-2" />
+            <Calendar weight="regular" className="w-4 h-4 mr-2 opacity-70" />
             <span suppressHydrationWarning={true}>
               {post.date || 'Unknown date'} (
               {post.date ? `${ago(post.date, true)} ago` : ''})
@@ -66,7 +67,7 @@ export default function Header({ currentPost }: HeaderProps) {
 
           {/* Mins Read */}
           <span className="flex items-center">
-            <BookOpen weight="regular" className="w-4 h-4 mr-2" />
+            <BookOpen weight="regular" className="w-4 h-4 mr-2 opacity-70" />
             <span>{post.readingTime} mins read</span>
           </span>
         </span>
@@ -114,7 +115,7 @@ function Views({
     <>
       {views != null ? (
         <span className="flex items-center">
-          <Eye weight="regular" className="w-4 h-4 mr-2" />
+          <Eye weight="regular" className="w-4 h-4 mr-2 opacity-70" />
           {views} views
         </span>
       ) : null}

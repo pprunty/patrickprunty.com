@@ -83,7 +83,7 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
 
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300 youtube-modal-overlay"
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg z-50 dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300 youtube-modal-overlay"
           onClick={(e) => {
             // Only close if the click is directly on the overlay background
             if (e.target === e.currentTarget) {
