@@ -18,10 +18,10 @@ export default function ActiveLink({
     <Link
       href={href}
       prefetch={true}
-      className={`inline-flex font-mono items-center rounded-sm p-2 transition-colors ${
+      className={`inline-flex font-mono items-center rounded-md p-2 transition-[background-color] ${
         isBlogActive
-          ? 'sm:bg-gray-200 sm:dark:bg-[#313131] text-black dark:text-white sm:text-muted-foreground font-bold'
-          : 'text-muted-foreground hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] hover:text-black dark:hover:text-white sm:hover:text-current sm:dark:hover:text-current'
+          ? 'bg-gray-200 dark:bg-[#313131] text-black dark:text-white'
+          : 'hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424]'
       }`}
     >
       {children}

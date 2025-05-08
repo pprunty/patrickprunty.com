@@ -43,8 +43,8 @@ export default function Header() {
   const [firstWord, ...rest] = words;
 
   return (
-    <header className="z-10 bg-background sm:relative fixed top-0 left-0 right-0 sm:top-auto sm:left-auto sm:right-auto z-[1000] sm:z-[49]">
-      <div className="max-w-2xl mx-auto flex items-center px-6 py-3 sm:p-0">
+    <header className="z-10 bg-background">
+      <div className="max-w-2xl mx-auto flex items-center ">
         {/* Left: Logo */}
         <div className="flex items-center">
           <Logo />
@@ -52,7 +52,7 @@ export default function Header() {
 
         {/* Right: Navbar Links */}
         <nav className="font-mono text-xs grow justify-end items-center flex gap-1 md:gap-3">
-            <ThemeSwitcher />
+          <ThemeSwitcher />
           <ActiveLink href="/blog">Blog</ActiveLink>
 
           {/* CTA Social Icon Link */}
@@ -61,13 +61,13 @@ export default function Header() {
               href={ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="no-after inline-flex items-center p-2 rounded-sm transition-colors whitespace-nowrap -mr-2 text-muted-foreground hover:text-black dark:hover:text-white sm:hover:text-current sm:dark:hover:text-current sm:hover:bg-gray-200 sm:dark:hover:bg-[#313131] sm:active:bg-gray-300 sm:dark:active:bg-[#242424] group"
+              className="no-after inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-2 rounded-md transition-[background-color] whitespace-nowrap -mr-2"
             >
               <SocialIcon
                 platform={ctaPlatform}
                 width="13"
                 height="13"
-                className="mr-1.5 w-4 h-4 text-muted-foreground group-hover:text-black dark:group-hover:text-white sm:group-hover:text-current sm:dark:group-hover:text-current"
+                className="mr-1.5 w-4 h-4 text-[#222222] dark:text-[#fcfcfc]"
               />
               {/* Render first word always, additional words only on sm+ */}
               {firstWord}
