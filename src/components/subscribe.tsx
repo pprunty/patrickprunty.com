@@ -125,6 +125,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               bg-input
               text-foreground
               placeholder-muted-foreground/60
+              dark:placeholder-[#999999]
               focus:outline-none
               focus:ring-1
               focus:ring-ring
