@@ -55,7 +55,7 @@ export default async function Page({ params }: PageProps) {
     const Content = postModule.default;
 
     return (
-      <div className="break-words before:w-[200px] before:m-auto before:content[''] before:border-t before:border-gray-300 dark:before:border-[#444] before:block before:my-6 sm:before:my-10">
+      <div className="break-words">
         <UniqueViewers />
         <Content />
       </div>

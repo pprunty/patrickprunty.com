@@ -35,15 +35,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/achievements`,
+      url: `${SITE_URL}/content/reading-list`,
       lastModified: new Date().toISOString(),
       changefreq: 'monthly',
-      priority: 0.4,
-    },
-    {
-      url: `${SITE_URL}/content`,
-      lastModified: new Date().toISOString(),
-      changefreq: 'weekly',
       priority: 0.4,
     },
     // Add other static pages if necessary

@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Font setup */
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-geist-sans), 'Geist', sans-serif;
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
     @apply bg-[#FFFEFC];
@@ -71,7 +71,7 @@
     --secondary: #fffefc;
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
-    --muted: #fffefc;
+    --muted: #f0f0f0; /* Updated for better visibility in light mode */
     --muted-foreground: #545454; /* Darker gray for better contrast in light mode */
     --accent: #fffefc;
     --accent-foreground: #18181b;
@@ -82,7 +82,7 @@
     --action-hover: #2661b9; /* Hover state for action buttons */
     --border: #e0e0e0;
     --input: #fffefc;
-    --ring: #09090b;
+    --ring: #000000;
     --chart-1: #e76e50;
     --chart-2: #2a9d8f;
     --chart-3: #273354;
@@ -114,7 +114,7 @@
     --secondary: #272727;
     --secondary-foreground: #fafafa;
     --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
-    --muted: #272727;
+    --muted: #333333; /* Updated for better visibility in dark mode */
     --muted-foreground: #c4c4c4; /* Lighter gray for better contrast in dark mode */
     --accent: #424142;
     --accent-foreground: #fafafa;
@@ -125,7 +125,7 @@
     --action-hover: #2563eb; /* Hover state for action buttons in dark mode */
     --border: #393838;
     --input: #2a2a2a;
-    --ring: #d3d3d3;
+    --ring: #ffffff;
     --chart-1: #269dd9;
     --chart-2: #2eb88a;
     --chart-3: #e88c30;
@@ -163,7 +163,7 @@
     --action-hover: #2563eb;
     --border: #2a2a2a;
     --input: #1d1d1d;
-    --ring: #d3d3d3;
+    --ring: #ffffff;
     --chart-1: #269dd9;
     --chart-2: #2eb88a;
     --chart-3: #e88c30;
@@ -175,7 +175,7 @@
     --spotify-green: #1cd760;
   }
 
-  a:not(.social-link,.no-after,.tweet)[href*="//"]:not([href*="tmplate.xyz"]):after
+  a:not(.social-link,.no-after,.tweet)[href*="//"]:not([href*="patrickprunty.com"]):after
   {
     content: '⌝';
   }
@@ -308,5 +308,20 @@
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+@layer components {
+  .font-script {
+    font-family:
+      var(--font-perfectly-nineties), 'Perfectly Nineties', ui-serif, Georgia,
+      Cambria, serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .font-mono {
+    font-family: var(--font-geist-mono), 'Geist Mono', monospace;
   }
 }

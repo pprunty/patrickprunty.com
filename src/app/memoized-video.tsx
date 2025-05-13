@@ -8,6 +8,8 @@ interface MemoizedVideoProps {
   width: number;
   height: number;
   className?: string;
+  controls?: boolean;
+  focusable?: boolean;
 }
 
 export const MemoizedVideo = memo(function MemoizedVideo({
@@ -16,6 +18,8 @@ export const MemoizedVideo = memo(function MemoizedVideo({
   width,
   height,
   className = '',
+  controls = false,
+  focusable = true,
 }: MemoizedVideoProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -48,6 +52,8 @@ export const MemoizedVideo = memo(function MemoizedVideo({
   }, []);
 
   const openModal = useCallback(() => {
+    if (!focusable) return;
+
     scrollPositionRef.current = window.scrollY || window.pageYOffset;
 
     document.body.style.position = 'fixed';
@@ -56,7 +62,7 @@ export const MemoizedVideo = memo(function MemoizedVideo({
     document.body.style.right = '0';
 
     setModalOpen(true);
-  }, []);
+  }, [focusable]);
 
   const closeModal = useCallback(() => {
     setModalOpen(false);
@@ -102,13 +108,14 @@ export const MemoizedVideo = memo(function MemoizedVideo({
             src={src}
             width={width}
             height={height}
-            className={`cursor-pointer ${className}`}
+            className={`${focusable ? 'cursor-pointer' : ''} ${className}`}
             autoPlay
             playsInline
             muted
             loop
             onClick={openModal}
             onLoadedData={() => setIsLoaded(true)}
+            controls={controls}
           >
             Your browser does not support the video tag.
           </video>

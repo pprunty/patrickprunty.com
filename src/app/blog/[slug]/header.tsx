@@ -5,7 +5,9 @@ import type { Post } from '../../get-posts';
 import useSWR from 'swr';
 import type { KeyedMutator } from 'swr';
 import { ago } from 'time-ago';
-import { Calendar, BookOpen, Eye } from '@phosphor-icons/react'; // Updated to Phosphor icons
+import { Calendar, Clock, Eye } from '@phosphor-icons/react'; // Changed BookOpen to Clock
+import Image from 'next/image';
+import AudioPlayer from '@/components/audio-player';
 
 interface HeaderProps {
   posts: Post[] | null;
@@ -31,56 +33,84 @@ export default function Header({ currentPost }: HeaderProps) {
   return (
     <>
       {/* Header Section */}
-      <h1 className="text-3xl sm:text-4xl font-semibold dark:text-gray-100">
+      <h1 className="text-4xl font-script font-[300] sm:text-6xl dark:text-gray-100 mb-2">
         {post.title}
       </h1>
       {post.description && (
-        <p className="italic mt-2 text-xl font-serif text-muted-foreground">
+        <p className="italic mb-6 text-2xl font-script font-[400] text-muted-foreground">
           {post.description}
         </p>
       )}
-      <p className="font-mono pb-3 text-xs flex flex-wrap justify-between items-center mt-3 text-muted-foreground/70">
-        {/* Left Section (Author, Date, and Mins Read) */}
-        <span className="flex flex-col md:flex-row items-start md:items-center md:gap-2 gap-2">
-          {/* Author */}
-          <span className="hidden md:inline">
-            <a
-              href={'https://x.com/pprunty_'}
-              className="hover:text-gray-500 dark:hover:text-gray-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              @pprunty_
-            </a>
-            <span className="hidden md:inline ml-2">|</span>
-          </span>
 
-          {/* Date */}
-          <span className="flex items-center">
+      {/* Author with Twitter Link - Above Meta Section */}
+      <div className="mt-3 mb-3 flex items-center font-mono text-sm text-muted-foreground/70">
+        <div className="relative w-10 h-10 mr-3">
+          <Image
+            src="/images/me-sketch2.png"
+            alt="Patrick Prunty"
+            fill
+            className="rounded-full object-cover border border-gray-200 bg-gray-400 dark:border-gray-700"
+          />
+        </div>
+        <span>by</span>
+        <a
+          href={'https://x.com/pprunty_'}
+          className="ml-1 hover:text-gray-500 no-after dark:hover:text-gray-300 font-semibold relative after:absolute after:w-full after:h-px after:bg-current after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Patrick Prunty
+        </a>
+      </div>
+
+      {/* Metadata Section - Redesigned with | separators and mobile borders */}
+      <div className="font-mono mb-4 py-3 text-xs flex flex-wrap items-center text-muted-foreground/70 border-t border-b border-border h-14">
+        <div className="flex flex-wrap items-center flex-1">
+          {/* Date - Time Ago Only */}
+          <div className="flex items-center">
             <Calendar weight="regular" className="w-4 h-4 mr-2 opacity-70" />
-            <span suppressHydrationWarning={true}>
-              {post.date || 'Unknown date'} (
-              {post.date ? `${ago(post.date, true)} ago` : ''})
+            <span
+              suppressHydrationWarning={true}
+              className="text-muted-foreground/70"
+            >
+              {post.date
+                ? new Date(post.date).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })
+                : 'Unknown date'}
             </span>
-            <span className="hidden md:inline ml-2">|</span>
-          </span>
+          </div>
 
-          {/* Mins Read */}
-          <span className="flex items-center">
-            <BookOpen weight="regular" className="w-4 h-4 mr-2 opacity-70" />
-            <span>{post.readingTime} mins read</span>
-          </span>
-        </span>
+          <span className="mx-2">|</span>
 
-        {/* Right Section (Views) */}
-        <span className="flex items-center mt-2 md:mt-0">
+          {/* Reading Time - Simplified */}
+          <div className="flex items-center">
+            <Clock weight="regular" className="w-4 h-4 mr-2 opacity-70" />
+            <span>{post.readingTime} mins</span>
+          </div>
+
+          <span className="mx-2">|</span>
+
+          {/* Views - Inline */}
           <Views
             id={post.slug || post.id}
             mutate={mutate}
             defaultValue={post.viewsFormatted}
           />
-        </span>
-      </p>
+        </div>
+
+        {/* Fixed-width container for Audio Player */}
+        <div className="w-8 h-8 flex justify-end items-center">
+          {/* Audio Player - Only shows if audio exists */}
+          {!slug ? (
+            <div className="w-8 h-8"></div>
+          ) : (
+            <AudioPlayer slug={slug} />
+          )}
+        </div>
+      </div>
     </>
   );
 }
@@ -114,10 +144,10 @@ function Views({
   return (
     <>
       {views != null ? (
-        <span className="flex items-center">
+        <div className="flex items-center">
           <Eye weight="regular" className="w-4 h-4 mr-2 opacity-70" />
           {views} views
-        </span>
+        </div>
       ) : null}
     </>
   );

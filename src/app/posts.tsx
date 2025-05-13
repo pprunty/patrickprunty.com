@@ -6,10 +6,12 @@ import { Suspense } from 'react';
 import useSWR from 'swr';
 import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import Image from 'next/image';
+import { Tabs, TabsList, TabsTrigger } from '@/components/tabs';
 
 // --- Types
 
 type SortSetting = ['date' | 'views' | 'title', 'desc' | 'asc'];
+type PostType = 'essay' | 'newsletter' | 'all';
 
 interface Post {
   slug: string;
@@ -18,18 +20,38 @@ interface Post {
   views?: number;
   description?: string;
   image?: string;
+  type?: 'essay' | 'newsletter';
 }
 
 interface PostsProps {
   posts: Post[];
+  showTabs?: boolean;
 }
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 // --- Main Posts Component
 
-export function Posts({ posts: initialPosts }: PostsProps) {
+export function Posts({ posts: initialPosts, showTabs = false }: PostsProps) {
   const [sort, setSort] = useState<SortSetting>(['date', 'desc']);
+  // Initialize tab from localStorage if available, otherwise default to 'all'
+  const [activeTab, setActiveTab] = useState<PostType>(() => {
+    if (typeof window !== 'undefined') {
+      const savedTab = localStorage.getItem('activePostTab');
+      return (savedTab as PostType) || 'all';
+    }
+    return 'all';
+  });
+
+  // Track whether user has explicitly selected a sort option
+  const [userSelectedSort, setUserSelectedSort] = useState(false);
+
+  // Update localStorage when tab changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('activePostTab', activeTab);
+    }
+  }, [activeTab]);
 
   // Use SWR to fetch posts with fallback data
   const { data: posts } = useSWR('/api/posts', fetcher, {
@@ -41,6 +63,12 @@ export function Posts({ posts: initialPosts }: PostsProps) {
   const [hoveredPost, setHoveredPost] = useState<Post | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  // Filter posts based on active tab
+  const filteredPosts = useMemo(() => {
+    if (activeTab === 'all') return posts;
+    return posts.filter((post: Post) => post.type === activeTab);
+  }, [posts, activeTab]);
+
   // --- Sorting functions
 
   function sortDate() {
@@ -48,6 +76,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
       'date',
       prevSort[0] !== 'date' || prevSort[1] === 'asc' ? 'desc' : 'asc',
     ]);
+    setUserSelectedSort(true);
   }
 
   function sortViews() {
@@ -55,6 +84,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
       'views',
       prevSort[0] !== 'views' || prevSort[1] === 'asc' ? 'desc' : 'asc',
     ]);
+    setUserSelectedSort(true);
   }
 
   function sortTitle() {
@@ -62,18 +92,35 @@ export function Posts({ posts: initialPosts }: PostsProps) {
       'title',
       prevSort[0] !== 'title' || prevSort[1] === 'asc' ? 'desc' : 'asc',
     ]);
+    setUserSelectedSort(true);
   }
 
   return (
     <>
       <Suspense fallback={null}>
         <main className="max-w-2xl font-mono m-auto text-sm relative">
+          {/* Tabs for filtering post types */}
+          {showTabs && (
+            <Tabs
+              defaultValue={activeTab}
+              value={activeTab}
+              onValueChange={(value) => setActiveTab(value as PostType)}
+              className="mb-6 w-full"
+            >
+              <TabsList size="sm" className="">
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="essay">Essays</TabsTrigger>
+                <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          )}
+
           <header className="text-muted-foreground flex items-center text-xs">
             {/* Date Sort Button */}
             <button
               onClick={sortDate}
               className={`w-12 h-9 text-left flex items-center ${
-                sort[0] === 'date'
+                userSelectedSort && sort[0] === 'date'
                   ? 'text-black dark:text-white'
                   : 'text-[#555] dark:text-[#999]'
               }`}
@@ -88,7 +135,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
             <button
               onClick={sortTitle}
               className={`h-9 pl-4 flex items-center flex-grow ${
-                sort[0] === 'title'
+                userSelectedSort && sort[0] === 'title'
                   ? 'text-black dark:text-white'
                   : 'text-[#555] dark:text-[#999]'
               }`}
@@ -103,7 +150,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
             <button
               onClick={sortViews}
               className={`h-9 pl-4 flex items-center ${
-                sort[0] === 'views'
+                userSelectedSort && sort[0] === 'views'
                   ? 'text-black dark:text-white'
                   : 'text-[#555] dark:text-[#999]'
               }`}
@@ -117,7 +164,7 @@ export function Posts({ posts: initialPosts }: PostsProps) {
 
           {/* Pass callbacks to List so each item can report hover and mouse position */}
           <List
-            posts={posts}
+            posts={filteredPosts}
             sort={sort}
             onPostHover={(post) => setHoveredPost(post)}
             onPostLeave={() => setHoveredPost(null)}
@@ -209,7 +256,7 @@ function List({
           >
             <Link href={`/blog/${post.slug}/`} prefetch>
               <span
-                className={`flex transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222] border-y dark:border-[#313131]
+                className={`flex transition-[background-color] hover:bg-muted dark:hover:bg-muted active:bg-[#e0e0e0] dark:active:bg-[#3a3a3a] border-y dark:border-[#313131]
                           ${!firstOfYear ? 'border-t-0' : ''}
                           ${lastOfYear ? 'border-b-0' : ''}`}
               >
@@ -220,7 +267,7 @@ function List({
                 >
                   {firstOfYear && (
                     <span className="w-14 inline-block self-start shrink-0 text-gray-500 dark:text-[#999999]">
-                      {year}
+                      {year.toString()}
                     </span>
                   )}
                   <div className="flex flex-nowrap grow">
@@ -267,7 +314,7 @@ export function HoverImage({ src, alt }: HoverImageProps) {
         <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       )}
       <Image
-        src={src}
+        src={src || '/placeholder.svg'}
         alt={alt}
         fill
         style={{ objectFit: 'cover' }}
@@ -358,7 +405,7 @@ export function HoverPreviewModal({
       }}
     >
       <div
-        className={`bg-white dark:bg-[#222222] text-muted-foreground rounded-xl shadow-xl border dark:border-[#444] w-80 overflow-hidden transition-opacity duration-150 ${
+        className={`bg-white dark:bg-[#222222] text-muted-foreground rounded-lg shadow-md border dark:border-[#444] w-80 overflow-hidden transition-opacity duration-150 ${
           visible ? 'opacity-100' : 'opacity-0'
         }`}
       >

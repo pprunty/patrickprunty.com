@@ -1,0 +1,53 @@
+import { SITE_URL, AUTHOR } from '@/config';
+
+export const metadata = {
+  title: 'The Non-Deterministic Problem with LLM Integrations',
+  description: 'or: ...',
+  image: '/images/the-non-deterministic-problem-with-llm-integrations/the-non-deterministic-problem-with-llm-integrations.webp',
+  date: '2025-05-13',
+  author: 'Patrick Prunty',
+  authorUrl: 'https://patrickprunty.com/about',
+  openGraph: {
+    title: 'The Non-Deterministic Problem with LLM Integrations',
+    description: 'or: ...',
+    url: '/blog/the-non-deterministic-problem-with-llm-integrations',
+    images: [
+      {
+        url: `/images/the-non-deterministic-problem-with-llm-integrations/the-non-deterministic-problem-with-llm-integrations.webp`,
+        alt: 'The Non-Deterministic Problem with LLM Integrations'
+      }
+    ],
+    type: 'article',
+    tags: [
+      'artificial intelligence',
+      'MCP',
+      'AI',
+      'software development',
+      'programming'
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Non-Deterministic Problem with LLM Integrations',
+    description: 'or: ...',
+    image: `/images/the-non-deterministic-problem-with-llm-integrations/the-non-deterministic-problem-with-llm-integrations.webp`
+  },
+  keywords: [
+    'artificial intelligence',
+    'MCP',
+    'AI',
+    'software development',
+    'programming'
+  ],
+  slug: 'the-non-deterministic-problem-with-llm-integrations',
+  readingTime: 1,
+  draft: true
+};
+
+
+I recall a memory wherein one of my tutor’s sat behind my shoulder whilst helping me with a coding assignment gave me some really useful advice:
+
+> *Computers in a way, are very stupid. They do **exactly** what you tell them to do. Nothing more, nothing less.*
+
+
+If you write a while loop with no stopping rule, it'll run as long as physically possible. If you type "sudo rm /" into your terminal, it'll delete as much as possible unless you tell it to stop. Each of these operations aren't going to magically say, "Hold up there buddy, are you sure you wanna do this?" That is, unless you write instructions for them to do so.

@@ -1,9 +1,7 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { SocialPlatform } from '@/__samwise/types/SocialPlatform';
 import { urlMapping, SocialIcon } from '@/components/social-icon';
 import Subscribe from '@/components/subscribe';
-import { HR } from '@/app/blog/components/hr';
 
 export default function Footer() {
   return (
@@ -43,7 +41,7 @@ export default function Footer() {
                     passHref
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link inline-flex items-center mr-3 mt-2 text-gray-600 dark:text-[#999999]"
+                    className="social-link inline-flex items-center mr-3.5 sm:mr-3 mt-3 sm:mt-2 text-gray-600 dark:text-[#999999]"
                   >
                     <SocialIcon platform={platform} />
                   </Link>

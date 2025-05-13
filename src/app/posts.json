@@ -3,7 +3,7 @@
     {
       "slug": "1-weekly-standup",
       "date": "April 16, 2025",
-      "title": "#1 The Weekly Standup",
+      "title": "#1 The Weekly Stand-Up",
       "draft": false,
       "description": "AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.",
       "keywords": [
@@ -17,12 +17,12 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/1-weekly-standup/cows.webp",
-      "readingTime": 7
+      "readingTime": 6
     },
     {
       "slug": "2-weekly-standup",
       "date": "April 21, 2025",
-      "title": "#2 The Weekly Standup",
+      "title": "#2 The Weekly Stand-Up",
       "draft": true,
       "description": "to be filled",
       "keywords": [
@@ -32,8 +32,25 @@
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/2-weekly-standup/2-weekly-standup.webp",
+      "image": "/images/manet.png",
       "readingTime": 2
+    },
+    {
+      "slug": "ambient-writing",
+      "date": "May 9, 2025",
+      "title": "Ambient Writing",
+      "draft": true,
+      "description": "or: Rage Against The Machines",
+      "keywords": [
+        "creative writing",
+        "artificial intelligence",
+        "writing",
+        "programming"
+      ],
+      "author": "Patrick Prunty",
+      "authorUrl": "https://patrickprunty.com/about",
+      "image": "/images/ambient-writing/ambient-writing.webp",
+      "readingTime": 1
     },
     {
       "slug": "indie-hackers-and-liars",
@@ -61,7 +78,7 @@
       "date": "March 18, 2025",
       "title": "The Engineer's Proclivity for Perfection",
       "draft": false,
-      "description": "Or: Why It'll Never Be Perfect—Let Alone \"Done\".",
+      "description": "or: Why It'll Never Be Perfect—Let Alone Ever Truly \"Done\".",
       "keywords": [
         "software development",
         "engineering",
@@ -76,33 +93,29 @@
       "readingTime": 2
     },
     {
-      "slug": "the-winds-of-winter-preview-chapters-free-ebook-kindle-and-pdf-download",
-      "date": "December 10, 2024",
-      "title": "The Winds of Winter Preview Chapters: Free eBook, Kindle, and PDF Download",
-      "draft": false,
-      "description": "Download preview chapters of The Winds of Winter by George R.R. Martin in eBook, Kindle, or PDF formats.",
+      "slug": "the-non-deterministic-problem-with-llm-integrations",
+      "date": "May 13, 2025",
+      "title": "The Non-Deterministic Problem with LLM Integrations",
+      "draft": true,
+      "description": "or: ...",
       "keywords": [
-        "fantasy",
-        "ASOIAF",
-        "Game of Thrones",
-        "ebook",
-        "pdf",
-        "George R.R. Martin",
-        "reading",
-        "book preview",
-        "downloads"
+        "artificial intelligence",
+        "MCP",
+        "AI",
+        "software development",
+        "programming"
       ],
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/the-winds-of-winter-preview-chapters-free-ebook-kindle-and-pdf-download/twow.webp",
-      "readingTime": 2
+      "image": "/images/the-non-deterministic-problem-with-llm-integrations/the-non-deterministic-problem-with-llm-integrations.webp",
+      "readingTime": 1
     },
     {
       "slug": "untitled-01",
       "date": "July 18, 2024",
       "title": "Untitled 01",
       "draft": false,
-      "description": "An experimental poem by Patrick Prunty.",
+      "description": "An experimental poem from The Untitled Collection.",
       "keywords": [
         "poetry",
         "experimental writing",
@@ -112,42 +125,6 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com",
       "image": "/images/untitled-01/splash.webp",
-      "readingTime": 2
-    },
-    {
-      "slug": "what-is-blogging",
-      "date": "February 3, 2025",
-      "title": "What is Blogging?",
-      "draft": true,
-      "description": "Or why in a world full of people trying to be somebody else, you should focus on being you.",
-      "keywords": [
-        "blogging",
-        "authenticity",
-        "content creation",
-        "self-expression",
-        "writing"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/what-is-blogging/what-is-blogging.webp",
-      "readingTime": 4
-    },
-    {
-      "slug": "why-im-optimistic-ai-wont-take-my-swe-job",
-      "date": "February 10, 2025",
-      "title": "Why I’m Optimistic AI Won’t Take My SWE Job",
-      "draft": true,
-      "description": "Or why AI is but another abstraction layer for software development. ",
-      "keywords": [
-        "AI",
-        "software engineering",
-        "programming",
-        "technology",
-        "job security"
-      ],
-      "author": "Patrick Prunty",
-      "authorUrl": "https://patrickprunty.com/about",
-      "image": "/images/why-im-optimistic-ai-wont-take-my-swe-job/why-im-optimistic-ai-wont-take-my-swe-job.webp",
       "readingTime": 2
     }
   ]

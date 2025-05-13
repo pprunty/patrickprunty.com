@@ -23,7 +23,7 @@ export default async function PostsPage() {
       {/* If you're not sure which to read, try __, __, or __.
        */}
       <UniqueViewers />
-      <Posts posts={posts} />
+      <Posts posts={posts} showTabs={false} />
       {process.env.NODE_ENV === 'development' && (
         <PillarMenu buttons={buttons} />
       )}

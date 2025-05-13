@@ -3,6 +3,8 @@ import Link from 'next/link';
 import UniqueViewers from './unique-viewers';
 import Section from './section';
 import { Badge } from './blog/components/badge';
+import Subscribe from '@/components/subscribe';
+import Newsletter2 from '@/components/newsletter-2';
 
 export const photographyImages = [
   '/photography/0a94d7f5-834a-4567-86db-93f1ce8dc3ca.webp',
@@ -83,23 +85,31 @@ export const metadata = {
   quality={100}
 />
 
-I'm a senior web developer based in Dublin, Ireland.
+I'm a senior software engineer based in Dublin, Ireland.
 
-Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animations (videos coming soon).
+Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animation (videos coming soon).
 
-When I'm not programming or working on creative projects, you can find me training for triathlons, hiking, or spending time with loved ones.
+When I'm not writing code, you can find me training for triathlons, hiking, or spending time with loved ones.
 
 Connect with me on [X](https://x.com/pprunty_), or reach out via [E-mail](mailto:patrickprunty.business@gmail.com) for business inquiries. My professional CV is available as a <Link href="https://patrickprunty.com/downloads/pprunty_CV.pdf" target="_blank" className="underline decoration-wavy underline-offset-4 text-primary decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground" rel="noopener noreferrer">downloadable PDF</Link>.
 
+{/*
+Currently building [deltacomponents.dev](https://deltacomponents.dev/) (𝞓) — a custom shadcn component library — and [magikarp]() (<img src="/svgs/magikarp.svg" alt="Magikarp" className="inline-block h-5 w-auto align-text-bottom mx-0.5" />) — a plugin based
+framework for A.I agents.
+*/}
+
 ## Writing [#writing]
 
-I keep a personal blog where I share insights on life, technology, and personal projects
+My writing explores topics in artificial intelligence, contemporary lifestyle, and creative media. I publish 500-ish-word essays that I personally narrate, along with a companion newsletter that arrives in your inbox weekly.
 
-Each blog post is written in 500ish words—just enough to deliver valuable ideas without overwhelming your schedule. Read
-the latest posts on [my blog page](/blog).
+Browse my latest posts on the [blog page](/blog) or subscribe below to enjoy the next essay with your morning coffee.
+
+<Newsletter  title={"Get the next essay first"} subtitle={"Enter your email below to receive the occasional update.️"} />
 
 {/*
-If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even is Blogging?]()*, or *[Why I'm Optimistic AI Won't Replace Me]()*.
+If you’re new, start with
+[“Indie-Hackers and Liars”](), [“What Even Is Blogging?”](), or [“The Weekly Stand-Up”]().
+
 */}
 
 ## Projects [#projects]
@@ -109,7 +119,7 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
   items={[
     {
       title: 'Pixel Projects at YouTube',
-      url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw',
+      url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1',
       year: '(Coming Soon)',
       media: [
         '/images/projects/pp3.webp',
@@ -120,24 +130,26 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
 //       'wjZofJX0v4M',
 //       ],
       description:
-        'Educational channel exploring computational mathematics and computer science through storytelling and visual animations.',
+        'Educational YouTube channel exploring topics in computational mathematics and computer science through storytelling and animation (videos coming soon).',
     },
     {
       title: 'Patrick Prunty at YouTube',
-      url: 'https://www.youtube.com/@pprunty',
+      url: 'https://www.youtube.com/@pprunty?sub_confirmation=1',
       year: '2025',
-//         media: [
-//         '/images/projects/nostalgia2.png'
-//         ],
-//         youtubeIds: [
-//         'HQEaaIuyKAM',
-//         ],
+        media: [
+        '/images/projects/nostalgia2.png'
+        ],
+        youtubeIds: [
+        'HQEaaIuyKAM',
+        'DcYLT37ImBY'
+        ],
+     hide: false,
       description:
           'Experimental art examining pop culture and media through re-contextualization, visual/audio mashing, and other mixed-media approaches.',
     },
     {
       title: 'Jigsaw Presents at YouTube',
-      url: 'https://www.youtube.com/@JigsawPresents',
+      url: 'https://www.youtube.com/@JigsawPresents?sub_confirmation=1',
       year: '(Coming Soon)',
       media: ['/images/projects/jigsaw-presents.webp'],
       hide: true,
@@ -149,12 +161,13 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
       url: '/blog',
       year: '2024',
       media: [
+        '/images/projects/pp-preview2.png',
+        '/images/projects/lightouse_report.png',
         '/images/projects/personal-blog-1.png',
         '/images/projects/Untitled.mov',
-        '/images/projects/lightouse_report.png'
       ],
       description:
-        'The site you are currently on is a high-performance personal blog built with Next.js 15 and MDX. Here I showcase my work and share insights on life, technology, and my personal projects.',
+        'The high‑performance MDX site you’re on right now—built with Next.js 15.',
     },
   ]}
 />
@@ -172,7 +185,7 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
       hide: false,
       description:
         <>
-        Components that make the difference. Delta Components is a comprehensive collection of open-source, progressively-styled UI elements designed for seamless integration with
+        A collection of open-source, customizable UI elements designed for integration with
         {' '}
         <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">
         shadcn
@@ -181,17 +194,20 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
         <a href="https://v0.dev/chat" target="_blank" rel="noopener noreferrer">
         v0
         </a>
-        , and your Next.js/React.js projects. Combining modern aesthetics with exceptional performance.
+        , and Next.js/React.js. Delta Components combine modern aesthetics with exceptional performance — making the difference in your users' experience.
         </>
     },
     {
       title: 'magikarp',
       url: 'https://github.com/pprunty/magikarp',
       year: '(Work in progress)',
-      media: ['/images/projects/magikarp.png'],
+      media: [
+      '/images/projects/magikarp.png',
+      '/images/projects/magikarp-diagram.png',
+      ],
       hide: false,
       description:
-        "A flexible plugin-based agentic LLM framework built with Go. Magikarp provides a foundation for building AI-powered agents that can interact with the user using 'tools'—custom code which the agent can execute to help them complete their task.",
+        "A flexible open source plugin-based agentic LLM framework built with Go. Magikarp provides a foundation for building and customizing AI-powered agents that can interact with the user using plugins, which are a collection of 'tools'—custom code which the agent can execute to help them complete their task.",
     },
     {
       title: 'tmplate.xyz',
@@ -201,7 +217,7 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
       hide: false,
       description:
         <>
-         Production-ready full-stack template combining Next.js frontend with FastAPI backend. Features progressively styled UI with delta components, secure OAuth authentication, and advanced SEO optimization. My go-to foundation for launching professional SaaS applications.
+         My personal production-ready SaaS starter—Next.js + FastAPI, OAuth, MDX Blog, Delta Components and SEO optimization.
         </>,
     },
     {
@@ -235,7 +251,7 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
       hide: false,
       description:
         <>
-        A lightweight, asynchronous Object Document Mapper (ODM) for MongoDB, built on top of the official Motor driver. Designed to provide non-blocking MongoDB access for Python applications using asyncio or Tornado and providing a similar API to mongoengine (<code>pip install motormongo</code>).
+        Async MongoDB ODM on top of Motor; mongoengine-like API without blocking the loop. (<code>pip install motormongo</code>).
         </>,
     },
   ]}
@@ -243,28 +259,10 @@ If you're not sure which to read, try *[Indiehackers and Liars]()*, *[What even 
 
 A complete list of my open source work can be found on my [GitHub profile](https://github.com/pprunty).
 
-## Reading List [#reading-list]
-
-1. *[A Dance with Dragons](https://en.wikipedia.org/wiki/A_Dance_with_Dragons)* by George R.R. Martin <Badge />
-2. *[Small Things Like These](https://en.wikipedia.org/wiki/Small_Things_Like_These)* by Claire Keegan <Badge />
-3. *[Meditations](https://en.wikipedia.org/wiki/Meditations)* by Marcus Aurelius <Badge />
-4. [*The Alchemist*](https://en.wikipedia.org/wiki/The_Alchemist_(novel)) by Paulo Coelho <Badge />
-5. [*The Subtle Art of Not Giving a F\*ck*](https://en.wikipedia.org/wiki/The_Subtle_Art_of_Not_Giving_a_F*ck) by Mark Manson <Badge />
-6. [*Nexus: A Brief History of Information Networks from the Stone Age to AI*](https://www.ynharari.com/book/nexus/) by Yuval Noah Harari <Badge />
-7. [*Blood Meridian*](https://en.wikipedia.org/wiki/Blood_Meridian) by Cormac McCarthy
-8. [*Hackers and Painters*](https://en.wikipedia.org/wiki/Hackers_%26_Painters) by Paul Graham
-9. [*Flash Boys*](https://en.wikipedia.org/wiki/Flash_Boys) by Michael Lewis
-
-{/*
 ## Other Stuff [#other-stuff]
 
-Here are some additional resources and places where I share content:
-
-- [Content I Like](/content) - A collection of content that has inspired or influenced me
-- [Achievements](/achievements) - My accomplishments in sport, life, and software projects that I believe noteworthy
-- [Hacker News Submissions](https://news.ycombinator.com/submitted?id=pprunty) - Topics and discussions I've shared with the Hacker News community
-- [Reddit Discussions](https://old.reddit.com/user/patrickprunty1997/comments/) - My contributions to various tech, programming, and other subreddit communities
-*/}
+- [2025 Reading List](/content/reading-list)
+- [Hacker News Submissions](https://news.ycombinator.com/submitted?id=pprunty)
 
 ## Photos [#photos]
 
