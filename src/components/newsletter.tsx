@@ -14,7 +14,7 @@ interface NewsletterProps {
 
 const Newsletter: React.FC<NewsletterProps> = ({
   title = 'Stay Updated',
-  subtitle = 'AI, web design and personal discoveries delivered weekly.',
+  subtitle = 'Weekly insights on AI, web development, and the cultural shifts shaping our future.',
   animate = true,
   variant = 'default',
 }) => {

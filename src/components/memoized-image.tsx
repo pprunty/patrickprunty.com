@@ -165,7 +165,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 
       {isModalOpen && (
         <span
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-50 transition-colors duration-300 modal-overlay"
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[999] transition-colors duration-300 modal-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               closeModal();
@@ -189,8 +189,11 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               {...rest}
             />
             <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                closeModal();
+              }}
+              className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[1000] shadow-sm"
             >
               Close
             </button>
