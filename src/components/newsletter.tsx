@@ -29,7 +29,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.5 }, // Trigger when 50% of the element is visible
+      { threshold: 0.3 }, // Trigger when 50% of the element is visible
     );
 
     observer.observe(ref.current);
@@ -78,7 +78,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
             width={800}
             height={400}
             priority
-            className="w-full h-full object-cover sm:rounded-lg"
+            className="w-full h-full object-cover object-top sm:rounded-lg"
           />
         </div>
 

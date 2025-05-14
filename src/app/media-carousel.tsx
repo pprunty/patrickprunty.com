@@ -274,7 +274,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         >
           {/* Close button */}
           <button
-            className="absolute top-4 right-4 bg-white dark:bg-[#333] text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
+            className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
             onClick={(e) => {
               e.stopPropagation();
               closeFocusedView();
