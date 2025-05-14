@@ -1,7 +1,6 @@
 'use client';
 
-import type React from 'react';
-import { memo, useRef, useState, useEffect, useCallback } from 'react';
+import React, { memo, useRef, useState, useEffect, useCallback } from 'react';
 import { MemoizedImage } from '@/components/memoized-image';
 import { MemoizedVideo } from './memoized-video';
 import { MemoizedYouTube } from './memoized-youtube';
@@ -26,16 +25,13 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
     const [scrollPosition, setScrollPosition] = useState(0);
     const [maxScroll, setMaxScroll] = useState(0);
     const isMobile = useMobile();
-    // State for focused media
+
     const [focusedIndex, setFocusedIndex] = useState<number | null>(
       initialFocusedIndex,
     );
-    // Mouse position to determine cursor
     const [mousePosition, setMousePosition] = useState<'left' | 'right' | null>(
       null,
     );
-
-    // Touch gesture tracking
     const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
     const debounce = <T extends (...args: unknown[]) => void>(
@@ -49,11 +45,9 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       };
     };
 
-    // Handle navigation in the focused view
     const navigateMedia = useCallback(
       (direction: 'next' | 'prev') => {
         if (focusedIndex === null || !media.length) return;
-
         if (direction === 'next') {
           setFocusedIndex((current) =>
             current === null ? 0 : (current + 1) % media.length,
@@ -69,28 +63,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       [focusedIndex, media.length],
     );
 
-    // Close the overlay
     const closeFocusedView = useCallback(() => {
       setFocusedIndex(null);
-
-      // Re-enable scrolling on the body
       document.body.style.overflow = '';
-
-      // Call the onClose prop if provided
-      if (onClose) {
-        onClose();
-      }
+      if (onClose) onClose();
     }, [onClose]);
 
-    // Track mouse position for cursor styling
     const handleMouseMove = useCallback(
       (e: React.MouseEvent) => {
         if (isMobile) return;
-
         const { clientX, currentTarget } = e;
         const rect = currentTarget.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
-
         setMousePosition(clientX > centerX ? 'right' : 'left');
       },
       [isMobile],
@@ -100,27 +84,20 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       setMousePosition(null);
     }, []);
 
-    // Add body scroll lock when modal opens
     useEffect(() => {
       if (focusedIndex !== null) {
-        // Disable body scrolling when modal is open
         document.body.style.overflow = 'hidden';
       } else {
-        // Re-enable scrolling when modal is closed
         document.body.style.overflow = '';
       }
-
       return () => {
-        // Clean up - ensure scrolling is re-enabled when component unmounts
         document.body.style.overflow = '';
       };
     }, [focusedIndex]);
 
-    // Handle keyboard navigation
     useEffect(() => {
       const handleKeyDown = (e: KeyboardEvent) => {
         if (focusedIndex === null) return;
-
         switch (e.key) {
           case 'ArrowLeft':
             navigateMedia('prev');
@@ -136,123 +113,70 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             break;
         }
       };
-
       window.addEventListener('keydown', handleKeyDown);
       return () => {
         window.removeEventListener('keydown', handleKeyDown);
       };
     }, [focusedIndex, navigateMedia, closeFocusedView]);
 
-    // Add a state for tracking if we're in zoom mode
-    const [isZooming, setIsZooming] = useState(false);
+    // Handle touch start (for swipe/pinch)
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    }, []);
 
-    // Handle touch events for swipe navigation
-    const handleTouchStart = useCallback(
-      (e: React.TouchEvent) => {
-        // Check if this is a multi-touch event (potential pinch)
-        if (e.touches.length > 1) {
-          // Allow pinch zoom for images only
-          if (focusedIndex !== null && media[focusedIndex]?.type === 'image') {
-            setIsZooming(true);
-            return; // Don't prevent default to allow native pinch zoom
-          }
-        }
-
-        // For single touch, track it for potential swipe
-        touchStartRef.current = {
-          x: e.touches[0].clientX,
-          y: e.touches[0].clientY,
-        };
-
-        // Don't prevent default here to allow potential zoom
-      },
-      [focusedIndex, media],
-    );
-
-    const handleTouchMove = useCallback(
-      (e: React.TouchEvent) => {
-        // If we're zooming, don't interfere with the browser's handling
-        if (isZooming || e.touches.length > 1) {
-          // Allow pinch zoom for images only
-          if (focusedIndex !== null && media[focusedIndex]?.type === 'image') {
-            setIsZooming(true);
-            return; // Don't prevent default to allow native pinch zoom
-          }
-        }
-
-        // Only prevent default for single-touch swipes to avoid interfering with pinch
-        if (e.touches.length === 1 && !isZooming) {
+    // Updated touch move to only intercept single-finger horizontal swipes
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+      if (e.touches.length > 1) return;
+      if (touchStartRef.current) {
+        const dx = e.touches[0].clientX - touchStartRef.current.x;
+        const dy = e.touches[0].clientY - touchStartRef.current.y;
+        if (Math.abs(dx) > Math.abs(dy)) {
           e.preventDefault();
           e.stopPropagation();
         }
-      },
-      [isZooming, focusedIndex, media],
-    );
+      }
+    }, []);
 
     const handleTouchEnd = useCallback(
       (e: React.TouchEvent) => {
-        // Reset zooming state
-        if (isZooming) {
-          setIsZooming(false);
-          return;
-        }
-
-        // Only process swipe if we have a start position and we're not zooming
-        if (!touchStartRef.current || focusedIndex === null || isZooming)
-          return;
-
+        if (!touchStartRef.current) return;
         const touchEnd = {
           x: e.changedTouches[0].clientX,
           y: e.changedTouches[0].clientY,
         };
-
         const deltaX = touchEnd.x - touchStartRef.current.x;
         const deltaY = touchEnd.y - touchStartRef.current.y;
-
-        // Only process if it's a significant swipe (more than 50px)
         const minSwipeDistance = 50;
-
-        // Determine if this is a horizontal or vertical swipe
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-          // Horizontal swipe
-          if (Math.abs(deltaX) > minSwipeDistance) {
-            if (deltaX > 0) {
-              // Swipe right -> previous
-              navigateMedia('prev');
-            } else {
-              // Swipe left -> next
-              navigateMedia('next');
-            }
+        if (
+          Math.abs(deltaX) > Math.abs(deltaY) &&
+          Math.abs(deltaX) > minSwipeDistance
+        ) {
+          if (deltaX > 0) {
+            navigateMedia('prev');
+          } else {
+            navigateMedia('next');
           }
-        } else {
-          // Vertical swipe
-          if (Math.abs(deltaY) > minSwipeDistance) {
-            if (deltaY > 0) {
-              // Swipe down -> previous
-              navigateMedia('prev');
-            } else {
-              // Swipe up -> next
-              navigateMedia('next');
-            }
+        } else if (Math.abs(deltaY) > minSwipeDistance) {
+          if (deltaY > 0) {
+            navigateMedia('prev');
+          } else {
+            navigateMedia('next');
           }
         }
-
         touchStartRef.current = null;
       },
-      [focusedIndex, navigateMedia, isZooming, media],
+      [navigateMedia],
     );
 
-    // Handle side clicks for desktop navigation
     const handleSideClick = useCallback(
       (e: React.MouseEvent) => {
-        if (isMobile) return; // Skip for mobile, they use touch gestures
-
+        if (isMobile) return;
         const { clientX, currentTarget } = e;
         const rect = currentTarget.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
-
-        // Click on right side of the screen - go to next item
-        // Click on left side of the screen - go to previous item
         if (clientX > centerX) {
           navigateMedia('next');
         } else {
@@ -265,66 +189,45 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
     useEffect(() => {
       const scrollContainer = scrollContainerRef.current;
       if (!scrollContainer) return;
-
       const handleScroll = () => {
-        if (!scrollContainerRef.current) return;
-        const currentPosition = scrollContainerRef.current.scrollLeft;
-        const containerWidth = scrollContainerRef.current.clientWidth;
-        const scrollWidth = scrollContainerRef.current.scrollWidth;
-        const maxScrollPosition = Math.max(0, scrollWidth - containerWidth);
+        const currentPosition = scrollContainer.scrollLeft;
+        const containerWidth = scrollContainer.clientWidth;
+        const scrollWidth = scrollContainer.scrollWidth;
         setScrollPosition(currentPosition);
-        setMaxScroll(maxScrollPosition);
+        setMaxScroll(Math.max(0, scrollWidth - containerWidth));
       };
-
       const debouncedHandleScroll = debounce(handleScroll, 10);
-
-      // Calculate initial values
       handleScroll();
-
-      // Add scroll event listener with debounced handler
       scrollContainer.addEventListener('scroll', debouncedHandleScroll);
-
-      // Handle resize to recalculate max scroll
-      const handleResize = () => {
-        handleScroll();
-      };
-      window.addEventListener('resize', handleResize);
-
+      window.addEventListener('resize', handleScroll);
       return () => {
         scrollContainer.removeEventListener('scroll', debouncedHandleScroll);
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('resize', handleScroll);
       };
     }, [media]);
 
-    // Calculate indicator width and position with boundary checks
     const calculateIndicatorWidth = () => {
       if (!scrollContainerRef.current || maxScroll <= 0) return '0%';
       const containerWidth = scrollContainerRef.current.clientWidth;
       const scrollWidth = scrollContainerRef.current.scrollWidth;
-      // Ensure width is between 10% (minimum for visibility) and 100%
-      const percentage = Math.max(
+      const percent = Math.max(
         10,
         Math.min(100, (containerWidth / scrollWidth) * 100),
       );
-      return `${percentage}%`;
+      return `${percent}%`;
     };
 
     const calculateIndicatorPosition = () => {
       if (!scrollContainerRef.current || maxScroll <= 0) return '0%';
-      // Clamp scroll position between 0 and maxScroll
-      const clampedPosition = Math.max(0, Math.min(scrollPosition, maxScroll));
-      // Calculate percentage (0-100) and ensure it doesn't push indicator out of bounds
-      const percentage = Math.min(
-        100 - Number.parseFloat(calculateIndicatorWidth()),
-        (clampedPosition / maxScroll) * 100,
-      );
-      return `${percentage}%`;
+      const clamped = Math.max(0, Math.min(scrollPosition, maxScroll));
+      const width = parseFloat(calculateIndicatorWidth());
+      const percent = Math.min(100 - width, (clamped / maxScroll) * 100);
+      return `${percent}%`;
     };
 
     const scrollIndicatorWidth = calculateIndicatorWidth();
     const scrollIndicatorPosition = calculateIndicatorPosition();
 
-    // Get the appropriate cursor based on mouse position
     const getCursorStyle = () => {
       if (isMobile) return 'default';
       if (mousePosition === 'left') return 'w-resize';
@@ -332,23 +235,14 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       return 'default';
     };
 
-    // Render the focused media item in an overlay when selected
     const renderFocusedMedia = () => {
       if (focusedIndex === null || !media[focusedIndex]) return null;
-
       const item = media[focusedIndex];
-      console.log('Rendering focused media:', {
-        focusedIndex,
-        itemType: item.type,
-        itemSrc: item.src,
-      });
-
-      // Use a stable key based just on the video ID, not Date.now()
       const youtubeKey = `youtube-${item.src}`;
 
       return (
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none ${isZooming ? '' : 'touch-none'}`}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -357,11 +251,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           onMouseLeave={handleMouseLeave}
           style={{ cursor: getCursorStyle() }}
         >
-          {/* Close button */}
           <button
-            className="absolute top-4 right-4 dark:bg-[#333] dark:text-white bg-white border dark:border-[#4B4B4B] border-[#E0E0E0] text-black dark:text-white p-2 px-6 rounded-full transition-colors duration-150 z-[60] shadow-sm"
+            className="absolute top-4 right-4 bg-white dark:bg-[#333] text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
             onClick={(e) => {
-              e.stopPropagation(); // Prevent side click handling
+              e.stopPropagation();
               closeFocusedView();
             }}
             aria-label="Close"
@@ -369,8 +262,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             Close
           </button>
 
-          {/* Media content - improved mobile responsiveness */}
-          <div className="max-w-[100vw] max-h-[100vh] w-full relative p-0 m-0 flex items-center justify-center">
+          <div className="max-w-[100vw] max-h-[100vh] w-full flex items-center justify-center">
             {item.type === 'video' ? (
               <MemoizedVideo
                 src={item.src}
@@ -388,13 +280,11 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 style={{
                   zIndex: 100,
                   position: 'relative',
-                  // Larger size for desktop, constrained on mobile
                   width: '100%',
                   maxWidth: '800px',
                   minHeight: '300px',
                   aspectRatio: '16/9',
                 }}
-                // Stop propagation of mouse events to prevent re-renders
                 onMouseMove={(e) => e.stopPropagation()}
                 onMouseEnter={(e) => e.stopPropagation()}
                 onMouseLeave={(e) => e.stopPropagation()}
@@ -418,7 +308,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   priority={true}
                   unoptimized
                   style={{
-                    touchAction: isZooming ? 'pinch-zoom' : 'none',
+                    touchAction: 'pinch-zoom',
                     maxWidth: '100%',
                     maxHeight: '100vh',
                   }}
@@ -427,10 +317,9 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             )}
           </div>
 
-          {/* Caption/counter - moved to bottom right */}
           <div
-            className="absolute bottom-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full transition-colors duration-150 z-[60]"
-            onClick={(e) => e.stopPropagation()} // Prevent side click handling
+            className="absolute bottom-4 right-4 bg-black dark:bg-[#333] text-white p-2 px-6 rounded-full border dark:border-[#4B4B4B] z-[60] transition-colors duration-150"
+            onClick={(e) => e.stopPropagation()}
           >
             {focusedIndex + 1} / {media.length}
           </div>
@@ -439,24 +328,19 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
     };
 
     return (
-      <div className="mt-2 mb-2 sm:mx-0 sm:mb-0">
+      <div className="mt-2 mb-2">
         <div
           ref={scrollContainerRef}
           className="overflow-x-auto overflow-y-hidden scrollbar-hide"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2 sm:px-0 mb-2">
+          <div className="flex gap-2 mb-2">
             {media.map((item, idx) => (
               <div
                 key={idx}
                 className="flex-shrink-0 cursor-pointer"
                 onClick={(e) => {
-                  e.preventDefault();
                   e.stopPropagation();
-                  console.log('Thumbnail clicked:', {
-                    idx,
-                    itemType: item.type,
-                  });
                   setFocusedIndex(idx);
                 }}
               >
@@ -495,9 +379,8 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           </div>
         </div>
 
-        {/* Scroll indicator - only visible on mobile */}
         {isMobile && maxScroll > 0 && (
-          <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1 sm:hidden">
+          <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
             <div
               className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
               style={{
@@ -508,7 +391,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           </div>
         )}
 
-        {/* Render focused view overlay when an item is selected */}
         {focusedIndex !== null && renderFocusedMedia()}
       </div>
     );
@@ -516,5 +398,4 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 );
 
 MediaCarousel.displayName = 'MediaCarousel';
-
 export default MediaCarousel;
