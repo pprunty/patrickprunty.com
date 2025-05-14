@@ -32,7 +32,11 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
     const [mousePosition, setMousePosition] = useState<'left' | 'right' | null>(
       null,
     );
+
+    // Track single-finger start
     const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+    // Track if we're in a pinch gesture
+    const isPinchingRef = useRef(false);
 
     const debounce = <T extends (...args: unknown[]) => void>(
       fn: T,
@@ -47,7 +51,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
     const navigateMedia = useCallback(
       (direction: 'next' | 'prev') => {
-        if (focusedIndex === null || !media.length) return;
+        if (focusedIndex === null || media.length === 0) return;
         if (direction === 'next') {
           setFocusedIndex((current) =>
             current === null ? 0 : (current + 1) % media.length,
@@ -119,20 +123,28 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       };
     }, [focusedIndex, navigateMedia, closeFocusedView]);
 
-    // Handle touch start (for swipe/pinch)
+    // Handle touch start (detect pinch vs single-touch)
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
+      if (e.touches.length > 1) {
+        isPinchingRef.current = true;
+        return;
+      }
+      isPinchingRef.current = false;
       touchStartRef.current = {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY,
       };
     }, []);
 
-    // Updated touch move to only intercept single-finger horizontal swipes
+    // Only intercept single-finger horizontal swipes
     const handleTouchMove = useCallback((e: React.TouchEvent) => {
-      if (e.touches.length > 1) return;
+      // if pinching or multi-touch, let native handling run
+      if (isPinchingRef.current || e.touches.length > 1) return;
+
       if (touchStartRef.current) {
         const dx = e.touches[0].clientX - touchStartRef.current.x;
         const dy = e.touches[0].clientY - touchStartRef.current.y;
+        // horizontal swipe
         if (Math.abs(dx) > Math.abs(dy)) {
           e.preventDefault();
           e.stopPropagation();
@@ -140,9 +152,16 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       }
     }, []);
 
+    // On touch end, skip navigation if it was a pinch
     const handleTouchEnd = useCallback(
       (e: React.TouchEvent) => {
+        if (isPinchingRef.current) {
+          isPinchingRef.current = false;
+          touchStartRef.current = null;
+          return;
+        }
         if (!touchStartRef.current) return;
+
         const touchEnd = {
           x: e.changedTouches[0].clientX,
           y: e.changedTouches[0].clientY,
@@ -150,6 +169,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         const deltaX = touchEnd.x - touchStartRef.current.x;
         const deltaY = touchEnd.y - touchStartRef.current.y;
         const minSwipeDistance = 50;
+
         if (
           Math.abs(deltaX) > Math.abs(deltaY) &&
           Math.abs(deltaX) > minSwipeDistance
@@ -166,6 +186,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             navigateMedia('next');
           }
         }
+
         touchStartRef.current = null;
       },
       [navigateMedia],
@@ -251,6 +272,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           onMouseLeave={handleMouseLeave}
           style={{ cursor: getCursorStyle() }}
         >
+          {/* Close button */}
           <button
             className="absolute top-4 right-4 bg-white dark:bg-[#333] text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
             onClick={(e) => {
@@ -262,6 +284,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             Close
           </button>
 
+          {/* Media container */}
           <div className="max-w-[100vw] max-h-[100vh] w-full flex items-center justify-center">
             {item.type === 'video' ? (
               <MemoizedVideo
@@ -292,8 +315,8 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 <MemoizedYouTube
                   videoId={item.src}
                   title={`${title} YouTube video ${focusedIndex + 1}`}
-                  showPlayer={true}
-                  autoplay={true}
+                  showPlayer
+                  autoplay
                 />
               </div>
             ) : (
@@ -305,7 +328,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   height={800}
                   className="max-w-none max-h-none object-contain"
                   quality={100}
-                  priority={true}
+                  priority
                   unoptimized
                   style={{
                     touchAction: 'pinch-zoom',
@@ -317,6 +340,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             )}
           </div>
 
+          {/* Counter */}
           <div
             className="absolute bottom-4 right-4 bg-black dark:bg-[#333] text-white p-2 px-6 rounded-full border dark:border-[#4B4B4B] z-[60] transition-colors duration-150"
             onClick={(e) => e.stopPropagation()}
@@ -329,6 +353,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
     return (
       <div className="mt-2 mb-2">
+        {/* Thumbnail strip */}
         <div
           ref={scrollContainerRef}
           className="overflow-x-auto overflow-y-hidden scrollbar-hide"
@@ -371,7 +396,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     quality={100}
                     unoptimized
                     focusable={false}
-                    animate={true}
+                    animate
                   />
                 )}
               </div>
@@ -379,6 +404,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           </div>
         </div>
 
+        {/* Scroll indicator */}
         {isMobile && maxScroll > 0 && (
           <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
             <div
@@ -391,6 +417,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           </div>
         )}
 
+        {/* Focused overlay */}
         {focusedIndex !== null && renderFocusedMedia()}
       </div>
     );
