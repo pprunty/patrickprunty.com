@@ -63,13 +63,13 @@ export default function AudioPlayer({ slug }: AudioPlayerProps) {
     <div className="flex items-center">
       <button
         onClick={togglePlay}
-        className="flex items-center justify-center rounded-full w-8 h-8 bg-border hover:bg-border/70 transition-colors"
+        className="flex items-center justify-center rounded-full w-10 h-10 bg-border hover:bg-border/70 transition-colors"
         aria-label={isPlaying ? 'Pause narration' : 'Play narration'}
       >
         {isPlaying ? (
-          <Pause weight="fill" className="text-muted-foreground" size={16} />
+          <Pause weight="fill" className="text-muted-foreground" size={20} />
         ) : (
-          <Play weight="fill" className="text-muted-foreground" size={16} />
+          <Play weight="fill" className="text-muted-foreground" size={20} />
         )}
       </button>
     </div>

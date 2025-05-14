@@ -88,7 +88,10 @@ export default function Header({ currentPost }: HeaderProps) {
           {/* Reading Time - Simplified */}
           <div className="flex items-center">
             <Clock weight="regular" className="w-4 h-4 mr-2 opacity-70" />
-            <span>{post.readingTime} mins</span>
+            <span>
+              {post.readingTime} mins
+              <span className="hidden sm:inline"> read</span>
+            </span>
           </div>
 
           <span className="mx-2">|</span>
@@ -144,9 +147,10 @@ function Views({
   return (
     <>
       {views != null ? (
-        <div className="flex items-center">
+        <div className="flex items-center text-muted-foreground/70">
           <Eye weight="regular" className="w-4 h-4 mr-2 opacity-70" />
-          {views} views
+          {views}
+          <span className="hidden sm:inline">&nbsp;views</span>
         </div>
       ) : null}
     </>

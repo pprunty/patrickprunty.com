@@ -6,7 +6,6 @@ import { MemoizedImage } from '@/components/memoized-image';
 import { MemoizedVideo } from './memoized-video';
 import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
-import { X } from 'lucide-react';
 import Image from 'next/image';
 
 interface MediaItem {
@@ -144,25 +143,63 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
       };
     }, [focusedIndex, navigateMedia, closeFocusedView]);
 
-    // Handle touch events for swipe navigation
-    const handleTouchStart = useCallback((e: React.TouchEvent) => {
-      // Prevent default behavior to ensure body doesn't scroll
-      e.preventDefault();
-      touchStartRef.current = {
-        x: e.touches[0].clientX,
-        y: e.touches[0].clientY,
-      };
-    }, []);
+    // Add a state for tracking if we're in zoom mode
+    const [isZooming, setIsZooming] = useState(false);
 
-    const handleTouchMove = useCallback((e: React.TouchEvent) => {
-      // Always prevent default to avoid page scrolling while swiping
-      e.preventDefault();
-      e.stopPropagation();
-    }, []);
+    // Handle touch events for swipe navigation
+    const handleTouchStart = useCallback(
+      (e: React.TouchEvent) => {
+        // Check if this is a multi-touch event (potential pinch)
+        if (e.touches.length > 1) {
+          // Allow pinch zoom for images only
+          if (focusedIndex !== null && media[focusedIndex]?.type === 'image') {
+            setIsZooming(true);
+            return; // Don't prevent default to allow native pinch zoom
+          }
+        }
+
+        // For single touch, track it for potential swipe
+        touchStartRef.current = {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY,
+        };
+
+        // Don't prevent default here to allow potential zoom
+      },
+      [focusedIndex, media],
+    );
+
+    const handleTouchMove = useCallback(
+      (e: React.TouchEvent) => {
+        // If we're zooming, don't interfere with the browser's handling
+        if (isZooming || e.touches.length > 1) {
+          // Allow pinch zoom for images only
+          if (focusedIndex !== null && media[focusedIndex]?.type === 'image') {
+            setIsZooming(true);
+            return; // Don't prevent default to allow native pinch zoom
+          }
+        }
+
+        // Only prevent default for single-touch swipes to avoid interfering with pinch
+        if (e.touches.length === 1 && !isZooming) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      [isZooming, focusedIndex, media],
+    );
 
     const handleTouchEnd = useCallback(
       (e: React.TouchEvent) => {
-        if (!touchStartRef.current || focusedIndex === null) return;
+        // Reset zooming state
+        if (isZooming) {
+          setIsZooming(false);
+          return;
+        }
+
+        // Only process swipe if we have a start position and we're not zooming
+        if (!touchStartRef.current || focusedIndex === null || isZooming)
+          return;
 
         const touchEnd = {
           x: e.changedTouches[0].clientX,
@@ -202,7 +239,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
         touchStartRef.current = null;
       },
-      [focusedIndex, navigateMedia],
+      [focusedIndex, navigateMedia, isZooming, media],
     );
 
     // Handle side clicks for desktop navigation
@@ -311,7 +348,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
       return (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 touch-none select-none"
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none ${isZooming ? '' : 'touch-none'}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -370,16 +407,23 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 />
               </div>
             ) : (
-              <Image
-                src={item.src}
-                alt={`${title} image ${focusedIndex + 1}`}
-                width={1200}
-                height={800}
-                className="max-w-full max-h-[100vh] object-contain"
-                quality={100}
-                priority={true}
-                unoptimized
-              />
+              <div className="max-w-full max-h-[100vh] overflow-auto">
+                <Image
+                  src={item.src || '/placeholder.svg'}
+                  alt={`${title} image ${focusedIndex + 1}`}
+                  width={1200}
+                  height={800}
+                  className="max-w-none max-h-none object-contain"
+                  quality={100}
+                  priority={true}
+                  unoptimized
+                  style={{
+                    touchAction: isZooming ? 'pinch-zoom' : 'none',
+                    maxWidth: '100%',
+                    maxHeight: '100vh',
+                  }}
+                />
+              </div>
             )}
           </div>
 

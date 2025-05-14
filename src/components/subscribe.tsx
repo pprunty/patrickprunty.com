@@ -122,7 +122,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               sm:text-base
               border
               border-[#e0e0e0]
-              dark:border-[#333333]
+              dark:border-border
               bg-input
               text-foreground
               placeholder-muted-foreground/60
