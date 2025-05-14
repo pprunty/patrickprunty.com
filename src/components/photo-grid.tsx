@@ -38,7 +38,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ images }) => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-1 py-4 relative z-10">
       {imagesToDisplay.map((src, index) => (
-        <div key={index} className="relative aspect-square">
+        <div key={index} className="relative h-full">
           <MemoizedImage
             src={src}
             alt={`Photo ${index + 1}`}

@@ -37,7 +37,7 @@ export default function Header({ currentPost }: HeaderProps) {
         {post.title}
       </h1>
       {post.description && (
-        <p className="italic mb-6 text-2xl font-script font-[400] text-muted-foreground">
+        <p className="italic mb-6 text-2xl font-script text-muted-foreground">
           {post.description}
         </p>
       )}
