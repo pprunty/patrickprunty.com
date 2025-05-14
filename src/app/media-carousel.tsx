@@ -342,7 +342,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
           {/* Counter */}
           <div
-            className="absolute bottom-4 right-4 bg-black dark:bg-[#333] text-white p-2 px-6 rounded-full border dark:border-[#4B4B4B] z-[60] transition-colors duration-150"
+            className="absolute bottom-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
             onClick={(e) => e.stopPropagation()}
           >
             {focusedIndex + 1} / {media.length}

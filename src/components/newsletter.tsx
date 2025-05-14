@@ -9,12 +9,14 @@ interface NewsletterProps {
   title?: string;
   subtitle?: string;
   animate?: boolean;
+  variant?: 'default' | 'minimal';
 }
 
 const Newsletter: React.FC<NewsletterProps> = ({
   title = 'Stay Updated',
   subtitle = 'AI, web design and personal discoveries delivered weekly.',
   animate = true,
+  variant = 'default',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -55,6 +57,30 @@ const Newsletter: React.FC<NewsletterProps> = ({
       }
     : {};
 
+  // Minimal variant has a simpler layout without image
+  if (variant === 'minimal') {
+    return (
+      <ContentWrapper
+        ref={ref}
+        {...animationProps}
+        className="
+          p-6 rounded-xl
+          border border-border 
+          relative overflow-hidden
+          bg-card
+          text-accent-foreground dark:text-secondary-foreground
+          shadow-sm my-8
+        "
+      >
+        <div className="w-full mx-auto flex flex-col items-start relative z-10">
+          <p className="mb-4 text-base text-muted-foreground">{subtitle}</p>
+          <Subscribe className="w-full" stackButtonOnMobile={true} />
+        </div>
+      </ContentWrapper>
+    );
+  }
+
+  // Default variant with the image
   return (
     <ContentWrapper
       ref={ref}
@@ -63,7 +89,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
         p-0 sm:py-6 sm:px-5 rounded-xl
         border border-border 
         relative overflow-hidden
-        bg-accent dark:bg-secondary
+        bg-card
         text-accent-foreground dark:text-secondary-foreground
         shadow-sm
       "

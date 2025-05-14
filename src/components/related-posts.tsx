@@ -100,7 +100,7 @@ export default function RelatedPosts({
 
   return (
     <div className="mt-8">
-      <h1 className="text-3xl font-bold mb-4">Recommended For You:</h1>
+      <h1 className="text-2xl font-bold mb-4">Recommended For You:</h1>
       <PostList posts={recommendedPosts} />
     </div>
   );

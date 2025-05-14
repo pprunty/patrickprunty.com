@@ -42,8 +42,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
       <TableOfContents />
       {children}
       <BottomBar />
-      {/*      <Newsletter />
-       */}{' '}
+      <Newsletter variant={"minimal"}/>
       {/* to be added in next version <CommentsSection/> */}
       <RelatedPosts
         currentPostSlug={slug}
