@@ -1,11 +1,11 @@
 'use client';
 
-import type React from 'react';
-import { memo, useRef, useState, useEffect } from 'react';
+import React, { memo, useRef, useState, useEffect, useCallback } from 'react';
 import { MemoizedImage } from '@/components/memoized-image';
 import { MemoizedVideo } from './memoized-video';
 import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
+import Image from 'next/image';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
@@ -15,140 +15,426 @@ interface MediaItem {
 interface MediaCarouselProps {
   media: MediaItem[];
   title: string;
+  initialFocusedIndex?: number | null;
+  onClose?: () => void;
 }
 
-const MediaCarousel: React.FC<MediaCarouselProps> = memo(({ media, title }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [maxScroll, setMaxScroll] = useState(0);
-  const isMobile = useMobile();
+const MediaCarousel: React.FC<MediaCarouselProps> = memo(
+  ({ media, title, initialFocusedIndex = null, onClose }) => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [maxScroll, setMaxScroll] = useState(0);
+    const isMobile = useMobile();
 
-  const debounce = <T extends (...args: unknown[]) => void>(fn: T, ms = 10) => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    return function (this: unknown, ...args: Parameters<T>) {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => fn.apply(this, args), ms);
+    const [focusedIndex, setFocusedIndex] = useState<number | null>(
+      initialFocusedIndex,
+    );
+    const [mousePosition, setMousePosition] = useState<'left' | 'right' | null>(
+      null,
+    );
+
+    // Track single-finger start
+    const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+    // Track if we're in a pinch gesture
+    const isPinchingRef = useRef(false);
+
+    const debounce = <T extends (...args: unknown[]) => void>(
+      fn: T,
+      ms = 10,
+    ) => {
+      let timeoutId: ReturnType<typeof setTimeout>;
+      return function (this: unknown, ...args: Parameters<T>) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), ms);
+      };
     };
-  };
 
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer) return;
+    const navigateMedia = useCallback(
+      (direction: 'next' | 'prev') => {
+        if (focusedIndex === null || media.length === 0) return;
+        if (direction === 'next') {
+          setFocusedIndex((current) =>
+            current === null ? 0 : (current + 1) % media.length,
+          );
+        } else {
+          setFocusedIndex((current) =>
+            current === null
+              ? media.length - 1
+              : (current - 1 + media.length) % media.length,
+          );
+        }
+      },
+      [focusedIndex, media.length],
+    );
 
-    const handleScroll = () => {
-      if (!scrollContainerRef.current) return;
-      const currentPosition = scrollContainerRef.current.scrollLeft;
+    const closeFocusedView = useCallback(() => {
+      setFocusedIndex(null);
+      document.body.style.overflow = '';
+      if (onClose) onClose();
+    }, [onClose]);
+
+    const handleMouseMove = useCallback(
+      (e: React.MouseEvent) => {
+        if (isMobile) return;
+        const { clientX, currentTarget } = e;
+        const rect = currentTarget.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        setMousePosition(clientX > centerX ? 'right' : 'left');
+      },
+      [isMobile],
+    );
+
+    const handleMouseLeave = useCallback(() => {
+      setMousePosition(null);
+    }, []);
+
+    useEffect(() => {
+      if (focusedIndex !== null) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }, [focusedIndex]);
+
+    useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (focusedIndex === null) return;
+        switch (e.key) {
+          case 'ArrowLeft':
+            navigateMedia('prev');
+            e.preventDefault();
+            break;
+          case 'ArrowRight':
+            navigateMedia('next');
+            e.preventDefault();
+            break;
+          case 'Escape':
+            closeFocusedView();
+            e.preventDefault();
+            break;
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [focusedIndex, navigateMedia, closeFocusedView]);
+
+    // Handle touch start (detect pinch vs single-touch)
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+      if (e.touches.length > 1) {
+        isPinchingRef.current = true;
+        return;
+      }
+      isPinchingRef.current = false;
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    }, []);
+
+    // Only intercept single-finger horizontal swipes
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+      // if pinching or multi-touch, let native handling run
+      if (isPinchingRef.current || e.touches.length > 1) return;
+
+      if (touchStartRef.current) {
+        const dx = e.touches[0].clientX - touchStartRef.current.x;
+        const dy = e.touches[0].clientY - touchStartRef.current.y;
+        // horizontal swipe
+        if (Math.abs(dx) > Math.abs(dy)) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    }, []);
+
+    // On touch end, skip navigation if it was a pinch
+    const handleTouchEnd = useCallback(
+      (e: React.TouchEvent) => {
+        if (isPinchingRef.current) {
+          isPinchingRef.current = false;
+          touchStartRef.current = null;
+          return;
+        }
+        if (!touchStartRef.current) return;
+
+        const touchEnd = {
+          x: e.changedTouches[0].clientX,
+          y: e.changedTouches[0].clientY,
+        };
+        const deltaX = touchEnd.x - touchStartRef.current.x;
+        const deltaY = touchEnd.y - touchStartRef.current.y;
+        const minSwipeDistance = 50;
+
+        if (
+          Math.abs(deltaX) > Math.abs(deltaY) &&
+          Math.abs(deltaX) > minSwipeDistance
+        ) {
+          if (deltaX > 0) {
+            navigateMedia('prev');
+          } else {
+            navigateMedia('next');
+          }
+        } else if (Math.abs(deltaY) > minSwipeDistance) {
+          if (deltaY > 0) {
+            navigateMedia('prev');
+          } else {
+            navigateMedia('next');
+          }
+        }
+
+        touchStartRef.current = null;
+      },
+      [navigateMedia],
+    );
+
+    const handleSideClick = useCallback(
+      (e: React.MouseEvent) => {
+        if (isMobile) return;
+        const { clientX, currentTarget } = e;
+        const rect = currentTarget.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        if (clientX > centerX) {
+          navigateMedia('next');
+        } else {
+          navigateMedia('prev');
+        }
+      },
+      [isMobile, navigateMedia],
+    );
+
+    useEffect(() => {
+      const scrollContainer = scrollContainerRef.current;
+      if (!scrollContainer) return;
+      const handleScroll = () => {
+        const currentPosition = scrollContainer.scrollLeft;
+        const containerWidth = scrollContainer.clientWidth;
+        const scrollWidth = scrollContainer.scrollWidth;
+        setScrollPosition(currentPosition);
+        setMaxScroll(Math.max(0, scrollWidth - containerWidth));
+      };
+      const debouncedHandleScroll = debounce(handleScroll, 10);
+      handleScroll();
+      scrollContainer.addEventListener('scroll', debouncedHandleScroll);
+      window.addEventListener('resize', handleScroll);
+      return () => {
+        scrollContainer.removeEventListener('scroll', debouncedHandleScroll);
+        window.removeEventListener('resize', handleScroll);
+      };
+    }, [media]);
+
+    const calculateIndicatorWidth = () => {
+      if (!scrollContainerRef.current || maxScroll <= 0) return '0%';
       const containerWidth = scrollContainerRef.current.clientWidth;
       const scrollWidth = scrollContainerRef.current.scrollWidth;
-      const maxScrollPosition = Math.max(0, scrollWidth - containerWidth);
-      setScrollPosition(currentPosition);
-      setMaxScroll(maxScrollPosition);
+      const percent = Math.max(
+        10,
+        Math.min(100, (containerWidth / scrollWidth) * 100),
+      );
+      return `${percent}%`;
     };
 
-    const debouncedHandleScroll = debounce(handleScroll, 10);
-
-    // Calculate initial values
-    handleScroll();
-
-    // Add scroll event listener with debounced handler
-    scrollContainer.addEventListener('scroll', debouncedHandleScroll);
-
-    // Handle resize to recalculate max scroll
-    const handleResize = () => {
-      handleScroll();
+    const calculateIndicatorPosition = () => {
+      if (!scrollContainerRef.current || maxScroll <= 0) return '0%';
+      const clamped = Math.max(0, Math.min(scrollPosition, maxScroll));
+      const width = parseFloat(calculateIndicatorWidth());
+      const percent = Math.min(100 - width, (clamped / maxScroll) * 100);
+      return `${percent}%`;
     };
-    window.addEventListener('resize', handleResize);
 
-    return () => {
-      scrollContainer.removeEventListener('scroll', debouncedHandleScroll);
-      window.removeEventListener('resize', handleResize);
+    const scrollIndicatorWidth = calculateIndicatorWidth();
+    const scrollIndicatorPosition = calculateIndicatorPosition();
+
+    const getCursorStyle = () => {
+      if (isMobile) return 'default';
+      if (mousePosition === 'left') return 'w-resize';
+      if (mousePosition === 'right') return 'e-resize';
+      return 'default';
     };
-  }, [media]);
 
-  // Calculate indicator width and position with boundary checks
-  const calculateIndicatorWidth = () => {
-    if (!scrollContainerRef.current || maxScroll <= 0) return '0%';
-    const containerWidth = scrollContainerRef.current.clientWidth;
-    const scrollWidth = scrollContainerRef.current.scrollWidth;
-    // Ensure width is between 10% (minimum for visibility) and 100%
-    const percentage = Math.max(
-      10,
-      Math.min(100, (containerWidth / scrollWidth) * 100),
-    );
-    return `${percentage}%`;
-  };
+    const renderFocusedMedia = () => {
+      if (focusedIndex === null || !media[focusedIndex]) return null;
+      const item = media[focusedIndex];
+      const youtubeKey = `youtube-${item.src}`;
 
-  const calculateIndicatorPosition = () => {
-    if (!scrollContainerRef.current || maxScroll <= 0) return '0%';
-    // Clamp scroll position between 0 and maxScroll
-    const clampedPosition = Math.max(0, Math.min(scrollPosition, maxScroll));
-    // Calculate percentage (0-100) and ensure it doesn't push indicator out of bounds
-    const percentage = Math.min(
-      100 - Number.parseFloat(calculateIndicatorWidth()),
-      (clampedPosition / maxScroll) * 100,
-    );
-    return `${percentage}%`;
-  };
+      return (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onClick={handleSideClick}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{ 
+            cursor: getCursorStyle(),
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            margin: 0,
+            padding: 0
+          }}
+        >
+          {/* Close button */}
+          <button
+            className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              closeFocusedView();
+            }}
+            aria-label="Close"
+          >
+            Close
+          </button>
 
-  const scrollIndicatorWidth = calculateIndicatorWidth();
-  const scrollIndicatorPosition = calculateIndicatorPosition();
-
-  return (
-    <div className="mt-2 mb-2 sm:mx-0 sm:mb-0">
-      <div
-        ref={scrollContainerRef}
-        className="overflow-x-auto overflow-y-hidden scrollbar-hide"
-        style={{ scrollSnapType: 'none' }}
-      >
-        <div className="flex gap-2 sm:px-0 mb-2">
-          {media.map((item, idx) => (
-            <div key={idx} className="flex-shrink-0">
-              {item.type === 'video' ? (
+          {/* Media container */}
+          <div className="max-w-[100vw] max-h-[100vh] w-full flex items-center justify-center">
+            {item.type === 'video' ? (
+              <div className="relative max-w-full max-h-[100vh] flex items-center justify-center overflow-hidden">
                 <MemoizedVideo
                   src={item.src}
-                  alt={`${title} video ${idx + 1}`}
-                  width={130}
-                  height={130}
-                  className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                  alt={`${title} video ${focusedIndex + 1}`}
+                  width={800}
+                  height={800}
+                  className="max-w-full max-h-[100vh] object-contain w-auto h-auto"
+                  controls
+                  focusable={false}
                 />
-              ) : item.type === 'youtube' ? (
+              </div>
+            ) : item.type === 'youtube' ? (
+              <div
+                key={youtubeKey}
+                className="max-w-full w-full bg-black overflow-hidden"
+                style={{
+                  zIndex: 100,
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '800px',
+                  minHeight: '300px',
+                  aspectRatio: '16/9',
+                }}
+                onMouseMove={(e) => e.stopPropagation()}
+                onMouseEnter={(e) => e.stopPropagation()}
+                onMouseLeave={(e) => e.stopPropagation()}
+              >
                 <MemoizedYouTube
                   videoId={item.src}
-                  title={`${title} YouTube video ${idx + 1}`}
-                  className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                  title={`${title} YouTube video ${focusedIndex + 1}`}
+                  showPlayer
+                  autoplay
                 />
-              ) : (
-                <MemoizedImage
-                  src={item.src}
-                  alt={`${title} image ${idx + 1}`}
-                  width={130}
-                  height={130}
-                  className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+              </div>
+            ) : (
+              <div className="max-w-full max-h-[100vh] overflow-auto">
+                <Image
+                  src={item.src || '/placeholder.svg'}
+                  alt={`${title} image ${focusedIndex + 1}`}
+                  width={1200}
+                  height={800}
+                  className="max-w-none max-h-none object-contain"
                   quality={100}
+                  priority
                   unoptimized
+                  style={{
+                    touchAction: 'pinch-zoom',
+                    maxWidth: '100%',
+                    maxHeight: '100vh',
+                  }}
                 />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+              </div>
+            )}
+          </div>
 
-      {/* Scroll indicator - only visible on mobile */}
-      {isMobile && maxScroll > 0 && (
-        <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1 sm:hidden">
+          {/* Counter */}
           <div
-            className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
-            style={{
-              width: scrollIndicatorWidth,
-              left: scrollIndicatorPosition,
-            }}
-          />
+            className="absolute bottom-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {focusedIndex + 1} / {media.length}
+          </div>
         </div>
-      )}
-    </div>
-  );
-});
+      );
+    };
+
+    return (
+      <div className="mt-2 mb-2">
+        {/* Thumbnail strip */}
+        <div
+          ref={scrollContainerRef}
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide"
+          style={{ scrollSnapType: 'none' }}
+        >
+          <div className="flex gap-2 mb-2">
+            {media.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setFocusedIndex(idx);
+                }}
+              >
+                {item.type === 'video' ? (
+                  <MemoizedVideo
+                    src={item.src}
+                    alt={`${title} video ${idx + 1}`}
+                    width={130}
+                    height={130}
+                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    focusable={false}
+                  />
+                ) : item.type === 'youtube' ? (
+                  <MemoizedYouTube
+                    videoId={item.src}
+                    title={`${title} YouTube video ${idx + 1}`}
+                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    focusable={false}
+                    autoplay={false}
+                  />
+                ) : (
+                  <MemoizedImage
+                    src={item.src}
+                    alt={`${title} image ${idx + 1}`}
+                    width={130}
+                    height={130}
+                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    quality={100}
+                    unoptimized
+                    focusable={false}
+                    animate
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        {isMobile && maxScroll > 0 && (
+          <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
+            <div
+              className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
+              style={{
+                width: scrollIndicatorWidth,
+                left: scrollIndicatorPosition,
+              }}
+            />
+          </div>
+        )}
+
+        {/* Focused overlay */}
+        {focusedIndex !== null && renderFocusedMedia()}
+      </div>
+    );
+  },
+);
 
 MediaCarousel.displayName = 'MediaCarousel';
-
 export default MediaCarousel;

@@ -9,13 +9,47 @@ import type { Metadata, Viewport } from 'next';
 import { Analytics } from './analytics';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
-import { Inter } from 'next/font/google';
+import { Instrument_Serif, Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import ClientComponents from './client';
 
-const inter = Inter({
+const fontSans = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist-sans',
+});
+
+const fontMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+});
+
+const instrumentSerif = Instrument_Serif({
+  weight: ['400'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-instrument-serif',
+});
+
+const perfectlyNineties = localFont({
+  src: [
+    {
+      path: './perfectly-nineties-regular.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './perfectly-nineties-regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './perfectly-nineties-regular.otf',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-perfectly-nineties',
 });
 
 export const viewport: Viewport = {
@@ -76,7 +110,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} font-sans antialiased`}
+      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} font-sans antialiased`}
     >
       <head>
         <script

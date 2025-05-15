@@ -12,6 +12,7 @@ import { HR as hr } from '@/app/blog/components/hr';
 import { Figure } from '@/app/blog/components/figure';
 import { Caption } from '@/app/blog/components/caption';
 import { YouTube } from '@/app/blog/components/youtube';
+import { Embed } from '@/app/blog/components/embed';
 import { Ref, FootNotes, FootNote } from '@/app/blog/components/footnotes';
 import { Blockquote as blockquote } from '@/app/blog/components/blockquote';
 import { InlineCode } from '@/app/blog/components/code';
@@ -107,6 +108,7 @@ export const MDXComponents = {
   Figure,
   Caption,
   YouTube,
+  Embed,
   PhotoGrid,
   Strava,
   TikTok,

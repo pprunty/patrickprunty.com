@@ -97,12 +97,12 @@ const Subscribe: React.FC<SubscribeProps> = ({
     <div className={cn('w-full', className)}>
       <form
         onSubmit={handleSubmit}
-        className={cn('flex flex-col gap-2', containerClassName)}
+        className={cn('flex flex-col sm:gap-3', containerClassName)}
       >
         <div
           className={cn(
             stackButtonOnMobile
-              ? 'flex flex-col sm:flex-row gap-1 sm:gap-2'
+              ? 'flex flex-col sm:flex-row gap-3 sm:gap-2'
               : 'flex gap-2',
           )}
         >
@@ -121,16 +121,26 @@ const Subscribe: React.FC<SubscribeProps> = ({
               text-md
               sm:text-base
               border
-              border-border
-              bg-input
+              border-[#e0e0e0]
+              dark:border-border
+              bg-background
               text-foreground
               placeholder-muted-foreground/60
               dark:placeholder-[#999999]
               focus:outline-none
-              focus:ring-1
-              focus:ring-ring
+              focus:border-[#000000]
+              dark:focus:border-[#ffffff]
+              focus:ring-2
+              focus:ring-[#00000015]
+              dark:focus:ring-[#ffffff25]
+              focus-visible:ring-2
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-background
+              focus-visible:ring-[#00000020]
+              dark:focus-visible:ring-[#ffffff30]
               disabled:opacity-70
-              transition-colors
+              transition-all
+              duration-200
             `,
               inputClassName,
             )}

@@ -1,6 +1,6 @@
 import { SOCIAL_URLS } from '@/config';
 import { SocialPlatform } from '@/__samwise/types/SocialPlatform';
-import { Mail, Instagram, Youtube, Linkedin, Github, Rss } from 'lucide-react'; // Import icons from Lucide React
+import { Rss } from 'lucide-react';
 import { XLogo } from '@phosphor-icons/react/dist/ssr';
 
 export const urlMapping: Record<SocialPlatform, string> = {
@@ -29,6 +29,9 @@ export function SocialIcon({
   height = '20',
   className = '',
 }: SocialIconProps) {
+  // Determine if we should use responsive sizing or custom dimensions
+  const useCustomSize = width !== '20' || height !== '20';
+
   const iconProps = {
     width,
     height,
@@ -38,7 +41,8 @@ export function SocialIcon({
        text-[#666] dark:text-[#999999]
        transition-colors duration-200
        hover:text-gray-900 dark:hover:text-white
-       active:text-gray-900 active:hover:text-white ${className}`,
+       active:text-gray-900 active:hover:text-white
+       ${useCustomSize ? '' : 'w-6 h-6 sm:w-5 sm:h-5'} ${className}`,
     'aria-label': `${platform} profile`,
     role: 'link',
   };
@@ -132,7 +136,7 @@ export function SocialIcon({
         </svg>
       );
     case 'rss': {
-      const { fill, ...restProps } = iconProps;
+      const { fill: _, ...restProps } = iconProps;
       return <Rss {...restProps} />;
     }
     default:

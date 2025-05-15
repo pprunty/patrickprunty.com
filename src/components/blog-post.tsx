@@ -17,13 +17,12 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
     <article
       className="flex sm:p-4 gap-4 items-start pb-4
              sm:border sm:border-border
-             rounded-0 sm:rounded-md
              hover:border-foreground
              sm:transition-colors sm:duration-300"
     >
       <div className="flex-grow space-y-2 min-w-0">
         {/* Title */}
-        <h2 className="line-clamp-2 text-xl font-semibold leading-tight">
+        <h2 className="line-clamp-2 text-xl sm:text-2xl font-semibold leading-tight">
           {post.title}
         </h2>
 

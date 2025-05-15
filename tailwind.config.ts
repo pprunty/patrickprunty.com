@@ -10,6 +10,29 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          'var(--font-geist-sans)',
+          'Geist',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+        mono: [
+          'var(--font-geist-mono)',
+          'Geist Mono',
+          'ui-monospace',
+          'monospace',
+        ],
+        script: [
+          'var(--font-perfectly-nineties)',
+          'Perfectly Nineties',
+          'ui-serif',
+          'Georgia',
+          'Cambria',
+          'serif',
+        ],
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',

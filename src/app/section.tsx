@@ -27,6 +27,7 @@ interface SectionProps {
 }
 
 const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
+  // sectionName is intentionally unused in this component but kept for API consistency
   // Prepare all media items at once outside the render loop
   const allMediaItems = useMemo(() => {
     return items.map((item) => {

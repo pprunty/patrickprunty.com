@@ -51,8 +51,9 @@ export default function Header() {
         </div>
 
         {/* Right: Navbar Links */}
-        <nav className="font-mono text-xs grow justify-end items-center flex gap-1 md:gap-3">
+        <nav className="font-mono text-xs grow justify-end items-center flex md:gap-3">
           <ThemeSwitcher />
+          <ActiveLink href="/">About</ActiveLink>
           <ActiveLink href="/blog">Blog</ActiveLink>
 
           {/* CTA Social Icon Link */}
