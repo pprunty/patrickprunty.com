@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Calendas Plus Font */
+@font-face {
+  font-family: 'Calendas Plus';
+  src: url('/fonts/calendas_plus-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     /* Font setup */
@@ -12,6 +21,7 @@
     @apply text-[#222222];
     --scrollbar-width: 12px;
     --webkit-overflow-scrolling: touch;
+    --font-calendas: 'Calendas Plus', serif;
   }
 
   /* Dark mode settings */
@@ -323,5 +333,11 @@
 
   .font-mono {
     font-family: var(--font-geist-mono), 'Geist Mono', monospace;
+  }
+
+  .font-calendas {
+    font-family: var(--font-calendas), 'Calendas Plus', ui-serif, Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }

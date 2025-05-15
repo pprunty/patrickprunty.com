@@ -270,7 +270,17 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           onClick={handleSideClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={{ cursor: getCursorStyle() }}
+          style={{ 
+            cursor: getCursorStyle(),
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            margin: 0,
+            padding: 0
+          }}
         >
           {/* Close button */}
           <button
@@ -287,15 +297,17 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           {/* Media container */}
           <div className="max-w-[100vw] max-h-[100vh] w-full flex items-center justify-center">
             {item.type === 'video' ? (
-              <MemoizedVideo
-                src={item.src}
-                alt={`${title} video ${focusedIndex + 1}`}
-                width={800}
-                height={800}
-                className="max-w-full max-h-[100vh]"
-                controls
-                focusable={false}
-              />
+              <div className="relative max-w-full max-h-[100vh] flex items-center justify-center overflow-hidden">
+                <MemoizedVideo
+                  src={item.src}
+                  alt={`${title} video ${focusedIndex + 1}`}
+                  width={800}
+                  height={800}
+                  className="max-w-full max-h-[100vh] object-contain w-auto h-auto"
+                  controls
+                  focusable={false}
+                />
+              </div>
             ) : item.type === 'youtube' ? (
               <div
                 key={youtubeKey}
