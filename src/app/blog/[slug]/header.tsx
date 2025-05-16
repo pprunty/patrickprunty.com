@@ -33,7 +33,7 @@ export default function Header({ currentPost }: HeaderProps) {
   return (
     <>
       {/* Header Section */}
-      <h1 className="text-4xl font-script font-[300] sm:text-6xl dark:text-gray-100 mb-2">
+      <h1 className="text-4xl font-script tracking-tight ont-[300] sm:text-6xl dark:text-gray-100 mb-2">
         {post.title}
       </h1>
       {post.description && (

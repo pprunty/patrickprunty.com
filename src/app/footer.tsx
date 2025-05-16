@@ -21,8 +21,8 @@ export default function Footer() {
             <div className="flex flex-wrap w-full">
               {(
                 [
-                  'github',
                   'twitter',
+                  'github',
                   'instagram',
                   'reddit',
                   'tiktok',
