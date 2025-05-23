@@ -42,7 +42,7 @@ export function SocialIcon({
        transition-colors duration-200
        hover:text-gray-900 dark:hover:text-white
        active:text-gray-900 active:hover:text-white
-       ${useCustomSize ? '' : 'w-6 h-6 sm:w-5.5 sm:h-5.5'} ${className}`,
+       ${useCustomSize ? '' : 'w-6 h-6'} ${className}`,
     'aria-label': `${platform} profile`,
     role: 'link',
   };
