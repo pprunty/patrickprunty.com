@@ -98,7 +98,7 @@ export function Posts({ posts: initialPosts, showTabs = false }: PostsProps) {
   return (
     <>
       <Suspense fallback={null}>
-        <main className="max-w-2xl font-mono m-auto text-sm relative">
+        <main className="max-w-2xl font-mono m-auto text-[15px] relative">
           {/* Tabs for filtering post types */}
           {showTabs && (
             <Tabs
@@ -115,7 +115,7 @@ export function Posts({ posts: initialPosts, showTabs = false }: PostsProps) {
             </Tabs>
           )}
 
-          <header className="text-muted-foreground flex items-center text-xs">
+          <header className="text-muted-foreground flex items-center text-[13px]">
             {/* Date Sort Button */}
             <button
               onClick={sortDate}
@@ -378,7 +378,7 @@ export function HoverPreviewModal({
             <HoverImage src={activePost.image} alt={activePost.title} />
           )}
           <div className="p-4">
-            <p className="text-[15px] h-[4.5rem] text-muted-foreground line-clamp-3">
+            <p className="text-[16px] h-[4.5rem] text-muted-foreground line-clamp-3">
               {activePost.description}
             </p>
           </div>

@@ -73,7 +73,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
         "
       >
         <div className="w-full mx-auto flex flex-col items-start relative z-10">
-          <p className="mb-4 text-base text-muted-foreground">{subtitle}</p>
+          <p className="mb-4 text-[17px] text-muted-foreground">{subtitle}</p>
           <Subscribe className="w-full" stackButtonOnMobile={true} />
         </div>
       </ContentWrapper>

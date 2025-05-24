@@ -11,7 +11,7 @@ export function Caption({ children, large = false }: CaptionProps) {
     <span
       className={`block w-full font-mono ${
         large
-          ? 'text-[13px] text-muted-foreground/80'
+          ? 'text-[14px] text-muted-foreground/80'
           : 'text-xs text-muted-foreground'
       } my-3 text-center leading-normal`}
     >
