@@ -118,7 +118,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               px-4
               py-2.5
               rounded-md
-              text-[17px]
+              text-base
               sm:text-base
               border
               border-[#e0e0e0]
@@ -158,7 +158,7 @@ const Subscribe: React.FC<SubscribeProps> = ({
               active:bg-primary-hover
               active:scale-96
               rounded-md
-              text-[17px]
+              text-base
               sm:text-base
               font-semibold
               border
