@@ -192,7 +192,7 @@ const TabsList = forwardRef<
     // Size classes
     const sizeClasses = {
       sm: 'h-[28px] text-[13px]',
-      md: 'h-[34px] text-base',
+      md: 'h-[34px] text-[17px]',
       lg: 'h-[40px] text-lg',
     };
 

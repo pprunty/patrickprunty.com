@@ -27,7 +27,7 @@ export function Admonition({ type, title, children }: AdmonitionProps) {
   };
 
   return (
-    <div className={`p-4 my-4 text-base ${typeStyles[type]}`}>
+    <div className={`p-4 my-4 text-[17px] ${typeStyles[type]}`}>
       <div className="flex">
         <div className="mr-3 text-xl">{iconMap[type]}</div>
         <div>

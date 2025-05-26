@@ -56,7 +56,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
   }, [items]);
 
   return (
-    <section className="text-base my-5">
+    <section className="text-[17px] my-5">
       <div className="space-y-4">
         {items.map((item, index) => {
           if (item.hide) return null;
@@ -77,7 +77,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="text-base no-after font-medium text-primary underline decoration-wavy underline-offset-4 decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground flex items-center gap-1"
+                    className="text-[17px] no-after font-medium text-primary underline decoration-wavy underline-offset-4 decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground flex items-center gap-1"
                   >
                     {item.title}
                     <ArrowUpRight
@@ -87,13 +87,13 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     />
                   </a>
                 ) : (
-                  <span className="text-base font-medium text-primary">
+                  <span className="text-[17px] font-medium text-primary">
                     {item.title}
                   </span>
                 )}
               </div>
 
-              <div className="text-base text-muted-foreground">
+              <div className="text-[17px] text-muted-foreground">
                 {item.year && (
                   <div className="flex items-baseline">
                     {item.description && (

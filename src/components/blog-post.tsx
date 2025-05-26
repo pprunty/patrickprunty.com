@@ -29,7 +29,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post, index }) => (
         {/* Description */}
         {post.description && (
           <p
-            className="text-[#646464] dark:text-[#B4B4B4] text-base
+            className="text-[#646464] dark:text-[#B4B4B4] text-[17px]
                        line-clamp-3  /* Default for mobile */
                        sm:line-clamp-4 /* Clamp to 2 lines on desktop */
           "
