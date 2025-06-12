@@ -270,7 +270,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           onClick={handleSideClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={{ 
+          style={{
             cursor: getCursorStyle(),
             top: 0,
             left: 0,
@@ -279,7 +279,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             width: '100vw',
             height: '100vh',
             margin: 0,
-            padding: 0
+            padding: 0,
           }}
         >
           {/* Close button */}

@@ -4,7 +4,7 @@
       "slug": "1-weekly-standup",
       "date": "April 16, 2025",
       "title": "#1 The Weekly Stand-Up",
-      "draft": false,
+      "draft": true,
       "description": "AI agents, Go tooling, salary negotiation tips, writing hacks, and quirky discoveries.",
       "keywords": [
         "programming",
@@ -57,7 +57,7 @@
       "date": "April 6, 2025",
       "title": "Indie Hackers and Liars",
       "draft": true,
-      "description": "to be filled",
+      "description": "or: Why The Mantra 'Build It And They Will Come' is Dead",
       "keywords": [
         "indiehacker",
         "liars",
@@ -71,7 +71,7 @@
       "author": "Patrick Prunty",
       "authorUrl": "https://patrickprunty.com/about",
       "image": "/images/indie-hackers-and-liars/indie-hackers-and-liars3.webp",
-      "readingTime": 1
+      "readingTime": 2
     },
     {
       "slug": "the-engineers-proclivity-for-perfection",
