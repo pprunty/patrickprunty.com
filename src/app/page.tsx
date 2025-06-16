@@ -12,7 +12,7 @@ import {
   SCRAMBLED_LETTER_COUNT,
 } from '@/lib/utils';
 import Image from 'next/image';
-import me from '../../public/images/me.WEBP';
+import me from '../../public/images/me.webp';
 import MediaCarousel from './media-carousel';
 
 export default function Home() {
