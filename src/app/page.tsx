@@ -102,7 +102,8 @@ export default function Home() {
                   <ScrambleCombinedPair
                     leftText={
                       <span className="w-full whitespace-pre">
-                        {item.title}{isExternal ? ' ↗' : ''}
+                        {item.title}
+                        {isExternal ? ' ↗' : ''}
                       </span>
                     }
                     leftTextString={item.title}
@@ -133,9 +134,7 @@ export default function Home() {
                         {linkContent}
                       </a>
                     ) : (
-                      <Link href={item.links}>
-                        {linkContent}
-                      </Link>
+                      <Link href={item.links}>{linkContent}</Link>
                     )}
                   </div>
                 );

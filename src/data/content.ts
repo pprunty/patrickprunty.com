@@ -21,13 +21,13 @@ export const projects = [
     title: 'deltacomponents.dev',
     year: 'now',
     links: 'https://deltacomponents.dev/',
-    img: './img/deltacomponents.webp',
+    img: './projects/delta-components.webp',
   },
   {
     title: 'magikarp',
     year: 'now',
     links: 'https://github.com/pprunty/magikarp',
-    img: './img/magikarp.webp',
+    img: './projects/magikarp.png',
   },
   {
     title: 'tmplate.xyz',
@@ -39,18 +39,13 @@ export const projects = [
     title: 'motormongo',
     year: '2023',
     links: 'https://motormongo.readthedocs.io/en/latest/',
-    img: './img/motormongo.webp',
+    img: './projects/motormongo.png',
   },
 ];
 
 export const writing = [
   {
-    title: 'personal blog',
-    year: '2024',
-    links: '/blog',
-  },
-  {
-    title: 'furry circuits (essays, guides and newsletter)',
+    title: 'furry circuits (essays & newsletter)',
     year: '2025',
     links: 'https://pprunty.substack.com',
     img: './projects/furry-circuits.png',
@@ -61,7 +56,8 @@ export const youtube = [
   {
     title: 'pixel projects',
     year: 'soon',
-    links: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1',
+    links:
+      'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1',
     img: './projects/pixel-projects.webp',
   },
   {
