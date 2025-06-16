@@ -1,6 +1,6 @@
 import ScrambleIn from '@/components/scramble-in';
 import ScrambleCombinedPair from '@/components/scramble-combined-pair';
-import { projects, socials } from '@/data/content';
+import { projects, socials, writing, youtube } from '@/data/content';
 import Newsletter from '@/components/newsletter';
 import ThemeSwitcher from '@/components/theme-switcher';
 import PhotoCarousel from '@/components/photo-carousel';
@@ -96,46 +96,50 @@ export default function Home() {
               </ScrambleIn>
             </h2>
             <div className="flex-1 w-full">
-              <Link href="/blog">
-                <ScrambleCombinedPair
-                  leftText={
-                    <span className="w-full whitespace-pre">
-                      personal blog{' '}
-                    </span>
-                  }
-                  leftTextString="personal blog"
-                  rightText="2024"
-                  delay={ROW_DELAY * 3 + getAnimationDuration('patrick prunty')}
-                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
-                  scrambleSpeed={SCRAMBLE_SPEED}
-                  className="font-light"
-                  containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
-                />
-              </Link>
-              <a
-                href="https://pprunty.substack.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ScrambleCombinedPair
-                  leftText={
-                    <span className="w-full whitespace-pre">
-                      furry circuits ↗
-                    </span>
-                  }
-                  leftTextString="furry circuits"
-                  rightText="2025"
-                  delay={
-                    ROW_DELAY * 3 +
-                    getAnimationDuration('patrick prunty') +
-                    ROW_DELAY
-                  }
-                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
-                  scrambleSpeed={SCRAMBLE_SPEED}
-                  className="font-light"
-                  containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
-                />
-              </a>
+              {writing.map((item, index) => {
+                const isExternal = item.links.startsWith('http');
+                const linkContent = (
+                  <ScrambleCombinedPair
+                    leftText={
+                      <span className="w-full whitespace-pre">
+                        {item.title}{isExternal ? ' ↗' : ''}
+                      </span>
+                    }
+                    leftTextString={item.title}
+                    rightText={item.year}
+                    delay={
+                      ROW_DELAY * 3 +
+                      getAnimationDuration('patrick prunty') +
+                      ROW_DELAY * index
+                    }
+                    scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                    scrambleSpeed={SCRAMBLE_SPEED}
+                    className="font-light"
+                    img={item.img}
+                    imgAlt={`${item.title} preview`}
+                    showImage={!!item.img}
+                    containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                  />
+                );
+
+                return (
+                  <div key={index}>
+                    {isExternal ? (
+                      <a
+                        href={item.links}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {linkContent}
+                      </a>
+                    ) : (
+                      <Link href={item.links}>
+                        {linkContent}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -152,56 +156,37 @@ export default function Home() {
               </ScrambleIn>
             </h2>
             <ul className="flex-1">
-              <li>
-                <a
-                  href="https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ScrambleCombinedPair
-                    leftTextString="pixel projects"
-                    leftText={
-                      <span className="w-full whitespace-pre">
-                        pixel projects ↗
-                      </span>
-                    }
-                    rightText="soon"
-                    delay={
-                      ROW_DELAY * 7 + getAnimationDuration('patrick prunty')
-                    }
-                    scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
-                    scrambleSpeed={SCRAMBLE_SPEED}
-                    className="font-light"
-                    containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.youtube.com/@pprunty?sub_confirmation=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ScrambleCombinedPair
-                    leftTextString="patrick prunty"
-                    leftText={
-                      <span className="w-full whitespace-pre">
-                        patrick prunty ↗
-                      </span>
-                    }
-                    rightText="2025"
-                    delay={
-                      ROW_DELAY * 7 +
-                      getAnimationDuration('patrick prunty') +
-                      ROW_DELAY
-                    }
-                    scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
-                    scrambleSpeed={SCRAMBLE_SPEED}
-                    className="font-light"
-                    containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
-                  />
-                </a>
-              </li>
+              {youtube.map((item, index) => (
+                <li key={index}>
+                  <a
+                    href={item.links}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ScrambleCombinedPair
+                      leftTextString={item.title}
+                      leftText={
+                        <span className="w-full whitespace-pre">
+                          {item.title} ↗
+                        </span>
+                      }
+                      rightText={item.year}
+                      delay={
+                        ROW_DELAY * 7 +
+                        getAnimationDuration('patrick prunty') +
+                        ROW_DELAY * index
+                      }
+                      scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                      scrambleSpeed={SCRAMBLE_SPEED}
+                      className="font-light"
+                      img={item.img}
+                      imgAlt={`${item.title} preview`}
+                      showImage={!!item.img}
+                      containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                    />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
