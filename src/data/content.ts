@@ -50,7 +50,7 @@ export const writing = [
     links: '/blog',
   },
   {
-    title: 'furry circuits',
+    title: 'furry circuits (essays, guides and newsletter)',
     year: '2025',
     links: 'https://pprunty.substack.com',
     img: './projects/furry-circuits.png',
