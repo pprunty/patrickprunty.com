@@ -1,125 +1,142 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import Subscribe from './subscribe';
+import { useState } from 'react';
+import ScrambleIn from './scramble-in';
+import ScrambleCombined from './scramble-combined';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import {
+  getAnimationDuration,
+  SCRAMBLE_SPEED,
+  SCRAMBLED_LETTER_COUNT,
+} from '@/lib/utils';
+import LoadingSpinner from './loading';
 
-interface NewsletterProps {
-  title?: string;
-  subtitle?: string;
-  animate?: boolean;
-  variant?: 'default' | 'minimal';
-}
+export default function Newsletter({ delay = 0 }: { delay?: number }) {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
+  const [showScrambledPlaceholder, setShowScrambledPlaceholder] =
+    useState(true);
 
-const Newsletter: React.FC<NewsletterProps> = ({
-  title = 'Stay Updated',
-  subtitle = 'Weekly insights on AI, web development, and the cultural shifts shaping our future.',
-  animate = true,
-  variant = 'default',
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
 
-  useEffect(() => {
-    if (!ref.current || !animate) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }, // Trigger when 50% of the element is visible
-    );
-
-    observer.observe(ref.current);
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [animate]);
-
-  const ContentWrapper = animate ? motion.section : 'section';
-  const animationProps = animate
-    ? {
-        initial: { opacity: 0, scale: 0.98 },
-        animate: isVisible
-          ? { opacity: 1, scale: 1 }
-          : { opacity: 0, scale: 0.98 },
-        transition: {
-          duration: 0.5,
-          scale: { type: 'spring', bounce: 0.3, duration: 0.6 },
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.status === 200) {
+        setStatus('success');
+        setEmail('');
+
+        // Reset status after success
+        setTimeout(() => {
+          setStatus('idle');
+        }, 2000);
+      } else {
+        setStatus('error');
       }
-    : {};
+    } catch (error) {
+      console.error('Error submitting newsletter form:', error);
+      setStatus('error');
+    }
+  };
 
-  // Minimal variant has a simpler layout without image
-  if (variant === 'minimal') {
-    return (
-      <ContentWrapper
-        ref={ref}
-        {...animationProps}
-        className="
-          p-6 rounded-xl
-          border border-border 
-          relative overflow-hidden
-          bg-card
-          text-accent-foreground dark:text-secondary-foreground
-          shadow-sm my-8
-        "
-      >
-        <div className="w-full mx-auto flex flex-col items-start relative z-10">
-          <p className="mb-4 text-[17px] text-muted-foreground">{subtitle}</p>
-          <Subscribe className="w-full" stackButtonOnMobile={true} />
-        </div>
-      </ContentWrapper>
-    );
-  }
-
-  // Default variant with the image
   return (
-    <ContentWrapper
-      ref={ref}
-      {...animationProps}
-      className="
-        p-0 sm:py-6 sm:px-5 rounded-xl
-        border border-border 
-        relative overflow-hidden
-        bg-card
-        text-accent-foreground dark:text-secondary-foreground
-        shadow-sm
-      "
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-1 flex-row gap-4 lowercase w-full"
     >
-      {/* Consistent vertical layout on both mobile and desktop */}
-      <div className="w-full mx-auto flex flex-col items-start relative z-10">
-        {/* Image - full width on both mobile and desktop */}
-        <div className="w-full h-[240px] flex-shrink-0 overflow-hidden">
-          <Image
-            src="/images/manet.png"
-            alt="Newsletter image"
-            width={800}
-            height={400}
-            priority
-            className="w-full h-full object-cover object-top sm:rounded-lg"
+      <div className="relative w-full flex items-center">
+        <div className="relative flex w-full items-center">
+          <input
+            type="email"
+            value={email}
+            placeholder={showScrambledPlaceholder ? '' : 'enter your email'}
+            aria-label="Enter your email address to subscribe to the newsletter"
+            onChange={(e) => setEmail(e.target.value)}
+            className="bg-transparent focus:outline-none pb-[1.5vw] sm:pb-1.5 md:pb-2 w-full placeholder:text-muted-foreground"
+            required
           />
+          {showScrambledPlaceholder && email.length === 0 && (
+            <div className="absolute top-0 left-0  pointer-events-none overflow-hidden">
+              <ScrambleIn
+                delay={delay}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                className="w-full truncate text-muted-foreground"
+                scrambledClassName="text-muted-foreground"
+                onComplete={() => setShowScrambledPlaceholder(false)}
+              >
+                enter your email
+              </ScrambleIn>
+            </div>
+          )}
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="self-start w-20 sm:w-36 md:w-64 text-right sm:text-right flex items-center justify-end"
+            aria-label="subscribe"
+          >
+            {status === 'loading' ? (
+              <LoadingSpinner />
+            ) : status === 'success' ? (
+              <p>done ✓</p>
+            ) : status === 'error' ? (
+              <p className="text-destructive">error ⚠</p>
+            ) : (
+              <ScrambleCombined
+                delay={
+                  showScrambledPlaceholder
+                    ? delay + getAnimationDuration('enter your email')
+                    : 0
+                }
+                scrambleSpeed={SCRAMBLE_SPEED}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+              >
+                subscribe ⍈
+              </ScrambleCombined>
+            )}
+          </button>
         </div>
 
-        {/* Content - consistent padding on all screen sizes */}
-        <div className="w-full flex flex-col justify-center items-start text-left pt-4 pb-2 sm:pb-0 px-4 md:px-0">
-          {/* Heading */}
-          <h2 className="text-4xl font-script mb-2">{title}</h2>
-          {/* Description */}
-          <p className="mb-4 text-[17px] text-muted-foreground">{subtitle}</p>
-          {/* Subscribe Form */}
-          <Subscribe className="w-full" stackButtonOnMobile={true} />
-        </div>
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 border-t-[0.5vw] sm:border-t-[1.5px] md:border-t-2 border-solid border-foreground"
+          initial={{
+            scaleX: 1,
+            width: '0%',
+            filter: 'drop-shadow(0 0 0px transparent)',
+          }}
+          animate={{
+            scaleX: 1,
+            width: '100%',
+            filter: [
+              'drop-shadow(0 0 0px transparent)',
+              'drop-shadow(0 0 8px hsl(var(--foreground) / 0.3))',
+              'drop-shadow(0 0 4px hsl(var(--foreground) / 0.2))',
+              'drop-shadow(0 0 0px transparent)',
+            ],
+          }}
+          transition={{
+            delay: delay / 1000,
+            duration: 0.8,
+            type: 'spring',
+            bounce: 0,
+            filter: {
+              duration: 1.2,
+              times: [0, 0.3, 0.7, 1],
+              ease: 'easeInOut',
+            },
+          }}
+        />
       </div>
-    </ContentWrapper>
+    </form>
   );
-};
-
-export default Newsletter;
+}

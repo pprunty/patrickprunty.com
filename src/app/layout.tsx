@@ -3,7 +3,6 @@ import './atom-one-dark.css';
 import { AUTHOR, SITE_URL, SOCIAL_URLS, DEFAULT_KEYWORDS } from '@/config';
 import { doge } from './doge';
 import { themeEffect } from '@/components/theme-effect';
-import Header from './header';
 import { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from './analytics';
@@ -12,6 +11,7 @@ import { GA_MEASUREMENT_ID } from '@/config';
 import { Instrument_Serif, Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import ClientComponents from './client';
+import { cn } from '@/lib/utils';
 
 const fontSans = Geist({
   subsets: ['latin'],
@@ -50,6 +50,12 @@ const perfectlyNineties = localFont({
   ],
   display: 'swap',
   variable: '--font-perfectly-nineties',
+});
+
+const satoshi = localFont({
+  src: '../../public/fonts/Satoshi-Variable.woff2',
+  display: 'swap',
+  variable: '--font-satoshi',
 });
 
 export const viewport: Viewport = {
@@ -110,7 +116,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} font-sans antialiased`}
+      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} ${satoshi.variable} font-satoshi antialiased`}
     >
       <head>
         <script
@@ -126,9 +132,15 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="text-gray-800 dark:text-gray-300 pt-3 sm:pt-6 p-6 sm:px-4">
-        <Header />
-        <main className="z-[100] min-h-screen max-w-2xl pt-12 m-auto text-pretty">
+      <body
+        className={cn(
+          'relative min-h-screen bg-background font-sans antialiased',
+          fontSans.variable,
+          fontMono.variable,
+        )}
+      >
+        <div className="absolute inset-0 grid-bg pointer-events-none" />
+        <main className="relative z-[1] min-h-screen w-full overflow-x-hidden text-pretty">
           {children}
         </main>
         <ClientComponents />

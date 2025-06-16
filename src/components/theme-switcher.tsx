@@ -103,8 +103,8 @@ function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={16}
-      height={16}
+      width={18}
+      height={18}
       strokeWidth={0}
       viewBox="0 0 56 56"
       {...props}
@@ -122,8 +122,8 @@ function SunIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={16}
-      height={16}
+      width={18}
+      height={18}
       strokeWidth={0}
       viewBox="0 0 56 56"
       {...props}

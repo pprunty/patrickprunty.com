@@ -1,0 +1,345 @@
+import ScrambleIn from '@/components/scramble-in';
+import ScrambleCombinedPair from '@/components/scramble-combined-pair';
+import { projects, socials } from '@/data/content';
+import Newsletter from '@/components/newsletter';
+import ThemeSwitcher from '@/components/theme-switcher';
+import PhotoCarousel from '@/components/photo-carousel';
+import Link from 'next/link';
+import {
+  getAnimationDuration,
+  ROW_DELAY,
+  SCRAMBLE_SPEED,
+  SCRAMBLED_LETTER_COUNT,
+} from '@/lib/utils';
+
+export default function Home() {
+  return (
+    <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-background text-foreground font-normal text-[4.9vw] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight sm:leading-tight">
+      <div className="px-4 pt-10 pb-10 sm:px-6 sm:pt-10 sm:pb-10 md:px-8 md:pt-10 md:pb-10 lg:px-12 lg:pt-12 lg:pb-12">
+        <div className="relative max-w-screen-2xl mx-auto flex flex-col gap-16 sm:gap-18 md:gap-20 lg:gap-28">
+          {/* Theme Switcher - Aligned with design/tech/build section */}
+          <div className="absolute top-[0.25rem] sm:top-0 right-0 z-10 flex items-center h-[1.2em]">
+            <ThemeSwitcher />
+          </div>
+
+          {/* Header - Row 1 */}
+          <div className="flex flex-col sm:flex-row">
+            <div className="w-full mb-[2vw] sm:mb-0 sm:text-right sm:pr-6 md:pr-8 lg:pr-12 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <h1>
+                <ScrambleIn
+                  delay={0}
+                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                  scrambleSpeed={SCRAMBLE_SPEED}
+                  className="font-bold"
+                >
+                  patrick prunty
+                </ScrambleIn>
+              </h1>
+            </div>
+            <div className="">
+              <h1 className="pb-0.5 md:pb-0.5 lg>pb-1">
+                <ScrambleIn
+                  delay={getAnimationDuration('patrick prunty')}
+                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                  scrambleSpeed={SCRAMBLE_SPEED}
+                  className="font-light"
+                >
+                  design ✺&#xfe0e; tech ∿&#xfe0e; build ◳&#xfe0e;
+                </ScrambleIn>
+              </h1>
+              <a
+                href="https://patrickprunty.com"
+                target="_blank"
+                className="cursor-pointer border-b-2 border-transparent md:hover:border-foreground transition-colors"
+              >
+                <ScrambleIn
+                  delay={getAnimationDuration('patrick prunty') + ROW_DELAY}
+                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                  scrambleSpeed={SCRAMBLE_SPEED}
+                  className="whitespace-pre font-light"
+                >
+                  <span className="w-full whitespace-pre">
+                    senior software engineer @ dublin ↗
+                  </span>
+                </ScrambleIn>
+              </a>
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="flex flex-col sm:flex-row">
+            <h2 className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <ScrambleIn
+                delay={ROW_DELAY * 3 + getAnimationDuration('patrick prunty')}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                className="font-bold"
+              >
+                newsletter
+              </ScrambleIn>
+            </h2>
+            <Newsletter
+              delay={ROW_DELAY * 4 + getAnimationDuration('patrick prunty')}
+            />
+          </div>
+
+          {/* Writing */}
+          <div className="flex sm:flex-row flex-col">
+            <h2 className="w-full sm:text-right mb-[2vw] sm:mb-0 sm:pr-6 md:pr-8 lg:pr-12 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <ScrambleIn
+                delay={ROW_DELAY * 3}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                className="font-bold"
+              >
+                writing
+              </ScrambleIn>
+            </h2>
+            <div className="flex-1 w-full">
+              <Link href="/blog">
+                <ScrambleCombinedPair
+                  leftText={
+                    <span className="w-full whitespace-pre">
+                      personal blog{' '}
+                    </span>
+                  }
+                  leftTextString="personal blog"
+                  rightText="2024"
+                  delay={ROW_DELAY * 3 + getAnimationDuration('patrick prunty')}
+                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                  scrambleSpeed={SCRAMBLE_SPEED}
+                  className="font-light"
+                  containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                />
+              </Link>
+              <a
+                href="https://pprunty.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ScrambleCombinedPair
+                  leftText={
+                    <span className="w-full whitespace-pre">
+                      furry circuits ↗
+                    </span>
+                  }
+                  leftTextString="furry circuits"
+                  rightText="2025"
+                  delay={
+                    ROW_DELAY * 3 +
+                    getAnimationDuration('patrick prunty') +
+                    ROW_DELAY
+                  }
+                  scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                  scrambleSpeed={SCRAMBLE_SPEED}
+                  className="font-light"
+                  containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* YouTube */}
+          <div className="flex flex-col sm:flex-row">
+            <h2 className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12  sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <ScrambleIn
+                delay={ROW_DELAY * 7}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                className="font-bold"
+              >
+                youtube
+              </ScrambleIn>
+            </h2>
+            <ul className="flex-1">
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ScrambleCombinedPair
+                    leftTextString="pixel projects"
+                    leftText={
+                      <span className="w-full whitespace-pre">
+                        pixel projects ↗
+                      </span>
+                    }
+                    rightText="soon"
+                    delay={
+                      ROW_DELAY * 7 + getAnimationDuration('patrick prunty')
+                    }
+                    scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                    scrambleSpeed={SCRAMBLE_SPEED}
+                    className="font-light"
+                    containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/@pprunty?sub_confirmation=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ScrambleCombinedPair
+                    leftTextString="patrick prunty"
+                    leftText={
+                      <span className="w-full whitespace-pre">
+                        patrick prunty ↗
+                      </span>
+                    }
+                    rightText="2025"
+                    delay={
+                      ROW_DELAY * 7 +
+                      getAnimationDuration('patrick prunty') +
+                      ROW_DELAY
+                    }
+                    scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                    scrambleSpeed={SCRAMBLE_SPEED}
+                    className="font-light"
+                    containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Software */}
+          <div className="flex flex-col sm:flex-row">
+            <h2 className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12  sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <ScrambleIn
+                delay={ROW_DELAY * 11}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                className="font-bold"
+              >
+                software
+              </ScrambleIn>
+            </h2>
+            <ul className="flex-1">
+              {projects.map((project, index) => (
+                <li key={index}>
+                  <a
+                    href={project.links}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ScrambleCombinedPair
+                      key={index}
+                      leftTextString={project.title}
+                      leftText={
+                        <span className="w-full whitespace-pre">
+                          {project.title} ↗
+                        </span>
+                      }
+                      rightText={project.year}
+                      delay={
+                        ROW_DELAY * 11 +
+                        getAnimationDuration('patrick prunty') +
+                        ROW_DELAY * index
+                      }
+                      img={project.img}
+                      imgAlt={`${project.title} project thumbnail`}
+                      showImage={true}
+                      scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                      scrambleSpeed={SCRAMBLE_SPEED}
+                      className="font-light"
+                      containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Photos */}
+          <div className="flex flex-col sm:flex-row">
+            <h2 className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <ScrambleIn
+                delay={ROW_DELAY * 13}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                className="font-bold"
+              >
+                photos
+              </ScrambleIn>
+            </h2>
+            <div className="flex-1">
+              <PhotoCarousel />
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div className="flex flex-col sm:flex-row">
+            <h2 className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12  sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+              <ScrambleIn
+                delay={ROW_DELAY * 17}
+                scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                scrambleSpeed={SCRAMBLE_SPEED}
+                className="font-bold"
+              >
+                contact
+              </ScrambleIn>
+            </h2>
+            <ul>
+              <li>
+                <a
+                  href="mailto:patrickprunty.business@gmail.com"
+                  className="cursor-pointer border-b-2 border-b-transparent md:hover:border-foreground pb-0.5 md:pb-0.5 lg:pb-1 inline-block transition-colors"
+                >
+                  <ScrambleCombinedPair
+                    leftText={
+                      <span className="w-full whitespace-pre">
+                        patrickprunty.business@gmail.com{' '}
+                      </span>
+                    }
+                    leftTextString="patrickprunty.business@gmail.com"
+                    rightText=""
+                    delay={
+                      ROW_DELAY * 17 + getAnimationDuration('patrick prunty')
+                    }
+                    scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                    scrambleSpeed={SCRAMBLE_SPEED}
+                    className="font-light"
+                    containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                  />
+                </a>
+              </li>
+              <br />
+              {socials.map((social, index) => (
+                <li key={index}>
+                  <a
+                    href={social.links}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer border-b-2 border-b-transparent md:hover:border-foreground pb-0.5 md:pb-0.5 lg:pb-1 inline-block transition-colors"
+                  >
+                    <ScrambleCombinedPair
+                      leftText={
+                        <span className="w-full whitespace-pre">
+                          {social.name} ↗
+                        </span>
+                      }
+                      leftTextString={social.name}
+                      rightText=""
+                      delay={
+                        ROW_DELAY * 19 +
+                        getAnimationDuration('patrick prunty') +
+                        ROW_DELAY * index
+                      }
+                      scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                      scrambleSpeed={SCRAMBLE_SPEED}
+                      className="font-light"
+                      containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

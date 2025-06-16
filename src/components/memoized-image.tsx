@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image, { type ImageProps } from 'next/image';
 import { motion } from 'framer-motion';
+import { X } from '@phosphor-icons/react';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
@@ -28,6 +29,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isImageLoaded, setImageLoaded] = useState(false);
+  const [showSkeleton, setShowSkeleton] = useState(true);
   const scrollPositionRef = useRef(0);
   const imageRef = useRef<HTMLSpanElement>(null);
   const modalRef = useRef<HTMLSpanElement>(null);
@@ -112,18 +114,27 @@ export const MemoizedImage = React.memo(function MemoizedImage({
       scale: 1,
       transition: {
         duration: 0.7,
-        ease: 'easeOut',
+        ease: 'easeInOut',
       },
     },
+  } as const;
+
+  const handleImageLoad = () => {
+    setShowSkeleton(false);
   };
 
   return (
     <>
       <span
         ref={imageRef}
-        className={`overflow-hidden ${focusable ? 'cursor-pointer' : ''}`}
+        className={`relative overflow-hidden ${focusable ? 'cursor-pointer' : ''}`}
         onClick={openModal}
       >
+        {/* Skeleton loading animation */}
+        {showSkeleton && (
+          <div className="absolute inset-0 bg-muted animate-pulse" />
+        )}
+
         {animate ? (
           <motion.div
             initial="hidden"
@@ -142,6 +153,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               fill={fill}
               sizes={sizes}
               unoptimized={unoptimized}
+              onLoad={handleImageLoad}
               {...rest}
             />
           </motion.div>
@@ -158,6 +170,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
             fill={fill}
             sizes={sizes}
             unoptimized={unoptimized}
+            onLoad={handleImageLoad}
             {...rest}
           />
         )}
@@ -182,7 +195,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               width={width}
               quality={quality}
               height={height}
-              className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
+              className="cursor-pointer image-click-animate object-contain w-full h-auto md:h-full md:w-auto md:max-h-full md:max-w-full"
               priority={true}
               loading="eager"
               unoptimized={unoptimized}
@@ -193,9 +206,10 @@ export const MemoizedImage = React.memo(function MemoizedImage({
                 e.stopPropagation();
                 closeModal();
               }}
-              className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[1000] shadow-sm"
+              className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[1000] transition-colors duration-200"
+              aria-label="Close image"
             >
-              Close
+              <X size={20} weight="bold" />
             </button>
           </span>
         </span>
