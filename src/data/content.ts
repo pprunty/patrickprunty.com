@@ -64,7 +64,8 @@ export const writing = [
     media: [
       { type: 'image', src: '/projects/furry-circuits/furry-circuits-1.png' },
     ],
-    description: 'Essays and newsletter on creative technology.',
+    description:
+      'Substack exploring artificial intelligence, cultural trends, and creative media.',
   },
 ];
 
@@ -115,3 +116,24 @@ export const socials = [
     links: 'https://patrickprunty.com/api/rss',
   },
 ];
+
+export const sectionConfigs = {
+  writing: {
+    title: 'writing',
+    baseDelay: 3,
+    showImages: false,
+    useList: false,
+  },
+  youtube: {
+    title: 'youtube',
+    baseDelay: 7,
+    showImages: true,
+    useList: true,
+  },
+  software: {
+    title: 'software',
+    baseDelay: 11,
+    showImages: true,
+    useList: true,
+  },
+};

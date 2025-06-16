@@ -115,7 +115,7 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
     <div className={`${className}`}>
       {/* Desktop: Grid layout - hidden on mobile */}
       <div className="hidden xl:block">
-        <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+        <div className="grid grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2">
           {photographyImages.map((photo, index) => {
             const shouldAnimate = true;
             return (

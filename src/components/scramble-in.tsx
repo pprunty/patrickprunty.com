@@ -154,9 +154,13 @@ const ScrambleIn = forwardRef<ScrambleInHandle, ScrambleInProps>(
       const scrambled = displayText.slice(visibleLetterCount);
 
       // Always apply font-satoshi to both spans
-      const baseClass = className?.includes('font-satoshi') ? className : `${className} font-satoshi`;
-      const scrambledClass = (scrambledClassName ?? className)?.includes('font-satoshi')
-        ? scrambledClassName ?? className
+      const baseClass = className?.includes('font-satoshi')
+        ? className
+        : `${className} font-satoshi`;
+      const scrambledClass = (scrambledClassName ?? className)?.includes(
+        'font-satoshi',
+      )
+        ? (scrambledClassName ?? className)
         : `${scrambledClassName ?? className} font-satoshi`;
 
       const processNode = (node: React.ReactNode): React.ReactNode => {
