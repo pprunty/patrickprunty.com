@@ -48,21 +48,27 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
   }
 
   // Otherwise we're just showing a thumbnail
-  // Thumbnail logic not needed for the fix - just show the thumbnail
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
     <div
-      className={`${className} h-24 min-w-[10.5rem] max-w-[10.5rem] overflow-hidden flex-shrink-0`}
+      className={`${className} h-32 min-w-[14rem] max-w-[14rem] overflow-hidden flex-shrink-0 relative`}
     >
       <Image
         src={thumbnailUrl}
         alt={title}
-        width={420}
-        height={236}
+        width={448}
+        height={252}
         className="w-full h-full object-cover"
         loading="lazy"
       />
+      {/* Play button overlay */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="24" fill="rgba(0,0,0,0.6)" />
+          <polygon points="20,16 36,24 20,32" fill="#fff" />
+        </svg>
+      </div>
     </div>
   );
 });

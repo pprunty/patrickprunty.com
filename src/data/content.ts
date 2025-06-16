@@ -22,24 +22,28 @@ export const projects = [
     year: 'now',
     links: 'https://deltacomponents.dev/',
     img: './projects/delta-components.webp',
+    media: [],
   },
   {
     title: 'magikarp',
     year: 'now',
     links: 'https://github.com/pprunty/magikarp',
     img: './projects/magikarp.png',
+    media: [],
   },
   {
     title: 'tmplate.xyz',
     year: '2025',
     links: 'https://tmplate.xyz/',
     img: './img/tmplate.webp',
+    media: [],
   },
   {
     title: 'motormongo',
     year: '2023',
     links: 'https://motormongo.readthedocs.io/en/latest/',
     img: './projects/motormongo.png',
+    media: [],
   },
 ];
 
@@ -49,6 +53,7 @@ export const writing = [
     year: '2025',
     links: 'https://pprunty.substack.com',
     img: './projects/furry-circuits.png',
+    media: [{ type: 'image', src: '/projects/furry-circuits/furry-circuits-1.png' }],
   },
 ];
 
@@ -59,11 +64,16 @@ export const youtube = [
     links:
       'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1',
     img: './projects/pixel-projects.webp',
+    media: [
+      { type: 'youtube' as const, src: 'DcYLT37ImBY' },
+      { type: 'youtube' as const, src: 'wjZofJX0v4M' },
+    ],
   },
   {
     title: 'patrick prunty',
     year: '2025',
     links: 'https://www.youtube.com/@pprunty?sub_confirmation=1',
+    media: [],
   },
 ];
 

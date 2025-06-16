@@ -5,6 +5,7 @@ import Section from './section';
 import { Badge } from './blog/components/badge';
 import Subscribe from '@/components/subscribe';
 import Newsletter2 from '@/components/newsletter-2';
+import MediaCarousel from './media-carousel';
 
 export const metadata = {
   title: `${AUTHOR.name}`,
@@ -146,6 +147,14 @@ If you're new, start with
         "The high‑performance MDX site you're on right now—built with Next.js 15.",
     },
   ]}
+/>
+
+<MediaCarousel
+  media={[
+    { type: 'youtube', src: 'DcYLT37ImBY' },
+    { type: 'youtube', src: 'wjZofJX0v4M' },
+  ]}
+  title="Pixel Projects"
 />
 
 ## Software [#software]

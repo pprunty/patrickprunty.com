@@ -13,6 +13,7 @@ import {
 } from '@/lib/utils';
 import Image from 'next/image';
 import me from '../../public/images/me.WEBP';
+import MediaCarousel from './media-carousel';
 
 export default function Home() {
   return (
@@ -155,6 +156,12 @@ export default function Home() {
                     ) : (
                       <Link href={item.links}>{linkContent}</Link>
                     )}
+                    {/* Render MediaCarousel if media exists and is non-empty */}
+                    {Array.isArray(item.media) && item.media.length > 0 && (
+                      <div className="my-4">
+                        <MediaCarousel media={item.media} title={item.title} />
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -203,6 +210,12 @@ export default function Home() {
                       containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
                     />
                   </a>
+                  {/* Render MediaCarousel if media exists and is non-empty */}
+                  {Array.isArray(item.media) && item.media.length > 0 && (
+                    <div className="my-4">
+                      <MediaCarousel media={item.media} title={item.title} />
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
@@ -251,6 +264,12 @@ export default function Home() {
                       containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
                     />
                   </a>
+                  {/* Render MediaCarousel if media exists and is non-empty */}
+                  {Array.isArray(project.media) && project.media.length > 0 && (
+                    <div className="my-4">
+                      <MediaCarousel media={project.media} title={project.title} />
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

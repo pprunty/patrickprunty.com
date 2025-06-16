@@ -7,6 +7,7 @@ import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
+import { X } from '@phosphor-icons/react';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
@@ -293,14 +294,14 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         >
           {/* Close button */}
           <button
-            className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
             onClick={(e) => {
               e.stopPropagation();
               closeFocusedView();
             }}
+            className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[1000] transition-colors duration-200"
             aria-label="Close"
           >
-            Close
+            <X size={20} weight="bold" />
           </button>
 
           {/* Media container */}
@@ -345,8 +346,8 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 <Image
                   src={item.src}
                   alt={`${title} image ${focusedIndex + 1}`}
-                  width={1200}
-                  height={800}
+                  width={320}
+                  height={180}
                   className="max-w-none max-h-none object-contain"
                   quality={100}
                   priority
@@ -377,10 +378,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         {/* Thumbnail strip */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-hide"
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide -mx-4"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2 mb-2">
+          <div className="flex gap-2 mb-2 px-4">
             {media.map((item, idx) => (
               <div
                 key={idx}
@@ -394,16 +395,16 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   <MemoizedVideo
                     src={getSrcPath(item.src)}
                     alt={`${title} video ${idx + 1}`}
-                    width={130}
-                    height={130}
-                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    width={224}
+                    height={126}
+                    className="border h-32 w-auto border-[#E2E2E2] dark:border-[#343334]"
                     focusable={false}
                   />
                 ) : item.type === 'youtube' ? (
                   <MemoizedYouTube
                     videoId={getSrcPath(item.src)}
                     title={`${title} YouTube video ${idx + 1}`}
-                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    className="border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
                     focusable={false}
                     autoplay={false}
                   />
@@ -411,9 +412,9 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   <MemoizedImage
                     src={item.src}
                     alt={`${title} image ${idx + 1}`}
-                    width={130}
-                    height={130}
-                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    width={320}
+                    height={180}
+                    className="border h-40 w-auto border-[#E2E2E2] dark:border-[#343334]"
                     quality={100}
                     unoptimized
                     focusable={false}
