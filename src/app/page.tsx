@@ -126,9 +126,14 @@ export default function Home() {
                 newsletter
               </ScrambleIn>
             </h2>
-            <Newsletter
-              delay={ROW_DELAY * 4 + getAnimationDuration('patrick prunty')}
-            />
+            <div className="flex-1 w-full flex flex-col">
+              <Newsletter
+                delay={ROW_DELAY * 4 + getAnimationDuration('patrick prunty')}
+              />
+              <div className="font-light text-muted-foreground text-xl md:text-xl lg:text-2xl xl:text-3xl leading-snug mt-4 mb-2 whitespace-pre-line">
+                No spam. Only thoughtful updates and creative inspiration.
+              </div>
+            </div>
           </div>
 
           {/* Writing */}
@@ -172,7 +177,7 @@ export default function Home() {
                 );
 
                 return (
-                  <div key={index}>
+                  <div key={index} className="mb-2">
                     {isExternal ? (
                       <a
                         href={item.links}
@@ -183,6 +188,20 @@ export default function Home() {
                       </a>
                     ) : (
                       <Link href={item.links}>{linkContent}</Link>
+                    )}
+                    {item.description && (
+                      <ScrambleIn
+                        delay={
+                          ROW_DELAY * 3 +
+                          getAnimationDuration('patrick prunty') +
+                          ROW_DELAY * index
+                        }
+                        scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                        scrambleSpeed={SCRAMBLE_SPEED}
+                        className="font-light text-muted-foreground text-xl md:text-xl lg:text-2xl xl:text-3xl leading-snug mt-1 mb-2 whitespace-pre-line"
+                      >
+                        {item.description}
+                      </ScrambleIn>
                     )}
                     {/* Render MediaCarousel if media exists and is non-empty */}
                     {Array.isArray(item.media) && item.media.length > 0 && (
@@ -213,7 +232,7 @@ export default function Home() {
             </h2>
             <ul className="flex-1">
               {youtube.map((item, index) => (
-                <li key={index}>
+                <li key={index} className="mb-2">
                   <a
                     href={item.links}
                     target="_blank"
@@ -241,6 +260,20 @@ export default function Home() {
                       containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
                     />
                   </a>
+                  {item.description && (
+                    <ScrambleIn
+                      delay={
+                        ROW_DELAY * 7 +
+                        getAnimationDuration('patrick prunty') +
+                        ROW_DELAY * index
+                      }
+                      scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                      scrambleSpeed={SCRAMBLE_SPEED}
+                      className="font-light text-muted-foreground text-xl md:text-xl lg:text-2xl xl:text-3xl leading-snug mt-1 mb-2 whitespace-pre-line"
+                    >
+                      {item.description}
+                    </ScrambleIn>
+                  )}
                   {/* Render MediaCarousel if media exists and is non-empty */}
                   {Array.isArray(item.media) && item.media.length > 0 && (
                     <div className="my-4">
@@ -269,7 +302,7 @@ export default function Home() {
             </h2>
             <ul className="flex-1">
               {projects.map((project, index) => (
-                <li key={index}>
+                <li key={index} className="mb-2">
                   <a
                     href={project.links}
                     target="_blank"
@@ -298,6 +331,20 @@ export default function Home() {
                       containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
                     />
                   </a>
+                  {project.description && (
+                    <ScrambleIn
+                      delay={
+                        ROW_DELAY * 11 +
+                        getAnimationDuration('patrick prunty') +
+                        ROW_DELAY * index
+                      }
+                      scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                      scrambleSpeed={SCRAMBLE_SPEED}
+                      className="font-light text-muted-foreground text-xl md:text-xl lg:text-2xl xl:text-3xl leading-snug mt-1 mb-2 whitespace-pre-line"
+                    >
+                      {project.description}
+                    </ScrambleIn>
+                  )}
                   {/* Render MediaCarousel if media exists and is non-empty */}
                   {Array.isArray(project.media) && project.media.length > 0 && (
                     <div className="my-4">

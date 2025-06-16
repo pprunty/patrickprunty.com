@@ -416,7 +416,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     quality={100}
                     unoptimized
                     focusable={false}
-                    animate
+                    animate={false}
                   />
                 )}
               </div>

@@ -23,6 +23,8 @@ export const projects = [
     links: 'https://deltacomponents.dev/',
     img: './projects/delta-components.webp',
     media: [],
+    description:
+      'Open-source UI components for React, built for speed and modern design.',
   },
   {
     title: 'magikarp',
@@ -30,6 +32,8 @@ export const projects = [
     links: 'https://github.com/pprunty/magikarp',
     img: './projects/magikarp.png',
     media: [],
+    description:
+      'A Go framework for building customizable, plugin-based AI agents.',
   },
   {
     title: 'tmplate.xyz',
@@ -37,6 +41,8 @@ export const projects = [
     links: 'https://tmplate.xyz/',
     img: './img/tmplate.webp',
     media: [],
+    description:
+      'A modern SaaS starter kit with Next.js, FastAPI, and built-in SEO.',
   },
   {
     title: 'motormongo',
@@ -44,6 +50,8 @@ export const projects = [
     links: 'https://motormongo.readthedocs.io/en/latest/',
     img: './projects/motormongo.png',
     media: [],
+    description:
+      'Async MongoDB ODM for Python, offering a familiar, non-blocking API.',
   },
 ];
 
@@ -56,6 +64,7 @@ export const writing = [
     media: [
       { type: 'image', src: '/projects/furry-circuits/furry-circuits-1.png' },
     ],
+    description: 'Essays and newsletter on creative technology.',
   },
 ];
 
@@ -70,12 +79,16 @@ export const youtube = [
       { type: 'youtube' as const, src: 'DcYLT37ImBY' },
       { type: 'youtube' as const, src: 'wjZofJX0v4M' },
     ],
+    description:
+      'Animated YouTube series making math and computer science fun and accessible.',
   },
   {
     title: 'patrick prunty',
     year: '2025',
     links: 'https://www.youtube.com/@pprunty?sub_confirmation=1',
     media: [],
+    description:
+      'Experimental channel remixing pop culture and media through creative edits.',
   },
 ];
 

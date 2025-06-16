@@ -101,7 +101,7 @@ export default function Newsletter({ delay = 0 }: { delay?: number }) {
                 scrambleSpeed={SCRAMBLE_SPEED}
                 scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
               >
-                <span className="inline-flex items-center gap-1 font-light">
+                <span className="inline-flex items-center gap-1 font-light text-muted-foreground">
                   <span>subscribe</span>
                   <span aria-hidden="true">⍈</span>
                 </span>
@@ -109,7 +109,6 @@ export default function Newsletter({ delay = 0 }: { delay?: number }) {
             )}
           </button>
         </div>
-
         <motion.div
           className="absolute bottom-0 left-0 right-0 border-t-[0.5vw] sm:border-t-[1.5px] md:border-t-2 border-solid border-foreground"
           initial={{
