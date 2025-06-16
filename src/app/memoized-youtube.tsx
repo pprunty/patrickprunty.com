@@ -64,7 +64,13 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
       />
       {/* Play button overlay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="48"
+          height="48"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <circle cx="24" cy="24" r="24" fill="rgba(0,0,0,0.6)" />
           <polygon points="20,16 36,24 20,32" fill="#fff" />
         </svg>

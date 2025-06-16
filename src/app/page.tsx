@@ -15,6 +15,34 @@ import Image from 'next/image';
 import me from '../../public/images/me.webp';
 import MediaCarousel from './media-carousel';
 
+// Helper to normalize media array
+function normalizeMedia(
+  media: unknown[],
+): { type: 'image' | 'video' | 'youtube'; src: string }[] {
+  if (!Array.isArray(media)) return [];
+  return media.map((m) => {
+    if (typeof m === 'string') return { type: 'image' as const, src: m };
+    if (
+      typeof m === 'object' &&
+      m !== null &&
+      'type' in m &&
+      'src' in m &&
+      typeof (m as { type?: unknown }).type === 'string' &&
+      typeof (m as { src?: unknown }).src === 'string'
+    ) {
+      const type = (m as { type: string }).type;
+      const src = (m as { src: string }).src;
+      if (['image', 'video', 'youtube'].includes(type))
+        return { type, src } as {
+          type: 'image' | 'video' | 'youtube';
+          src: string;
+        };
+      return { type: 'image' as const, src };
+    }
+    return { type: 'image' as const, src: '' };
+  });
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-background text-foreground font-normal text-[4.9vw] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight sm:leading-tight">
@@ -159,7 +187,10 @@ export default function Home() {
                     {/* Render MediaCarousel if media exists and is non-empty */}
                     {Array.isArray(item.media) && item.media.length > 0 && (
                       <div className="my-4">
-                        <MediaCarousel media={item.media} title={item.title} />
+                        <MediaCarousel
+                          media={normalizeMedia(item.media)}
+                          title={item.title}
+                        />
                       </div>
                     )}
                   </div>
@@ -213,7 +244,10 @@ export default function Home() {
                   {/* Render MediaCarousel if media exists and is non-empty */}
                   {Array.isArray(item.media) && item.media.length > 0 && (
                     <div className="my-4">
-                      <MediaCarousel media={item.media} title={item.title} />
+                      <MediaCarousel
+                        media={normalizeMedia(item.media)}
+                        title={item.title}
+                      />
                     </div>
                   )}
                 </li>
@@ -267,7 +301,10 @@ export default function Home() {
                   {/* Render MediaCarousel if media exists and is non-empty */}
                   {Array.isArray(project.media) && project.media.length > 0 && (
                     <div className="my-4">
-                      <MediaCarousel media={project.media} title={project.title} />
+                      <MediaCarousel
+                        media={normalizeMedia(project.media)}
+                        title={project.title}
+                      />
                     </div>
                   )}
                 </li>

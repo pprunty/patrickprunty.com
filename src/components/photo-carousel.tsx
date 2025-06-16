@@ -138,10 +138,7 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
       <div className="block xl:hidden">
         <div className="grid grid-cols-2 gap-2 py-2">
           {photographyImages.map((photo, index) => (
-            <div
-              key={index}
-              className="aspect-[3/4] overflow-hidden"
-            >
+            <div key={index} className="aspect-[3/4] overflow-hidden">
               <MemoizedImage
                 src={photo}
                 alt={`Photo ${index + 1}`}

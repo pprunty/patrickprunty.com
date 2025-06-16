@@ -53,7 +53,9 @@ export const writing = [
     year: '2025',
     links: 'https://pprunty.substack.com',
     img: './projects/furry-circuits.png',
-    media: [{ type: 'image', src: '/projects/furry-circuits/furry-circuits-1.png' }],
+    media: [
+      { type: 'image', src: '/projects/furry-circuits/furry-circuits-1.png' },
+    ],
   },
 ];
 
