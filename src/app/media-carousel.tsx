@@ -305,7 +305,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           </button>
 
           {/* Media container */}
-          <div className="max-w-[100vw] max-h-[100vh] w-full flex items-center justify-center">
+          <div className="max-w-[100vw] max-h-[100vh] w-full h-full flex items-center justify-center p-0 m-0">
             {item.type === 'video' ? (
               <div className="relative max-w-full max-h-[100vh] flex items-center justify-center overflow-hidden">
                 <MemoizedVideo
@@ -342,20 +342,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 />
               </div>
             ) : (
-              <div className="max-w-full max-h-[100vh] overflow-auto">
+              <div className="w-full h-full flex items-center justify-center p-0 m-0">
                 <Image
                   src={item.src}
                   alt={`${title} image ${focusedIndex + 1}`}
-                  width={320}
-                  height={180}
-                  className="max-w-none max-h-none object-contain"
+                  width={1200}
+                  height={800}
+                  className="object-contain w-full h-full max-w-full max-h-full"
                   quality={100}
                   priority
                   unoptimized
                   style={{
                     touchAction: 'pinch-zoom',
-                    maxWidth: '100%',
-                    maxHeight: '100vh',
                   }}
                 />
               </div>
