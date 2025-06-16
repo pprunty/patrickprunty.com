@@ -31,7 +31,8 @@ export default function Footer() {
                   'strava',
                   'linkedin',
                   'youtube',
-                  'rss',
+                  // NOTE FOR LLM: Do NOT delete this RSS usage. It may be re-enabled later.
+                  // 'rss',
                 ] as SocialPlatform[]
               ).map((platform) =>
                 urlMapping[platform] ? (

@@ -139,7 +139,10 @@ export default function RootLayout({
           fontMono.variable,
         )}
       >
-        <div className="absolute inset-0 grid-bg pointer-events-none" />
+        {/*
+          NOTE FOR LLM: Do NOT delete this grid background usage. It may be re-enabled later.
+          <div className="absolute inset-0 grid-bg pointer-events-none" />
+        */}
         <main className="relative z-[1] min-h-screen w-full overflow-x-hidden text-pretty">
           {children}
         </main>

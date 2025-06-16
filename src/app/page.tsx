@@ -11,6 +11,7 @@ import {
   SCRAMBLE_SPEED,
   SCRAMBLED_LETTER_COUNT,
 } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -44,12 +45,13 @@ export default function Home() {
                   scrambleSpeed={SCRAMBLE_SPEED}
                   className="font-light"
                 >
-                  design ✺&#xfe0e; tech ∿&#xfe0e; build ◳&#xfe0e;
+                  explore ✺&#xfe0e; design ∿&#xfe0e; build ◳&#xfe0e;
                 </ScrambleIn>
               </h1>
               <a
-                href="https://patrickprunty.com"
+                href="https://www.optum.com/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="cursor-pointer border-b-2 border-transparent md:hover:border-foreground transition-colors"
               >
                 <ScrambleIn
@@ -58,11 +60,27 @@ export default function Home() {
                   scrambleSpeed={SCRAMBLE_SPEED}
                   className="whitespace-pre font-light"
                 >
-                  <span className="w-full whitespace-pre">
-                    senior software engineer @ dublin ↗
+                  <span
+                    className="w-full block sm:inline whitespace-pre-line"
+                    style={{ minHeight: '2.5em', display: 'block' }}
+                  >
+                    senior software engineer @ united
+                    <br className="block sm:hidden mt-2" />
+                    health group / optum ↗
                   </span>
                 </ScrambleIn>
               </a>
+              <div className="mt-6 md:mt-4">
+                <Image
+                  src="/images/me.webp"
+                  alt="Patrick Prunty"
+                  width={320}
+                  height={448}
+                  className="shadow-md w-64 h-96 md:w-64 md:h-96 xl:w-80 xl:h-[28rem] object-cover"
+                  quality={100}
+                  priority
+                />
+              </div>
             </div>
           </div>
 
@@ -291,35 +309,37 @@ export default function Home() {
                 </a>
               </li>
               <br />
-              {socials.map((social, index) => (
-                <li key={index}>
-                  <a
-                    href={social.links}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cursor-pointer border-b-2 border-b-transparent md:hover:border-foreground pb-0.5 md:pb-0.5 lg:pb-1 inline-block transition-colors"
-                  >
-                    <ScrambleCombinedPair
-                      leftText={
-                        <span className="w-full whitespace-pre">
-                          {social.name} ↗
-                        </span>
-                      }
-                      leftTextString={social.name}
-                      rightText=""
-                      delay={
-                        ROW_DELAY * 19 +
-                        getAnimationDuration('patrick prunty') +
-                        ROW_DELAY * index
-                      }
-                      scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
-                      scrambleSpeed={SCRAMBLE_SPEED}
-                      className="font-light"
-                      containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
-                    />
-                  </a>
-                </li>
-              ))}
+              {socials
+                .filter((social) => social.name.toLowerCase() !== 'rss')
+                .map((social, index) => (
+                  <li key={index}>
+                    <a
+                      href={social.links}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer border-b-2 border-b-transparent md:hover:border-foreground pb-0.5 md:pb-0.5 lg:pb-1 inline-block transition-colors"
+                    >
+                      <ScrambleCombinedPair
+                        leftText={
+                          <span className="w-full whitespace-pre">
+                            {social.name} ↗
+                          </span>
+                        }
+                        leftTextString={social.name}
+                        rightText=""
+                        delay={
+                          ROW_DELAY * 19 +
+                          getAnimationDuration('patrick prunty') +
+                          ROW_DELAY * index
+                        }
+                        scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
+                        scrambleSpeed={SCRAMBLE_SPEED}
+                        className="font-light"
+                        containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
+                      />
+                    </a>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

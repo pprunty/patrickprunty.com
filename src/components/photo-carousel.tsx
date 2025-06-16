@@ -118,7 +118,6 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
         <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
           {photographyImages.map((photo, index) => {
             const shouldAnimate = true;
-
             return (
               <div key={index} className="aspect-[3/4] overflow-hidden">
                 <MemoizedImage
@@ -140,29 +139,26 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
         {/* Photo carousel */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-hide py-2"
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide py-2 -mx-4"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2">
-            {photographyImages.map((photo, index) => {
-              const shouldAnimate = index < 3;
-
-              return (
-                <div
-                  key={index}
-                  className="flex-shrink-0 w-32 h-44 overflow-hidden relative"
-                >
-                  <MemoizedImage
-                    src={photo}
-                    alt={`Photo ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className="w-full h-full object-cover"
-                    animate={shouldAnimate}
-                  />
-                </div>
-              );
-            })}
+          <div className="flex gap-2 px-4">
+            {photographyImages.map((photo, index) => (
+              <div
+                key={index}
+                className={`flex-shrink-0 w-48 h-72 overflow-hidden relative${index === photographyImages.length - 1 ? ' pr-4' : ''}`}
+              >
+                <MemoizedImage
+                  src={photo}
+                  alt={`Photo ${index + 1}`}
+                  width={400}
+                  height={600}
+                  className="w-full h-full object-cover"
+                  style={{ width: '100%', height: '100%' }}
+                  animate={false}
+                />
+              </div>
+            ))}
           </div>
         </div>
 

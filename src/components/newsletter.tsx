@@ -62,7 +62,7 @@ export default function Newsletter({ delay = 0 }: { delay?: number }) {
             placeholder={showScrambledPlaceholder ? '' : 'enter your email'}
             aria-label="Enter your email address to subscribe to the newsletter"
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-transparent focus:outline-none pb-[1.5vw] sm:pb-1.5 md:pb-2 w-full placeholder:text-muted-foreground"
+            className="bg-transparent focus:outline-none pb-[1.5vw] sm:pb-1.5 md:pb-2 w-full placeholder:text-muted-foreground text-[#00C853] dark:text-[#00C853]"
             required
           />
           {showScrambledPlaceholder && email.length === 0 && (
@@ -101,7 +101,7 @@ export default function Newsletter({ delay = 0 }: { delay?: number }) {
                 scrambleSpeed={SCRAMBLE_SPEED}
                 scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
               >
-                subscribe ⍈
+                <span className="font-light">subscribe ⍈</span>
               </ScrambleCombined>
             )}
           </button>
