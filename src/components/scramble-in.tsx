@@ -51,7 +51,7 @@ const ScrambleIn = forwardRef<ScrambleInHandle, ScrambleInProps>(
       scrambledLetterCount = 10,
       characters = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+',
       className = '',
-      scrambledClassName = '',
+      scrambledClassName,
       autoStart = true,
       onStart,
       onComplete,
@@ -153,6 +153,12 @@ const ScrambleIn = forwardRef<ScrambleInHandle, ScrambleInProps>(
       const revealed = displayText.slice(0, visibleLetterCount);
       const scrambled = displayText.slice(visibleLetterCount);
 
+      // Always apply font-satoshi to both spans
+      const baseClass = className?.includes('font-satoshi') ? className : `${className} font-satoshi`;
+      const scrambledClass = (scrambledClassName ?? className)?.includes('font-satoshi')
+        ? scrambledClassName ?? className
+        : `${scrambledClassName ?? className} font-satoshi`;
+
       const processNode = (node: React.ReactNode): React.ReactNode => {
         if (typeof node === 'string' || typeof node === 'number') {
           const nodeText = String(node);
@@ -169,8 +175,8 @@ const ScrambleIn = forwardRef<ScrambleInHandle, ScrambleInProps>(
 
           return (
             <>
-              <span className={className}>{nodeRevealed}</span>
-              <span className={scrambledClassName}>{nodeScrambled}</span>
+              <span className={baseClass}>{nodeRevealed}</span>
+              <span className={scrambledClass}>{nodeScrambled}</span>
             </>
           );
         }

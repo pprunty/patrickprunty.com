@@ -73,7 +73,7 @@ export default function Home() {
                   delay={getAnimationDuration('patrick prunty')}
                   scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
                   scrambleSpeed={SCRAMBLE_SPEED}
-                  className="font-light"
+                  className="font-light text-muted-foreground"
                 >
                   explore ✺&#xfe0e; design ∿&#xfe0e; build ◳&#xfe0e;
                 </ScrambleIn>
@@ -88,7 +88,7 @@ export default function Home() {
                   delay={getAnimationDuration('patrick prunty') + ROW_DELAY}
                   scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
                   scrambleSpeed={SCRAMBLE_SPEED}
-                  className="whitespace-pre font-light"
+                  className="whitespace-pre font-light text-muted-foreground"
                 >
                   <span
                     className="w-full block sm:inline whitespace-pre-line"
