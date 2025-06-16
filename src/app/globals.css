@@ -336,7 +336,8 @@
   }
 
   .font-calendas {
-    font-family: var(--font-calendas), 'Calendas Plus', ui-serif, Georgia, serif;
+    font-family:
+      var(--font-calendas), 'Calendas Plus', ui-serif, Georgia, serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

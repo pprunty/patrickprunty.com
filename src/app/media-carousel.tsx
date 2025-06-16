@@ -6,10 +6,11 @@ import { MemoizedVideo } from './memoized-video';
 import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
-  src: string;
+  src: string | StaticImageData;
 }
 
 interface MediaCarouselProps {
@@ -47,6 +48,14 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => fn.apply(this, args), ms);
       };
+    };
+
+    // Helper function to get string path from src
+    const getSrcPath = (src: string | StaticImageData): string => {
+      if (typeof src === 'string') {
+        return src;
+      }
+      return src.src;
     };
 
     const navigateMedia = useCallback(
@@ -259,7 +268,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
     const renderFocusedMedia = () => {
       if (focusedIndex === null || !media[focusedIndex]) return null;
       const item = media[focusedIndex];
-      const youtubeKey = `youtube-${item.src}`;
+      const youtubeKey = `youtube-${typeof item.src === 'string' ? item.src : item.src.src}`;
 
       return (
         <div
@@ -299,7 +308,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             {item.type === 'video' ? (
               <div className="relative max-w-full max-h-[100vh] flex items-center justify-center overflow-hidden">
                 <MemoizedVideo
-                  src={item.src}
+                  src={getSrcPath(item.src)}
                   alt={`${title} video ${focusedIndex + 1}`}
                   width={800}
                   height={800}
@@ -325,7 +334,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 onMouseLeave={(e) => e.stopPropagation()}
               >
                 <MemoizedYouTube
-                  videoId={item.src}
+                  videoId={getSrcPath(item.src)}
                   title={`${title} YouTube video ${focusedIndex + 1}`}
                   showPlayer
                   autoplay
@@ -334,7 +343,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             ) : (
               <div className="max-w-full max-h-[100vh] overflow-auto">
                 <Image
-                  src={item.src || '/placeholder.svg'}
+                  src={item.src}
                   alt={`${title} image ${focusedIndex + 1}`}
                   width={1200}
                   height={800}
@@ -383,7 +392,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
               >
                 {item.type === 'video' ? (
                   <MemoizedVideo
-                    src={item.src}
+                    src={getSrcPath(item.src)}
                     alt={`${title} video ${idx + 1}`}
                     width={130}
                     height={130}
@@ -392,7 +401,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   />
                 ) : item.type === 'youtube' ? (
                   <MemoizedYouTube
-                    videoId={item.src}
+                    videoId={getSrcPath(item.src)}
                     title={`${title} YouTube video ${idx + 1}`}
                     className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
                     focusable={false}

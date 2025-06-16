@@ -4,10 +4,11 @@ import type React from 'react';
 import { memo, useMemo } from 'react';
 import MediaCarousel from './media-carousel';
 import { ArrowUpRight } from '@phosphor-icons/react';
+import type { StaticImageData } from 'next/image';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
-  src: string;
+  src: string | StaticImageData;
 }
 
 interface SectionItem {
@@ -16,7 +17,7 @@ interface SectionItem {
   url?: string;
   description?: React.ReactNode;
   year?: string | number;
-  media?: string[];
+  media?: (string | StaticImageData)[];
   youtubeIds?: string[];
   hide?: boolean;
 }
@@ -36,10 +37,15 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
       // Add regular media (images and videos)
       if (item.media) {
         item.media.forEach((src) => {
-          if (src.endsWith('.mp4') || src.endsWith('.mov')) {
-            mediaItems.push({ type: 'video', src });
-          } else {
+          // For StaticImageData objects, check if it has a src property
+          if (typeof src === 'object' && 'src' in src) {
             mediaItems.push({ type: 'image', src });
+          } else if (typeof src === 'string') {
+            if (src.endsWith('.mp4') || src.endsWith('.mov')) {
+              mediaItems.push({ type: 'video', src });
+            } else {
+              mediaItems.push({ type: 'image', src });
+            }
           }
         });
       }
