@@ -120,7 +120,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   } as const;
 
   const handleImageLoad = () => {
-    setShowSkeleton(false);
+    setTimeout(() => setShowSkeleton(false), 300);
   };
 
   return (
@@ -132,7 +132,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
       >
         {/* Skeleton loading animation */}
         {showSkeleton && (
-          <div className="absolute inset-0 bg-muted animate-pulse" />
+          <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-800 animate-pulse" />
         )}
 
         {animate ? (

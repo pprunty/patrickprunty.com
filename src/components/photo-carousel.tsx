@@ -114,7 +114,7 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
   return (
     <div className={`${className}`}>
       {/* Desktop: Grid layout - hidden on mobile */}
-      <div className="hidden md:block">
+      <div className="hidden xl:block">
         <div className="grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
           {photographyImages.map((photo, index) => {
             const shouldAnimate = true;
@@ -136,7 +136,7 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
       </div>
 
       {/* Mobile: Carousel - hidden on desktop */}
-      <div className="block md:hidden">
+      <div className="block xl:hidden">
         {/* Photo carousel */}
         <div
           ref={scrollContainerRef}
@@ -150,7 +150,7 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
               return (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-32 h-44 overflow-hidden"
+                  className="flex-shrink-0 w-32 h-44 overflow-hidden relative"
                 >
                   <MemoizedImage
                     src={photo}
