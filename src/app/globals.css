@@ -207,8 +207,6 @@
     --spotify-green: #1cd760;
   }
 
-
-
   * {
     /* Firefox */
     scrollbar-width: var(--scrollbar-width);
@@ -301,41 +299,40 @@
     opacity: 60%;
   }
 
-
   .grid-bg {
     background-image:
       /* fine vertical lines */
       repeating-linear-gradient(
         to right,
-        rgba(34, 34, 34, 0.03) 0, 
-        rgba(34, 34, 34, 0.03) 1px, 
-        transparent 1px, 
+        rgba(34, 34, 34, 0.03) 0,
+        rgba(34, 34, 34, 0.03) 1px,
+        transparent 1px,
         transparent 20px
       ),
       /* fine horizontal lines */
-      repeating-linear-gradient(
-        to bottom,
-        rgba(34, 34, 34, 0.03) 0, 
-        rgba(34, 34, 34, 0.03) 1px, 
-        transparent 1px, 
-        transparent 20px
-      ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(34, 34, 34, 0.03) 0,
+          rgba(34, 34, 34, 0.03) 1px,
+          transparent 1px,
+          transparent 20px
+        ),
       /* bold vertical lines */
-      repeating-linear-gradient(
-        to right,
-        rgba(34, 34, 34, 0.05) 0, 
-        rgba(34, 34, 34, 0.05) 1px, 
-        transparent 1px, 
-        transparent 100px
-      ),
+        repeating-linear-gradient(
+          to right,
+          rgba(34, 34, 34, 0.05) 0,
+          rgba(34, 34, 34, 0.05) 1px,
+          transparent 1px,
+          transparent 100px
+        ),
       /* bold horizontal lines */
-      repeating-linear-gradient(
-        to bottom,
-        rgba(34, 34, 34, 0.05) 0, 
-        rgba(34, 34, 34, 0.05) 1px, 
-        transparent 1px, 
-        transparent 100px
-      );
+        repeating-linear-gradient(
+          to bottom,
+          rgba(34, 34, 34, 0.05) 0,
+          rgba(34, 34, 34, 0.05) 1px,
+          transparent 1px,
+          transparent 100px
+        );
     background-size: auto;
   }
 
@@ -344,35 +341,35 @@
       /* fine vertical lines */
       repeating-linear-gradient(
         to right,
-        rgba(255, 255, 255, 0.03) 0, 
-        rgba(255, 255, 255, 0.03) 1px, 
-        transparent 1px, 
+        rgba(255, 255, 255, 0.03) 0,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
         transparent 20px
       ),
       /* fine horizontal lines */
-      repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.03) 0, 
-        rgba(255, 255, 255, 0.03) 1px, 
-        transparent 1px, 
-        transparent 20px
-      ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.03) 0,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 20px
+        ),
       /* bold vertical lines */
-      repeating-linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.05) 0, 
-        rgba(255, 255, 255, 0.05) 1px, 
-        transparent 1px, 
-        transparent 100px
-      ),
+        repeating-linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.05) 0,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px,
+          transparent 100px
+        ),
       /* bold horizontal lines */
-      repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.05) 0, 
-        rgba(255, 255, 255, 0.05) 1px, 
-        transparent 1px, 
-        transparent 100px
-      );
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.05) 0,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px,
+          transparent 100px
+        );
   }
 
   .darker .grid-bg {
@@ -380,35 +377,35 @@
       /* fine vertical lines */
       repeating-linear-gradient(
         to right,
-        rgba(255, 255, 255, 0.02) 0, 
-        rgba(255, 255, 255, 0.02) 1px, 
-        transparent 1px, 
+        rgba(255, 255, 255, 0.02) 0,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
         transparent 20px
       ),
       /* fine horizontal lines */
-      repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.02) 0, 
-        rgba(255, 255, 255, 0.02) 1px, 
-        transparent 1px, 
-        transparent 20px
-      ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.02) 0,
+          rgba(255, 255, 255, 0.02) 1px,
+          transparent 1px,
+          transparent 20px
+        ),
       /* bold vertical lines */
-      repeating-linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.04) 0, 
-        rgba(255, 255, 255, 0.04) 1px, 
-        transparent 1px, 
-        transparent 100px
-      ),
+        repeating-linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 100px
+        ),
       /* bold horizontal lines */
-      repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.04) 0, 
-        rgba(255, 255, 255, 0.04) 1px, 
-        transparent 1px, 
-        transparent 100px
-      );
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 100px
+        );
   }
 }
 

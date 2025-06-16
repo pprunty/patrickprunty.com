@@ -88,7 +88,7 @@ const withBoth = (config) =>
     dest: 'public',
     register: true,
     skipWaiting: true,
-    disable: process.env.DISABLE_PWA === 'true',
+    //     disable: process.env.NODE_ENV === 'development',
   })(withMDX(config));
 
 // Export configuration
