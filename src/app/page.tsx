@@ -12,6 +12,7 @@ import {
   SCRAMBLED_LETTER_COUNT,
 } from '@/lib/utils';
 import Image from 'next/image';
+import me from '../../public/images/me.WEBP';
 
 export default function Home() {
   return (
@@ -72,7 +73,7 @@ export default function Home() {
               </a>
               <div className="mt-6 md:mt-4">
                 <Image
-                  src="/images/me.webp"
+                  src={me}
                   alt="Patrick Prunty"
                   width={320}
                   height={448}

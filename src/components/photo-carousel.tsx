@@ -134,46 +134,26 @@ export default function PhotoCarousel({ className = '' }: PhotoCarouselProps) {
         </div>
       </div>
 
-      {/* Mobile: Carousel - hidden on desktop */}
+      {/* Mobile: 3-column grid - hidden on desktop */}
       <div className="block xl:hidden">
-        {/* Photo carousel */}
-        <div
-          ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-hide py-2 -mx-4"
-          style={{ scrollSnapType: 'none' }}
-        >
-          <div className="flex gap-2 px-4">
-            {photographyImages.map((photo, index) => (
-              <div
-                key={index}
-                className={`flex-shrink-0 w-48 h-72 overflow-hidden relative${index === photographyImages.length - 1 ? ' pr-4' : ''}`}
-              >
-                <MemoizedImage
-                  src={photo}
-                  alt={`Photo ${index + 1}`}
-                  width={400}
-                  height={600}
-                  className="w-full h-full object-cover"
-                  style={{ width: '100%', height: '100%' }}
-                  animate={false}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Custom scroll indicator - mobile only */}
-        {maxScroll > 0 && (
-          <div className="relative h-1 w-full bg-secondary-hover rounded mt-2">
+        <div className="grid grid-cols-2 gap-2 py-2">
+          {photographyImages.map((photo, index) => (
             <div
-              className="absolute h-full bg-muted-foreground rounded transition-all duration-300 ease-out"
-              style={{
-                width: scrollIndicatorWidth,
-                left: scrollIndicatorPosition,
-              }}
-            />
-          </div>
-        )}
+              key={index}
+              className="aspect-[3/4] overflow-hidden"
+            >
+              <MemoizedImage
+                src={photo}
+                alt={`Photo ${index + 1}`}
+                width={267}
+                height={400}
+                className="w-full h-full object-cover"
+                style={{ width: '100%', height: '100%' }}
+                animate={false}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

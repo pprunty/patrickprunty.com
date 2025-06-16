@@ -101,7 +101,10 @@ export default function Newsletter({ delay = 0 }: { delay?: number }) {
                 scrambleSpeed={SCRAMBLE_SPEED}
                 scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
               >
-                <span className="font-light">subscribe ⍈</span>
+                <span className="inline-flex items-center gap-1 font-light">
+                  <span>subscribe</span>
+                  <span aria-hidden="true">⍈</span>
+                </span>
               </ScrambleCombined>
             )}
           </button>
