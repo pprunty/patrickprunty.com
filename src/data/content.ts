@@ -81,7 +81,7 @@ export const youtube = [
       { type: 'youtube' as const, src: 'wjZofJX0v4M' },
     ],
     description:
-      'Animated YouTube series making math and computer science fun and accessible.',
+      'Animated YouTube series making math and computer programming fun and accessible.',
   },
   {
     title: 'patrick prunty',

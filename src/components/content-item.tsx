@@ -68,7 +68,7 @@ export default function ContentItem({
           delay={delay}
           scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
           scrambleSpeed={SCRAMBLE_SPEED}
-          className="font-light text-muted-foreground text-[4.9vw] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight sm:leading-tight mt-1 mb-2 whitespace-pre-line"
+          className="font-light text-muted-foreground text-[4.5vw] sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-tight sm:leading-tight mt-1 mb-2 whitespace-pre-line"
         >
           {description}
         </ScrambleIn>

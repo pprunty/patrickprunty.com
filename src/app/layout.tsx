@@ -116,7 +116,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} ${satoshi.variable} font-satoshi antialiased`}
+      className={`${satoshi.variable} font-satoshi antialiased`}
     >
       <head>
         <script
@@ -139,11 +139,9 @@ export default function RootLayout({
           fontMono.variable,
         )}
       >
-        {/*
-          NOTE FOR LLM: Do NOT delete this grid background usage. It may be re-enabled later.
-          <div className="absolute inset-0 grid-bg pointer-events-none" />
-        */}
-        <main className="relative z-[1] min-h-screen max-w-7xl md:mx-auto text-pretty">
+        {/* Background grid commented out for now - might use again in the future */}
+        {/* <div className="absolute inset-0 grid-bg pointer-events-none" /> */}
+        <main className="relative z-[1] min-h-screen max-w-7xl mx-auto text-pretty">
           {children}
         </main>
         <ClientComponents />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef, memo, useEffect } from 'react';
+import { X } from '@phosphor-icons/react';
 
 interface MemoizedVideoProps {
   src: string;
@@ -147,9 +148,10 @@ export const MemoizedVideo = memo(function MemoizedVideo({
             </video>
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 dark:bg-[#333] dark:text-white bg-black border dark:border-[#4B4B4B] text-white p-2 px-6 rounded-full"
+              className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[1000] transition-colors duration-200"
+              aria-label="Close video"
             >
-              Close
+              <X size={20} weight="bold" />
             </button>
           </div>
         </div>

@@ -24,7 +24,7 @@ import me from '../../public/images/me.webp';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-background text-foreground font-normal text-[4.9vw] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight sm:leading-tight">
+    <main className=" text-foreground font-normal text-[4.5vw] sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-tight sm:leading-tight">
       <div className="px-4 pt-10 pb-10 sm:px-6 sm:pt-10 sm:pb-10 md:px-8 md:pt-10 md:pb-10 lg:px-12 lg:pt-12 lg:pb-12">
         <div className="relative max-w-screen-2xl mx-auto flex flex-col gap-16 sm:gap-18 md:gap-20 lg:gap-28">
           {/* Theme Switcher - Aligned with design/tech/build section */}
@@ -34,7 +34,7 @@ export default function Home() {
 
           {/* Header - Row 1 */}
           <div className="flex flex-col sm:flex-row">
-            <div className="w-full mb-[2vw] sm:mb-0 sm:text-right sm:pr-6 md:pr-8 lg:pr-12 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
+            <div className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
               <h1>
                 <ScrambleIn
                   delay={0}
@@ -46,7 +46,7 @@ export default function Home() {
                 </ScrambleIn>
               </h1>
             </div>
-            <div className="">
+            <div className="flex-1 w-full">
               <h1 className="pb-0.5 md:pb-0.5 lg>pb-1">
                 <ScrambleIn
                   delay={getAnimationDuration('patrick prunty')}
@@ -67,15 +67,13 @@ export default function Home() {
                   delay={getAnimationDuration('patrick prunty') + ROW_DELAY}
                   scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
                   scrambleSpeed={SCRAMBLE_SPEED}
-                  className="whitespace-pre font-light text-muted-foreground"
+                  className="font-light text-muted-foreground"
                 >
                   <span
-                    className="w-full block sm:inline whitespace-pre-line"
+                    className="w-full block whitespace-pre-line"
                     style={{ minHeight: '2.5em', display: 'block' }}
                   >
-                    senior software engineer @ united
-                    <br className="block sm:hidden mt-2" />
-                    health group / optum ↗
+                    senior software engineer @ united health group / optum ↗
                   </span>
                 </ScrambleIn>
               </a>
@@ -109,7 +107,7 @@ export default function Home() {
               <Newsletter
                 delay={ROW_DELAY * 4 + getAnimationDuration('patrick prunty')}
               />
-              <div className="font-light text-muted-foreground text-[4.9vw] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight sm:leading-tight mt-4 mb-2 whitespace-pre-line">
+              <div className="font-light text-muted-foreground text-[4.5vw] sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-tight sm:leading-tight mt-4 mb-2 whitespace-pre-line">
                 No spam. Only thoughtful updates and creative inspiration.
               </div>
             </div>
@@ -167,12 +165,15 @@ export default function Home() {
               </ScrambleIn>
             </h2>
             <div className="flex-1">
+              <div className="font-light text-muted-foreground text-[4.5vw] sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-tight sm:leading-tight mb-2 whitespace-pre-line">
+                Images capturing adventures, triathlon training, and everyday moments. Click photo to enlarge.
+              </div>
               <PhotoCarousel />
             </div>
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col sm:flex-row">
+          <div className="flex flex-col sm:flex-row pb-16">
             <h2 className="w-full mb-[2vw] sm:mb-0 sm:text-right pr-4 sm:pr-6 md:pr-8 lg:pr-12  sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-[22%]">
               <ScrambleIn
                 delay={ROW_DELAY * 17}
@@ -202,7 +203,7 @@ export default function Home() {
                     }
                     scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
                     scrambleSpeed={SCRAMBLE_SPEED}
-                    className="font-light"
+                    className="font-light text-muted-foreground"
                     containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
                   />
                 </a>
@@ -233,7 +234,7 @@ export default function Home() {
                         }
                         scrambledLetterCount={SCRAMBLED_LETTER_COUNT}
                         scrambleSpeed={SCRAMBLE_SPEED}
-                        className="font-light"
+                        className="font-light text-muted-foreground"
                         containerClassName="group justify-between border-b-2 md:hover:border-foreground border-b-transparent cursor-pointer pb-0.5 md:pb-0.5 lg:pb-1 transition-colors"
                       />
                     </a>
