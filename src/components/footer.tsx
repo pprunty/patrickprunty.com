@@ -2,26 +2,33 @@ import React from 'react';
 import ThemeSwitcher from '@/components/theme-switcher';
 
 const Footer: React.FC = () => (
-  <footer className="mt-12 flex w-full items-end justify-between text-[15px] gap-2 pb-8 mb-2">
-    <div>
-      <div className="text-primary">
-        Built with{' '}
-        <a
-          href="https://nextjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-primary"
-        >
-          Next.js
-        </a>
+  <footer className="mt-12 flex flex-col sm:flex-row w-full items-start sm:items-end justify-between text-[15px] gap-4 sm:gap-2 pb-8 mb-2">
+    {/* Left side: Theme switcher and "Built with" */}
+    <div className="flex flex-col gap-1">
+      <div className="max-w-xs pb-2 mb-2 sm:pb-0 sm:mb-0">
+        <ThemeSwitcher />
       </div>
-      <div className="text-muted-foreground">Last visit from Ben Arous, TN</div>
+      <div>
+        <div className="text-primary">
+          Built with{' '}
+          <a
+            href="https://nextjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-primary"
+          >
+            Next.js
+          </a>
+        </div>
+        <div className="text-muted-foreground">
+          Last visit from Ben Arous, TN
+        </div>
+      </div>
     </div>
-    <div className="flex flex-col items-end gap-1">
-      <ThemeSwitcher />
-      <div className="text-muted-foreground text-right">
-        © 2025 Patrick Prunty
-      </div>
+
+    {/* Right side: Copyright */}
+    <div className="text-muted-foreground text-left sm:text-right flex items-end justify-start sm:justify-end">
+      © 2025 Patrick Prunty
     </div>
   </footer>
 );

@@ -10,13 +10,13 @@ const Map: React.FC = () => (
       height={250}
       quality={100}
       draggable={false}
-      className="w-full h-auto rounded-2xl"
+      className="w-full h-auto rounded-2xl bg-neutral-200 dark:bg-neutral-800"
     />
     <a
       href="https://en.wikipedia.org/wiki/London"
       target="_blank"
       rel="noopener noreferrer"
-      className="absolute bottom-4 right-4 flex items-center gap-1 rounded-md bg-muted border border-border px-3 py-1 text-xs font-normal text-primary dark:text-primary cursor-pointer no-after"
+      className="absolute bottom-4 right-4 flex items-center gap-1 rounded-md bg-[#f0f0f0] dark:bg-[#333] border border-border px-3 py-1 text-xs font-normal text-primary dark:text-primary cursor-pointer no-after"
     >
       London, UK
     </a>

@@ -131,9 +131,17 @@ export default function RootLayout({
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
       <body className="text-gray-800 dark:text-gray-300 pt-4 p-6 sm:px-2">
+        <div
+          className="fixed top-[-20px] z-[110] h-16 w-screen bg-neutral-100 opacity-90 blur dark:top-[-30px] dark:bg-[#222222] dark:opacity-70"
+          aria-hidden="true"
+        ></div>
         <main className="z-[100] min-h-screen max-w-xl pt-0 m-auto text-pretty sm:px-5">
           {children}
         </main>
+        <div
+          className="fixed bottom-[-20px] z-[110] h-16 w-screen bg-neutral-100 opacity-90 blur dark:bottom-[-30px] dark:bg-[#222222] dark:opacity-70"
+          aria-hidden="true"
+        ></div>
         <ClientComponents />
         <Analytics />
         <SpeedInsights />

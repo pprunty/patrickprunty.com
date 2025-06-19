@@ -3,12 +3,15 @@
 import { useEffect, useLayoutEffect, useState, useCallback } from 'react';
 
 const themeEffect = function () {
+  // `null` preference implies system (auto)
   const pref = localStorage.getItem('theme');
+
   if (null === pref) {
     document.documentElement.classList.add('theme-system');
   } else {
     document.documentElement.classList.remove('theme-system');
   }
+
   if (
     pref === 'dark' ||
     (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -18,26 +21,21 @@ const themeEffect = function () {
     document.head
       .querySelector('meta[name=theme-color]')
       ?.setAttribute('content', '#222222');
+
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');
     });
     return 'dark';
-  } else if (
-    pref === 'light' ||
-    (!pref && window.matchMedia('(prefers-color-scheme: light)').matches)
-  ) {
+  } else {
     document.documentElement.classList.add('pause-transitions');
     document.documentElement.classList.remove('dark');
     document.head
       .querySelector('meta[name=theme-color]')
-      ?.setAttribute('content', '#F5F5F5');
+      ?.setAttribute('content', '#fffefc');
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');
     });
     return 'light';
-  } else {
-    // fallback
-    return 'system';
   }
 };
 
@@ -53,9 +51,11 @@ export function ThemeSwitcher() {
   }, []);
 
   useLayoutEffect(() => {
+    // Default to system theme on initial load (if no value is stored)
     setPreference(localStorage.getItem('theme'));
     const current = themeEffect();
     setCurrentTheme(current);
+
     const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
     matchMedia.addEventListener('change', onMediaChange);
     return () => matchMedia.removeEventListener('change', onMediaChange);
@@ -74,104 +74,28 @@ export function ThemeSwitcher() {
     return () => window.removeEventListener('storage', onStorageChange);
   }, [onStorageChange]);
 
-  const setTheme = (theme: string) => {
-    if (theme === 'system') {
-      localStorage.removeItem('theme');
-      setPreference(null);
-    } else {
-      localStorage.setItem('theme', theme);
-      setPreference(theme);
-    }
-  };
-
-  const isActive = (theme: string) => {
-    if (theme === 'system') return !preference;
-    return preference === theme;
-  };
-
   return (
-    <div className="inline-flex rounded-full border border-border bg-background p-0.5 shadow-sm">
+    <>
+      {/* Removed hover-based descriptor */}
       <button
-        aria-label="System theme"
-        className={`group flex items-center justify-center rounded-full px-1.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
-          isActive('system') ? 'bg-muted' : 'hover:bg-accent'
-        }`}
-        onClick={() => setTheme('system')}
-        type="button"
+        aria-label="Toggle theme"
+        className="inline-flex rounded-md theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline"
+        onClick={(ev) => {
+          ev.preventDefault();
+          // Toggle strictly between dark and light
+          const newPreference = currentTheme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('theme', newPreference);
+          setPreference(newPreference);
+        }}
       >
-        <MonitorIcon
-          className={`h-3 w-3 ${isActive('system') ? 'text-primary' : 'text-muted-foreground'}`}
-        />
+        <span className="sun-icon">
+          <SunIcon />
+        </span>
+        <span className="moon-icon">
+          <MoonIcon />
+        </span>
       </button>
-      <button
-        aria-label="Light theme"
-        className={`group flex items-center justify-center rounded-full px-1.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
-          isActive('light') ? 'bg-muted' : 'hover:bg-accent'
-        }`}
-        onClick={() => setTheme('light')}
-        type="button"
-      >
-        <SunIcon
-          className={`h-3 w-3 ${isActive('light') ? 'text-primary' : 'text-muted-foreground'}`}
-        />
-      </button>
-      <button
-        aria-label="Dark theme"
-        className={`group flex items-center justify-center rounded-full px-1.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
-          isActive('dark') ? 'bg-muted' : 'hover:bg-accent'
-        }`}
-        onClick={() => setTheme('dark')}
-        type="button"
-      >
-        <MoonIcon
-          className={`h-3 w-3 ${isActive('dark') ? 'text-primary' : 'text-muted-foreground'}`}
-        />
-      </button>
-    </div>
-  );
-}
-
-function MonitorIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className={props.className}
-      width={12}
-      height={12}
-      {...props}
-    >
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="12"
-        rx="2"
-        fill="currentColor"
-        className="fill-muted-foreground/10"
-      />
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="12"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <rect
-        x="9"
-        y="18"
-        width="6"
-        height="2"
-        rx="1"
-        fill="currentColor"
-        className="fill-muted-foreground/20"
-      />
-    </svg>
+    </>
   );
 }
 
@@ -179,8 +103,8 @@ function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={12}
-      height={12}
+      width={18}
+      height={18}
       strokeWidth={0}
       viewBox="0 0 56 56"
       {...props}
@@ -198,8 +122,8 @@ function SunIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={12}
-      height={12}
+      width={18}
+      height={18}
       strokeWidth={0}
       viewBox="0 0 56 56"
       {...props}

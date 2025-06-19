@@ -273,7 +273,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
       return (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -298,7 +298,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
               e.stopPropagation();
               closeFocusedView();
             }}
-            className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[1000] transition-colors duration-200"
+            className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[9999] transition-colors duration-200"
             aria-label="Close"
           >
             <X size={20} weight="bold" />
@@ -379,7 +379,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
           className="overflow-x-auto overflow-y-hidden scrollbar-hide -mx-4"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2 mb-2 px-4">
+          <div className="flex gap-2 mb-2 px-4 sm:pr-6">
             {media.map((item, idx) => (
               <div
                 key={idx}
@@ -428,7 +428,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         {isMobile && maxScroll > 0 && (
           <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
             <div
-              className="absolute h-full bg-muted rounded transition-all duration-150 ease-out"
+              className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
               style={{
                 width: scrollIndicatorWidth,
                 left: scrollIndicatorPosition,

@@ -7,6 +7,8 @@ import Image from 'next/image';
 import Map from '@/components/map';
 import Contact from '@/components/contact';
 import Footer from '@/components/footer';
+import SubstackButton from '@/components/substack-button';
+import AnimatedSection from '@/components/animated-section';
 
 export const metadata = {
   title: `${AUTHOR.name}`,
@@ -49,6 +51,8 @@ export const metadata = {
     }
 };
 
+<AnimatedSection>
+
 # Patrick Prunty [#patrick-prunty]
 {/*
 explore ✺︎ design ∿︎ build ◳︎
@@ -70,29 +74,37 @@ explore ✺︎ design ∿︎ build ◳︎
 */
 }
 
-Hi! I'm Patrick—senior software engineer at [UnitedHealth Group / Optum](https://optum.com). This is my little corner of the web where I share my work with you all.
+Hi! I'm Patrick—a senior software engineer at [UnitedHealth Group / Optum](https://optum.com). This is my little corner of the web where I share my work with you all.
 
 
-In my free time, I spend time outdoors, work on open source, and tinker around with all sorts of random computer stuff.
+In my free time, I [write on Substack](https://pprunty.substack.com/), spend time hiking outdoors/training triathlon, and tinker around with all sorts of random computer stuff.
+
+</AnimatedSection>
 
 {/*
 Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animation (videos coming soon).
 */}
 
+<AnimatedSection delay={100}>
+
 # Where [#where]
 
 <Map />
 
+</AnimatedSection>
+
+
+<AnimatedSection delay={200}>
 
 # Writing [#writing]
 
-Furry Circuits is a newsletter of short, creative essays on technology, culture, and side projects.
+On my Substack, [Furry Circuits](https://pprunty.substack.com/), I publish essays and a weekly newsletter exploring artificial intelligence, computer programming, and anything else that sparks curiosity along the way.
 
-- [How AI is Changing Creative Work](https://furycircuits.substack.com/p/how-ai-is-changing-creative-work)  
-- [The Joy of Side Projects](https://furycircuits.substack.com/p/the-joy-of-side-projects)  
-- [Why I Write](https://furycircuits.substack.com/p/why-i-write)  
+If you're new, try [“The Engineer’s Proclivity for Perfection”](https://pprunty.substack.com/p/the-engineers-proclivity-for-perfection) or or browse one of my [weekly newsletters](https://pprunty.substack.com/p/1-furry-circuits-1bb).
 
-Subscribe or read more at [Furry Circuits on Substack](https://furycircuits.substack.com)
+<SubstackButton>Subscribe</SubstackButton>
+
+</AnimatedSection>
 
 # Projects [#projects]
 
@@ -107,10 +119,12 @@ Subscribe or read more at [Furry Circuits on Substack](https://furycircuits.subs
         '/images/projects/pp3.webp',
         '/images/projects/GodelIncompleteness.mp4',
       ],
+/*
       youtubeIds: [
         'DcYLT37ImBY',
         'wjZofJX0v4M',
       ],
+*/
       description: 'Animated YouTube series making math and computer programming fun and accessible.',
     },
     {
@@ -125,24 +139,24 @@ Subscribe or read more at [Furry Circuits on Substack](https://furycircuits.subs
       title: 'deltacomponents.dev',
       url: 'https://deltacomponents.dev/',
       year: '(Work in progress)',
-      media: ['/images/projects/deltacomponents4.webp'],
+      media: [
+        '/images/projects/dc/radio-input.mp4',
+        '/images/projects/dc/mouse-string-connection.mp4',
+        '/images/projects/dc/highlighter.mp4',
+        '/images/projects/dc/font-transform.mp4',
+      ],
       description: <>A collection of open-source, customizable UI elements designed for integration with <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">shadcn</a>, <a href="https://v0.dev/chat" target="_blank" rel="noopener noreferrer">v0</a>, and Next.js / React.js.</>
     },
     {
       title: 'magikarp',
       url: 'https://github.com/pprunty/magikarp',
       year: '(Work in progress)',
-      media: [
-      '/images/projects/magikarp.png',
-      '/images/projects/magikarp-diagram.png',
-      ],
       description: 'A Go framework for building customizable, plugin-based AI agents.'
     },
     {
       title: 'tmplate.xyz',
       url: 'https://tmplate.xyz/',
       year: '2025',
-      media: ['/images/projects/tmplate.xyz.webp', '/images/projects/tmplate-blog-screenshot.png'],
       description: 'A modern SaaS starter kit with Next.js, FastAPI, OAuth and built-in SEO.'
     },
     {
@@ -161,15 +175,17 @@ Subscribe or read more at [Furry Circuits on Substack](https://furycircuits.subs
   ]}
 />
 
-
-{/*
 # Photos [#photos]
 
 <PhotoGrid />
-*/}
+
+
+<AnimatedSection delay={400}>
 
 # Connect
 
 <Contact />
 
 <Footer />
+
+</AnimatedSection>

@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image, { type ImageProps } from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+import { X } from '@phosphor-icons/react';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
@@ -105,7 +106,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
   }, [animate]);
 
   // Animation variants for framer-motion
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 1.05 },
     visible: {
       opacity: 1,
@@ -165,7 +166,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 
       {isModalOpen && (
         <span
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[999] transition-colors duration-300 modal-overlay"
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[120] transition-colors duration-300 modal-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               closeModal();
@@ -193,9 +194,10 @@ export const MemoizedImage = React.memo(function MemoizedImage({
                 e.stopPropagation();
                 closeModal();
               }}
-              className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[1000] shadow-sm"
+              className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[9999] transition-colors duration-200"
+              aria-label="Close"
             >
-              Close
+              <X size={20} weight="bold" />
             </button>
           </span>
         </span>
