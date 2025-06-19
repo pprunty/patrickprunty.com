@@ -83,7 +83,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="text-[17px] sm:text-base no-after font-medium text-primary underline decoration-wavy underline-offset-4 decoration-muted-foreground hover:decoration-primary active:decoration-primary visited:text-muted-foreground flex items-center gap-1"
+                    className="text-[17px] sm:text-base no-after font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary flex items-center gap-1"
                   >
                     {item.title}
                     <ArrowUpRight
@@ -93,7 +93,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     />
                   </a>
                 ) : (
-                  <span className="text-[17px] sm:text-base font-medium text-primary">
+                  <span className="text-[17px] sm:text-base font-normal text-primary">
                     {item.title}
                   </span>
                 )}

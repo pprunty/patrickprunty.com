@@ -2,7 +2,7 @@ import React from 'react';
 import ThemeSwitcher from '@/components/theme-switcher';
 
 const Footer: React.FC = () => (
-  <footer className="mt-12 flex w-full items-end justify-between text-sm gap-2 pb-8 mb-2">
+  <footer className="mt-12 flex w-full items-end justify-between text-[15px] gap-2 pb-8 mb-2">
     <div>
       <div className="text-primary">
         Built with{' '}

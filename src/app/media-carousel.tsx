@@ -416,7 +416,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     quality={100}
                     unoptimized
                     focusable={false}
-                    animate
+                    animate={false}
                   />
                 )}
               </div>
@@ -428,7 +428,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         {isMobile && maxScroll > 0 && (
           <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
             <div
-              className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
+              className="absolute h-full bg-muted rounded transition-all duration-150 ease-out"
               style={{
                 width: scrollIndicatorWidth,
                 left: scrollIndicatorPosition,

@@ -81,7 +81,7 @@
     --secondary: #F5F5F5;
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
-    --muted: #f0f0f0; /* Updated for better visibility in light mode */
+    --muted: #D8D8D8; /* Updated for better visibility in light mode */
     --muted-foreground: #545454; /* Darker gray for better contrast in light mode */
     --accent: #F5F5F5;
     --accent-foreground: #18181b;
@@ -124,7 +124,7 @@
     --secondary: #272727;
     --secondary-foreground: #fafafa;
     --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
-    --muted: #333333; /* Updated for better visibility in dark mode */
+    --muted: #555; /* Updated for better visibility in dark mode */
     --muted-foreground: #c4c4c4; /* Lighter gray for better contrast in dark mode */
     --accent: #424142;
     --accent-foreground: #fafafa;
@@ -280,6 +280,12 @@
   .placeholder-style::placeholder {
     @apply text-muted-foreground;
     opacity: 60%;
+  }
+  .underline-contrast-hover:hover {
+    text-decoration-color: #2f74da !important; /* Strong blue for light mode */
+  }
+  .dark .underline-contrast-hover:hover {
+    text-decoration-color: #90cdf4 !important; /* Lighter blue for dark mode */
   }
 }
 
