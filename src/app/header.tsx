@@ -3,7 +3,6 @@ import { Logo } from './logo';
 import { SOCIAL_URLS, CTA_SOCIAL_PLATFORM } from '@/config';
 import { SocialIcon } from '@/components/social-icon';
 import type { SocialPlatform } from '@/__samwise/types/SocialPlatform';
-import ActiveLink from './active-link';
 import Script from 'next/script';
 
 // Mappings
@@ -78,8 +77,6 @@ export default function Header() {
           {/* Right: Navbar Links */}
           <nav className="font-mono text-xs grow justify-end items-center flex md:gap-3">
             <ThemeSwitcher />
-            <ActiveLink href="/">About</ActiveLink>
-            <ActiveLink href="/blog">Blog</ActiveLink>
 
             {/* CTA Social Icon Link */}
             {ctaUrl && ctaLabel && (

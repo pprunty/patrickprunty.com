@@ -17,7 +17,7 @@
     font-family: var(--font-geist-sans), 'Geist', sans-serif;
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
-    @apply bg-[#FFFEFC];
+    @apply bg-[#F5F5F5];
     @apply text-[#222222];
     --scrollbar-width: 12px;
     --webkit-overflow-scrolling: touch;
@@ -68,8 +68,8 @@
   }
 
   :root {
-    --background: #fffefc;
-    --background-90: rgba(255, 254, 252, 0.95);
+    --background: #F5F5F5;
+    --background-90: rgba(245, 245, 245, 0.95);
     --foreground: #09090b;
     --card: #f3f3f3;
     --card-foreground: #09090b;
@@ -78,17 +78,17 @@
     --primary: #18181b;
     --primary-foreground: #fafafa;
     --primary-hover: #2d2c2c; /* A darker shade of your primary color */
-    --secondary: #fffefc;
+    --secondary: #F5F5F5;
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
     --muted: #f0f0f0; /* Updated for better visibility in light mode */
     --muted-foreground: #545454; /* Darker gray for better contrast in light mode */
-    --accent: #fffefc;
+    --accent: #F5F5F5;
     --accent-foreground: #18181b;
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
     --action: #2f74da; /* New action color */
-    --action-foreground: #fffefc; /* Text color for action buttons */
+    --action-foreground: #F5F5F5; /* Text color for action buttons */
     --action-hover: #2661b9; /* Hover state for action buttons */
     --border: #e0e0e0;
     --input: #fffefc;
@@ -341,4 +341,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
+
+@keyframes marker {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}
+
+.animate-marker {
+  animation: marker 4s ease-out infinite;
 }
