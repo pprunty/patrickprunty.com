@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState, useEffect } from 'react';
 import MediaCarousel from './media-carousel';
 import { ArrowUpRight } from '@phosphor-icons/react';
 import type { StaticImageData } from 'next/image';
@@ -29,6 +29,16 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
   // sectionName is intentionally unused in this component but kept for API consistency
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Prepare all media items at once outside the render loop
   const allMediaItems = useMemo(() => {
     return items.map((item) => {
@@ -60,6 +70,10 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
       return mediaItems;
     });
   }, [items]);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <section className="text-[17px] sm:text-base my-5">
