@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeSwitcher from '@/components/theme-switcher';
+import LastVisitor from '@/components/last-visitor';
 
 const Footer: React.FC = () => (
   <footer className="mt-12 flex flex-col sm:flex-row w-full items-start sm:items-end justify-between text-[15px] gap-4 sm:gap-2 pb-8 mb-2">
@@ -9,7 +10,7 @@ const Footer: React.FC = () => (
         <ThemeSwitcher />
       </div>
       <div>
-        <div className="text-primary">
+        <div className="text-primary text-[15px]">
           Built with{' '}
           <a
             href="https://nextjs.org"
@@ -20,14 +21,14 @@ const Footer: React.FC = () => (
             Next.js
           </a>
         </div>
-        <div className="text-muted-foreground">
-          Last visit from Ben Arous, TN
+        <div>
+          <LastVisitor />
         </div>
       </div>
     </div>
 
     {/* Right side: Copyright */}
-    <div className="text-muted-foreground text-left sm:text-right flex items-end justify-start sm:justify-end">
+    <div className="text-muted-foreground text-left sm:text-right flex items-end justify-start sm:justify-end text-[15px]">
       © 2025 Patrick Prunty
     </div>
   </footer>

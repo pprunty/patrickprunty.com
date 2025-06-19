@@ -376,10 +376,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         {/* Thumbnail strip */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-hide -mx-4"
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide sm:mx-0 -mx-4"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2 mb-2 px-4 sm:pr-6">
+          <div className="flex gap-2 mb-2 sm:px-0 px-4 sm:pr-0">
             {media.map((item, idx) => (
               <div
                 key={idx}

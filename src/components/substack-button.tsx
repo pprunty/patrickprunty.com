@@ -20,7 +20,7 @@ const SubstackLogo = () => (
 );
 
 const SubstackButton: React.FC<SubstackButtonProps> = ({
-  href = 'https://pprunty.substack.com/',
+  href = 'https://pprunty.substack.com/subscribe',
   children = 'Subscribe on Substack',
   className = '',
   ...props
@@ -29,7 +29,7 @@ const SubstackButton: React.FC<SubstackButtonProps> = ({
     return (
       <Button
         asChild
-        className={`bg-[#6057EA] hover:bg-[#5248d1] text-white border-0 ${className}`}
+        className={`bg-[#6057EA] hover:bg-[#5248d1] active:bg-[#453bb8] text-white border-0 ${className}`}
         {...props}
       >
         <a
@@ -47,7 +47,7 @@ const SubstackButton: React.FC<SubstackButtonProps> = ({
 
   return (
     <Button
-      className={`bg-[#6057EA] hover:bg-[#5248d1] text-white border-0 ${className}`}
+      className={`bg-[#6057EA] hover:bg-[#5248d1] active:bg-[#453bb8] text-white border-0 ${className}`}
       {...props}
     >
       <SubstackLogo />

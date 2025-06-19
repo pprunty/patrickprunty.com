@@ -36,7 +36,7 @@ const Contact: React.FC = () => (
         href={contact.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center rounded-full bg-[#f0f0f0] dark:bg-[#333] px-3 py-1 text-[15px] font-medium text-primary transition-colors hover:bg-[#e8e8e8] dark:hover:bg-[#404040] active:bg-[#e0e0e0] dark:active:bg-[#4a4a4a] no-after"
+        className="flex items-center rounded-full bg-[#e8e8e8] dark:bg-[#333] px-3 py-1 text-[15px] font-medium text-primary transition-colors hover:bg-[#d8d8d8] dark:hover:bg-[#404040] active:bg-[#d0d0d0] dark:active:bg-[#4a4a4a] no-after"
       >
         {contact.label}
         <ArrowUpRight
