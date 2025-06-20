@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 import Image, { type ImageProps } from 'next/image';
 import { motion, type Variants } from 'framer-motion';
 import { X } from '@phosphor-icons/react';
-import SkeletonLoader from './skeleton-loader';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
@@ -31,7 +30,6 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isImageLoaded, setImageLoaded] = useState(false);
-  const [isImageReady, setImageReady] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const scrollPositionRef = useRef(0);
   const imageRef = useRef<HTMLSpanElement>(null);
@@ -130,18 +128,14 @@ export const MemoizedImage = React.memo(function MemoizedImage({
     <>
       <span
         ref={imageRef}
-        className={`overflow-hidden relative ${focusable ? 'cursor-pointer' : ''}`}
+        className={`overflow-hidden ${focusable ? 'cursor-pointer' : ''}`}
         onClick={openModal}
       >
-        {!isImageReady && (
-          <SkeletonLoader width={width} height={height} className={className} />
-        )}
         {animate ? (
           <motion.div
             initial="hidden"
             animate={isImageLoaded ? 'visible' : 'hidden'}
             variants={imageVariants}
-            style={{ display: isImageReady ? 'block' : 'none' }}
           >
             <Image
               src={src || '/placeholder.svg'}
@@ -155,7 +149,6 @@ export const MemoizedImage = React.memo(function MemoizedImage({
               fill={fill}
               sizes={sizes}
               unoptimized={unoptimized}
-              onLoad={() => setImageReady(true)}
               {...rest}
             />
           </motion.div>
@@ -172,8 +165,6 @@ export const MemoizedImage = React.memo(function MemoizedImage({
             fill={fill}
             sizes={sizes}
             unoptimized={unoptimized}
-            onLoad={() => setImageReady(true)}
-            style={{ display: isImageReady ? 'block' : 'none' }}
             {...rest}
           />
         )}
