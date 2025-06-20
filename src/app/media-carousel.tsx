@@ -376,10 +376,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         {/* Thumbnail strip */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-hide sm:mx-0 -mx-4"
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide sm:mx-0 -mx-4 h-[104px]"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2 mb-2 sm:px-0 px-4 sm:pr-0">
+          <div className="flex gap-2 mb-2 sm:px-0 px-4 sm:pr-0 h-24">
             {media.map((item, idx) => (
               <div
                 key={idx}
@@ -425,17 +425,19 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         </div>
 
         {/* Scroll indicator */}
-        {isMobile && maxScroll > 0 && (
-          <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
-            <div
-              className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
-              style={{
-                width: scrollIndicatorWidth,
-                left: scrollIndicatorPosition,
-              }}
-            />
-          </div>
-        )}
+        <div className="h-[6px] mt-1">
+          {isMobile && maxScroll > 0 && (
+            <div className="relative h-0.5 w-full bg-secondary-hover rounded">
+              <div
+                className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
+                style={{
+                  width: scrollIndicatorWidth,
+                  left: scrollIndicatorPosition,
+                }}
+              />
+            </div>
+          )}
+        </div>
 
         {/* Focused overlay */}
         {focusedIndex !== null && renderFocusedMedia()}

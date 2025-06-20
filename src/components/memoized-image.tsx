@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Image, { type ImageProps } from 'next/image';
 import { motion, type Variants } from 'framer-motion';
 import { X } from '@phosphor-icons/react';
@@ -29,6 +30,8 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isImageLoaded, setImageLoaded] = useState(false);
+  const [isImageReady, setImageReady] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const scrollPositionRef = useRef(0);
   const imageRef = useRef<HTMLSpanElement>(null);
   const modalRef = useRef<HTMLSpanElement>(null);
@@ -36,7 +39,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 
   const openModal = useCallback(() => {
     if (focusable) {
-      scrollPositionRef.current = window.scrollY || window.pageYOffset;
+      scrollPositionRef.current = window.scrollY;
 
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollPositionRef.current}px`;
@@ -105,6 +108,10 @@ export const MemoizedImage = React.memo(function MemoizedImage({
     };
   }, [animate]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Animation variants for framer-motion
   const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 1.05 },
@@ -164,9 +171,9 @@ export const MemoizedImage = React.memo(function MemoizedImage({
         )}
       </span>
 
-      {isModalOpen && (
+      {isModalOpen && isMounted && createPortal(
         <span
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[120] transition-colors duration-300 modal-overlay"
+          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[9999] transition-colors duration-300 modal-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               closeModal();
@@ -194,13 +201,14 @@ export const MemoizedImage = React.memo(function MemoizedImage({
                 e.stopPropagation();
                 closeModal();
               }}
-              className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[9999] transition-colors duration-200"
+              className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[200] transition-colors duration-200"
               aria-label="Close"
             >
               <X size={20} weight="bold" />
             </button>
           </span>
-        </span>
+        </span>,
+        document.body
       )}
     </>
   );

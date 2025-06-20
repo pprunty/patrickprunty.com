@@ -58,7 +58,7 @@ type PhotoGridProps = Record<string, never>;
 
 const PhotoGrid: React.FC<PhotoGridProps> = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 py-4 relative z-10">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 py-4 relative z-[105]">
       {photographyImages.map((src, index) => (
         <div key={index} className="relative h-full">
           <MemoizedImage
