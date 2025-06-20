@@ -2,26 +2,40 @@
 
 import { useEffect, useState } from 'react';
 
+interface LastVisitorData {
+  lastLocation: string;
+  lastTimestamp: number | null;
+}
+
 const LastVisitor: React.FC = () => {
   const [uniqueViewers, setUniqueViewers] = useState<number | null>(null);
+  const [lastVisitor, setLastVisitor] = useState<LastVisitorData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUniqueViewers = async () => {
+    const fetchData = async () => {
       try {
-        // Fetch unique viewers for the home page
-        const response = await fetch('/api/viewers?path=/');
-        const data = await response.json();
-        setUniqueViewers(data.count);
+        // Fetch both unique viewers and last visitor data
+        const [viewersResponse, lastVisitorResponse] = await Promise.all([
+          fetch('/api/viewers?path=/'),
+          fetch('/api/last-visitor'),
+        ]);
+
+        const viewersData = await viewersResponse.json();
+        const lastVisitorData = await lastVisitorResponse.json();
+
+        setUniqueViewers(viewersData.count);
+        setLastVisitor(lastVisitorData);
       } catch (error) {
-        console.error('Failed to fetch unique viewers:', error);
+        console.error('Failed to fetch data:', error);
         setUniqueViewers(0);
+        setLastVisitor({ lastLocation: 'Unknown', lastTimestamp: null });
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUniqueViewers();
+    fetchData();
   }, []);
 
   if (loading) {
@@ -30,11 +44,20 @@ const LastVisitor: React.FC = () => {
     );
   }
 
-  const viewerText = uniqueViewers === 1 ? 'unique viewer' : 'unique viewers';
+  const showLocation =
+    lastVisitor?.lastLocation && lastVisitor.lastLocation !== 'Unknown';
+  const showUniqueViewers = uniqueViewers !== null && uniqueViewers > 0;
 
   return (
     <span className="text-muted-foreground text-[15px]">
-      {uniqueViewers} {viewerText}
+      {showLocation && (
+        <>
+          Last visitor from {lastVisitor.lastLocation}
+          {showUniqueViewers && <br />}
+        </>
+      )}
+      {showUniqueViewers && <>(Unique viewers: {uniqueViewers})</>}
+      {!showLocation && !showUniqueViewers && <>No visitor data available</>}
     </span>
   );
 };

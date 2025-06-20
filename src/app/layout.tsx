@@ -7,7 +7,7 @@ import type { Metadata, Viewport } from 'next';
 import { Analytics } from './analytics';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
-import { Instrument_Serif, Geist, Geist_Mono } from 'next/font/google';
+import { Instrument_Serif, Geist, Geist_Mono, Petrona } from 'next/font/google';
 import localFont from 'next/font/local';
 import ClientComponents from './client';
 
@@ -54,6 +54,12 @@ const satoshi = localFont({
   src: '../../public/fonts/Satoshi-Variable.woff2',
   display: 'swap',
   variable: '--font-satoshi',
+});
+
+const petrona = Petrona({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-petrona',
 });
 
 export const viewport: Viewport = {
@@ -114,7 +120,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} ${satoshi.variable} font-sans antialiased`}
+      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} ${satoshi.variable} ${petrona.variable} font-sans antialiased`}
     >
       <head>
         <script

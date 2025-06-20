@@ -32,6 +32,13 @@ export default {
           'Cambria',
           'serif',
         ],
+        petrona: [
+          'var(--font-petrona)',
+          'Petrona',
+          'ui-serif',
+          'Georgia',
+          'serif',
+        ],
       },
       colors: {
         background: 'var(--background)',

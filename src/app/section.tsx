@@ -34,7 +34,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 300);
+    }, 750);
 
     return () => clearTimeout(timer);
   }, []);

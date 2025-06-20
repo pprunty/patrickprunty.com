@@ -37,21 +37,23 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
   }
 
   return (
-    <article className="mb-10 text-pretty">
-      <Header posts={posts} currentPost={currentPost} />
-      <TableOfContents />
-      {children}
-      <BottomBar />
-      <Newsletter variant={'minimal'} />
-      {/* to be added in next version <CommentsSection/> */}
-      <RelatedPosts
-        currentPostSlug={slug}
-        currentPostKeywords={currentPost.keywords}
-        posts={posts}
-      />
-      {process.env.NODE_ENV === 'development' && (
-        <PillarMenu buttons={buttons} slug={slug} currentPost={currentPost} />
-      )}
-    </article>
+    <div className="max-w-3xl mx-auto">
+      <article className="mb-10 text-pretty font-petrona">
+        <Header posts={posts} currentPost={currentPost} />
+        <TableOfContents />
+        {children}
+        <BottomBar />
+        <Newsletter variant={'minimal'} />
+        {/* to be added in next version <CommentsSection/> */}
+        <RelatedPosts
+          currentPostSlug={slug}
+          currentPostKeywords={currentPost.keywords}
+          posts={posts}
+        />
+        {process.env.NODE_ENV === 'development' && (
+          <PillarMenu buttons={buttons} slug={slug} currentPost={currentPost} />
+        )}
+      </article>
+    </div>
   );
 }
