@@ -199,7 +199,7 @@
     --spotify-green: #1cd760;
   }
 
-  a:not(.social-link,.no-after,.tweet)[href*="//"]:not([href*="patrickprunty.com"]):after
+  a:not(.social-link,.no-after,.tweet)[href*="//"]:not([href="patrickprunty.com"]):after
   {
     content: '⌝';
   }
