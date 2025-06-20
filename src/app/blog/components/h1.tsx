@@ -8,7 +8,7 @@ interface H1Props {
 // Refactored H1 component using StyledH1
 export function H1({ children }: H1Props) {
   return (
-    <h1 className="text-[17px] sm:text-base font-bold dark:text-gray-100 mt-12">
+    <h1 className="text-[17px] font-bold dark:text-gray-100 mt-12">
       {withHeadingId(children)}
     </h1>
   );
