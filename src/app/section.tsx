@@ -76,7 +76,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
   }
 
   return (
-    <section className="text-[17px] sm:text-base my-5">
+    <section className="text-base my-5">
       <div className="space-y-4">
         {items.map((item, index) => {
           if (item.hide) return null;
@@ -97,7 +97,7 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="text-[17px] sm:text-base no-after font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary flex items-center gap-1"
+                    className="text-base no-after font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary flex items-center gap-1"
                   >
                     {item.title}
                     <ArrowUpRight
@@ -107,17 +107,17 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                     />
                   </a>
                 ) : (
-                  <span className="text-[17px] sm:text-base font-normal text-primary">
+                  <span className="text-base font-normal text-primary">
                     {item.title}
                   </span>
                 )}
               </div>
 
-              <div className="text-[17px] sm:text-base text-muted-foreground">
+              <div className="text-base text-muted-foreground break-normal w-full">
                 {item.year && (
                   <div className="flex items-baseline">
                     {item.description && (
-                      <span className="text-[17px] sm:text-base">
+                      <span className="text-base break-normal w-full">
                         {' '}
                         {item.year} · {item.description}
                       </span>
