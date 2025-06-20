@@ -78,6 +78,16 @@ const nextConfig = {
           },
         ],
       },
+      // Cache map.webp for fast loading
+      {
+        source: '/images/map.webp',
+        headers: [
+          {
+            key: 'cache-control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
     ];
   },
   pageExtensions: ['ts', 'tsx', 'mdx'],
