@@ -3,13 +3,11 @@ import './atom-one-dark.css';
 import { AUTHOR, SITE_URL, SOCIAL_URLS, DEFAULT_KEYWORDS } from '@/config';
 import { doge } from './doge';
 import { themeEffect } from '@/components/theme-effect';
-import Header from './header';
-import { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from './analytics';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GA_MEASUREMENT_ID } from '@/config';
-import { Instrument_Serif, Geist, Geist_Mono } from 'next/font/google';
+import { Instrument_Serif, Geist, Geist_Mono, Petrona } from 'next/font/google';
 import localFont from 'next/font/local';
 import ClientComponents from './client';
 
@@ -50,6 +48,18 @@ const perfectlyNineties = localFont({
   ],
   display: 'swap',
   variable: '--font-perfectly-nineties',
+});
+
+const satoshi = localFont({
+  src: '../../public/fonts/Satoshi-Variable.woff2',
+  display: 'swap',
+  variable: '--font-satoshi',
+});
+
+const petrona = Petrona({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-petrona',
 });
 
 export const viewport: Viewport = {
@@ -110,7 +120,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} font-sans antialiased`}
+      className={`${fontSans.variable} ${fontMono.variable} ${instrumentSerif.variable} ${perfectlyNineties.variable} ${satoshi.variable} ${petrona.variable} font-sans antialiased`}
     >
       <head>
         <script
@@ -126,11 +136,18 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="text-gray-800 dark:text-gray-300 pt-3 sm:pt-6 p-6 sm:px-4">
-        <Header />
-        <main className="z-[100] min-h-screen max-w-2xl pt-12 m-auto text-pretty">
+      <body className="text-gray-800 dark:text-gray-300 pt-4 p-6 sm:px-2">
+        <div
+          className="fixed top-[-40px] left-0 right-0 z-[110] h-20 w-full bg-neutral-100 opacity-90 blur dark:top-[-50px] dark:bg-[#222222] dark:opacity-70 sm:top-[-40px] sm:dark:top-[-50px] max-sm:top-[-60px] max-sm:dark:top-[-70px] max-sm:h-24"
+          aria-hidden="true"
+        ></div>
+        <main className="z-[100] min-h-screen max-w-xl pt-0 m-auto text-pretty sm:px-5">
           {children}
         </main>
+        <div
+          className="fixed bottom-[-40px] left-0 right-0 z-[110] h-20 w-full bg-neutral-100 opacity-90 blur dark:bottom-[-50px] dark:bg-[#222222] dark:opacity-70 sm:bottom-[-40px] sm:dark:bottom-[-50px] max-sm:bottom-[-60px] max-sm:dark:bottom-[-70px] max-sm:h-24"
+          aria-hidden="true"
+        ></div>
         <ClientComponents />
         <Analytics />
         <SpeedInsights />

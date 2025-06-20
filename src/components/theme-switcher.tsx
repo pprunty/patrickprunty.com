@@ -31,7 +31,7 @@ const themeEffect = function () {
     document.documentElement.classList.remove('dark');
     document.head
       .querySelector('meta[name=theme-color]')
-      ?.setAttribute('content', '#fffefc');
+      ?.setAttribute('content', '#F5F5F5');
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');
     });
@@ -79,7 +79,7 @@ export function ThemeSwitcher() {
       {/* Removed hover-based descriptor */}
       <button
         aria-label="Toggle theme"
-        className="inline-flex rounded-md hover:bg-accent hover:text-accent-foreground transition-[background-color]  p-2 theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline"
+        className="inline-flex rounded-md theme-system:!bg-inherit [&_.sun-icon]:hidden dark:[&_.moon-icon]:hidden dark:[&_.sun-icon]:inline"
         onClick={(ev) => {
           ev.preventDefault();
           // Toggle strictly between dark and light
@@ -103,8 +103,8 @@ function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={16}
-      height={16}
+      width={18}
+      height={18}
       strokeWidth={0}
       viewBox="0 0 56 56"
       {...props}
@@ -122,8 +122,8 @@ function SunIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={16}
-      height={16}
+      width={18}
+      height={18}
       strokeWidth={0}
       viewBox="0 0 56 56"
       {...props}

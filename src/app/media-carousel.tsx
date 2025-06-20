@@ -7,6 +7,7 @@ import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
+import { X } from '@phosphor-icons/react';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
@@ -272,7 +273,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
       return (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -293,23 +294,22 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         >
           {/* Close button */}
           <button
-            className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
             onClick={(e) => {
               e.stopPropagation();
               closeFocusedView();
             }}
+            className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[9999] transition-colors duration-200"
             aria-label="Close"
           >
-            Close
+            <X size={20} weight="bold" />
           </button>
 
           {/* Media container */}
-          <div className="max-w-[100vw] max-h-[100vh] w-full flex items-center justify-center">
+          <div className="max-w-[100vw] max-h-[100vh] w-full h-full flex items-center justify-center p-0 m-0">
             {item.type === 'video' ? (
               <div className="relative max-w-full max-h-[100vh] flex items-center justify-center overflow-hidden">
                 <MemoizedVideo
                   src={getSrcPath(item.src)}
-                  alt={`${title} video ${focusedIndex + 1}`}
                   width={800}
                   height={800}
                   className="max-w-full max-h-[100vh] object-contain w-auto h-auto"
@@ -341,20 +341,18 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 />
               </div>
             ) : (
-              <div className="max-w-full max-h-[100vh] overflow-auto">
+              <div className="w-full h-full flex items-center justify-center p-0 m-0">
                 <Image
                   src={item.src}
                   alt={`${title} image ${focusedIndex + 1}`}
                   width={1200}
                   height={800}
-                  className="max-w-none max-h-none object-contain"
+                  className="object-contain w-full h-full max-w-full max-h-full"
                   quality={100}
                   priority
                   unoptimized
                   style={{
                     touchAction: 'pinch-zoom',
-                    maxWidth: '100%',
-                    maxHeight: '100vh',
                   }}
                 />
               </div>
@@ -363,7 +361,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
           {/* Counter */}
           <div
-            className="absolute bottom-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[60] shadow-sm"
+            className="absolute bottom-4 right-4 text-foreground bg-background/80 backdrop-blur-sm border border-border py-3 px-3 rounded-md z-[60] shadow-sm text-sm font-medium"
             onClick={(e) => e.stopPropagation()}
           >
             {focusedIndex + 1} / {media.length}
@@ -377,10 +375,10 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         {/* Thumbnail strip */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto overflow-y-hidden scrollbar-hide"
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide sm:mx-0 -mx-4 h-[104px]"
           style={{ scrollSnapType: 'none' }}
         >
-          <div className="flex gap-2 mb-2">
+          <div className="flex gap-2 mb-2 sm:px-0 px-4 sm:pr-0 h-24">
             {media.map((item, idx) => (
               <div
                 key={idx}
@@ -393,7 +391,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 {item.type === 'video' ? (
                   <MemoizedVideo
                     src={getSrcPath(item.src)}
-                    alt={`${title} video ${idx + 1}`}
                     width={130}
                     height={130}
                     className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
@@ -417,7 +414,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     quality={100}
                     unoptimized
                     focusable={false}
-                    animate
+                    animate={false}
                   />
                 )}
               </div>
@@ -426,17 +423,19 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
         </div>
 
         {/* Scroll indicator */}
-        {isMobile && maxScroll > 0 && (
-          <div className="relative h-0.5 w-full bg-secondary-hover rounded mt-1">
-            <div
-              className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
-              style={{
-                width: scrollIndicatorWidth,
-                left: scrollIndicatorPosition,
-              }}
-            />
-          </div>
-        )}
+        <div className="h-[6px] mt-1">
+          {isMobile && maxScroll > 0 && (
+            <div className="relative h-0.5 w-full bg-secondary-hover rounded">
+              <div
+                className="absolute h-full bg-muted-foreground rounded transition-all duration-150 ease-out"
+                style={{
+                  width: scrollIndicatorWidth,
+                  left: scrollIndicatorPosition,
+                }}
+              />
+            </div>
+          )}
+        </div>
 
         {/* Focused overlay */}
         {focusedIndex !== null && renderFocusedMedia()}

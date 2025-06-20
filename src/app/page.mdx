@@ -2,9 +2,13 @@ import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
 import Link from 'next/link';
 import UniqueViewers from './unique-viewers';
 import Section from './section';
-import { Badge } from './blog/components/badge';
-import Subscribe from '@/components/subscribe';
-import Newsletter2 from '@/components/newsletter-2';
+import ThemeSwitcher from '@/components/theme-switcher';
+import Image from 'next/image';
+import Map from '@/components/map';
+import Contact from '@/components/contact';
+import Footer from '@/components/footer';
+import SubstackButton from '@/components/substack-button';
+import AnimatedSection from '@/components/animated-section';
 
 export const metadata = {
   title: `${AUTHOR.name}`,
@@ -47,11 +51,22 @@ export const metadata = {
     }
 };
 
-# About [#about]
+<AnimatedSection delay={0}>
 
+# Patrick Prunty [#patrick-prunty]
+
+</AnimatedSection>
+
+<AnimatedSection delay={150}>
+{/*
+explore ✺︎ design ∿︎ build ◳︎
+
+***
+*/}
 <UniqueViewers />
-
-<Image
+{
+/*
+  <Image
   src="/images/me-sketch2.png"
   alt="Patrick Prunty"
   className="bg-gray-100 block mt-5 mb-5 mx-auto w-40 rounded-full h-auto sm:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
@@ -60,35 +75,49 @@ export const metadata = {
   priority
   quality={100}
 />
+*/
+}
 
-Hi! I'm Patrick—a senior software engineer based in Dublin, Ireland.
+Hi! I'm Patrick—a senior software engineer at [UnitedHealth Group / Optum](https://optum.com). This is my little corner of the web where I share my work with y'all.
 
-I love building new things—from open-source component libraries and AI frameworks to YouTube channels and personal essays. My work is designed to educate, inspire, or simply bring joy to others.
 
-When I'm not writing code, you can find me training for triathlons, hiking, or spending time with loved ones.
+In my free time, I [write on Substack](https://pprunty.substack.com/), train for triathlons, and tinker around with all sorts of random computer stuff.
 
-I'm always happy to connect with like-minded people. Feel free to contact me via [email](mailto:patrickprunty.business@gmail.com) or on [X](https://x.com/pprunty_).
+I'm always happy to connect with like-minded people. Feel free to reach out via [email](mailto:patrickprunty.business@gmail.com) or on [X](https://x.com/intent/follow?screen_name=pprunty_&original_referer=https://patrickprunty.com/).
+
+</AnimatedSection>
 
 {/*
 Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animation (videos coming soon).
 */}
 
-## Writing [#writing]
+<AnimatedSection delay={300}>
 
-I write short, 500-word essays on artificial intelligence, cultural trends, and creative media—each one personally narrated.
+# Where [#where]
 
-To find my latest writing, take a look at my [blog page](/blog) or subscribe and get the next essay delivered to your inbox.
+<Map />
 
-I also write [Furry Circuits](https://furycircuits.substack.com), a weekly newsletter where I share side projects, interesting articles, and software trends that spark joy.
+</AnimatedSection>
 
-<Newsletter variant={"minimal"} title={"Newsletter"} subtitle={"Enter your email below to receive the occasional update."} />
 
-{/*
-If you're new, start with
-["Indie-Hackers and Liars"](), ["What Even Is Blogging?"](), or ["The Weekly Stand-Up"]().
-*/}
+<AnimatedSection delay={450}>
 
-## Projects [#projects]
+# Writing [#writing]
+
+I explore the evolving landscape of technology through [Furry Circuits](https://pprunty.substack.com/), my Substack publication. My writing covers artificial intelligence, computer programming, and the human side of building technology.
+
+If you're new, try [“The Engineer’s Proclivity for Perfection”](https://pprunty.substack.com/p/the-engineers-proclivity-for-perfection) or or browse one of my [weekly newsletters](https://pprunty.substack.com/s/weekly-newsletter).
+
+<SubstackButton>Subscribe</SubstackButton>
+
+</AnimatedSection>
+
+<AnimatedSection delay={600}>
+
+# Projects [#projects]
+
+</AnimatedSection>
+
 
 <Section
   sectionName={<>Projects [#projects]</>}
@@ -96,157 +125,82 @@ If you're new, start with
     {
       title: 'Pixel Projects at YouTube',
       url: 'https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1',
-      year: '(Coming Soon)',
+      year: '(Coming 2025)',
       media: [
         '/images/projects/pp3.webp',
         '/images/projects/GodelIncompleteness.mp4',
       ],
-//       youtubeIds: [
-//       'DcYLT37ImBY',
-//       'wjZofJX0v4M',
-//       ],
-      description:
-        'Educational YouTube channel exploring topics in computational mathematics and computer science through storytelling and animation (videos coming soon).',
-    },
-    {
-      title: 'Patrick Prunty at YouTube',
-      url: 'https://www.youtube.com/@pprunty?sub_confirmation=1',
-      year: '2025',
-        media: [
-        '/images/projects/nostalgia2.png'
-        ],
-        youtubeIds: [
-        'HQEaaIuyKAM',
-        'DcYLT37ImBY'
-        ],
-     hide: true,
-      description:
-          'Experimental art examining pop culture and media through re-contextualization, visual/audio mashing, and other mixed-media approaches.',
+/*
+      youtubeIds: [
+        'DcYLT37ImBY',
+        'wjZofJX0v4M',
+      ],
+*/
+      description: 'Animated YouTube series making math and computer programming fun and accessible.',
     },
     {
       title: 'Jigsaw Presents at YouTube',
       url: 'https://www.youtube.com/@JigsawPresents?sub_confirmation=1',
       year: '(Coming Soon)',
       media: ['/images/projects/jigsaw-presents.webp'],
+      description: 'Providing insight into trending films and television series through video essays.',
       hide: true,
-      description:
-        'Providing insight into trending films and television series through video essays.',
     },
-    {
-      title: 'Personal Website & Blog',
-      url: '/blog',
-      year: '2024',
-      media: [
-        '/images/projects/pp-preview2.png',
-        '/images/projects/Untitled.mov',
-        '/images/projects/lightouse_report.png',
-//         '/images/projects/personal-blog-1.png',
-      ],
-      description:
-        "The high‑performance MDX site you're on right now—built with Next.js 15.",
-    },
-  ]}
-/>
-
-## Software [#software]
-
-<Section
-  sectionName={<>Software [#software]</>}
-  items={[
     {
       title: 'deltacomponents.dev',
       url: 'https://deltacomponents.dev/',
       year: '(Work in progress)',
-      media: ['/images/projects/deltacomponents4.webp'],
-      hide: false,
-      description:
-        <>
-        A collection of open-source, customizable UI elements designed for integration with
-        {' '}
-        <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">
-        shadcn
-        </a>
-        {' '}, {' '}
-        <a href="https://v0.dev/chat" target="_blank" rel="noopener noreferrer">
-        v0
-        </a>
-        , and Next.js/React.js. Delta Components combines modern aesthetics with exceptional performance—making the difference in your user experience.
-        </>
+      media: [
+        '/images/projects/dc/radio-input.mp4',
+        '/images/projects/dc/mouse-string-connection.mp4',
+        '/images/projects/dc/highlighter.mp4',
+        '/images/projects/dc/font-transform.mp4',
+      ],
+      description: <>A custom <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">shadcn</a> registry featuring open-source, customizable UI components. Designed for seamless integration with <a href="https://v0.dev/chat" target="_blank" rel="noopener noreferrer">v0</a> and Next.js / React.js projects.</>
     },
     {
       title: 'magikarp',
       url: 'https://github.com/pprunty/magikarp',
       year: '(Work in progress)',
-      media: [
-      '/images/projects/magikarp.png',
-      '/images/projects/magikarp-diagram.png',
-      ],
-      hide: false,
-      description:
-        "A flexible open-source plugin-based agentic LLM framework built with Go. Magikarp provides a foundation for building and customizing AI-powered agents that can interact with users using plugins, which are collections of 'tools'—custom code that agents can execute to help complete their tasks.",
+      description: 'A Go-based framework for building customizable, plugin-based AI agents. Designed for developers who need flexible AI integration.'
     },
     {
       title: 'tmplate.xyz',
       url: 'https://tmplate.xyz/',
       year: '2025',
-      media: ['/images/projects/tmplate.xyz.webp', '/images/projects/tmplate-blog-screenshot.png'],
-      hide: false,
-      description:
-        <>
-         My personal production-ready SaaS starter—Next.js + FastAPI, OAuth, MDX blog, Delta Components, and SEO optimization.
-        </>,
-    },
-    {
-      title: 'samwise',
-      url: 'https://samwise.wtf/',
-      year: '2025',
-      hide: true,
-      description:
-        'High-performance, SEO-optimized digital blog and portfolio starter built with Next.js 15.',
+      description: 'Production-ready starter template combining Next.js frontend with FastAPI backend, including authentication, payments, and SEO optimization.'
     },
     {
       title: 'manim-interactive',
       url: 'https://github.com/pprunty/manim-interactive',
       year: '2025',
+      description: "Interactive Manim environment for seamless mathematical animations, replicating 3Blue1Brown's workflow.",
       hide: true,
-      description:
-        "Interactive Manim environment for seamless mathematical animations, replicating YouTube channel 3Blue1Brown's workflow through code highlighting and keyboard binding shortcuts.",
-    },
-    {
-      title: 'clunk',
-      url: 'https://github.com/pprunty/clunk',
-      year: '2025',
-      hide: true,
-      description:
-        'A foundational C++ project providing a connection to Coinbase L3 market data feed, storing multi-market data in an efficient orderbook and offering performance benchmarks (work in progress).',
     },
     {
       title: 'motormongo (archived)',
       url: 'https://motormongo.readthedocs.io/en/latest/',
       year: '2023',
-      hide: false,
-      description:
-        <>
-        Async MongoDB ODM on top of Motor; mongoengine-like API without blocking the loop. (<code>pip install motormongo</code>).
-        </>,
+      description: <>Async MongoDB object-document mapper offering a familiar, non-blocking API for Python applications. (<code>pip install motormongo</code>).</>,
     },
   ]}
 />
 
-A complete list of my open-source work can be found on my [GitHub profile](https://github.com/pprunty).
 
-## Reading List [#reading-list]
+<AnimatedSection delay={800}>
+# Connect [#connect]
+</AnimatedSection>
 
-1. *[A Dance with Dragons](https://en.wikipedia.org/wiki/A_Dance_with_Dragons)* by George R.R. Martin <Badge />
-2. *[Small Things Like These](https://en.wikipedia.org/wiki/Small_Things_Like_These)* by Claire Keegan <Badge />
-3. *[Meditations](https://en.wikipedia.org/wiki/Meditations)* by Marcus Aurelius <Badge />
-4. [*The Alchemist*](https://en.wikipedia.org/wiki/The_Alchemist_(novel)) by Paulo Coelho <Badge />
-5. [*The Subtle Art of Not Giving a F\*ck*](https://en.wikipedia.org/wiki/The_Subtle_Art_of_Not_Giving_a_F*ck) by Mark Manson <Badge />
-6. [*Nexus: A Brief History of Information Networks from the Stone Age to AI*](https://www.ynharari.com/book/nexus/) by Yuval Noah Harari <Badge />
-7. [*Blood Meridian*](https://en.wikipedia.org/wiki/Blood_Meridian) by Cormac McCarthy
-8. [*Hackers and Painters*](https://en.wikipedia.org/wiki/Hackers_%26_Painters) by Paul Graham
-9. [*Flash Boys*](https://en.wikipedia.org/wiki/Flash_Boys) by Michael Lewis
+<AnimatedSection delay={850}>
+<Contact />
+</AnimatedSection>
 
-## Photos [#photos]
+# Photos [#photos]
 
 <PhotoGrid />
+
+<AnimatedSection delay={900}>
+
+<Footer />
+
+</AnimatedSection>

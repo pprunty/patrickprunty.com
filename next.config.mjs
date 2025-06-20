@@ -83,13 +83,16 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
 };
 
-const withBoth = (config) =>
-  withPWA({
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-    disable: process.env.NODE_ENV === 'development',
-  })(withMDX(config));
+// const withBoth = (config) =>
+//   withPWA({
+//     dest: 'public',
+//     register: true,
+//     skipWaiting: true,
+//     disable: process.env.NODE_ENV === 'development',
+//   })(withMDX(config));
 
 // Export configuration
-export default withBoth(nextConfig);
+// export default withBoth(nextConfig);
+
+// PWA temporarily disabled due to build issues
+export default withMDX(nextConfig);

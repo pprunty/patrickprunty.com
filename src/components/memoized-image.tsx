@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Image, { type ImageProps } from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+import { X } from '@phosphor-icons/react';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
@@ -28,6 +30,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 }: MemoizedImageProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isImageLoaded, setImageLoaded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const scrollPositionRef = useRef(0);
   const imageRef = useRef<HTMLSpanElement>(null);
   const modalRef = useRef<HTMLSpanElement>(null);
@@ -35,7 +38,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
 
   const openModal = useCallback(() => {
     if (focusable) {
-      scrollPositionRef.current = window.scrollY || window.pageYOffset;
+      scrollPositionRef.current = window.scrollY;
 
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollPositionRef.current}px`;
@@ -104,8 +107,12 @@ export const MemoizedImage = React.memo(function MemoizedImage({
     };
   }, [animate]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Animation variants for framer-motion
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 1.05 },
     visible: {
       opacity: 1,
@@ -163,43 +170,47 @@ export const MemoizedImage = React.memo(function MemoizedImage({
         )}
       </span>
 
-      {isModalOpen && (
-        <span
-          className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[999] transition-colors duration-300 modal-overlay"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              closeModal();
-            }
-          }}
-        >
+      {isModalOpen &&
+        isMounted &&
+        createPortal(
           <span
-            ref={modalRef}
-            className="relative w-full h-full flex items-center justify-center"
-          >
-            <Image
-              src={src || '/placeholder.svg'}
-              alt={alt}
-              width={width}
-              quality={quality}
-              height={height}
-              className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
-              priority={true}
-              loading="eager"
-              unoptimized={unoptimized}
-              {...rest}
-            />
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
+            className="fixed inset-0 bg-[#fcfcfc]/45 backdrop-blur-lg dark:bg-[#222222]/45 flex justify-center items-center z-[9999] transition-colors duration-300 modal-overlay"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
                 closeModal();
-              }}
-              className="absolute top-4 right-4 bg-card text-black dark:text-white border border-[#E0E0E0] dark:border-[#4B4B4B] p-2 px-6 rounded-full z-[1000] shadow-sm"
+              }
+            }}
+          >
+            <span
+              ref={modalRef}
+              className="relative w-full h-full flex items-center justify-center"
             >
-              Close
-            </button>
-          </span>
-        </span>
-      )}
+              <Image
+                src={src || '/placeholder.svg'}
+                alt={alt}
+                width={width}
+                quality={quality}
+                height={height}
+                className="cursor-pointer image-click-animate object-contain max-h-full max-w-full w-auto h-auto md:h-full md:w-auto"
+                priority={true}
+                loading="eager"
+                unoptimized={unoptimized}
+                {...rest}
+              />
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeModal();
+                }}
+                className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[200] transition-colors duration-200"
+                aria-label="Close"
+              >
+                <X size={20} weight="bold" />
+              </button>
+            </span>
+          </span>,
+          document.body,
+        )}
     </>
   );
 });

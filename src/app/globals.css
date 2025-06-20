@@ -15,13 +15,26 @@
   :root {
     /* Font setup */
     font-family: var(--font-geist-sans), 'Geist', sans-serif;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
     -webkit-tap-highlight-color: transparent;
+    line-height: inherit;
     color-scheme: light;
-    @apply bg-[#FFFEFC];
+    @apply bg-[#F5F5F5];
     @apply text-[#222222];
     --scrollbar-width: 12px;
     --webkit-overflow-scrolling: touch;
     --font-calendas: 'Calendas Plus', serif;
+    
+    /* Blue ring/focus effect variables */
+    --tw-ring-inset: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / .5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
   }
 
   /* Dark mode settings */
@@ -56,6 +69,7 @@
   }
 
   html {
+    scroll-behavior: smooth;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -68,8 +82,8 @@
   }
 
   :root {
-    --background: #fffefc;
-    --background-90: rgba(255, 254, 252, 0.95);
+    --background: #F5F5F5;
+    --background-90: rgba(245, 245, 245, 0.95);
     --foreground: #09090b;
     --card: #f3f3f3;
     --card-foreground: #09090b;
@@ -78,17 +92,17 @@
     --primary: #18181b;
     --primary-foreground: #fafafa;
     --primary-hover: #2d2c2c; /* A darker shade of your primary color */
-    --secondary: #fffefc;
+    --secondary: #F5F5F5;
     --secondary-foreground: #18181b;
     --secondary-hover: #f3f2ef; /* A slightly darker shade of your secondary color */
-    --muted: #f0f0f0; /* Updated for better visibility in light mode */
+    --muted: #D8D8D8; /* Updated for better visibility in light mode */
     --muted-foreground: #545454; /* Darker gray for better contrast in light mode */
-    --accent: #fffefc;
+    --accent: #F5F5F5;
     --accent-foreground: #18181b;
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
     --action: #2f74da; /* New action color */
-    --action-foreground: #fffefc; /* Text color for action buttons */
+    --action-foreground: #F5F5F5; /* Text color for action buttons */
     --action-hover: #2661b9; /* Hover state for action buttons */
     --border: #e0e0e0;
     --input: #fffefc;
@@ -124,7 +138,7 @@
     --secondary: #272727;
     --secondary-foreground: #fafafa;
     --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
-    --muted: #333333; /* Updated for better visibility in dark mode */
+    --muted: #555; /* Updated for better visibility in dark mode */
     --muted-foreground: #c4c4c4; /* Lighter gray for better contrast in dark mode */
     --accent: #424142;
     --accent-foreground: #fafafa;
@@ -281,6 +295,12 @@
     @apply text-muted-foreground;
     opacity: 60%;
   }
+  .underline-contrast-hover:hover {
+    text-decoration-color: #2f74da !important; /* Strong blue for light mode */
+  }
+  .dark .underline-contrast-hover:hover {
+    text-decoration-color: #90cdf4 !important; /* Lighter blue for dark mode */
+  }
 }
 
 /* Initial state for image animations */
@@ -341,4 +361,34 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
+
+@keyframes marker {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}
+
+.animate-marker {
+  animation: marker 4s ease-out infinite;
+}
+
+@keyframes intro {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.animate-intro {
+  animation: intro 0.3s forwards ease-in-out;
 }

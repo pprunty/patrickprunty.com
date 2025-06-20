@@ -57,35 +57,9 @@ const photographyImages: StaticImageData[] = [
 type PhotoGridProps = Record<string, never>;
 
 const PhotoGrid: React.FC<PhotoGridProps> = () => {
-  const [columns, setColumns] = useState(2); // Default to 2 columns
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-
-      if (width >= 1024) {
-        // lg breakpoint
-        setColumns(3);
-      } else {
-        setColumns(2);
-      }
-    };
-
-    // Initialize columns on component mount
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Calculate the number of full rows and adjust the images array
-  const fullRows = Math.floor(photographyImages.length / columns);
-  const numImagesToDisplay = fullRows * columns;
-  const imagesToDisplay = photographyImages.slice(0, numImagesToDisplay);
-
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-1 py-4 relative z-10">
-      {imagesToDisplay.map((src, index) => (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 py-4 relative z-[105]">
+      {photographyImages.map((src, index) => (
         <div key={index} className="relative h-full">
           <MemoizedImage
             src={src}
@@ -93,7 +67,6 @@ const PhotoGrid: React.FC<PhotoGridProps> = () => {
             width={600}
             height={600}
             className="object-cover w-full h-full"
-            // other props
           />
         </div>
       ))}
