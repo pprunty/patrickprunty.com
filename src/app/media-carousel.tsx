@@ -310,7 +310,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
               <div className="relative max-w-full max-h-[100vh] flex items-center justify-center overflow-hidden">
                 <MemoizedVideo
                   src={getSrcPath(item.src)}
-                  alt={`${title} video ${focusedIndex + 1}`}
                   width={800}
                   height={800}
                   className="max-w-full max-h-[100vh] object-contain w-auto h-auto"
@@ -392,7 +391,6 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                 {item.type === 'video' ? (
                   <MemoizedVideo
                     src={getSrcPath(item.src)}
-                    alt={`${title} video ${idx + 1}`}
                     width={130}
                     height={130}
                     className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
