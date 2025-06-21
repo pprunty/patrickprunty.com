@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image, { type ImageProps } from 'next/image';
 import { motion, type Variants } from 'framer-motion';
-import { X } from '@phosphor-icons/react';
+import { XCircle } from '@phosphor-icons/react';
 
 interface MemoizedImageProps extends Omit<ImageProps, 'onClick'> {
   focusable?: boolean;
@@ -205,7 +205,7 @@ export const MemoizedImage = React.memo(function MemoizedImage({
                 className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[200] transition-colors duration-200"
                 aria-label="Close"
               >
-                <X size={20} weight="bold" />
+                <XCircle size={20} weight="bold" />
               </button>
             </span>
           </span>,

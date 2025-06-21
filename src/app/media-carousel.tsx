@@ -7,7 +7,7 @@ import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
-import { X } from '@phosphor-icons/react';
+import { XCircle } from '@phosphor-icons/react/dist/ssr';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
@@ -220,20 +220,33 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
     useEffect(() => {
       const scrollContainer = scrollContainerRef.current;
       if (!scrollContainer) return;
-      const handleScroll = () => {
+
+      const calculateScrollMetrics = () => {
         const currentPosition = scrollContainer.scrollLeft;
         const containerWidth = scrollContainer.clientWidth;
         const scrollWidth = scrollContainer.scrollWidth;
         setScrollPosition(currentPosition);
         setMaxScroll(Math.max(0, scrollWidth - containerWidth));
       };
+
+      const handleScroll = () => {
+        const currentPosition = scrollContainer.scrollLeft;
+        setScrollPosition(currentPosition);
+      };
+
       const debouncedHandleScroll = debounce(handleScroll, 10);
-      handleScroll();
+
+      // Calculate metrics immediately and after a brief delay to ensure content is rendered
+      calculateScrollMetrics();
+      const timeoutId = setTimeout(calculateScrollMetrics, 100);
+
       scrollContainer.addEventListener('scroll', debouncedHandleScroll);
-      window.addEventListener('resize', handleScroll);
+      window.addEventListener('resize', calculateScrollMetrics);
+
       return () => {
+        clearTimeout(timeoutId);
         scrollContainer.removeEventListener('scroll', debouncedHandleScroll);
-        window.removeEventListener('resize', handleScroll);
+        window.removeEventListener('resize', calculateScrollMetrics);
       };
     }, [media]);
 
@@ -301,7 +314,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[9999] transition-colors duration-200"
             aria-label="Close"
           >
-            <X size={20} weight="bold" />
+            <XCircle size={20} weight="bold" />
           </button>
 
           {/* Media container */}
@@ -361,7 +374,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
 
           {/* Counter */}
           <div
-            className="absolute bottom-4 right-4 text-foreground bg-background/80 backdrop-blur-sm border border-border py-3 px-3 rounded-md z-[60] shadow-sm text-sm font-medium"
+            className="absolute bottom-4 right-4 text-foreground py-3 px-3 z-[60] text-sm font-medium"
             onClick={(e) => e.stopPropagation()}
           >
             {focusedIndex + 1} / {media.length}
