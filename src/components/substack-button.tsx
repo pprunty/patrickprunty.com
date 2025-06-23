@@ -29,7 +29,7 @@ const SubstackButton: React.FC<SubstackButtonProps> = ({
     return (
       <Button
         asChild
-        className={`bg-primary hover:bg-[#2d2c2c] dark:hover:bg-[#e0e0e0] active:bg-[#1a1a1a] dark:active:bg-[#d0d0d0] dark:text-black text-white border-0 ${className}`}
+        className={`bg-primary hover:bg-[#2d2c2c] dark:hover:bg-[#DEE8DE] active:bg-[#1a1a1a] dark:active:bg-[#d0d0d0] dark:text-black text-white border-0 ${className}`}
         {...props}
       >
         <a
