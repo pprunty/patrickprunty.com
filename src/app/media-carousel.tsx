@@ -7,7 +7,7 @@ import { MemoizedYouTube } from './memoized-youtube';
 import { useMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
-import { XCircle } from '@phosphor-icons/react/dist/ssr';
+import { X } from '@phosphor-icons/react/dist/ssr';
 
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
@@ -314,7 +314,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
             className="absolute top-4 right-4 text-foreground hover:text-muted-foreground p-2 rounded-full z-[9999] transition-colors duration-200"
             aria-label="Close"
           >
-            <XCircle size={20} weight="bold" />
+            <X size={20} weight="bold" />
           </button>
 
           {/* Media container */}
