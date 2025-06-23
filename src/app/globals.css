@@ -125,21 +125,21 @@
   }
 
   .dark {
-    --background: #222222;
+    --background: #181A18;
     --background-90: rgba(34, 34, 34, 0.94);
     --foreground: #fafafa;
     --card: #2a2a2a;
     --card-foreground: #fafafa;
     --popover: #09090b;
     --popover-foreground: #fafafa;
-    --primary: #fafafa;
+    --primary: #F4FFF4;
     --primary-foreground: #18181b;
     --primary-hover: #e0e0e0; /* A slightly darker shade of your dark mode primary color */
     --secondary: #272727;
     --secondary-foreground: #fafafa;
     --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
     --muted: #555; /* Updated for better visibility in dark mode */
-    --muted-foreground: #c4c4c4; /* Lighter gray for better contrast in dark mode */
+    --muted-foreground: #A3AAA3; /* Lighter gray for better contrast in dark mode */
     --accent: #424142;
     --accent-foreground: #fafafa;
     --destructive: #db1414;
