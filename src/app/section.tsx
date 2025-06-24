@@ -9,6 +9,7 @@ import type { StaticImageData } from 'next/image';
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
   src: string | StaticImageData;
+  thumbnail?: string | StaticImageData;
 }
 
 interface SectionItem {
@@ -19,6 +20,7 @@ interface SectionItem {
   year?: string | number;
   media?: (string | StaticImageData)[];
   youtubeIds?: string[];
+  youtubeThumbnails?: (string | StaticImageData)[];
   hide?: boolean;
 }
 
@@ -60,10 +62,11 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
         });
       }
 
-      // Add YouTube videos
+      // Add YouTube videos with optional thumbnail override
       if (item.youtubeIds) {
-        item.youtubeIds.forEach((id) => {
-          mediaItems.push({ type: 'youtube', src: id });
+        item.youtubeIds.forEach((id, idx) => {
+          const thumbnail = item.youtubeThumbnails?.[idx];
+          mediaItems.push({ type: 'youtube', src: id, thumbnail });
         });
       }
 

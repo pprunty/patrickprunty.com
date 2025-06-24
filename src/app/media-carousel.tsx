@@ -12,6 +12,7 @@ import { X } from '@phosphor-icons/react/dist/ssr';
 interface MediaItem {
   type: 'image' | 'video' | 'youtube';
   src: string | StaticImageData;
+  thumbnail?: string | StaticImageData;
 }
 
 interface MediaCarouselProps {
@@ -351,6 +352,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   title={`${title} YouTube video ${focusedIndex + 1}`}
                   showPlayer
                   autoplay
+                  thumbnail={item.thumbnail}
                 />
               </div>
             ) : (
@@ -416,6 +418,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
                     focusable={false}
                     autoplay={false}
+                    thumbnail={item.thumbnail}
                   />
                 ) : (
                   <MemoizedImage
