@@ -48,11 +48,16 @@ const LastVisitor: React.FC = () => {
     lastVisitor?.lastLocation && lastVisitor.lastLocation !== 'Unknown';
   const showUniqueViewers = uniqueViewers !== null && uniqueViewers > 0;
 
+  // Decode any URL-encoded characters in the location
+  const decodedLocation = showLocation
+    ? decodeURIComponent(lastVisitor!.lastLocation)
+    : '';
+
   return (
     <span className="text-muted-foreground text-[15px]">
       {showLocation && (
         <>
-          Last visitor from {lastVisitor.lastLocation}
+          Last visitor from {decodedLocation}
           {showUniqueViewers && <br />}
         </>
       )}
