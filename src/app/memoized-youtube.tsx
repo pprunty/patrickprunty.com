@@ -50,7 +50,8 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
   }
 
   // Otherwise we're just showing a thumbnail
-  const thumbnailUrl = thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const thumbnailUrl =
+    thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   return (
     <div
@@ -72,9 +73,7 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
         aria-hidden="true"
       >
-        <span
-          className="bg-[#FF0000]/95 px-4 py-1.5 flex items-center justify-center shadow-lg rounded-lg"
-        >
+        <span className="bg-[#FF0000]/95 px-4 py-1.5 flex items-center justify-center shadow-lg rounded-lg">
           {/* SVG Play Icon (triangle only, no circle) */}
           <svg
             width="20"
