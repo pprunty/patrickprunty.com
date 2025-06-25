@@ -29,7 +29,7 @@ const SubstackButton: React.FC<SubstackButtonProps> = ({
     return (
       <Button
         asChild
-        className={`bg-primary text-primary-foreground hover:bg-[#232323] dark:bg-[#f0f0f0] dark:text-[#161616] dark:hover:bg-[#e0e0e0] active:bg-[#292929] dark:active:bg-[#d6d6d6] border-0 ${className}`}
+        className={`bg-primary text-primary-foreground hover:bg-[#232323] dark:bg-[#f0f0f0] dark:text-[#161616] dark:hover:bg-[#d0d0d0] active:bg-[#292929] dark:active:bg-[#c0c0c0] border-0 ${className}`}
         {...props}
       >
         <a
@@ -47,7 +47,7 @@ const SubstackButton: React.FC<SubstackButtonProps> = ({
 
   return (
     <Button
-      className={`bg-primary text-primary-foreground hover:bg-[#232323] dark:bg-[#f0f0f0] dark:text-[#161616] dark:hover:bg-[#e0e0e0] active:bg-[#292929] dark:active:bg-[#d6d6d6] border-0 ${className}`}
+      className={`bg-primary text-primary-foreground hover:bg-[#232323] dark:bg-[#f0f0f0] dark:text-[#161616] dark:hover:bg-[#d0d0d0] active:bg-[#292929] dark:active:bg-[#c0c0c0] border-0 ${className}`}
       {...props}
     >
       <SubstackLogo />
