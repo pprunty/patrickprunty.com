@@ -40,7 +40,7 @@
   /* Dark mode settings */
   :root.dark {
     color-scheme: dark;
-    @apply bg-[#222222];
+    @apply bg-[#161616];
     @apply text-[#FFFEFC];
   }
 

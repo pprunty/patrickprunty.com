@@ -20,7 +20,7 @@ const themeEffect = function () {
     document.documentElement.classList.add('dark');
     document.head
       .querySelector('meta[name=theme-color]')
-      ?.setAttribute('content', '#222222');
+      ?.setAttribute('content', '#161616');
 
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('pause-transitions');
