@@ -125,39 +125,39 @@
   }
 
   .dark {
-    --background: #181A18;
-    --background-90: rgba(34, 34, 34, 0.94);
-    --foreground: #fafafa;
-    --card: #2a2a2a;
-    --card-foreground: #fafafa;
-    --popover: #09090b;
-    --popover-foreground: #fafafa;
-    --primary: #F4FFF4;
-    --primary-foreground: #18181b;
-    --primary-hover: #e0e0e0; /* A slightly darker shade of your dark mode primary color */
-    --secondary: #272727;
-    --secondary-foreground: #fafafa;
-    --secondary-hover: #333333; /* A slightly lighter shade of your dark mode secondary color */
-    --muted: #555; /* Updated for better visibility in dark mode */
-    --muted-foreground: #A3AAA3; /* Lighter gray for better contrast in dark mode */
-    --accent: #424142;
-    --accent-foreground: #fafafa;
+    --background: #161616;
+    --background-90: rgba(22, 22, 22, 0.94);
+    --foreground: #F9F9F9;
+    --card: #232323;
+    --card-foreground: #F9F9F9;
+    --popover: #232323;
+    --popover-foreground: #F9F9F9;
+    --primary: #F9F9F9;
+    --primary-foreground: #161616;
+    --primary-hover: #e0e0e0;
+    --secondary: #232323;
+    --secondary-foreground: #F9F9F9;
+    --secondary-hover: #292929;
+    --muted: #666;
+    --muted-foreground: #ABABAB;
+    --accent: #232323;
+    --accent-foreground: #F9F9F9;
     --destructive: #db1414;
-    --destructive-foreground: #fafafa;
-    --action: #3b82f6; /* Brighter blue for dark mode */
-    --action-foreground: #fffefc; /* Text color for action buttons in dark mode */
-    --action-hover: #2563eb; /* Hover state for action buttons in dark mode */
-    --border: #393838;
-    --input: #2a2a2a;
+    --destructive-foreground: #F9F9F9;
+    --action: #3b82f6;
+    --action-foreground: #F9F9F9;
+    --action-hover: #2563eb;
+    --border: #292929;
+    --input: #232323;
     --ring: #ffffff;
     --chart-1: #269dd9;
     --chart-2: #2eb88a;
     --chart-3: #e88c30;
     --chart-4: #af57db;
     --chart-5: #e236a9;
-    --scrollbar: #c1c1c1;
+    --scrollbar: #a1a1a1;
     --scrollbar-hover: rgba(255, 254, 252, 0.3);
-    --scrollbar-track: #fafafa; /* New variable for scrollbar track in dark mode */
+    --scrollbar-track: #232323;
     --spotify-green: #1cd760;
   }
 
