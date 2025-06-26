@@ -1,55 +1,8 @@
-import { AUTHOR, SITE_URL, DEFAULT_KEYWORDS } from '@/config';
-import Link from 'next/link';
-import UniqueViewers from './unique-viewers';
-import Section from './section';
-import ThemeSwitcher from '@/components/theme-switcher';
-import Image from 'next/image';
-import Map from '@/components/map';
-import Contact from '@/components/contact';
-import Footer from '@/components/footer';
-import SubstackButton from '@/components/substack-button';
-import AnimatedSection from '@/components/animated-section';
-
-export const metadata = {
-  title: `${AUTHOR.name}`,
-  image: `/icon.webp`,
-  description: `Software developer, writer, and amateur explorer.`,
-  openGraph: {
-    title: `${AUTHOR.name}`,
-    description: `Software developer, writer, and amateur explorer.`,
-    siteName: `${AUTHOR.name}'s website`,
-    media: [
-      {
-        url: `/icon.webp`,
-        width: 400,
-        height: 400,
-        alt: `${AUTHOR.name}'s profile picture`,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    site: `${AUTHOR.twitterHandle}`,
-    creator: `${AUTHOR.twitterHandle}`,
-    media: [
-      {
-        url: `/icon.webp`,
-        alt: `${AUTHOR.name}'s profile picture`,
-      },
-    ],
-  },
-  keywords: DEFAULT_KEYWORDS.concat([
-    AUTHOR.name,
-    'Software Engineer',
-    'Dublin',
-    'Ireland',
-    'technology',
-  ]),
-  metadataBase: new URL(SITE_URL),
-    alternates: {
-      canonical: SITE_URL
-    }
-};
+---
+title: "Patrick Prunty"
+description: "Software developer, writer, and amateur explorer"
+author: "Patrick Prunty"
+---
 
 <AnimatedSection delay={0}>
 
@@ -58,25 +11,7 @@ export const metadata = {
 </AnimatedSection>
 
 <AnimatedSection delay={150}>
-{/*
-explore ✺︎ design ∿︎ build ◳︎
-
-***
-*/}
 <UniqueViewers />
-{
-/*
-  <Image
-  src="/images/me-sketch2.png"
-  alt="Patrick Prunty"
-  className="bg-gray-100 block mt-5 mb-5 mx-auto w-40 rounded-full h-auto sm:float-right sm:ml-5 sm:mb-5 object-cover overflow-hidden aspect-square"
-  width={200}
-  height={200}
-  priority
-  quality={100}
-/>
-*/
-}
 
 Hi! I'm Patrick—a senior software engineer at [UnitedHealth Group / Optum](https://optum.com). This is my little corner of the web where I share my work with y'all.
 
@@ -86,10 +21,6 @@ I'm always happy to connect with like-minded people. Feel free to reach out via 
 
 </AnimatedSection>
 
-{/*
-Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPkUZkw?sub_confirmation=1), an educational YouTube channel exploring computational mathematics and computer science through storytelling and animation (videos coming soon).
-*/}
-
 <AnimatedSection delay={300}>
 
 # Where [#where]
@@ -97,7 +28,6 @@ Creator of [Pixel Projects](https://www.youtube.com/channel/UC5OToaksgWe-pjkgqPk
 <Map />
 
 </AnimatedSection>
-
 
 <AnimatedSection delay={450}>
 
@@ -117,7 +47,6 @@ If you're new, try ["The Engineer's Proclivity for Perfection"](https://furrycir
 
 </AnimatedSection>
 
-
 <Section
   sectionName={<>Projects [#projects]</>}
   items={[
@@ -129,12 +58,6 @@ If you're new, try ["The Engineer's Proclivity for Perfection"](https://furrycir
         '/images/projects/pp3.webp',
         '/images/projects/GodelIncompleteness.mp4',
       ],
-/*
-      youtubeIds: [
-        'DcYLT37ImBY',
-        'wjZofJX0v4M',
-      ],
-*/
       description: 'Animated YouTube series making math and computer programming fun and accessible.',
     },
         {
@@ -200,7 +123,6 @@ If you're new, try ["The Engineer's Proclivity for Perfection"](https://furrycir
   ]}
 />
 
-
 <AnimatedSection delay={800}>
 # Connect [#connect]
 </AnimatedSection>
@@ -213,8 +135,3 @@ If you're new, try ["The Engineer's Proclivity for Perfection"](https://furrycir
 
 <PhotoGrid />
 
-<AnimatedSection delay={900}>
-
-<Footer />
-
-</AnimatedSection>

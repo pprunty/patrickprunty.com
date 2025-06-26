@@ -20,3 +20,5 @@ export { default as Strava } from './strava'; // Ensure `strava` has a default e
 export { default as TikTok } from './tiktok'; // Ensure `tiktok` has a default export
 export { default as LinkedIn } from './linkedin'; // Ensure `linkedin` has a default export
 export { default as PDF } from './pdf'; // Ensure `pdf` has a default export
+export { Tweet } from './tweet';
+export { Spotify } from './spotify';

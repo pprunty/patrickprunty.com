@@ -1,21 +1,27 @@
-import withPWA from 'next-pwa';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import createMDX from '@next/mdx';
+import type { NextConfig } from "next"
+import { createContentlayerPlugin } from "next-contentlayer2"
 
-// Define the configuration for MDX
-const withMDX = createMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
-  },
-});
-
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Ensure content files trigger rebuilds
+  webpack: (config, { dev }) => {
+    if (dev) {
+      // Watch content directory for changes
+      config.watchOptions = {
+        ...config.watchOptions,
+        ignored: [
+          ...((config.watchOptions?.ignored as string[]) || []),
+          // Don't ignore content files
+          '!content/**/*',
+        ],
+      }
+    }
+    return config
+  },
+  // Enable experimental features for better dev experience
   experimental: {
-    mdxRs: true,
+    // Disable webpack caching that might interfere with contentlayer
+    webpackBuildWorker: false,
   },
   images: {
     remotePatterns: [
@@ -24,6 +30,30 @@ const nextConfig = {
         hostname: 'img.youtube.com',
         port: '',
         pathname: '/vi/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.githubusercontent.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        port: '',
+        pathname: '**',
       },
     ],
   },
@@ -90,19 +120,11 @@ const nextConfig = {
       },
     ];
   },
-  pageExtensions: ['ts', 'tsx', 'mdx'],
-};
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
+}
 
-// const withBoth = (config) =>
-//   withPWA({
-//     dest: 'public',
-//     register: true,
-//     skipWaiting: true,
-//     disable: process.env.NODE_ENV === 'development',
-//   })(withMDX(config));
+const withContentlayer = createContentlayerPlugin({
+  // Additional Contentlayer config options
+})
 
-// Export configuration
-// export default withBoth(nextConfig);
-
-// PWA temporarily disabled due to build issues
-export default withMDX(nextConfig);
+export default withContentlayer(nextConfig)

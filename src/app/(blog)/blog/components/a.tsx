@@ -16,7 +16,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
     return (
       <a
         href={href}
-        className={`text-[17px] sm:text-base font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary ${className}`}
+        className={`text-base font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary ${className}`}
         {...props}
       >
         {children}
@@ -29,7 +29,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`text-[17px] sm:text-base font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary ${className}`}
+        className={`text-base font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary ${className}`}
         {...props}
       >
         {children}
@@ -40,7 +40,7 @@ export function A({ children, className = '', href, ...props }: AProps) {
     return (
       <Link
         href={href}
-        className={`text-[17px] sm:text-base font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary ${className}`}
+        className={`text-base font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary ${className}`}
         {...props}
       >
         {children}
