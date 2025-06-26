@@ -1,0 +1,20 @@
+{
+  "title": "Sunday Vibes",
+  "description": "A track that's been on repeat",
+  "published": "2025-01-26T00:00:00.000Z",
+  "body": {
+    "raw": "\nFun song. Will make a great track for a trailer video edit.\n\n<Spotify id=\"6quMGNh47CpSR5kmZSYSTK\" />\n",
+    "code": "var Component=(()=>{var u=Object.create;var i=Object.defineProperty;var f=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var h=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),g=(t,e)=>{for(var n in e)i(t,n,{get:e[n],enumerable:!0})},a=(t,e,n,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of l(e))!_.call(t,r)&&r!==n&&i(t,r,{get:()=>e[r],enumerable:!(s=f(e,r))||s.enumerable});return t};var j=(t,e,n)=>(n=t!=null?u(x(t)):{},a(e||!t||!t.__esModule?i(n,\"default\",{value:t,enumerable:!0}):n,t)),y=t=>a(i({},\"__esModule\",{value:!0}),t);var d=h((w,c)=>{c.exports=_jsx_runtime});var k={};g(k,{default:()=>m,frontmatter:()=>S});var o=j(d()),S={title:\"Sunday Vibes\",date:\"2025-01-26\",published:\"2025-01-26\",description:\"A track that's been on repeat\"};function p(t){let e={p:\"p\",...t.components},{Spotify:n}=e;return n||b(\"Spotify\",!0),(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(e.p,{children:\"Fun song. Will make a great track for a trailer video edit.\"}),`\n`,(0,o.jsx)(n,{id:\"6quMGNh47CpSR5kmZSYSTK\"})]})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,o.jsx)(e,{...t,children:(0,o.jsx)(p,{...t})}):p(t)}function b(t,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return y(k);})();\n;return Component;"
+  },
+  "_id": "blog/2025-01-26.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/2025-01-26.mdx",
+    "sourceFileName": "2025-01-26.mdx",
+    "sourceFileDir": "blog",
+    "contentType": "mdx",
+    "flattenedPath": "blog/2025-01-26"
+  },
+  "type": "MdxPage",
+  "slug": "blog/2025-01-26",
+  "slugAsParams": "2025-01-26"
+}

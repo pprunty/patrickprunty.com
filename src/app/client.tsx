@@ -10,7 +10,6 @@ const ClientSideScrollRestorer = dynamic(
   },
 );
 
-const ToastClient = dynamic(() => import('./toast'), { ssr: false });
 const JsonLdScript = dynamic(() => import('./json-ld'), { ssr: false });
 
 export default function ClientComponents() {
@@ -19,7 +18,6 @@ export default function ClientComponents() {
       <Suspense fallback={null}>
         <ClientSideScrollRestorer />
       </Suspense>
-      <ToastClient />
       <JsonLdScript />
     </>
   );

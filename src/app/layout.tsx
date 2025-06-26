@@ -10,6 +10,8 @@ import { GA_MEASUREMENT_ID } from '@/config';
 import { Instrument_Serif, Geist, Geist_Mono, Petrona } from 'next/font/google';
 import localFont from 'next/font/local';
 import ClientComponents from './client';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 
 const fontSans = Geist({
   subsets: ['latin'],
@@ -136,18 +138,26 @@ export default function RootLayout({
         />
         <link rel="icon" href="/icons/32x32.png" sizes="any" />
       </head>
-      <body className="text-gray-800 dark:text-gray-300 pt-4 p-6 sm:px-2">
+      <body className="text-gray-800 dark:text-gray-300">
+        <Header />
         <div
           className="fixed top-[-40px] left-0 right-0 z-[110] h-20 w-full bg-background opacity-90 blur dark:top-[-50px] dark:opacity-70 sm:top-[-40px] sm:dark:top-[-50px] max-sm:top-[-60px] max-sm:dark:top-[-70px] max-sm:h-24"
           aria-hidden="true"
         ></div>
-        <main className="z-[100] min-h-screen max-w-xl pt-0 m-auto text-pretty sm:px-5">
-          {children}
-        </main>
+        <div className="pt-4 p-6 sm:px-2">
+          <main className="z-[100] min-h-screen max-w-xl pt-0 m-auto text-pretty sm:px-5">
+            {children}
+          </main>
+        </div>
         <div
           className="fixed bottom-[-40px] left-0 right-0 z-[110] h-20 w-full bg-background opacity-90 blur dark:bottom-[-50px] dark:opacity-70 sm:bottom-[-40px] sm:dark:bottom-[-50px] max-sm:bottom-[-60px] max-sm:dark:bottom-[-70px] max-sm:h-24"
           aria-hidden="true"
         ></div>
+        <div className="pt-4 p-6 sm:px-2">
+          <div className="z-[100] max-w-xl pt-0 m-auto text-pretty sm:px-5">
+            <Footer />
+          </div>
+        </div>
         <ClientComponents />
         <Analytics />
         <SpeedInsights />

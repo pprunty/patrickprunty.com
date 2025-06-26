@@ -1,0 +1,21 @@
+{
+  "title": "Hello World!",
+  "description": "A simple hello world post to test the blog setup",
+  "published": "2024-07-18T00:00:00.000Z",
+  "author": "Patrick Prunty",
+  "body": {
+    "raw": "\nThis is my first blog roll post.",
+    "code": "var Component=(()=>{var a=Object.create;var r=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var h=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var _=(t,o)=>()=>(o||t((o={exports:{}}).exports,o),o.exports),b=(t,o)=>{for(var e in o)r(t,e,{get:o[e],enumerable:!0})},i=(t,o,e,l)=>{if(o&&typeof o==\"object\"||typeof o==\"function\")for(let n of h(o))!f.call(t,n)&&n!==e&&r(t,n,{get:()=>o[n],enumerable:!(l=d(o,n))||l.enumerable});return t};var j=(t,o,e)=>(e=t!=null?a(x(t)):{},i(o||!t||!t.__esModule?r(e,\"default\",{value:t,enumerable:!0}):e,t)),y=t=>i(r({},\"__esModule\",{value:!0}),t);var p=_((C,c)=>{c.exports=_jsx_runtime});var g={};b(g,{default:()=>m,frontmatter:()=>M});var s=j(p()),M={title:\"Hello World!\",published:\"2024-07-18\",author:\"Patrick Prunty\",description:\"A simple hello world post to test the blog setup\"};function u(t){let o={p:\"p\",...t.components};return(0,s.jsx)(o.p,{children:\"This is my first blog roll post.\"})}function m(t={}){let{wrapper:o}=t.components||{};return o?(0,s.jsx)(o,{...t,children:(0,s.jsx)(u,{...t})}):u(t)}return y(g);})();\n;return Component;"
+  },
+  "_id": "blog/2024-07-18-hello-world.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/2024-07-18-hello-world.mdx",
+    "sourceFileName": "2024-07-18-hello-world.mdx",
+    "sourceFileDir": "blog",
+    "contentType": "mdx",
+    "flattenedPath": "blog/2024-07-18-hello-world"
+  },
+  "type": "MdxPage",
+  "slug": "blog/2024-07-18-hello-world",
+  "slugAsParams": "2024-07-18-hello-world"
+}

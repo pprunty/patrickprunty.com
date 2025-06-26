@@ -1,0 +1,21 @@
+{
+  "title": "Hello World",
+  "description": "A simple hello world post to test the blog setup",
+  "published": "2024-07-18T00:00:00.000Z",
+  "author": "Patrick Prunty",
+  "body": {
+    "raw": "\n# Hello World\n\nThis is a simple hello world post written in MDX. It demonstrates the basic functionality of our blog setup with Contentlayer and Next.js.\n\n## Getting Started\n\nWelcome to my blog! This is the first post to verify everything is working correctly. ",
+    "code": "var Component=(()=>{var p=Object.create;var i=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,x=Object.prototype.hasOwnProperty;var f=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),y=(e,t)=>{for(var o in t)i(e,o,{get:t[o],enumerable:!0})},l=(e,t,o,s)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let r of u(t))!x.call(e,r)&&r!==o&&i(e,r,{get:()=>t[r],enumerable:!(s=m(t,r))||s.enumerable});return e};var w=(e,t,o)=>(o=e!=null?p(g(e)):{},l(t||!e||!e.__esModule?i(o,\"default\",{value:e,enumerable:!0}):o,e)),_=e=>l(i({},\"__esModule\",{value:!0}),e);var c=f((C,h)=>{h.exports=_jsx_runtime});var b={};y(b,{default:()=>a,frontmatter:()=>j});var n=w(c()),j={title:\"Hello World\",published:\"2024-07-18\",author:\"Patrick Prunty\",description:\"A simple hello world post to test the blog setup\"};function d(e){let t={h1:\"h1\",h2:\"h2\",p:\"p\",...e.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(t.h1,{id:\"hello-world\",children:\"Hello World\"}),`\n`,(0,n.jsx)(t.p,{children:\"This is a simple hello world post written in MDX. It demonstrates the basic functionality of our blog setup with Contentlayer and Next.js.\"}),`\n`,(0,n.jsx)(t.h2,{id:\"getting-started\",children:\"Getting Started\"}),`\n`,(0,n.jsx)(t.p,{children:\"Welcome to my blog! This is the first post to verify everything is working correctly.\"})]})}function a(e={}){let{wrapper:t}=e.components||{};return t?(0,n.jsx)(t,{...e,children:(0,n.jsx)(d,{...e})}):d(e)}return _(b);})();\n;return Component;"
+  },
+  "_id": "blog/hello-world.mdx",
+  "_raw": {
+    "sourceFilePath": "blog/hello-world.mdx",
+    "sourceFileName": "hello-world.mdx",
+    "sourceFileDir": "blog",
+    "contentType": "mdx",
+    "flattenedPath": "blog/hello-world"
+  },
+  "type": "MdxPage",
+  "slug": "blog/hello-world",
+  "slugAsParams": "hello-world"
+}

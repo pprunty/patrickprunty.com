@@ -46,6 +46,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 import { Latex } from '@/app/blog/components/latex';
 import { Spotify } from '@/app/blog/components/spotify';
 import './src/app/globals.css';
+import { useMDXComponent } from 'next-contentlayer2/hooks';
 
 function hashString(str: string): string {
   let hash = 0;
@@ -145,4 +146,9 @@ export function useMDXComponents(components = {}) {
     ...components,
     ...MDXComponents,
   };
+}
+
+export function Mdx({ code }: { code: string }) {
+  const Component = useMDXComponent(code);
+  return <Component components={MDXComponents} />;
 }

@@ -15,7 +15,8 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [
       {
@@ -29,6 +30,7 @@
     "**/*.tsx",
     "**/*.mdx",
     ".next/types/**/*.ts",
+    ".contentlayer/generated/**/*.ts",
     "types",
     "src/**/**.ts",
     "scripts/**/*.ts",
