@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
+import { useMobile } from '@/hooks/use-mobile';
 
 interface YouTubeProps {
   videoId: string;
@@ -18,6 +19,20 @@ interface YTPlayer {
 
 interface YTPlayerEvent {
   target: YTPlayer;
+}
+
+// Define Network Information API types
+interface NetworkInformation {
+  effectiveType?: '4g' | '3g' | '2g' | 'slow-2g';
+  downlink?: number;
+  rtt?: number;
+  saveData?: boolean;
+}
+
+interface NavigatorWithConnection extends Navigator {
+  connection?: NetworkInformation;
+  mozConnection?: NetworkInformation;
+  webkitConnection?: NetworkInformation;
 }
 
 declare global {
@@ -47,6 +62,32 @@ export function YouTube({
 }: YouTubeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<YTPlayer | null>(null);
+  const isMobile = useMobile();
+
+  // Helper function to get optimal quality based on device and network
+  const getOptimalQuality = useCallback(() => {
+    // Check network conditions if available
+    const nav = navigator as NavigatorWithConnection;
+    const connection =
+      nav.connection || nav.mozConnection || nav.webkitConnection;
+
+    if (isMobile) {
+      // On mobile, prefer lower quality for better performance
+      if (connection) {
+        const effectiveType = connection.effectiveType;
+        if (effectiveType === 'slow-2g' || effectiveType === '2g') {
+          return { primary: 'small', fallback: 'medium' }; // 240p/360p
+        } else if (effectiveType === '3g') {
+          return { primary: 'medium', fallback: 'large' }; // 360p/480p
+        }
+      }
+      // Default mobile: 720p with 480p fallback
+      return { primary: 'hd720', fallback: 'large' };
+    } else {
+      // Desktop: keep existing high quality
+      return { primary: 'hd1080', fallback: 'hd720' };
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     let isMounted = true;
@@ -91,14 +132,16 @@ export function YouTube({
           },
           events: {
             onReady: (event: YTPlayerEvent) => {
-              // Try to set HD quality
+              // Set optimal quality based on device and network
               if (event.target && event.target.setPlaybackQuality) {
-                event.target.setPlaybackQuality('hd1080');
-                // Fallback to hd720 if hd1080 is not available
+                const { primary, fallback } = getOptimalQuality();
+                event.target.setPlaybackQuality(primary);
+
+                // Fallback if primary quality is not available
                 setTimeout(() => {
-                  const quality = event.target.getPlaybackQuality();
-                  if (quality !== 'hd1080') {
-                    event.target.setPlaybackQuality('hd720');
+                  const currentQuality = event.target.getPlaybackQuality();
+                  if (currentQuality !== primary) {
+                    event.target.setPlaybackQuality(fallback);
                   }
                 }, 500);
               }
@@ -124,7 +167,7 @@ export function YouTube({
         ytScript.onload = null;
       }
     };
-  }, [videoId, autoplay]);
+  }, [videoId, autoplay, getOptimalQuality]);
 
   return (
     <div

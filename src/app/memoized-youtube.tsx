@@ -3,6 +3,7 @@
 import React, { memo } from 'react';
 import { YouTube } from '@/app/blog/components/youtube';
 import Image from 'next/image';
+import { useMobile } from '@/hooks/use-mobile';
 
 interface MemoizedYouTubeProps {
   videoId: string;
@@ -23,6 +24,7 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
   autoplay = false,
   thumbnail,
 }: MemoizedYouTubeProps) {
+  const isMobile = useMobile();
   // If we're showing the player directly (in MediaCarousel's focused view)
   if (showPlayer) {
     console.log(
@@ -50,8 +52,20 @@ export const MemoizedYouTube = memo(function MemoizedYouTube({
   }
 
   // Otherwise we're just showing a thumbnail
-  const thumbnailUrl =
-    thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  // Use lower quality thumbnails on mobile for faster loading
+  const getOptimalThumbnailUrl = () => {
+    if (thumbnail) return thumbnail;
+
+    if (isMobile) {
+      // Use medium quality thumbnail on mobile (320x180)
+      return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+    } else {
+      // Use high quality thumbnail on desktop (480x360)
+      return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    }
+  };
+
+  const thumbnailUrl = getOptimalThumbnailUrl();
 
   return (
     <div
