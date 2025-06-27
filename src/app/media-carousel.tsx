@@ -351,7 +351,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                   videoId={getSrcPath(item.src)}
                   title={`${title} YouTube video ${focusedIndex + 1}`}
                   showPlayer
-                  autoplay
+                  autoplay={!isMobile}
                   thumbnail={item.thumbnail}
                 />
               </div>

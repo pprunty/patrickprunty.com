@@ -126,9 +126,18 @@ export function YouTube({
           width: '100%',
           height: '100%',
           playerVars: {
-            autoplay: autoplay ? 1 : 0,
+            autoplay: autoplay && !isMobile ? 1 : 0,
             rel: 0,
             modestbranding: 1,
+            // Mobile optimizations
+            ...(isMobile && {
+              playsinline: 1,
+              controls: 1,
+              showinfo: 0,
+              fs: 1,
+              cc_load_policy: 0,
+              iv_load_policy: 3,
+            }),
           },
           events: {
             onReady: (event: YTPlayerEvent) => {
@@ -145,7 +154,7 @@ export function YouTube({
                   }
                 }, 500);
               }
-              if (autoplay) {
+              if (autoplay && !isMobile) {
                 event.target.playVideo();
               }
             },
@@ -167,7 +176,7 @@ export function YouTube({
         ytScript.onload = null;
       }
     };
-  }, [videoId, autoplay, getOptimalQuality]);
+  }, [videoId, autoplay, getOptimalQuality, isMobile]);
 
   return (
     <div
