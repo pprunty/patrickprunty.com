@@ -100,14 +100,16 @@ const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="text-base no-after font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary flex items-center gap-1"
+                    className="text-base no-after font-normal text-primary underline decoration-wavy underline-offset-4 decoration-muted hover:decoration-primary hover:text-primary active:decoration-primary active:text-primary inline-flex items-center gap-1"
                   >
-                    {item.title}
-                    <ArrowUpRight
-                      size={16}
-                      weight="bold"
-                      className="text-muted-foreground"
-                    />
+                    <span className="flex items-center gap-1 flex-wrap">
+                      <span>{item.title}</span>
+                      <ArrowUpRight
+                        size={16}
+                        weight="bold"
+                        className="text-muted-foreground flex-shrink-0"
+                      />
+                    </span>
                   </a>
                 ) : (
                   <span className="text-base font-normal text-primary">
