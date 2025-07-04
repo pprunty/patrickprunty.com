@@ -10,17 +10,6 @@ const Footer: React.FC = () => (
         <ThemeSwitcher />
       </div>
       <div>
-        <div className="text-primary text-[15px]">
-          Built with{' '}
-          <a
-            href="https://nextjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-primary"
-          >
-            Next.js
-          </a>
-        </div>
         <div>
           <LastVisitor />
         </div>
