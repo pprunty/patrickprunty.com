@@ -408,14 +408,14 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     src={getSrcPath(item.src)}
                     width={130}
                     height={130}
-                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    className="rounded-xl h-24 w-auto"
                     focusable={false}
                   />
                 ) : item.type === 'youtube' ? (
                   <MemoizedYouTube
                     videoId={getSrcPath(item.src)}
                     title={`${title} YouTube video ${idx + 1}`}
-                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    className="rounded-xl h-24 w-auto"
                     focusable={false}
                     autoplay={false}
                     thumbnail={item.thumbnail}
@@ -426,7 +426,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = memo(
                     alt={`${title} image ${idx + 1}`}
                     width={130}
                     height={130}
-                    className="rounded-xl border h-24 w-auto border-[#E2E2E2] dark:border-[#343334]"
+                    className="rounded-xl h-24 w-auto"
                     quality={100}
                     unoptimized
                     focusable={false}
