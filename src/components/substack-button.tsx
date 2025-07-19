@@ -20,7 +20,7 @@ const SubstackLogo = () => (
 );
 
 const SubstackButton: React.FC<SubstackButtonProps> = ({
-  href = 'https://furrycircuits.substack.com/',
+  href = 'https://furrycircuits.io/subscribe',
   children = 'Subscribe on Substack',
   className = '',
   ...props

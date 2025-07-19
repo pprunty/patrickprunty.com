@@ -12,7 +12,7 @@ const contacts = [
   },
   {
     label: 'Substack',
-    href: 'https://furrycircuits.substack.com/',
+    href: 'https://furrycircuits.io/',
   },
   {
     label: 'GitHub',
