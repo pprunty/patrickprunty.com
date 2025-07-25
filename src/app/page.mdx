@@ -9,6 +9,7 @@ import Contact from '@/components/contact';
 import Footer from '@/components/footer';
 import SubstackButton from '@/components/substack-button';
 import AnimatedSection from '@/components/animated-section';
+import DelayedPhotoGrid from '@/components/delayed-photo-grid';
 
 export const metadata = {
   title: `${AUTHOR.name}`,
@@ -77,7 +78,7 @@ I'm always happy to connect with like-minded people. Feel free to reach out via 
 </AnimatedSection>
 */}
 
-<AnimatedSection delay={450}>
+<AnimatedSection delay={350}>
 
 # Writing [#writing]
 
@@ -89,7 +90,7 @@ If you're new, try ["The Engineer's Proclivity for Perfection"](https://furrycir
 
 </AnimatedSection>
 
-<AnimatedSection delay={600}>
+<AnimatedSection delay={450}>
 
 # Projects [#projects]
 
@@ -185,19 +186,19 @@ If you're new, try ["The Engineer's Proclivity for Perfection"](https://furrycir
 />
 
 
-<AnimatedSection delay={800}>
+<AnimatedSection delay={600}>
 # Connect [#connect]
 </AnimatedSection>
 
-<AnimatedSection delay={850}>
+<AnimatedSection delay={650}>
 <Contact />
 </AnimatedSection>
 
 # Photos [#photos]
 
-<PhotoGrid />
+<DelayedPhotoGrid />
 
-<AnimatedSection delay={900}>
+<AnimatedSection delay={700}>
 
 <Footer />
 
