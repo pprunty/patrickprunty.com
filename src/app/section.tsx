@@ -27,19 +27,20 @@ interface SectionItem {
 interface SectionProps {
   sectionName: string | React.ReactNode;
   items: SectionItem[];
+  delay?: number;
 }
 
-const Section: React.FC<SectionProps> = memo(({ sectionName, items }) => {
+const Section: React.FC<SectionProps> = memo(({ sectionName, items, delay = 750 }) => {
   // sectionName is intentionally unused in this component but kept for API consistency
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 750);
+    }, delay);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [delay]);
 
   // Prepare all media items at once outside the render loop
   const allMediaItems = useMemo(() => {
